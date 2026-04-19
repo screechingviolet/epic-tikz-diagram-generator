@@ -24,6 +24,19 @@ from data_types import (
     CircleTangent, OnCircle
 )
 
+# ---------------------------------------------------------------------------
+# 0. HELPER  (keep math clean while using dataclasses)
+# ---------------------------------------------------------------------------
+
+def pt(p: Point) -> np.ndarray:
+    """Convert a Point dataclass to a numpy array for math operations."""
+    return np.array([p.x, p.y])
+
+def set_pt(p: Point, arr: np.ndarray):
+    """Write a numpy array back into a Point dataclass in-place."""
+    p.x = float(arr[0])
+    p.y = float(arr[1])
+
 
 # ---------------------------------------------------------------------------
 # 1. GEOMETRY PRIMITIVES
@@ -53,15 +66,12 @@ def angle_between(d1: np.ndarray, d2: np.ndarray) -> float:
 
 
 # ---------------------------------------------------------------------------
-# 2. NUDGES  (each nudge modifies points in-place to force a constraint)
+# 2. NUDGES  (now take dataclass objects directly)
 # ---------------------------------------------------------------------------
 
-def nudge_line_tangent_to_circle(points, line_name, line, circle_name, circle):
-    p1n, p2n = line
-    cn, r = circle
-    center = points[cn]
-
-    direction = points[p2n] - points[p1n]
+def nudge_line_tangent_to_circle(line: Line, circle: Circle):
+    center = pt(circle.center)
+    direction = pt(line.p2) - pt(line.p1)
     norm = np.linalg.norm(direction)
     if norm < 1e-10:
         return
@@ -69,61 +79,53 @@ def nudge_line_tangent_to_circle(points, line_name, line, circle_name, circle):
     perp = np.array([-direction[1], direction[0]])
 
     side = random.choice([-1, 1])
-    offset = center + side * perp * r
+    offset = center + side * perp * circle.radius
 
     t1 = random.uniform(-3, 0)
     t2 = random.uniform(0, 3)
-    points[p1n] = offset + t1 * direction
-    points[p2n] = offset + t2 * direction
+    set_pt(line.p1, offset + t1 * direction)
+    set_pt(line.p2, offset + t2 * direction)
 
 
-def nudge_lines_parallel(points, l1, l2):
-    p1n, p2n = l1
-    p3n, p4n = l2
-    direction = points[p2n] - points[p1n]
+def nudge_lines_parallel(l1: Line, l2: Line):
+    direction = pt(l1.p2) - pt(l1.p1)
     norm = np.linalg.norm(direction)
     if norm < 1e-10:
         return
     direction /= norm
-    length2 = line_length(points[p3n], points[p4n])
-    points[p4n] = points[p3n] + direction * max(length2, 0.5)
+    length2 = line_length(pt(l2.p1), pt(l2.p2))
+    set_pt(l2.p2, pt(l2.p1) + direction * max(length2, 0.5))
 
 
-def nudge_lines_perpendicular(points, l1, l2):
-    p1n, p2n = l1
-    p3n, p4n = l2
-    direction = points[p2n] - points[p1n]
+def nudge_lines_perpendicular(l1: Line, l2: Line):
+    direction = pt(l1.p2) - pt(l1.p1)
     norm = np.linalg.norm(direction)
     if norm < 1e-10:
         return
     direction /= norm
     perp = np.array([-direction[1], direction[0]])
-    length2 = line_length(points[p3n], points[p4n])
-    points[p4n] = points[p3n] + perp * max(length2, 0.5)
+    length2 = line_length(pt(l2.p1), pt(l2.p2))
+    set_pt(l2.p2, pt(l2.p1) + perp * max(length2, 0.5))
 
 
-def nudge_circles_externally_tangent(points, c1, c2):
-    cn1, r1 = c1
-    cn2, r2 = c2
-    direction = points[cn2] - points[cn1]
+def nudge_circles_externally_tangent(c1: Circle, c2: Circle):
+    direction = pt(c2.center) - pt(c1.center)
     norm = np.linalg.norm(direction)
     if norm < 1e-10:
         direction = np.array([1.0, 0.0])
     else:
         direction /= norm
-    points[cn2] = points[cn1] + direction * (r1 + r2)
+    set_pt(c2.center, pt(c1.center) + direction * (c1.radius + c2.radius))
 
 
-def nudge_point_on_circle(points, point_name, circle):
-    cn, r = circle
-    center = points[cn]
-    direction = points[point_name] - center
+def nudge_point_on_circle(point: Point, circle: Circle):
+    direction = pt(point) - pt(circle.center)
     norm = np.linalg.norm(direction)
     if norm < 1e-10:
         direction = np.array([1.0, 0.0])
     else:
         direction /= norm
-    points[point_name] = center + direction * r
+    set_pt(point, pt(circle.center) + direction * circle.radius)
 
 
 # ---------------------------------------------------------------------------
@@ -140,125 +142,170 @@ def random_scene(
     n_lines   = n_lines   or random.randint(1, 3)
     n_circles = n_circles or random.randint(1, 2)
 
-    points = {f"P{i}": np.random.uniform(-5, 5, 2).astype(float)
-              for i in range(n_points)}
-    point_names = list(points.keys())
+    points = {
+        f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
+        for i, (x, y) in enumerate(np.random.uniform(-5, 5, (n_points, 2)))
+    }
+    point_list = list(points.values())
 
     lines = {}
     used_pairs = set()
     for i in range(n_lines):
         for _ in range(20):
-            p1, p2 = random.sample(point_names, 2)
-            pair = tuple(sorted([p1, p2]))
+            p1, p2 = random.sample(point_list, 2)
+            pair = tuple(sorted([p1.name, p2.name]))
             if pair not in used_pairs:
                 used_pairs.add(pair)
-                lines[f"L{i}"] = (p1, p2)
+                lines[f"L{i}"] = Line(name=f"L{i}", p1=p1, p2=p2)
                 break
 
     circles = {}
     for i in range(n_circles):
-        center = random.choice(point_names)
+        center = random.choice(point_list)
         radius = round(random.uniform(0.5, 3.0), 4)
-        circles[f"C{i}"] = (center, radius)
+        circles[f"C{i}"] = Circle(name=f"C{i}", center=center, radius=radius)
 
-    line_names   = list(lines.keys())
-    circle_names = list(circles.keys())
+    line_list   = list(lines.values())
+    circle_list = list(circles.values())
 
-    if line_names and circle_names and random.random() < nudge_probability:
-        lname = random.choice(line_names)
-        cname = random.choice(circle_names)
-        cn = circles[cname][0]
-        p1n, p2n = lines[lname]
-        if cn in (p1n, p2n):
-            free = [p for p in point_names if p != cn]
+    # nudges — pass dataclass objects directly now
+    if line_list and circle_list and random.random() < nudge_probability:
+        line   = random.choice(line_list)
+        circle = random.choice(circle_list)
+        # make sure the circle's center isn't an endpoint of the line
+        if circle.center in (line.p1, line.p2):
+            free = [p for p in point_list if p is not circle.center]
             if free:
-                other = random.choice(free)
-                lines[lname] = (other, p2n) if p1n == cn else (p1n, other)
-        nudge_line_tangent_to_circle(points, lname, lines[lname], cname, circles[cname])
+                line.p1 = random.choice(free)
+        nudge_line_tangent_to_circle(line, circle)
 
-    if len(line_names) >= 2 and random.random() < nudge_probability:
-        l1, l2 = random.sample(line_names, 2)
+    if len(line_list) >= 2 and random.random() < nudge_probability:
+        l1, l2 = random.sample(line_list, 2)
         if random.random() < 0.5:
-            nudge_lines_parallel(points, lines[l1], lines[l2])
+            nudge_lines_parallel(l1, l2)
         else:
-            nudge_lines_perpendicular(points, lines[l1], lines[l2])
+            nudge_lines_perpendicular(l1, l2)
 
-    if len(circle_names) >= 2 and random.random() < nudge_probability:
-        c1, c2 = random.sample(circle_names, 2)
-        nudge_circles_externally_tangent(points, circles[c1], circles[c2])
+    if len(circle_list) >= 2 and random.random() < nudge_probability:
+        c1, c2 = random.sample(circle_list, 2)
+        nudge_circles_externally_tangent(c1, c2)
 
     constraints = extract_constraints(points, lines, circles)
     return points, lines, circles, constraints
 
 
 # ---------------------------------------------------------------------------
-# 4. CONSTRAINT EXTRACTION
+# 4. CONSTRAINT CHECKERS  (now take dataclass objects directly)
 # ---------------------------------------------------------------------------
 
-def extract_constraints(points, lines, circles, eps=1e-6):
+def check_tangent(line: Line, circle: Circle, eps=1e-6) -> Tangent | None:
+    dist = point_to_line_distance(pt(circle.center), pt(line.p1), pt(line.p2))
+    if abs(dist - circle.radius) < eps:
+        return Tangent(circle_name=circle.name, line_name=line.name)
+    return None
+
+
+def check_parallel(l1: Line, l2: Line, eps=1e-6) -> Parallel | None:
+    d1 = pt(l1.p2) - pt(l1.p1)
+    d2 = pt(l2.p2) - pt(l2.p1)
+    if abs(float(d1[0] * d2[1] - d1[1] * d2[0])) < eps:
+        return Parallel(line_1_name=l1.name, line_2_name=l2.name)
+    return None
+
+
+def check_perpendicular(l1: Line, l2: Line, eps=1e-6) -> Perpendicular | None:
+    d1 = pt(l1.p2) - pt(l1.p1)
+    d2 = pt(l2.p2) - pt(l2.p1)
+    if abs(float(np.dot(d1, d2))) < eps:
+        return Perpendicular(line_1_name=l1.name, line_2_name=l2.name)
+    return None
+
+
+def check_angle(l1: Line, l2: Line, eps=1e-6) -> Angle | None:
+    d1 = pt(l1.p2) - pt(l1.p1)
+    d2 = pt(l2.p2) - pt(l2.p1)
+    cross = float(d1[0] * d2[1] - d1[1] * d2[0])
+    dot   = float(np.dot(d1, d2))
+    if abs(cross) < eps or abs(dot) < eps:
+        return None
+    ang = angle_between(d1, d2)
+    acute = ang if ang <= 90 else 180 - ang
+    return Angle(line_1_name=l1.name, line_2_name=l2.name, acute_angle=round(acute, 2))
+
+
+def check_circle_tangent(c1: Circle, c2: Circle, eps=1e-6) -> CircleTangent | None:
+    dist = float(np.linalg.norm(pt(c1.center) - pt(c2.center)))
+    if abs(dist - (c1.radius + c2.radius)) < eps:
+        return CircleTangent(circle_1_name=c1.name, circle_2_name=c2.name, kind="external")
+    if abs(dist - abs(c1.radius - c2.radius)) < eps:
+        return CircleTangent(circle_1_name=c1.name, circle_2_name=c2.name, kind="internal")
+    return None
+
+
+def check_on_circle(point: Point, circle: Circle, eps=1e-6) -> OnCircle | None:
+    if point is circle.center:
+        return None
+    dist = float(np.linalg.norm(pt(point) - pt(circle.center)))
+    if abs(dist - circle.radius) < eps:
+        return OnCircle(point_name=point.name, circle_name=circle.name)
+    return None
+
+
+# ---------------------------------------------------------------------------
+# EXTRACT CONSTRAINTS
+# ---------------------------------------------------------------------------
+
+def extract_constraints(points, lines, circles) -> list:
     constraints = []
 
-    for lname, (p1n, p2n) in lines.items():
-        length = line_length(points[p1n], points[p2n])
+    for line in lines.values():
+        length = line_length(pt(line.p1), pt(line.p2))
         if length > 1e-6:
-            constraints.append(Length(line_name=lname, dist=round(length, 4)))
+            constraints.append(Length(line_name=line.name, dist=round(length, 4)))
 
-    for cname, (cn, r) in circles.items():
-        constraints.append(Radius(circle_name=cname, rad=round(r, 4)))
+    for circle in circles.values():
+        constraints.append(Radius(circle_name=circle.name, rad=round(circle.radius, 4)))
 
-    for lname, (p1n, p2n) in lines.items():
-        for cname, (cn, r) in circles.items():
-            dist = point_to_line_distance(points[cn], points[p1n], points[p2n])
-            if abs(dist - r) < eps:
-                constraints.append(Tangent(circle_name=cname, line_name=lname))
+    for line in lines.values():
+        for circle in circles.values():
+            result = check_tangent(line, circle)
+            if result:
+                constraints.append(result)
 
-    for (l1, (a1, b1)), (l2, (a2, b2)) in itertools.combinations(lines.items(), 2):
-        d1 = points[b1] - points[a1]
-        d2 = points[b2] - points[a2]
-        cross = float(d1[0] * d2[1] - d1[1] * d2[0])
-        dot   = float(np.dot(d1, d2))
-        ang   = angle_between(d1, d2)
-        if abs(cross) < eps:
-            constraints.append(Parallel(line_1_name=l1, line_2_name=l2))
-        elif abs(dot) < eps:
-            constraints.append(Perpendicular(line_1_name=l1, line_2_name=l2))
-        else:
-            acute = ang if ang <= 90 else 180 - ang
-            constraints.append(Angle(line_1_name=l1, line_2_name=l2, acute_angle=round(acute, 2)))
+    for l1, l2 in itertools.combinations(lines.values(), 2):
+        result = check_parallel(l1, l2) or check_perpendicular(l1, l2) or check_angle(l1, l2)
+        if result:
+            constraints.append(result)
 
-    for (c1, (cn1, r1)), (c2, (cn2, r2)) in itertools.combinations(circles.items(), 2):
-        dist = float(np.linalg.norm(points[cn1] - points[cn2]))
-        if abs(dist - (r1 + r2)) < eps:
-            constraints.append(CircleTangent(circle_1_name=c1, circle_2_name=c2, kind="external"))
-        elif abs(dist - abs(r1 - r2)) < eps:
-            constraints.append(CircleTangent(circle_1_name=c1, circle_2_name=c2, kind="internal"))
+    for c1, c2 in itertools.combinations(circles.values(), 2):
+        result = check_circle_tangent(c1, c2)
+        if result:
+            constraints.append(result)
 
-    for pname, pcoord in points.items():
-        for cname, (cn, r) in circles.items():
-            if pname == cn:
-                continue
-            dist = float(np.linalg.norm(pcoord - points[cn]))
-            if abs(dist - r) < eps:
-                constraints.append(OnCircle(point_name=pname, circle_name=cname))
+    for point in points.values():
+        for circle in circles.values():
+            result = check_on_circle(point, circle)
+            if result:
+                constraints.append(result)
 
     return constraints
 
 
 # ---------------------------------------------------------------------------
-# 5. SERIALISER  →  formal language string
+# 5. SERIALISER
 # ---------------------------------------------------------------------------
 
 def serialize_scene(points, lines, circles, constraints) -> str:
     lines_out = []
 
-    for name, coord in points.items():
-        lines_out.append(f"point({name}, {coord[0]:.4f}, {coord[1]:.4f})")
+    for p in points.values():
+        lines_out.append(f"point({p.name}, {p.x:.4f}, {p.y:.4f})")
 
-    for name, (p1, p2) in lines.items():
-        lines_out.append(f"line({name}, {p1}, {p2})")
+    for l in lines.values():
+        lines_out.append(f"line({l.name}, {l.p1.name}, {l.p2.name})")
 
-    for name, (center, radius) in circles.items():
-        lines_out.append(f"circle({name}, {center}, {radius:.4f})")
+    for c in circles.values():
+        lines_out.append(f"circle({c.name}, {c.center.name}, {c.radius:.4f})")
 
     for c in constraints:
         if isinstance(c, Length):
@@ -279,8 +326,6 @@ def serialize_scene(points, lines, circles, constraints) -> str:
             lines_out.append(f"on_circle({c.point_name}, {c.circle_name})")
 
     return "\n".join(lines_out)
-
-
 def constraints_only_str(constraints) -> str:
     parts = []
     for c in constraints:
@@ -301,7 +346,6 @@ def constraints_only_str(constraints) -> str:
         elif isinstance(c, Radius):
             parts.append(f"circle {c.circle_name} has radius {c.rad}")
     return "\n".join(f"- {p}" for p in parts)
-
 
 # ---------------------------------------------------------------------------
 # 6. NL VARIANT GENERATION  (calls Claude)
