@@ -51,3 +51,18 @@ class Parallel:
     line_1_name: str
     line_2_name: str
 
+@dataclass
+class Perpendicular:
+    line_1_name: str
+    line_2_name: str
+
+@dataclass
+class CircleTangent:
+    circle_1_name: str
+    circle_2_name: str
+    kind: str
+
+@dataclass
+class OnCircle:
+    point_name: str
+    circle_name: str
