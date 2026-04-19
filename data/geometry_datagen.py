@@ -252,31 +252,31 @@ def serialize_scene(points, lines, circles, constraints) -> str:
     lines_out = []
 
     for name, coord in points.items():
-        lines_out.append(f"(point {name} {coord[0]:.4f} {coord[1]:.4f})")
+        lines_out.append(f"point({name}, {coord[0]:.4f}, {coord[1]:.4f})")
 
     for name, (p1, p2) in lines.items():
-        lines_out.append(f"(line {name} {p1} {p2})")
+        lines_out.append(f"line({name}, {p1}, {p2})")
 
     for name, (center, radius) in circles.items():
-        lines_out.append(f"(circle {name} {center} {radius:.4f})")
+        lines_out.append(f"circle({name}, {center}, {radius:.4f})")
 
     for c in constraints:
         if isinstance(c, Length):
-            lines_out.append(f"(length {c.line_name} {c.dist:.4f})")
+            lines_out.append(f"length({c.line_name}, {c.dist:.4f})")
         elif isinstance(c, Radius):
-            lines_out.append(f"(radius {c.circle_name} {c.rad:.4f})")
+            lines_out.append(f"radius({c.circle_name}, {c.rad:.4f})")
         elif isinstance(c, Tangent):
-            lines_out.append(f"(tangent {c.line_name} {c.circle_name})")
+            lines_out.append(f"tangent({c.line_name}, {c.circle_name})")
         elif isinstance(c, Parallel):
-            lines_out.append(f"(parallel {c.line_1_name} {c.line_2_name})")
+            lines_out.append(f"parallel({c.line_1_name}, {c.line_2_name})")
         elif isinstance(c, Perpendicular):
-            lines_out.append(f"(perpendicular {c.line_1_name} {c.line_2_name})")
+            lines_out.append(f"perpendicular({c.line_1_name}, {c.line_2_name})")
         elif isinstance(c, Angle):
-            lines_out.append(f"(angle {c.line_1_name} {c.line_2_name} {c.acute_angle:.2f})")
+            lines_out.append(f"angle({c.line_1_name}, {c.line_2_name}, {c.acute_angle:.2f})")
         elif isinstance(c, CircleTangent):
-            lines_out.append(f"(circle-tangent {c.circle_1_name} {c.circle_2_name} {c.kind})")
+            lines_out.append(f"circle_tangent({c.circle_1_name}, {c.circle_2_name}, {c.kind})")
         elif isinstance(c, OnCircle):
-            lines_out.append(f"(on-circle {c.point_name} {c.circle_name})")
+            lines_out.append(f"on_circle({c.point_name}, {c.circle_name})")
 
     return "\n".join(lines_out)
 
