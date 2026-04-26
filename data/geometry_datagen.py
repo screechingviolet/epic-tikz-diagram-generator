@@ -212,7 +212,6 @@ def check_parallel(l1: Line, l2: Line, eps=1e-6) -> Parallel | None:
         return Parallel(line_1_name=l1.name, line_2_name=l2.name)
     return None
 
-
 def check_perpendicular(l1: Line, l2: Line, eps=1e-6) -> Perpendicular | None:
     d1 = pt(l1.p2) - pt(l1.p1)
     d2 = pt(l2.p2) - pt(l2.p1)
@@ -229,8 +228,8 @@ def check_angle(l1: Line, l2: Line, eps=1e-6) -> Angle | None:
     if abs(cross) < eps or abs(dot) < eps:
         return None
     ang = angle_between(d1, d2)
-    acute = ang if ang <= 90 else 180 - ang
-    return Angle(line_1_name=l1.name, line_2_name=l2.name, acute_angle=round(acute, 2))
+    small = ang if ang <= 180 else 360 - ang
+    return Angle(line_1_name=l1.name, line_2_name=l2.name, angle=round(small, 2))
 
 
 def check_circle_tangent(c1: Circle, c2: Circle, eps=1e-6) -> CircleTangent | None:
@@ -295,37 +294,42 @@ def extract_constraints(points, lines, circles) -> list:
 # 5. SERIALISER
 # ---------------------------------------------------------------------------
 
-def serialize_scene(points, lines, circles, constraints) -> str:
-    lines_out = []
-
+def serialize_geometry(points, lines, circles) -> list[str]:
+    """Just the objects — fed to the model as pred_geo."""
+    out = []
     for p in points.values():
-        lines_out.append(f"point({p.name}, {p.x:.4f}, {p.y:.4f})")
-
+        out.append(f"point({p.name}, {p.x:.4f}, {p.y:.4f})")
     for l in lines.values():
-        lines_out.append(f"line({l.name}, {l.p1.name}, {l.p2.name})")
-
+        out.append(f"line({l.name}, {l.p1.name}, {l.p2.name})")
     for c in circles.values():
-        lines_out.append(f"circle({c.name}, {c.center.name}, {c.radius:.4f})")
+        out.append(f"circle({c.name}, {c.center.name}, {c.radius:.4f})")
+    return out
 
+def serialize_constraints(constraints) -> list[str]:
+    """Just the constraints — used as truth_constr in the loss function."""
+    out = []
     for c in constraints:
         if isinstance(c, Length):
-            lines_out.append(f"length({c.line_name}, {c.dist:.4f})")
+            out.append(f"length({c.line_name}, {c.dist:.4f})")
         elif isinstance(c, Radius):
-            lines_out.append(f"radius({c.circle_name}, {c.rad:.4f})")
+            out.append(f"radius({c.circle_name}, {c.rad:.4f})")
         elif isinstance(c, Tangent):
-            lines_out.append(f"tangent({c.line_name}, {c.circle_name})")
+            out.append(f"tangent({c.line_name}, {c.circle_name})")
         elif isinstance(c, Parallel):
-            lines_out.append(f"parallel({c.line_1_name}, {c.line_2_name})")
+            out.append(f"parallel({c.line_1_name}, {c.line_2_name})")
         elif isinstance(c, Perpendicular):
-            lines_out.append(f"perpendicular({c.line_1_name}, {c.line_2_name})")
+            out.append(f"perpendicular({c.line_1_name}, {c.line_2_name})")
         elif isinstance(c, Angle):
-            lines_out.append(f"angle({c.line_1_name}, {c.line_2_name}, {c.acute_angle:.2f})")
+            out.append(f"angle({c.line_1_name}, {c.line_2_name}, {c.angle:.2f})")
         elif isinstance(c, CircleTangent):
-            lines_out.append(f"circle_tangent({c.circle_1_name}, {c.circle_2_name}, {c.kind})")
+            out.append(f"circle_tangent({c.circle_1_name}, {c.circle_2_name})")
         elif isinstance(c, OnCircle):
-            lines_out.append(f"on_circle({c.point_name}, {c.circle_name})")
+            out.append(f"on_circle({c.point_name}, {c.circle_name})")
+    return out
 
-    return "\n".join(lines_out)
+def serialize_scene(points, lines, circles, constraints) -> str:
+    """Combined string — still useful for the NL generation prompt."""
+    return "\n".join(serialize_geometry(points, lines, circles) + serialize_constraints(constraints))
 def constraints_only_str(constraints) -> str:
     parts = []
     for c in constraints:
@@ -336,7 +340,7 @@ def constraints_only_str(constraints) -> str:
         elif isinstance(c, Perpendicular):
             parts.append(f"lines {c.line_1_name} and {c.line_2_name} are perpendicular")
         elif isinstance(c, Angle):
-            parts.append(f"lines {c.line_1_name} and {c.line_2_name} meet at {c.acute_angle}°")
+            parts.append(f"lines {c.line_1_name} and {c.line_2_name} meet at {c.angle}°")
         elif isinstance(c, CircleTangent):
             parts.append(f"circles {c.circle_1_name} and {c.circle_2_name} are {c.kind}ly tangent")
         elif isinstance(c, OnCircle):
@@ -438,9 +442,9 @@ def generate_dataset(
             #     continue
 
             record = {
-                "formal":      formal,
-                "constraints": [repr(c) for c in constraints],
-                "nl_variants": [],  # variants
+                "geometry":    serialize_geometry(points, lines, circles),  # list[str] → pred_geo
+                "constraints": serialize_constraints(constraints),           # list[str] → truth_constr
+                "nl_variants": [],
             }
             f.write(json.dumps(record) + "\n")
             generated += 1

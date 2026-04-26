@@ -14,7 +14,7 @@ parallel(line, line) = bool
 perpendicular(line, line) = bool
 circle_tangent(circle1, circle2) = bool
 on_circle(point, circle) = bool
-acute_angle(line, line) = float
+angle(line, line) = float
 
 EPIC GEOMETRY LANGUAGE
 point(name, x, y)
@@ -103,7 +103,7 @@ def tangent(line, circle) -> bool:
     dist = math.hypot(cx - closest_x, cy - closest_y)
     return math.isclose(dist, circle.radius, rel_tol=FLOAT_CMP)
 
-def acute_angle(line1, line2) -> float:
+def angle(line1, line2) -> float:
     dx1 = line1.point_2.x - line1.point_1.x
     dy1 = line1.point_2.y - line1.point_1.y
     dx2 = line2.point_2.x - line2.point_1.x
@@ -112,9 +112,9 @@ def acute_angle(line1, line2) -> float:
     mag1 = math.hypot(dx1, dy1)
     mag2 = math.hypot(dx2, dy2)
     cos_theta = dot / (mag1 * mag2)
-    angle = math.acos(max(-1, min(1, cos_theta)))
+    angle = math.degrees(math.acos(max(-1, min(1, cos_theta))))
 
-    return min(angle, math.pi - angle)
+    return min(angle, 360 - angle)
 
 def slope(line):
     dx = line.point_2.x - line.point_1.x
@@ -212,8 +212,8 @@ def check_constraints(pred_geo, truth_constr):
                 case "on_circle":
                     if on_circle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
-                case "acute_angle":
-                    if math.isclose(acute_angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                case "angle":
+                    if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
                         correct_constraints += 1
                 case _:
                     raise ValueError
@@ -243,7 +243,7 @@ print(check_constraints(
         "point(c, 0, 0)", "point(d, 1, 1)",
         "line(l1, a, b)", "line(l2, c, d)"
     ],
-    ["acute_angle(l1,l2,0.7854)"]
+    ["angle(l1,l2,0.7854)"]
 ))
 print(check_constraints(
     [

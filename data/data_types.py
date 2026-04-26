@@ -44,7 +44,7 @@ class Tangent:
 class Angle:
     line_1_name: str
     line_2_name: str
-    acute_angle: float
+    angle: float
     
 @dataclass
 class Parallel:
