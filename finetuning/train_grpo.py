@@ -138,8 +138,8 @@ def reward_constraints(completions, constraints, **kwargs):
         # malformed primitive — bursts of noise that drown the training log.
         # Swallow stdout for the duration of the call so the trainer's per-step
         # metrics stay readable.
-        #with contextlib.redirect_stdout(io.StringIO()):
-        score = check_constraints(pred_geo, truth)
+        with contextlib.redirect_stdout(io.StringIO()):
+            score = check_constraints(pred_geo, truth)
         if score == BIG_BAD_LOSS:
             # loss.check_constraints returns BIG_BAD_LOSS as an error sentinel
             # (e.g. a line referencing an undefined point). Give a tiny credit
