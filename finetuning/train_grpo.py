@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import sys
 from pathlib import Path
@@ -13,7 +15,10 @@ from peft import LoraConfig
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "loss-fn"))
 
-from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
+# loss.py runs self-test prints at import time — silence them so the trainer
+# log starts clean.
+with contextlib.redirect_stdout(io.StringIO()):
+    from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
@@ -122,7 +127,12 @@ def reward_constraints(completions, constraints, **kwargs):
             rewards.append(0.0)
             continue
 
-        score = check_constraints(pred_geo, truth)
+        # loss.check_constraints() prints the stringified exception on every
+        # malformed primitive — bursts of noise that drown the training log.
+        # Swallow stdout for the duration of the call so the trainer's per-step
+        # metrics stay readable.
+        with contextlib.redirect_stdout(io.StringIO()):
+            score = check_constraints(pred_geo, truth)
         if score == BIG_BAD_LOSS:
             # loss.check_constraints returns BIG_BAD_LOSS as an error sentinel
             # (e.g. a line referencing an undefined point). Give a tiny credit
