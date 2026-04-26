@@ -223,40 +223,41 @@ def check_constraints(pred_geo, truth_constr):
         print(e)
         return BIG_BAD_LOSS
 
-# testing oof
-print(check_constraints(["point(p1, 10, 10.45)", "line(l1, p1, p2)", "point(p2, 15, 10.45)"], ["length(l1,5)"]))
-print(check_constraints(
-    ["point(c, 0, 0)", "circle(c1, c, 5)", "point(p, 3, 4)"],
-    ["on_circle(p, c1)"]
-))
-print(check_constraints(
-    [
-        "point(a, 0, 0)", "point(b, 2, 2)",
-        "point(c, 1, 0)", "point(d, 3, 2)",
-        "line(l1, a, b)", "line(l2, c, d)"
-    ],
-    ["parallel(l1, l2)"]
-))
-print(check_constraints(
-    [
-        "point(a, 0, 0)", "point(b, 1, 0)",
-        "point(c, 0, 0)", "point(d, 1, 1)",
-        "line(l1, a, b)", "line(l2, c, d)"
-    ],
-    ["angle(l1,l2,0.7854)"]
-))
-print(check_constraints(
-    [
-        "point(a, 0, 0)", "point(b, 4, 4)",
-        "point(c, 0, 4)", "point(d, 4, 0)",
-        "line(l1, a, b)", "line(l2, c, d)"
-    ],
-    ["intersect(l1, l2)"]
-))
-print(check_constraints(
-    [
-        "point(c1c, 0, 0)", "circle(c1, c1c, 5)",
-        "point(c2c, 10, 0)", "circle(c2, c2c, 5)"
-    ],
-    ["circle_tangent(c1, c2)"]
-))
+if __name__ == "__main__":
+    # testing oof
+    print(check_constraints(["point(p1, 10, 10.45)", "line(l1, p1, p2)", "point(p2, 15, 10.45)"], ["length(l1,5)"]))
+    print(check_constraints(
+        ["point(c, 0, 0)", "circle(c1, c, 5)", "point(p, 3, 4)"],
+        ["on_circle(p, c1)"]
+    ))
+    print(check_constraints(
+        [
+            "point(a, 0, 0)", "point(b, 2, 2)",
+            "point(c, 1, 0)", "point(d, 3, 2)",
+            "line(l1, a, b)", "line(l2, c, d)"
+        ],
+        ["parallel(l1, l2)"]
+    ))
+    print(check_constraints(
+        [
+            "point(a, 0, 0)", "point(b, 1, 0)",
+            "point(c, 0, 0)", "point(d, 1, 1)",
+            "line(l1, a, b)", "line(l2, c, d)"
+        ],
+        ["angle(l1,l2,0.7854)"]
+    ))
+    print(check_constraints(
+        [
+            "point(a, 0, 0)", "point(b, 4, 4)",
+            "point(c, 0, 4)", "point(d, 4, 0)",
+            "line(l1, a, b)", "line(l2, c, d)"
+        ],
+        ["intersect(l1, l2)"]
+    ))
+    print(check_constraints(
+        [
+            "point(c1c, 0, 0)", "circle(c1, c1c, 5)",
+            "point(c2c, 10, 0)", "circle(c2, c2c, 5)"
+        ],
+        ["circle_tangent(c1, c2)"]
+    ))
