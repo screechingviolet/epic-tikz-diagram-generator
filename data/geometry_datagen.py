@@ -6,7 +6,7 @@ Full pipeline for generating geometry training data:
   2. Nudge for interesting constraints (tangency, perpendicularity, etc.)
   3. Extract all true constraints from the scene
   4. Serialize to formal language
-  5. Generate natural language variants via Claude API
+  5. Generate natural language variants via OpenAI API
   6. Save dataset to JSONL
 """
 
@@ -17,6 +17,10 @@ import time
 from pathlib import Path
 
 import numpy as np
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from data_types import (
     Point, Line, Circle,
@@ -168,11 +172,9 @@ def random_scene(
     line_list   = list(lines.values())
     circle_list = list(circles.values())
 
-    # nudges — pass dataclass objects directly now
     if line_list and circle_list and random.random() < nudge_probability:
         line   = random.choice(line_list)
         circle = random.choice(circle_list)
-        # make sure the circle's center isn't an endpoint of the line
         if circle.center in (line.p1, line.p2):
             free = [p for p in point_list if p is not circle.center]
             if free:
@@ -295,7 +297,6 @@ def extract_constraints(points, lines, circles) -> list:
 # ---------------------------------------------------------------------------
 
 def serialize_geometry(points, lines, circles) -> list[str]:
-    """Just the objects — fed to the model as pred_geo."""
     out = []
     for p in points.values():
         out.append(f"point({p.name}, {p.x:.4f}, {p.y:.4f})")
@@ -306,7 +307,6 @@ def serialize_geometry(points, lines, circles) -> list[str]:
     return out
 
 def serialize_constraints(constraints) -> list[str]:
-    """Just the constraints — used as truth_constr in the loss function."""
     out = []
     for c in constraints:
         if isinstance(c, Length):
@@ -328,8 +328,8 @@ def serialize_constraints(constraints) -> list[str]:
     return out
 
 def serialize_scene(points, lines, circles, constraints) -> str:
-    """Combined string — still useful for the NL generation prompt."""
     return "\n".join(serialize_geometry(points, lines, circles) + serialize_constraints(constraints))
+
 def constraints_only_str(constraints) -> str:
     parts = []
     for c in constraints:
@@ -351,52 +351,56 @@ def constraints_only_str(constraints) -> str:
             parts.append(f"circle {c.circle_name} has radius {c.rad}")
     return "\n".join(f"- {p}" for p in parts)
 
+
 # ---------------------------------------------------------------------------
-# 6. NL VARIANT GENERATION  (calls Claude)
+# 6. NL VARIANT GENERATION  (OpenAI)
 # ---------------------------------------------------------------------------
 
-# def generate_nl_variants(
-#     formal: str,
-#     constraint_summary: str,
-#     n_variants: int = 8,
-#     client = None,
-# ) -> list[str]:
-#     prompt = f"""You are generating training data for a geometry diagram system that converts natural language into formal geometric descriptions.
-#
-# Here is a formal geometric description:
-# {formal}
-#
-# Key relationships in this scene:
-# {constraint_summary}
-#
-# Generate {n_variants} different natural language descriptions that a student, teacher, or textbook might use to describe this diagram. Rules:
-# - Each description must be semantically equivalent (same objects and constraints)
-# - Vary vocabulary: use synonyms (tangent / just touches / grazes, perpendicular / at right angles / 90 degrees, etc.)
-# - Vary structure: some terse, some verbose, some conversational, some formal
-# - Do NOT mention coordinate values like (1.23, -4.56) — describe relationships only
-# - Do NOT number the descriptions
-#
-# Respond with ONLY a JSON array of strings, no other text. Example format:
-# ["description one", "description two"]"""
-#
-#     response = client.messages.create(
-#         model="claude-opus-4-5",
-#         max_tokens=1500,
-#         messages=[{"role": "user", "content": prompt}],
-#     )
-#
-#     raw = response.content[0].text.strip()
-#     if raw.startswith("```"):
-#         raw = raw.split("```")[1]
-#         if raw.startswith("json"):
-#             raw = raw[4:]
-#     raw = raw.strip()
-#
-#     try:
-#         variants = json.loads(raw)
-#         return [v for v in variants if isinstance(v, str)]
-#     except json.JSONDecodeError:
-#         return [line.strip().strip('"') for line in raw.splitlines() if line.strip()]
+def generate_nl_variants(
+    formal: str,
+    constraint_summary: str,
+    n_variants: int = 8,
+    client: OpenAI = None,
+) -> list[str]:
+    if client is None:
+        client = OpenAI()
+
+    prompt = f"""You are generating training data for a geometry diagram system that converts natural language into formal geometric descriptions.
+
+Here is a formal geometric description:
+{formal}
+
+Key relationships in this scene:
+{constraint_summary}
+
+Generate {n_variants} different natural language descriptions that a student, teacher, or textbook might use to describe this diagram. Rules:
+- Each description must be semantically equivalent (same objects and constraints)
+- Vary vocabulary: use synonyms (tangent / just touches / grazes, perpendicular / at right angles / 90 degrees, etc.)
+- Vary structure: some terse, some verbose, some conversational, some formal
+- Do NOT mention coordinate values like (1.23, -4.56) — describe relationships only
+- Do NOT number the descriptions
+
+Respond with ONLY a JSON array of strings, no other text. Example format:
+["description one", "description two"]"""
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        max_tokens=1500,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    raw = response.choices[0].message.content.strip()
+    if raw.startswith("```"):
+        raw = raw.split("```")[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+    raw = raw.strip()
+
+    try:
+        variants = json.loads(raw)
+        return [v for v in variants if isinstance(v, str)]
+    except json.JSONDecodeError:
+        return [line.strip().strip('"') for line in raw.splitlines() if line.strip()]
 
 
 # ---------------------------------------------------------------------------
@@ -409,7 +413,7 @@ def generate_dataset(
     output_path: str = "geometry_dataset.jsonl",
     delay: float = 0.5,
 ):
-    # client = anthropic.Anthropic()
+    client = OpenAI()
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -432,23 +436,21 @@ def generate_dataset(
             formal  = serialize_scene(points, lines, circles, constraints)
             summary = constraints_only_str(constraints)
 
-            # try:
-            #     variants = generate_nl_variants(
-            #         formal, summary, n_variants_per_scene, client
-            #     )
-            # except Exception as e:
-            #     print(f"API error: {e} — skipping")
-            #     skipped += 1
-            #     continue
+            try:
+                variants = generate_nl_variants(formal, summary, n_variants_per_scene, client)
+            except Exception as e:
+                print(f"API error: {e} — skipping")
+                skipped += 1
+                continue
 
             record = {
-                "geometry":    serialize_geometry(points, lines, circles),  # list[str] → pred_geo
-                "constraints": serialize_constraints(constraints),           # list[str] → truth_constr
-                "nl_variants": [],
+                "geometry":    serialize_geometry(points, lines, circles),
+                "constraints": serialize_constraints(constraints),
+                "nl_variants": variants,
             }
             f.write(json.dumps(record) + "\n")
             generated += 1
-            print(f"ok ({len(constraints)} constraints)")
+            print(f"ok ({len(variants)} variants, {len(constraints)} constraints)")
 
             time.sleep(delay)
 
@@ -469,6 +471,11 @@ if __name__ == "__main__":
 
     print("Formal:\n" + formal)
     print("\nConstraint summary:\n" + summary)
+
+    print("\nGenerating NL variants...")
+    variants = generate_nl_variants(formal, summary, n_variants=5)
+    for i, v in enumerate(variants, 1):
+        print(f"  {i}. {v}")
 
     print("\n=== Generating small dataset (10 scenes) ===\n")
     generate_dataset(n_scenes=10, n_variants_per_scene=5, output_path="demo_dataset.jsonl")
