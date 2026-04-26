@@ -60,6 +60,7 @@ class Perpendicular:
 class CircleTangent:
     circle_1_name: str
     circle_2_name: str
+    kind: str
 
 @dataclass
 class OnCircle:
