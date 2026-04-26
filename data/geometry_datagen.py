@@ -353,55 +353,130 @@ def constraints_only_str(constraints) -> str:
 
 
 # ---------------------------------------------------------------------------
-# 6. NL VARIANT GENERATION  (OpenAI)
+# 6. NL VARIANT GENERATION  (OpenAI — batched + cached)
 # ---------------------------------------------------------------------------
 
-def generate_nl_variants(
-    formal: str,
-    constraint_summary: str,
-    n_variants: int = 8,
-    client: OpenAI = None,
-) -> list[str]:
-    if client is None:
-        client = OpenAI()
+def build_prompt(formal: str, summary: str, n_variants: int) -> list[dict]:
+    # static instructions in system message (gets cached by OpenAI automatically)
+    # variable scene content in user message (not cached)
+    return [
+        {
+            "role": "system",
+            "content": """You are generating training data for a geometry diagram system
+that converts natural language into formal geometric descriptions.
 
-    prompt = f"""You are generating training data for a geometry diagram system that converts natural language into formal geometric descriptions.
-
-Here is a formal geometric description:
+Generate natural language descriptions following these rules:
+- Each description must be semantically equivalent (same objects and constraints)
+- Vary vocabulary: tangent / just touches / grazes, perpendicular / at right angles, etc.
+- Vary structure: some terse, some verbose, some conversational, some formal
+- Do NOT mention coordinate values — describe relationships only
+- Do NOT number the descriptions
+- Respond with ONLY a JSON array of strings, no other text. Example format:
+["description one", "description two"]"""
+        },
+        {
+            "role": "user",
+            "content": f"""Formal description:
 {formal}
 
-Key relationships in this scene:
-{constraint_summary}
+Key relationships:
+{summary}
 
-Generate {n_variants} different natural language descriptions that a student, teacher, or textbook might use to describe this diagram. Rules:
-- Each description must be semantically equivalent (same objects and constraints)
-- Vary vocabulary: use synonyms (tangent / just touches / grazes, perpendicular / at right angles / 90 degrees, etc.)
-- Vary structure: some terse, some verbose, some conversational, some formal
-- Do NOT mention coordinate values like (1.23, -4.56) — describe relationships only
-- Do NOT number the descriptions
+Generate {{n_variants}} different natural language descriptions.""".format(n_variants=n_variants)
+        }
+    ]
 
-Respond with ONLY a JSON array of strings, no other text. Example format:
-["description one", "description two"]"""
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        max_tokens=1500,
-        messages=[{"role": "user", "content": prompt}],
-    )
-
-    raw = response.choices[0].message.content.strip()
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    raw = raw.strip()
-
+def parse_variants(raw: str) -> list[str]:
+    raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     try:
-        variants = json.loads(raw)
-        return [v for v in variants if isinstance(v, str)]
+        return [v for v in json.loads(raw) if isinstance(v, str)]
     except json.JSONDecodeError:
         return [line.strip().strip('"') for line in raw.splitlines() if line.strip()]
 
+
+def generate_nl_variants_batched(
+    scenes: list[dict],
+    n_variants: int = 8,
+    client: OpenAI = None,
+) -> list[list[str]]:
+    """
+    Takes a list of scene dicts (each with points/lines/circles/constraints),
+    submits all NL generation as a single batch job, and returns a list of
+    variant lists in the same order as the input scenes.
+    """
+    if client is None:
+        client = OpenAI()
+
+    # build batch request file
+    batch_requests = []
+    for i, scene in enumerate(scenes):
+        formal  = serialize_scene(scene["points"], scene["lines"], scene["circles"], scene["constraints"])
+        summary = constraints_only_str(scene["constraints"])
+        batch_requests.append({
+            "custom_id": f"scene-{i}",
+            "method":    "POST",
+            "url":       "/v1/chat/completions",
+            "body": {
+                "model":      "gpt-4o-mini",
+                "max_tokens": 1500,
+                "messages":   build_prompt(formal, summary, n_variants),
+            }
+        })
+
+    # write to temp file and upload
+    batch_input_path = Path("_batch_input.jsonl")
+    with open(batch_input_path, "w") as f:
+        for req in batch_requests:
+            f.write(json.dumps(req) + "\n")
+
+    with open(batch_input_path, "rb") as f:
+        batch_file = client.files.create(file=f, purpose="batch")
+
+    batch = client.batches.create(
+        input_file_id=batch_file.id,
+        endpoint="/v1/chat/completions",
+        completion_window="24h",
+    )
+    print(f"Batch submitted: {batch.id}")
+
+    # poll until done
+    while True:
+        batch = client.batches.retrieve(batch.id)
+        print(f"  status: {batch.status} "
+              f"({batch.request_counts.completed}/{batch.request_counts.total} completed)")
+        if batch.status == "completed":
+            break
+        elif batch.status in ("failed", "cancelled"):
+            raise RuntimeError(f"Batch {batch.id} failed with status: {batch.status}")
+        time.sleep(30)
+
+    # download results and reassemble in original order
+    result_content = client.files.content(batch.output_file_id).text
+    results = {
+        json.loads(line)["custom_id"]: json.loads(line)
+        for line in result_content.splitlines()
+        if line.strip()
+    }
+
+    all_variants = []
+    for i in range(len(scenes)):
+        result = results.get(f"scene-{i}")
+        if result is None or result.get("error"):
+            print(f"  scene-{i} failed: {result.get('error') if result else 'missing'}")
+            all_variants.append([])
+            continue
+        raw = result["response"]["body"]["choices"][0]["message"]["content"]
+        all_variants.append(parse_variants(raw))
+
+    # cleanup temp file
+    batch_input_path.unlink(missing_ok=True)
+
+    return all_variants
+
+# ---------------------------------------------------------------------------
+# 7. DATASET LOOP
+# ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
 # 7. DATASET LOOP
@@ -411,56 +486,51 @@ def generate_dataset(
     n_scenes: int = 100,
     n_variants_per_scene: int = 8,
     output_path: str = "geometry_dataset.jsonl",
-    delay: float = 0.5,
 ):
     client = OpenAI()
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
+    # step 1: generate all scenes locally (free, instant)
+    print(f"Generating {n_scenes} scenes...")
+    scenes = []
+    for _ in range(n_scenes):
+        points, lines, circles, constraints = random_scene()
+        interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
+        if not interesting:
+            continue  # skip boring scenes
+        scenes.append({
+            "points": points, "lines": lines,
+            "circles": circles, "constraints": constraints,
+        })
+    print(f"{len(scenes)} scenes generated ({n_scenes - len(scenes)} skipped)")
+
+    # step 2: batch all NL generation in one API call
+    all_variants = generate_nl_variants_batched(scenes, n_variants_per_scene, client)
+
+    # step 3: write dataset
     generated = 0
     skipped   = 0
-
     with open(out, "w") as f:
-        for i in range(n_scenes):
-            print(f"Scene {i+1}/{n_scenes} ...", end=" ", flush=True)
-
-            points, lines, circles, constraints = random_scene()
-
-            # interesting = [c for c in constraints
-            #                if not isinstance(c, (Length, Radius))]
-            # if not interesting:
-            #     print("skipped (no interesting constraints)")
-            #     skipped += 1
-            #     continue
-
-            formal  = serialize_scene(points, lines, circles, constraints)
-            summary = constraints_only_str(constraints)
-
-            try:
-                variants = generate_nl_variants(formal, summary, n_variants_per_scene, client)
-            except Exception as e:
-                print(f"API error: {e} — skipping")
+        for scene, variants in zip(scenes, all_variants):
+            if not variants:
                 skipped += 1
                 continue
-
             record = {
-                "geometry":    serialize_geometry(points, lines, circles),
-                "constraints": serialize_constraints(constraints),
+                "geometry":    serialize_geometry(scene["points"], scene["lines"], scene["circles"]),
+                "constraints": serialize_constraints(scene["constraints"]),
                 "nl_variants": variants,
             }
             f.write(json.dumps(record) + "\n")
             generated += 1
-            print(f"ok ({len(variants)} variants, {len(constraints)} constraints)")
-
-            time.sleep(delay)
 
     print(f"\nDone. {generated} scenes written, {skipped} skipped → {out}")
     return out
 
-
 # ---------------------------------------------------------------------------
 # 8. QUICK DEMO
 # ---------------------------------------------------------------------------
+
 
 if __name__ == "__main__":
     print("=== Single scene demo ===\n")
@@ -473,7 +543,8 @@ if __name__ == "__main__":
     print("\nConstraint summary:\n" + summary)
 
     print("\nGenerating NL variants...")
-    variants = generate_nl_variants(formal, summary, n_variants=5)
+    scene = {"points": points, "lines": lines, "circles": circles, "constraints": constraints}
+    variants = generate_nl_variants_batched([scene], n_variants=5)[0]
     for i, v in enumerate(variants, 1):
         print(f"  {i}. {v}")
 
