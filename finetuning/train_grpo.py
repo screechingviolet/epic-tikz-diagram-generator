@@ -93,9 +93,15 @@ def reward_constraints(completions, constraints, **kwargs):
     a -100 penalty for one bad parse) blow up the z-score and drown the
     learning signal from the other samples in the group.
 
-      0.00  unparseable completion (no point/line/circle primitives)
-      0.05  primitives parsed but structurally invalid (bad refs, etc.)
-      score / len(truth)   well-formed, in [0, 1]
+    Tier structure (strictly monotone — better-shaped output always scores
+    at least as much as worse-shaped output):
+
+      0.00              unparseable completion (no point/line/circle primitives)
+      0.05              primitives parsed but structurally invalid (bad refs,
+                        wrong arity, etc.) — loss.py raised an exception
+      0.10 + 0.90 * (score/len(truth))    well-formed; floor of 0.10 so a
+                                          valid-but-zero-constraints completion
+                                          still beats a malformed one
 
     Args:
         completions: list of model completions. With a chat-style prompt these
@@ -125,7 +131,9 @@ def reward_constraints(completions, constraints, **kwargs):
             rewards.append(0.05)
         else:
             denom = max(len(truth), 1)
-            rewards.append(float(score) / denom)
+            # Floor at 0.10 so well-formed geometry always outranks malformed
+            # output, even when zero truth constraints happen to be satisfied.
+            rewards.append(0.10 + 0.90 * float(score) / denom)
     return rewards
 
 
