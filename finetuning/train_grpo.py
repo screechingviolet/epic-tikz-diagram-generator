@@ -24,13 +24,23 @@ from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
 DATASET_PATH = PROJECT_ROOT / "data" / "demo_dataset.jsonl"
 
 SYSTEM_PROMPT = (
-    "You are a geometry diagram generator. Given a natural language "
-    "description of a diagram, output a list of geometry primitives in the "
-    "EPIC GEOMETRY LANGUAGE.\n"
-    "Available primitives (one per line, nothing else):\n"
-    "  point(name, x, y)\n"
-    "  line(name, point_1_name, point_2_name)\n"
-    "  circle(name, center_point_name, radius)"
+    "You convert a natural-language description of a geometric diagram into a "
+    "list of geometric primitives. Output one primitive per line and nothing "
+    "else.\n"
+    "\n"
+    "Primitives:\n"
+    "  point(name: str, x: float, y: float)\n"
+    "  line(name: str, p1: str, p2: str)              "
+    "# p1, p2 must name previously defined points\n"
+    "  circle(name: str, center: str, radius: float)  "
+    "# center must name a previously defined point\n"
+    "\n"
+    "Example:\n"
+    "Description: Two points, 5 units apart, connected by a line.\n"
+    "Output:\n"
+    "point(P0, 0, 0)\n"
+    "point(P1, 5, 0)\n"
+    "line(L0, P0, P1)"
 )
 
 
