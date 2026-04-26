@@ -15,10 +15,7 @@ from peft import LoraConfig
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "loss-fn"))
 
-# loss.py runs self-test prints at import time — silence them so the trainer
-# log starts clean.
-with contextlib.redirect_stdout(io.StringIO()):
-    from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
+from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
