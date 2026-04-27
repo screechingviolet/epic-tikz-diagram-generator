@@ -317,7 +317,7 @@ training_args = GRPOConfig(
 )
 
 trainer = GRPOTrainer(
-    model="Qwen/Qwen2-3B-Instruct",
+    model="Qwen/Qwen2-0.5B-Instruct",
     reward_funcs=reward_constraints,
     args=training_args,
     train_dataset=dataset,
