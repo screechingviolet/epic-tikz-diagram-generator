@@ -109,10 +109,6 @@ dataset = load_geometry_dataset(DATASET_PATH)
 # Reward is bounded in [0, 1] (see docstring) so GRPO's group-normalised
 # advantages stay well-conditioned even with small num_generations.
 # ---------------------------------------------------------------------------
-PRIMITIVE_PREFIXES = ("point(", "line(", "circle(")
-_LIST_PREFIXES = ("- ", "* ", "+ ")
-
-
 class MaxRewardCallback(TrainerCallback):
     """Track the max reward seen between log events and inject it into logs.
 
@@ -272,23 +268,18 @@ log_reorder_cb = LogReorderCallback()
 completion_peek_cb = CompletionPeekCallback(every_n_steps=10)
 
 
-def _parse_completion_to_geometry(text: str) -> list[str]:
-    """Extract primitive calls (point/line/circle …) from a completion string."""
-    primitives = []
-    for raw in text.replace(";", "\n").splitlines():
-        token = raw.strip().rstrip(",")
-        if not token:
-            continue
-        # Strip common bullet / numbered list prefixes a chat model might emit.
-        for prefix in _LIST_PREFIXES:
-            if token.startswith(prefix):
-                token = token[len(prefix):].strip()
-                break
-        if len(token) > 2 and token[0].isdigit() and token[1] in (".", ")"):
-            token = token[2:].strip()
-        if token.startswith(PRIMITIVE_PREFIXES) and token.endswith(")"):
-            primitives.append(token)
-    return primitives
+def _split_completion(text: str) -> list[str]:
+    """Split a completion into per-line tokens (no filtering, no fixups).
+
+    The model is meant to emit one primitive per line and nothing else.
+    Splitting only on newlines and stripping whitespace means any preamble,
+    bullet markers, or stray non-primitive lines (e.g. `angle(L0, L1, 51)`)
+    survive into check_constraints, which raises ParseError on unknown
+    heads → reward 0. That's deliberate: we want the model to learn not to
+    waste tokens on commentary or invalid forms, even if a fixup parser
+    *could* recover the valid lines.
+    """
+    return [line.strip() for line in text.splitlines() if line.strip()]
 
 
 def reward_constraints(completions, constraints, **kwargs):
@@ -331,7 +322,7 @@ def reward_constraints(completions, constraints, **kwargs):
         else:
             text = completion
 
-        pred_geo = _parse_completion_to_geometry(text)
+        pred_geo = _split_completion(text)
         if not pred_geo:
             # No extractable primitives — short-circuit to the floor and skip
             # the (defensive) call into check_constraints.

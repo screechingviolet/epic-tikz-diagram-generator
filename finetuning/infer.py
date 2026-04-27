@@ -28,13 +28,17 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 from prompts import MODEL_NAME, SYSTEM_PROMPT  # noqa: E402
 
 
-def load_model_with_adapter(adapter_path: str):
-    """Load the base model and stack the saved LoRA adapter on top."""
+def load_model(adapter_path: str | None):
+    """Load the base model, optionally stacking the saved LoRA adapter on top.
+
+    `adapter_path=None` returns the bare base model — useful for comparing
+    against the trained adapter to see what the fine-tune actually changed.
+    """
     base = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
         torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
     )
-    model = PeftModel.from_pretrained(base, adapter_path)
+    model = base if adapter_path is None else PeftModel.from_pretrained(base, adapter_path)
     model.eval()
     if torch.cuda.is_available():
         model = model.to("cuda")
@@ -73,9 +77,10 @@ def main():
     )
     parser.add_argument(
         "--adapter",
-        required=True,
+        default=None,
         help="Path to the saved LoRA adapter directory (e.g. the SAVE_DIR "
-             "from train_grpo.py, or a checkpoint-N subdir).",
+             "from train_grpo.py, or a checkpoint-N subdir). Omit to run the "
+             "bare base model — useful for before/after comparison.",
     )
     parser.add_argument(
         "--input",
@@ -101,9 +106,9 @@ def main():
         parser.error("no input provided (use --input or pipe to stdin)")
 
     print(f"[infer] base model: {MODEL_NAME}", file=sys.stderr)
-    print(f"[infer] adapter:    {args.adapter}", file=sys.stderr)
+    print(f"[infer] adapter:    {args.adapter or '(none — base model only)'}", file=sys.stderr)
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = load_model_with_adapter(args.adapter)
+    model = load_model(args.adapter)
 
     print(f"[infer] input: {nl}", file=sys.stderr)
     print("---", file=sys.stderr)
