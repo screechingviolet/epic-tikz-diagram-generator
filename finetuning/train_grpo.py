@@ -23,7 +23,7 @@ from loss import check_constraints, Confusion  # noqa: E402
 # Each scene contributes one training example per natural-language variant.
 # ---------------------------------------------------------------------------
 DATASET_PATH = PROJECT_ROOT / "curriculum_data" / "dataset_complex.jsonl"
-git
+
 SYSTEM_PROMPT = (
     "You convert a natural-language description of a geometric diagram into a "
     "list of geometric primitives. Output one primitive per line and nothing "
