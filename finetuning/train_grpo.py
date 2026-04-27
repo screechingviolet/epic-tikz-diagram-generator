@@ -22,7 +22,7 @@ from loss import check_constraints, Confusion  # noqa: E402
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
 # Each scene contributes one training example per natural-language variant.
 # ---------------------------------------------------------------------------
-DATASET_PATH = PROJECT_ROOT / "data" / "demo_dataset.jsonl"
+DATASET_PATH = PROJECT_ROOT / "curriculum_data" / "dataset_simple.jsonl"
 
 SYSTEM_PROMPT = (
     "You convert a natural-language description of a geometric diagram into a "

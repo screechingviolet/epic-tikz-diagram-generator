@@ -226,6 +226,26 @@ def check_constraints(pred_geo, truth_constr):
                 case "angle":
                     if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
                         correct_constraints += 1
+                case "point":
+                    # existence assertion: name resolves to a Point
+                    if isinstance(shape_dict[parsed[1][0]], Point):
+                        correct_constraints += 1
+                case "line":
+                    # identity assertion: name resolves to a Line whose endpoints
+                    # are exactly the named points. Order-insensitive — a line
+                    # from P0 to P1 is the same segment as from P1 to P0.
+                    s = shape_dict[parsed[1][0]]
+                    if (isinstance(s, Line)
+                            and {s.point_1.name, s.point_2.name}
+                                == {parsed[1][1], parsed[1][2]}):
+                        correct_constraints += 1
+                case "circle":
+                    # identity assertion: name resolves to a Circle centered on
+                    # the named point.
+                    s = shape_dict[parsed[1][0]]
+                    if (isinstance(s, Circle)
+                            and s.center.name == parsed[1][1]):
+                        correct_constraints += 1
                 case _:
                     raise ConstraintLabelError
                 # etc
