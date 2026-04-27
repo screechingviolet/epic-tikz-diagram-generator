@@ -195,7 +195,76 @@ def random_scene(
     constraints = extract_constraints(points, lines, circles)
     return points, lines, circles, constraints
 
+# ---------------------------------------------------------------------------
+# 3b. CURRICULUM SCENE GENERATORS
+# ---------------------------------------------------------------------------
 
+def simple_scene():
+    """Level 1: single object — a point, two points + line, or a circle."""
+    choice = random.randint(0, 2)
+
+    if choice == 0:
+        # just a point
+        points = {"P0": Point(name="P0", x=float(np.random.uniform(-5, 5)),
+                                           y=float(np.random.uniform(-5, 5)))}
+        return points, {}, {}, extract_constraints(points, {}, {})
+
+    elif choice == 1:
+        # two points and a line
+        points = {
+            f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
+            for i, (x, y) in enumerate(np.random.uniform(-5, 5, (2, 2)))
+        }
+        point_list = list(points.values())
+        lines = {"L0": Line(name="L0", p1=point_list[0], p2=point_list[1])}
+        return points, lines, {}, extract_constraints(points, lines, {})
+
+    else:
+        # a circle with a center point
+        center = Point(name="P0", x=float(np.random.uniform(-5, 5)),
+                                  y=float(np.random.uniform(-5, 5)))
+        points  = {"P0": center}
+        circles = {"C0": Circle(name="C0", center=center,
+                                radius=round(random.uniform(0.5, 3.0), 4))}
+        return points, {}, circles, extract_constraints(points, {}, circles)
+
+
+def medium_scene():
+    """Level 2: multiple objects, no nudging — only Length/Radius constraints."""
+    while True:
+        n_points  = random.randint(2, 4)
+        n_lines   = random.randint(1, 2)
+        n_circles = random.randint(0, 1)
+
+        points = {
+            f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
+            for i, (x, y) in enumerate(np.random.uniform(-5, 5, (n_points, 2)))
+        }
+        point_list = list(points.values())
+
+        lines = {}
+        used_pairs = set()
+        for i in range(n_lines):
+            for _ in range(20):
+                p1, p2 = random.sample(point_list, 2)
+                pair = tuple(sorted([p1.name, p2.name]))
+                if pair not in used_pairs:
+                    used_pairs.add(pair)
+                    lines[f"L{i}"] = Line(name=f"L{i}", p1=p1, p2=p2)
+                    break
+
+        circles = {}
+        for i in range(n_circles):
+            center = random.choice(point_list)
+            circles[f"C{i}"] = Circle(name=f"C{i}", center=center,
+                                      radius=round(random.uniform(0.5, 3.0), 4))
+
+        constraints = extract_constraints(points, lines, circles)
+
+        # accept only if no interesting constraints happened by accident
+        interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
+        if not interesting:
+            return points, lines, circles, constraints
 # ---------------------------------------------------------------------------
 # 4. CONSTRAINT CHECKERS  (now take dataclass objects directly)
 # ---------------------------------------------------------------------------
@@ -478,10 +547,6 @@ def generate_nl_variants_batched(
 # 7. DATASET LOOP
 # ---------------------------------------------------------------------------
 
-# ---------------------------------------------------------------------------
-# 7. DATASET LOOP
-# ---------------------------------------------------------------------------
-
 def generate_dataset(
     n_scenes: int = 100,
     n_variants_per_scene: int = 8,
@@ -491,24 +556,21 @@ def generate_dataset(
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    # step 1: generate all scenes locally (free, instant)
     print(f"Generating {n_scenes} scenes...")
     scenes = []
     for _ in range(n_scenes):
         points, lines, circles, constraints = random_scene()
         interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
         if not interesting:
-            continue  # skip boring scenes
+            continue
         scenes.append({
             "points": points, "lines": lines,
             "circles": circles, "constraints": constraints,
         })
     print(f"{len(scenes)} scenes generated ({n_scenes - len(scenes)} skipped)")
 
-    # step 2: batch all NL generation in one API call
     all_variants = generate_nl_variants_batched(scenes, n_variants_per_scene, client)
 
-    # step 3: write dataset
     generated = 0
     skipped   = 0
     with open(out, "w") as f:
@@ -527,10 +589,71 @@ def generate_dataset(
     print(f"\nDone. {generated} scenes written, {skipped} skipped → {out}")
     return out
 
+
+def generate_curriculum_datasets(
+    n_simple: int = 100,
+    n_medium: int = 100,
+    n_complex: int = 100,
+    n_variants_per_scene: int = 8,
+    output_dir: str = ".",
+):
+    client = OpenAI()
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    configs = [
+        ("simple",  n_simple,  simple_scene),
+        ("medium",  n_medium,  medium_scene),
+        ("complex", n_complex, lambda: random_scene(nudge_probability=0.8)),
+    ]
+
+    for level, n_scenes, scene_fn in configs:
+        print(f"\n=== Generating {level} dataset ({n_scenes} scenes) ===")
+        out_path = output_dir / f"dataset_{level}.jsonl"
+
+        # generate scenes
+        scenes = []
+        attempts = 0
+        while len(scenes) < n_scenes:
+            attempts += 1
+            points, lines, circles, constraints = scene_fn()
+
+            # for complex, require at least one interesting constraint
+            if level == "complex":
+                interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
+                if not interesting:
+                    continue
+
+            scenes.append({
+                "points": points, "lines": lines,
+                "circles": circles, "constraints": constraints,
+            })
+
+        print(f"{len(scenes)} scenes generated ({attempts - len(scenes)} skipped)")
+
+        # batch NL generation
+        all_variants = generate_nl_variants_batched(scenes, n_variants_per_scene, client)
+
+        # write file
+        generated = 0
+        skipped   = 0
+        with open(out_path, "w") as f:
+            for scene, variants in zip(scenes, all_variants):
+                if not variants:
+                    skipped += 1
+                    continue
+                record = {
+                    "geometry":    serialize_geometry(scene["points"], scene["lines"], scene["circles"]),
+                    "constraints": serialize_constraints(scene["constraints"]),
+                    "nl_variants": variants,
+                }
+                f.write(json.dumps(record) + "\n")
+                generated += 1
+
+        print(f"Done. {generated} written, {skipped} skipped → {out_path}")
 # ---------------------------------------------------------------------------
 # 8. QUICK DEMO
 # ---------------------------------------------------------------------------
-
 
 if __name__ == "__main__":
     print("=== Single scene demo ===\n")
@@ -548,5 +671,11 @@ if __name__ == "__main__":
     for i, v in enumerate(variants, 1):
         print(f"  {i}. {v}")
 
-    print("\n=== Generating small dataset (10 scenes) ===\n")
-    generate_dataset(n_scenes=10, n_variants_per_scene=5, output_path="demo_dataset.jsonl")
+    print("\n=== Generating curriculum datasets ===\n")
+    generate_curriculum_datasets(
+        n_simple=10,
+        n_medium=10,
+        n_complex=10,
+        n_variants_per_scene=5,
+        output_dir="curriculum_data",
+    )
