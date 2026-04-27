@@ -37,24 +37,24 @@ SYSTEM_PROMPT = (
     "# center must name a previously defined point\n"
     "\n"
     "Example 1:\n"
-    "Description: Two points, 5 units apart, connected by a line.\n"
+    "Description: Two points P0 and P1 are 5 units apart and connected by a line L0.\n"
     "Output:\n"
     "point(P0, 0, 0)\n"
     "point(P1, 5, 0)\n"
     "line(L0, P0, P1)\n"
     "\n"
     "Example 2:\n"
-    "Description: A circle of radius 2 centered at the origin.\n"
+    "Description: Circle C0 of radius 2.77 centered around a point P0.\n"
     "Output:\n"
     "point(P0, 0, 0)\n"
-    "circle(C0, P0, 2)\n"
+    "circle(C0, P0, 2.77)\n"
     "\n"
     "Example 3:\n"
-    "Description: A circle of radius 1 sits at one end of a line of length 3.\n"
+    "Description: A line segment L0 of length 3.4823 has endpoints P0 and P1. A circle C0 is centered at P0 and passes through P1.\n"
     "Output:\n"
     "point(P0, 0, 0)\n"
-    "point(P1, 3, 0)\n"
-    "circle(C0, P0, 1)\n"
+    "point(P1, 3.4823, 0)\n"
+    "circle(C0, P0, 3.4823)\n"
     "line(L0, P0, P1)"
 )
 
@@ -124,7 +124,132 @@ class MaxRewardCallback(TrainerCallback):
         self._count = 0
 
 
+class LogReorderCallback(TrainerCallback):
+    """Reorder per-step log entries so the most important metrics print first
+    and drop redundant / always-zero keys.
+
+    HuggingFace Trainer prints `logs` by iterating its keys, and Python dicts
+    preserve insertion order, so reordering the dict in `on_log` reorders the
+    printed line.
+
+    Two transformations:
+      1. Drop keys starting with any prefix in DROP_PREFIXES — these are
+         either per-reward-function duplicates of the aggregate keys
+         (`reward`/`reward_std`/`reward_max`) or PPO-clipping internals that
+         are always zero in this GRPO setup.
+      2. Reorder remaining keys: PRIORITY_KEYS first in the documented order,
+         then everything else in its original position.
+
+    Must be registered AFTER any callback that injects new keys (e.g.
+    MaxRewardCallback adds `reward_max`), so the new keys are present at the
+    time we reorder.
+    """
+
+    PRIORITY_KEYS = (
+        # Reward signal — the thing you actually watch during training.
+        "reward",
+        "reward_max",
+        "reward_std",
+        "frac_reward_zero_std",
+        # Optimization health.
+        "loss",
+        "kl",
+        "entropy",
+        "grad_norm",
+        # Progress.
+        "epoch",
+        "step_time",
+        "learning_rate",
+        # Output stats.
+        "completions/mean_length",
+        "completions/min_length",
+        "completions/max_length",
+        "completions/clipped_ratio",
+        "num_tokens",
+    )
+
+    DROP_PREFIXES = (
+        "rewards/",     # per-reward-function metrics duplicate the aggregates
+        "clip_ratio/",  # PPO-clipping internals; uniformly zero here
+    )
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if logs is None:
+            return
+        for key in [k for k in logs if k.startswith(self.DROP_PREFIXES)]:
+            del logs[key]
+        ordered = {key: logs[key] for key in self.PRIORITY_KEYS if key in logs}
+        for key, value in logs.items():
+            if key not in ordered:
+                ordered[key] = value
+        logs.clear()
+        logs.update(ordered)
+
+
+class CompletionPeekCallback(TrainerCallback):
+    """Periodically print the best-in-batch completion so you can see what
+    the model is actually generating during training.
+
+    Use the running per-step reward number to know *whether* training is
+    working; use this callback's output to diagnose *why* it isn't.
+
+    Wired in two places: the reward function calls `record()` with each
+    batch's (prompts, completions, rewards, truths), and `on_step_end` fires
+    every `every_n_steps` to print the best of the most recent batch.
+    """
+
+    def __init__(self, every_n_steps: int = 10, max_chars: int = 400):
+        self._every_n = every_n_steps
+        self._max_chars = max_chars
+        self._buffer = []  # list of (prompt_text, completion_text, reward, truth)
+
+    @staticmethod
+    def _prompt_text(p):
+        # Chat-style prompt: pull the user turn's content.
+        if isinstance(p, list):
+            return next(
+                (m.get("content", "") for m in p if m.get("role") == "user"),
+                "",
+            )
+        return str(p)
+
+    @staticmethod
+    def _completion_text(c):
+        if isinstance(c, list):
+            return "".join(part.get("content", "") for part in c)
+        return str(c)
+
+    def record(self, prompts, completions, rewards, truths):
+        if prompts is None:
+            prompts = [None] * len(completions)
+        self._buffer = [
+            (self._prompt_text(p), self._completion_text(c), r, t)
+            for p, c, r, t in zip(prompts, completions, rewards, truths)
+        ]
+
+    def on_step_end(self, args, state, control, **kwargs):
+        step = state.global_step
+        if step == 0 or step % self._every_n != 0 or not self._buffer:
+            return
+        p, c, r, truth = max(self._buffer, key=lambda t: t[2])
+        sep = "─" * 70
+        prompt_line = (p[:160] + "...") if len(p) > 160 else p
+        print(f"\n{sep}")
+        print(f"[step {step}] best of last batch  reward={r:.3f}")
+        print(f"  prompt: {prompt_line}")
+        print(f"  truth constraints: {truth}")
+        print("  completion:")
+        body = c[: self._max_chars].splitlines() or [""]
+        for line in body:
+            print(f"    {line}")
+        if len(c) > self._max_chars:
+            print(f"    [... {len(c) - self._max_chars} more chars]")
+        print(sep)
+
+
 max_reward_cb = MaxRewardCallback()
+log_reorder_cb = LogReorderCallback()
+completion_peek_cb = CompletionPeekCallback(every_n_steps=10)
 
 
 def _parse_completion_to_geometry(text: str) -> list[str]:
@@ -264,6 +389,9 @@ def reward_constraints(completions, constraints, **kwargs):
             denom = max(len(truth), 1)
             rewards.append(0.10 + 0.90 * float(score) / denom)
     max_reward_cb.record(rewards)
+    completion_peek_cb.record(
+        kwargs.get("prompts"), completions, rewards, constraints
+    )
     return rewards
 
 
@@ -322,7 +450,7 @@ trainer = GRPOTrainer(
     args=training_args,
     train_dataset=dataset,
     peft_config=peft_config,
-    callbacks=[max_reward_cb],
+    callbacks=[max_reward_cb, log_reorder_cb, completion_peek_cb],
 )
 
 trainer.train()
