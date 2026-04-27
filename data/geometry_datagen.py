@@ -262,7 +262,7 @@ def medium_scene():
         constraints = extract_constraints(points, lines, circles)
 
         # accept only if no interesting constraints happened by accident
-        interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
+        interesting = [c for c in constraints if not isinstance(c, (Length, Radius, Point, Line, Circle))]
         if not interesting:
             return points, lines, circles, constraints
 # ---------------------------------------------------------------------------
@@ -328,6 +328,16 @@ def check_on_circle(point: Point, circle: Circle, eps=1e-6) -> OnCircle | None:
 def extract_constraints(points, lines, circles) -> list:
     constraints = []
 
+    # object declarations — reuse existing dataclasses
+    for p in points.values():
+        constraints.append(p)
+
+    for l in lines.values():
+        constraints.append(l)
+
+    for c in circles.values():
+        constraints.append(c)
+
     for line in lines.values():
         length = line_length(pt(line.p1), pt(line.p2))
         if length > 1e-6:
@@ -378,7 +388,13 @@ def serialize_geometry(points, lines, circles) -> list[str]:
 def serialize_constraints(constraints) -> list[str]:
     out = []
     for c in constraints:
-        if isinstance(c, Length):
+        if isinstance(c, Point):
+            out.append(f"point({c.name})")
+        elif isinstance(c, Line):
+            out.append(f"line({c.name}, {c.p1.name}, {c.p2.name})")
+        elif isinstance(c, Circle):
+            out.append(f"circle({c.name}, {c.center.name})")
+        elif isinstance(c, Length):
             out.append(f"length({c.line_name}, {c.dist:.4f})")
         elif isinstance(c, Radius):
             out.append(f"radius({c.circle_name}, {c.rad:.4f})")
@@ -402,7 +418,13 @@ def serialize_scene(points, lines, circles, constraints) -> str:
 def constraints_only_str(constraints) -> str:
     parts = []
     for c in constraints:
-        if isinstance(c, Tangent):
+        if isinstance(c, Point):
+            parts.append(f"point {c.name} exists")
+        elif isinstance(c, Line):
+            parts.append(f"line {c.name} connects points {c.p1.name} and {c.p2.name}")
+        elif isinstance(c, Circle):
+            parts.append(f"circle {c.name} is centered at point {c.center.name}")
+        elif isinstance(c, Tangent):
             parts.append(f"line {c.line_name} is tangent to circle {c.circle_name}")
         elif isinstance(c, Parallel):
             parts.append(f"lines {c.line_1_name} and {c.line_2_name} are parallel")
@@ -436,9 +458,11 @@ that converts natural language into formal geometric descriptions.
 
 Generate natural language descriptions following these rules:
 - Each description must be semantically equivalent (same objects and constraints)
-- Vary vocabulary: tangent / just touches / grazes, perpendicular / at right angles, etc.
+- Vary vocabulary: tangent / just touches / perpendicular / at right angles, etc.
+- Mention the name of every oject
 - Vary structure: some terse, some verbose, some conversational, some formal
 - Do NOT mention coordinate values — describe relationships only
+- Do NOT round the exact numbers involved in the question
 - Do NOT number the descriptions
 - Respond with ONLY a JSON array of strings, no other text. Example format:
 ["description one", "description two"]"""
@@ -656,20 +680,20 @@ def generate_curriculum_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    print("=== Single scene demo ===\n")
+    # print("=== Single scene demo ===\n")
 
-    points, lines, circles, constraints = random_scene()
-    formal  = serialize_scene(points, lines, circles, constraints)
-    summary = constraints_only_str(constraints)
+    # points, lines, circles, constraints = random_scene()
+    # formal  = serialize_scene(points, lines, circles, constraints)
+    # summary = constraints_only_str(constraints)
 
-    print("Formal:\n" + formal)
-    print("\nConstraint summary:\n" + summary)
+    # print("Formal:\n" + formal)
+    # print("\nConstraint summary:\n" + summary)
 
-    print("\nGenerating NL variants...")
-    scene = {"points": points, "lines": lines, "circles": circles, "constraints": constraints}
-    variants = generate_nl_variants_batched([scene], n_variants=5)[0]
-    for i, v in enumerate(variants, 1):
-        print(f"  {i}. {v}")
+    # print("\nGenerating NL variants...")
+    # scene = {"points": points, "lines": lines, "circles": circles, "constraints": constraints}
+    # variants = generate_nl_variants_batched([scene], n_variants=5)[0]
+    # for i, v in enumerate(variants, 1):
+    #     print(f"  {i}. {v}")
 
     print("\n=== Generating curriculum datasets ===\n")
     generate_curriculum_datasets(
