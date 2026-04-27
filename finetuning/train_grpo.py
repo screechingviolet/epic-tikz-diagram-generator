@@ -1,3 +1,4 @@
+import argparse
 import contextlib
 import io
 import json
@@ -5,9 +6,10 @@ import sys
 from pathlib import Path
 
 from datasets import Dataset
-from transformers import TrainerCallback
+from transformers import AutoModelForCausalLM, TrainerCallback
+from transformers.trainer_utils import get_last_checkpoint
 from trl import GRPOConfig, GRPOTrainer
-from peft import LoraConfig
+from peft import LoraConfig, PeftModel
 
 # ---------------------------------------------------------------------------
 # Make the sibling `loss-fn` package importable. Its directory has a hyphen,
@@ -19,10 +21,61 @@ sys.path.insert(0, str(PROJECT_ROOT / "loss-fn"))
 from loss import check_constraints, Confusion  # noqa: E402
 
 # ---------------------------------------------------------------------------
-# Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
-# Each scene contributes one training example per natural-language variant.
+# Run configuration
+#
+# MODEL_NAME / SAVE_DIR are stable across runs. The two knobs you'll want
+# to flip on the CLI are the dataset and whether to resume from a saved
+# adapter:
+#
+#   python finetuning/train_grpo.py
+#       (default — train dataset_simple from scratch)
+#
+#   python finetuning/train_grpo.py --dataset dataset_medium
+#
+#   python finetuning/train_grpo.py --resume-from Qwen2-0.5B-GRPO-geometry
+#       (continue training from a previously-saved adapter)
+#
+# --dataset takes a bare name (e.g. `dataset_simple`, no `.jsonl`) and is
+# resolved against `curriculum_data/<name>.jsonl`.
 # ---------------------------------------------------------------------------
-DATASET_PATH = PROJECT_ROOT / "curriculum_data" / "dataset_simple.jsonl"
+MODEL_NAME = "Qwen/Qwen2-0.5B-Instruct"
+SAVE_DIR = "Qwen2-0.5B-GRPO-geometry"
+
+
+def _resolve_dataset_path(name: str) -> Path:
+    """Resolve <name>.jsonl under curriculum_data/."""
+    candidate = PROJECT_ROOT / "curriculum_data" / f"{name}.jsonl"
+    if not candidate.is_file():
+        raise FileNotFoundError(
+            f"No dataset {name!r}.jsonl found under curriculum_data/"
+        )
+    return candidate
+
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="GRPO fine-tuning for the geometry task.")
+    parser.add_argument(
+        "--dataset",
+        default="dataset_simple",
+        help="Dataset name without .jsonl (default: dataset_simple). "
+             "Resolved against curriculum_data/.",
+    )
+    parser.add_argument(
+        "--resume-from",
+        default=None,
+        help="Path to a saved adapter directory (from a previous "
+             "trainer.save_model() call). If set, training continues from "
+             "those weights instead of the base model.",
+    )
+    return parser.parse_args()
+
+
+args = _parse_args()
+DATASET_PATH = _resolve_dataset_path(args.dataset)
+RESUME_FROM = args.resume_from
+print(f"[train_grpo] dataset: {DATASET_PATH}")
+if RESUME_FROM is not None:
+    print(f"[train_grpo] resume-from: {RESUME_FROM}")
 
 SYSTEM_PROMPT = (
     "You convert a natural-language description of a geometric diagram into a "
@@ -363,7 +416,7 @@ peft_config = LoraConfig(
 )
 
 training_args = GRPOConfig(
-    output_dir="Qwen2-0.5B-GRPO-geometry",
+    output_dir=SAVE_DIR,
     # ~10–15 min on a single consumer GPU. Long enough to see the reward
     # curve trend up off the floor, short enough to iterate on.
     max_steps=150,
@@ -392,17 +445,72 @@ training_args = GRPOConfig(
     # it explicit so it's obvious where to dial if the policy drifts.
     beta=0.04,
     bf16=True,
-    save_strategy="no",
+    # Periodic crash-safety checkpoints. With max_steps=150 and save_steps=25
+    # we get ~6 checkpoints over a run; save_total_limit=2 keeps only the two
+    # most recent on disk so the output_dir doesn't bloat. These are full HF
+    # Trainer checkpoints (preserve optimizer state + step count) and live in
+    # `<output_dir>/checkpoint-{step}/`. The final `trainer.save_model()` at
+    # the end writes the LoRA adapter to `<output_dir>/` (top level) — the
+    # two coexist without conflict.
+    save_strategy="steps",
+    save_steps=25,
+    save_total_limit=2,
     report_to="none",
 )
 
+# ---------------------------------------------------------------------------
+# Model construction
+#
+# Two branches:
+#   * Fresh run — pass the base-model name string and a peft_config; trl wraps
+#     the model in a fresh LoRA adapter for us.
+#   * Resume run — load the base model + the saved adapter ourselves (with
+#     is_trainable=True so optimizer steps actually update it), then pass the
+#     PeftModel directly to the trainer with peft_config=None (the adapter is
+#     already attached, we don't want trl to add another one on top).
+# ---------------------------------------------------------------------------
+if RESUME_FROM is not None:
+    print(f"[train_grpo] resuming from saved adapter at {RESUME_FROM!r}")
+    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+    model_for_trainer = PeftModel.from_pretrained(
+        base, RESUME_FROM, is_trainable=True
+    )
+    trainer_peft_config = None
+else:
+    model_for_trainer = MODEL_NAME
+    trainer_peft_config = peft_config
+
 trainer = GRPOTrainer(
-    model="Qwen/Qwen2-0.5B-Instruct",
+    model=model_for_trainer,
     reward_funcs=reward_constraints,
     args=training_args,
     train_dataset=dataset,
-    peft_config=peft_config,
+    peft_config=trainer_peft_config,
     callbacks=[max_reward_cb, log_reorder_cb, completion_peek_cb],
 )
 
-trainer.train()
+# Crash-recovery resume. Two distinct mechanisms now coexist:
+#   * RESUME_FROM (above) — load a previously saved *final* adapter and start
+#     training fresh from those weights (no optimizer state, step count = 0).
+#     Used to continue work across separate Colab sessions.
+#   * resume_from_checkpoint — pick up a *partial* run from an HF Trainer
+#     checkpoint in SAVE_DIR (full optimizer state + step count). Used when
+#     a single run is interrupted (e.g. Colab disconnect) and we want to
+#     pick up exactly where we left off.
+# If RESUME_FROM is set the user has explicitly chosen the starting weights,
+# so don't second-guess them by also auto-resuming a stale checkpoint.
+if RESUME_FROM is None and Path(SAVE_DIR).is_dir():
+    last_checkpoint = get_last_checkpoint(SAVE_DIR)
+    if last_checkpoint is not None:
+        print(f"[train_grpo] resuming partial run from {last_checkpoint!r}")
+        trainer.train(resume_from_checkpoint=last_checkpoint)
+    else:
+        trainer.train()
+else:
+    trainer.train()
+
+# Persist the final adapter. With LoRA + PEFT, trainer.save_model() writes
+# only the adapter weights (~MBs), not a merged copy of the base model. Use
+# the same directory in RESUME_FROM next run to continue training from here.
+trainer.save_model(SAVE_DIR)
+print(f"[train_grpo] saved adapter to {SAVE_DIR!r}")
