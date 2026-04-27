@@ -14,6 +14,7 @@ import itertools
 import json
 import random
 import time
+import string
 from pathlib import Path
 
 import numpy as np
@@ -40,6 +41,38 @@ def set_pt(p: Point, arr: np.ndarray):
     """Write a numpy array back into a Point dataclass in-place."""
     p.x = float(arr[0])
     p.y = float(arr[1])
+    
+    # ---------------------------------------------------------------------------
+# 0b. RANDOM NAME GENERATION
+# ---------------------------------------------------------------------------
+
+def _name_generator(prefix_pool: list[str], used: set) -> str:
+    """Pick a random unused name from the pool, falling back to numbered names."""
+    remaining = [n for n in prefix_pool if n not in used]
+    if remaining:
+        name = random.choice(remaining)
+        used.add(name)
+        return name
+    # fallback if pool exhausted
+    i = 0
+    while True:
+        name = f"{prefix_pool[0]}{i}"
+        if name not in used:
+            used.add(name)
+            return name
+        i += 1
+
+POINT_NAMES  = list(string.ascii_uppercase)                        # A-Z
+LINE_NAMES   = [f"l{c}" for c in string.ascii_lowercase]          # la, lb, ...
+CIRCLE_NAMES = [f"ω{i}" for i in range(26)] + \
+               [f"γ{i}" for i in range(26)]                        # ω0, γ0, ...
+
+def fresh_name_pools():
+    used = set()
+    def point_name():  return _name_generator(POINT_NAMES,  used)
+    def line_name():   return _name_generator(LINE_NAMES,   used)
+    def circle_name(): return _name_generator(CIRCLE_NAMES, used)
+    return point_name, line_name, circle_name
 
 
 # ---------------------------------------------------------------------------
@@ -146,28 +179,33 @@ def random_scene(
     n_lines   = n_lines   or random.randint(1, 3)
     n_circles = n_circles or random.randint(1, 2)
 
+    point_name, line_name, circle_name = fresh_name_pools()
+
     points = {
-        f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
-        for i, (x, y) in enumerate(np.random.uniform(-5, 5, (n_points, 2)))
+        (pn := point_name()): Point(name=pn, x=float(x), y=float(y))
+        for x, y in np.random.uniform(-5, 5, (n_points, 2))
     }
     point_list = list(points.values())
 
     lines = {}
     used_pairs = set()
-    for i in range(n_lines):
+    for _ in range(n_lines):
         for _ in range(20):
             p1, p2 = random.sample(point_list, 2)
             pair = tuple(sorted([p1.name, p2.name]))
             if pair not in used_pairs:
                 used_pairs.add(pair)
-                lines[f"L{i}"] = Line(name=f"L{i}", p1=p1, p2=p2)
+                ln = line_name()
+                lines[ln] = Line(name=ln, p1=p1, p2=p2)
                 break
 
     circles = {}
-    for i in range(n_circles):
+    for _ in range(n_circles):
         center = random.choice(point_list)
-        radius = round(random.uniform(0.5, 3.0), 4)
-        circles[f"C{i}"] = Circle(name=f"C{i}", center=center, radius=radius)
+        cn = circle_name()
+        circles[cn] = Circle(name=cn, center=center,
+                             radius=round(random.uniform(0.5, 3.0), 4))
+
 
     line_list   = list(lines.values())
     circle_list = list(circles.values())
@@ -200,71 +238,242 @@ def random_scene(
 # ---------------------------------------------------------------------------
 
 def simple_scene():
-    """Level 1: single object — a point, two points + line, or a circle."""
+    point_name, line_name, circle_name = fresh_name_pools()
     choice = random.randint(0, 2)
 
     if choice == 0:
-        # just a point
-        points = {"P0": Point(name="P0", x=float(np.random.uniform(-5, 5)),
-                                           y=float(np.random.uniform(-5, 5)))}
+        pn = point_name()
+        points = {pn: Point(name=pn, x=float(np.random.uniform(-5, 5)),
+                                     y=float(np.random.uniform(-5, 5)))}
         return points, {}, {}, extract_constraints(points, {}, {})
 
     elif choice == 1:
-        # two points and a line
+        coords = np.random.uniform(-5, 5, (2, 2))
+        p1n, p2n = point_name(), point_name()
         points = {
-            f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
-            for i, (x, y) in enumerate(np.random.uniform(-5, 5, (2, 2)))
+            p1n: Point(name=p1n, x=float(coords[0][0]), y=float(coords[0][1])),
+            p2n: Point(name=p2n, x=float(coords[1][0]), y=float(coords[1][1])),
         }
-        point_list = list(points.values())
-        lines = {"L0": Line(name="L0", p1=point_list[0], p2=point_list[1])}
+        ln = line_name()
+        lines = {ln: Line(name=ln, p1=points[p1n], p2=points[p2n])}
         return points, lines, {}, extract_constraints(points, lines, {})
 
     else:
-        # a circle with a center point
-        center = Point(name="P0", x=float(np.random.uniform(-5, 5)),
-                                  y=float(np.random.uniform(-5, 5)))
-        points  = {"P0": center}
-        circles = {"C0": Circle(name="C0", center=center,
-                                radius=round(random.uniform(0.5, 3.0), 4))}
+        pn = point_name()
+        center = Point(name=pn, x=float(np.random.uniform(-5, 5)),
+                                y=float(np.random.uniform(-5, 5)))
+        points = {pn: center}
+        cn = circle_name()
+        circles = {cn: Circle(name=cn, center=center,
+                              radius=round(random.uniform(0.5, 3.0), 4))}
         return points, {}, circles, extract_constraints(points, {}, circles)
 
 
 def medium_scene():
-    """Level 2: multiple objects, no nudging — only Length/Radius constraints."""
-    while True:
-        n_points  = random.randint(2, 4)
-        n_lines   = random.randint(1, 2)
-        n_circles = random.randint(0, 1)
+    point_name, line_name, circle_name = fresh_name_pools()
+    n_points  = random.randint(2, 4)
+    n_lines   = random.randint(1, 2)
+    n_circles = random.randint(0, 1)
 
-        points = {
-            f"P{i}": Point(name=f"P{i}", x=float(x), y=float(y))
-            for i, (x, y) in enumerate(np.random.uniform(-5, 5, (n_points, 2)))
+    points = {
+        (pn := point_name()): Point(name=pn, x=float(x), y=float(y))
+        for x, y in np.random.uniform(-5, 5, (n_points, 2))
+    }
+    point_list = list(points.values())
+
+    lines = {}
+    used_pairs = set()
+    for _ in range(n_lines):
+        for _ in range(20):
+            p1, p2 = random.sample(point_list, 2)
+            pair = tuple(sorted([p1.name, p2.name]))
+            if pair not in used_pairs:
+                used_pairs.add(pair)
+                ln = line_name()
+                lines[ln] = Line(name=ln, p1=p1, p2=p2)
+                break
+
+    circles = {}
+    for _ in range(n_circles):
+        center = random.choice(point_list)
+        cn = circle_name()
+        circles[cn] = Circle(name=cn, center=center,
+                             radius=round(random.uniform(0.5, 3.0), 4))
+
+    return points, lines, circles, extract_constraints(points, lines, circles)
+
+# ---------------------------------------------------------------------------
+# 3c. CONSTRAINT-SPECIFIC SCENE GENERATORS
+# ---------------------------------------------------------------------------
+
+def scene_two_parallel_lines():
+    point_name, line_name, _ = fresh_name_pools()
+
+    angle = np.random.uniform(0, np.pi)
+    dx, dy = np.cos(angle), np.sin(angle)
+    offset = np.random.uniform(1.0, 4.0)
+    perp = np.array([-dy, dx])
+    base = np.random.uniform(-2, 2, 2)
+
+    p1n, p2n = point_name(), point_name()
+    p3n, p4n = point_name(), point_name()
+
+    l1_len = random.uniform(1.0, 5.0)   # randomize each line length
+    l2_len = random.uniform(1.0, 5.0)
+
+    points = {
+        p1n: Point(name=p1n, x=float(base[0]),              y=float(base[1])),
+        p2n: Point(name=p2n, x=float(base[0] + dx*l1_len),  y=float(base[1] + dy*l1_len)),
+        p3n: Point(name=p3n, x=float(base[0] + perp[0]*offset),
+                             y=float(base[1] + perp[1]*offset)),
+        p4n: Point(name=p4n, x=float(base[0] + perp[0]*offset + dx*l2_len),
+                             y=float(base[1] + perp[1]*offset + dy*l2_len)),
+    }
+    l1n, l2n = line_name(), line_name()
+    lines = {
+        l1n: Line(name=l1n, p1=points[p1n], p2=points[p2n]),
+        l2n: Line(name=l2n, p1=points[p3n], p2=points[p4n]),
+    }
+    return points, lines, {}, extract_constraints(points, lines, {})
+
+
+def scene_two_perpendicular_lines():
+    point_name, line_name, _ = fresh_name_pools()
+
+    angle = np.random.uniform(0, np.pi)
+    dx, dy = np.cos(angle), np.sin(angle)
+    perp = np.array([-dy, dx])
+    ix, iy = np.random.uniform(-2, 2, 2)
+
+    l1_half = random.uniform(1.0, 4.0)   # each arm length randomized independently
+    l2_half = random.uniform(1.0, 4.0)
+
+    p1n, p2n = point_name(), point_name()
+    p3n, p4n = point_name(), point_name()
+    points = {
+        p1n: Point(name=p1n, x=float(ix + dx*l1_half),      y=float(iy + dy*l1_half)),
+        p2n: Point(name=p2n, x=float(ix - dx*l1_half),      y=float(iy - dy*l1_half)),
+        p3n: Point(name=p3n, x=float(ix + perp[0]*l2_half), y=float(iy + perp[1]*l2_half)),
+        p4n: Point(name=p4n, x=float(ix - perp[0]*l2_half), y=float(iy - perp[1]*l2_half)),
+    }
+    l1n, l2n = line_name(), line_name()
+    lines = {
+        l1n: Line(name=l1n, p1=points[p1n], p2=points[p2n]),
+        l2n: Line(name=l2n, p1=points[p3n], p2=points[p4n]),
+    }
+    return points, lines, {}, extract_constraints(points, lines, {})
+
+
+def scene_two_lines_at_angle():
+    point_name, line_name, _ = fresh_name_pools()
+
+    angle1 = np.random.uniform(0, np.pi)
+    delta  = np.radians(np.random.uniform(15, 75))
+    angle2 = angle1 + delta
+    ix, iy = np.random.uniform(-2, 2, 2)
+
+    def make_endpoints(angle, ix, iy, pn1, pn2):
+        dx, dy = np.cos(angle), np.sin(angle)
+        half = random.uniform(1.0, 4.0)   # randomized per line
+        return {
+            pn1: Point(name=pn1, x=float(ix + dx*half), y=float(iy + dy*half)),
+            pn2: Point(name=pn2, x=float(ix - dx*half), y=float(iy - dy*half)),
         }
-        point_list = list(points.values())
 
-        lines = {}
-        used_pairs = set()
-        for i in range(n_lines):
-            for _ in range(20):
-                p1, p2 = random.sample(point_list, 2)
-                pair = tuple(sorted([p1.name, p2.name]))
-                if pair not in used_pairs:
-                    used_pairs.add(pair)
-                    lines[f"L{i}"] = Line(name=f"L{i}", p1=p1, p2=p2)
-                    break
+    p1n, p2n = point_name(), point_name()
+    p3n, p4n = point_name(), point_name()
+    points = {
+        **make_endpoints(angle1, ix, iy, p1n, p2n),
+        **make_endpoints(angle2, ix, iy, p3n, p4n),
+    }
+    l1n, l2n = line_name(), line_name()
+    lines = {
+        l1n: Line(name=l1n, p1=points[p1n], p2=points[p2n]),
+        l2n: Line(name=l2n, p1=points[p3n], p2=points[p4n]),
+    }
+    return points, lines, {}, extract_constraints(points, lines, {})
 
-        circles = {}
-        for i in range(n_circles):
-            center = random.choice(point_list)
-            circles[f"C{i}"] = Circle(name=f"C{i}", center=center,
-                                      radius=round(random.uniform(0.5, 3.0), 4))
 
-        constraints = extract_constraints(points, lines, circles)
+def scene_line_tangent_to_circle():
+    point_name, line_name, circle_name = fresh_name_pools()
 
-        # accept only if no interesting constraints happened by accident
-        interesting = [c for c in constraints if not isinstance(c, (Length, Radius, Point, Line, Circle))]
-        if not interesting:
-            return points, lines, circles, constraints
+    cn = point_name()
+    center = Point(name=cn, x=float(np.random.uniform(-2, 2)),
+                            y=float(np.random.uniform(-2, 2)))
+    radius = round(random.uniform(0.5, 2.0), 4)
+    circ_n = circle_name()
+    circles = {circ_n: Circle(name=circ_n, center=center, radius=radius)}
+    points  = {cn: center}
+
+    angle = np.random.uniform(0, 2 * np.pi)
+    tx = center.x + radius * np.cos(angle)
+    ty = center.y + radius * np.sin(angle)
+    tdx, tdy = -np.sin(angle), np.cos(angle)
+
+    p1n, p2n = point_name(), point_name()
+    t_len = random.uniform(1.0, 4.0)   # randomized
+    points[p1n] = Point(name=p1n, x=float(tx + tdx*t_len), y=float(ty + tdy*t_len))
+    points[p2n] = Point(name=p2n, x=float(tx - tdx*t_len), y=float(ty - tdy*t_len))
+    ln = line_name()
+    lines = {ln: Line(name=ln, p1=points[p1n], p2=points[p2n])}
+
+    return points, lines, circles, extract_constraints(points, lines, circles)
+
+
+def scene_two_circles_tangent():
+    point_name, _, circle_name = fresh_name_pools()
+
+    c1n = point_name()
+    center1 = Point(name=c1n, x=float(np.random.uniform(-3, 0)),
+                              y=float(np.random.uniform(-2, 2)))
+    r1 = round(random.uniform(0.5, 1.5), 4)
+
+    angle = np.random.uniform(0, 2 * np.pi)
+    r2    = round(random.uniform(0.5, 1.5), 4)
+    c2n   = point_name()
+    center2 = Point(
+        name=c2n,
+        x=float(center1.x + (r1 + r2) * np.cos(angle)),
+        y=float(center1.y + (r1 + r2) * np.sin(angle)),
+    )
+
+    points  = {c1n: center1, c2n: center2}
+    circ1n, circ2n = circle_name(), circle_name()
+    circles = {
+        circ1n: Circle(name=circ1n, center=center1, radius=r1),
+        circ2n: Circle(name=circ2n, center=center2, radius=r2),
+    }
+    return points, {}, circles, extract_constraints(points, {}, circles)
+
+
+def scene_point_on_circle():
+    point_name, _, circle_name = fresh_name_pools()
+
+    cn = point_name()
+    center = Point(name=cn, x=float(np.random.uniform(-2, 2)),
+                            y=float(np.random.uniform(-2, 2)))
+    radius = round(random.uniform(0.5, 2.0), 4)
+    circ_n = circle_name()
+    circles = {circ_n: Circle(name=circ_n, center=center, radius=radius)}
+
+    angle = np.random.uniform(0, 2 * np.pi)
+    pn = point_name()
+    on_pt = Point(name=pn,
+                  x=float(center.x + radius * np.cos(angle)),
+                  y=float(center.y + radius * np.sin(angle)))
+    points = {cn: center, pn: on_pt}
+
+    return points, {}, circles, extract_constraints(points, {}, circles)
+
+
+CONSTRAINT_SPECIFIC_SCENES = {
+    "parallel":          scene_two_parallel_lines,
+    "perpendicular":     scene_two_perpendicular_lines,
+    "angle":             scene_two_lines_at_angle,
+    "line_tangent":      scene_line_tangent_to_circle,
+    "circle_tangent":    scene_two_circles_tangent,
+    "point_on_circle":   scene_point_on_circle,
+}
 # ---------------------------------------------------------------------------
 # 4. CONSTRAINT CHECKERS  (now take dataclass objects directly)
 # ---------------------------------------------------------------------------
@@ -459,11 +668,12 @@ that converts natural language into formal geometric descriptions.
 Generate natural language descriptions following these rules:
 - Each description must be semantically equivalent (same objects and constraints)
 - Vary vocabulary: tangent / just touches / perpendicular / at right angles, etc.
-- Mention the name of every oject
+- Mention the name of every object
 - Vary structure: some terse, some verbose, some conversational, some formal
 - Do NOT mention coordinate values — describe relationships only
-- Do NOT round the exact numbers involved in the question
+- Do NOT round the exact numbers involved in the question nor convert it into words
 - Do NOT number the descriptions
+- COORDINATE VALUES ARE STRICTLY FORBIDDEN
 - Respond with ONLY a JSON array of strings, no other text. Example format:
 ["description one", "description two"]"""
         },
@@ -631,38 +841,96 @@ def generate_curriculum_datasets(
         ("complex", n_complex, lambda: random_scene(nudge_probability=0.8)),
     ]
 
+    # step 1: generate all scenes locally for all levels
+    all_scenes = {}
     for level, n_scenes, scene_fn in configs:
-        print(f"\n=== Generating {level} dataset ({n_scenes} scenes) ===")
-        out_path = output_dir / f"dataset_{level}.jsonl"
-
-        # generate scenes
+        print(f"Generating {level} scenes...")
         scenes = []
         attempts = 0
         while len(scenes) < n_scenes:
             attempts += 1
             points, lines, circles, constraints = scene_fn()
-
-            # for complex, require at least one interesting constraint
             if level == "complex":
-                interesting = [c for c in constraints if not isinstance(c, (Length, Radius))]
+                interesting = [c for c in constraints if not isinstance(c, (Length, Radius, Point, Line, Circle))]
                 if not interesting:
                     continue
+            scenes.append(dict(zip(("points", "lines", "circles", "constraints"),
+                                   (points, lines, circles, constraints))))
+        print(f"  {len(scenes)} scenes ({attempts - len(scenes)} skipped)")
+        all_scenes[level] = scenes
 
-            scenes.append({
-                "points": points, "lines": lines,
-                "circles": circles, "constraints": constraints,
+    # step 2: submit all three batches simultaneously
+    batch_ids = {}
+    for level, scenes in all_scenes.items():
+        print(f"Submitting {level} batch...")
+        batch_requests = []
+        for i, scene in enumerate(scenes):
+            formal  = serialize_scene(scene["points"], scene["lines"], scene["circles"], scene["constraints"])
+            summary = constraints_only_str(scene["constraints"])
+            batch_requests.append({
+                "custom_id": f"scene-{i}",
+                "method":    "POST",
+                "url":       "/v1/chat/completions",
+                "body": {
+                    "model":      "gpt-4o-mini",
+                    "max_tokens": 1500,
+                    "messages":   build_prompt(formal, summary, n_variants_per_scene),
+                }
             })
 
-        print(f"{len(scenes)} scenes generated ({attempts - len(scenes)} skipped)")
+        batch_input_path = Path(f"_batch_input_{level}.jsonl")
+        with open(batch_input_path, "w") as f:
+            for req in batch_requests:
+                f.write(json.dumps(req) + "\n")
 
-        # batch NL generation
-        all_variants = generate_nl_variants_batched(scenes, n_variants_per_scene, client)
+        with open(batch_input_path, "rb") as f:
+            batch_file = client.files.create(file=f, purpose="batch")
 
-        # write file
-        generated = 0
-        skipped   = 0
-        with open(out_path, "w") as f:
-            for scene, variants in zip(scenes, all_variants):
+        batch = client.batches.create(
+            input_file_id=batch_file.id,
+            endpoint="/v1/chat/completions",
+            completion_window="24h",
+        )
+        batch_ids[level] = batch.id
+        batch_input_path.unlink(missing_ok=True)
+        print(f"  {level} batch submitted: {batch.id}")
+
+    # step 3: poll all batches together until all done
+    print("\nWaiting for all batches...")
+    pending = set(batch_ids.values())
+    results = {}
+    while pending:
+        for level, batch_id in batch_ids.items():
+            if batch_id not in pending:
+                continue
+            batch = client.batches.retrieve(batch_id)
+            print(f"  {level}: {batch.status} "
+                  f"({batch.request_counts.completed}/{batch.request_counts.total})")
+            if batch.status == "completed":
+                results[level] = client.files.content(batch.output_file_id).text
+                pending.remove(batch_id)
+            elif batch.status in ("failed", "cancelled"):
+                raise RuntimeError(f"{level} batch failed: {batch.status}")
+        if pending:
+            time.sleep(30)
+
+    # step 4: write all output files
+    for level, scenes in all_scenes.items():
+        out_path = output_dir / f"dataset_{level}.jsonl"
+        raw_results = {
+            json.loads(line)["custom_id"]: json.loads(line)
+            for line in results[level].splitlines() if line.strip()
+        }
+
+        generated = skipped = 0
+        with open(out_path, "a") as f:
+            for i, scene in enumerate(scenes):
+                result = raw_results.get(f"scene-{i}")
+                if result is None or result.get("error"):
+                    skipped += 1
+                    continue
+                raw = result["response"]["body"]["choices"][0]["message"]["content"]
+                variants = parse_variants(raw)
                 if not variants:
                     skipped += 1
                     continue
@@ -674,32 +942,126 @@ def generate_curriculum_datasets(
                 f.write(json.dumps(record) + "\n")
                 generated += 1
 
-        print(f"Done. {generated} written, {skipped} skipped → {out_path}")
+        print(f"{level}: {generated} written, {skipped} skipped → {out_path}")
+        
+def generate_constraint_specific_datasets(
+    n_scenes_per_type: int = 100,
+    n_variants_per_scene: int = 5,
+    output_dir: str = ".",
+):
+    client = OpenAI()
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # step 1: generate all scenes locally for all constraint types
+    all_scenes = {}
+    for constraint_type, scene_fn in CONSTRAINT_SPECIFIC_SCENES.items():
+        print(f"Generating {constraint_type} scenes...")
+        scenes = [
+            dict(zip(("points", "lines", "circles", "constraints"), scene_fn()))
+            for _ in range(n_scenes_per_type)
+        ]
+        all_scenes[constraint_type] = scenes
+        print(f"  {len(scenes)} scenes generated")
+
+    # step 2: submit all batches simultaneously
+    batch_ids = {}
+    for constraint_type, scenes in all_scenes.items():
+        print(f"Submitting {constraint_type} batch...")
+        batch_requests = []
+        for i, scene in enumerate(scenes):
+            formal  = serialize_scene(scene["points"], scene["lines"], scene["circles"], scene["constraints"])
+            summary = constraints_only_str(scene["constraints"])
+            batch_requests.append({
+                "custom_id": f"scene-{i}",
+                "method":    "POST",
+                "url":       "/v1/chat/completions",
+                "body": {
+                    "model":      "gpt-4o-mini",
+                    "max_tokens": 1500,
+                    "messages":   build_prompt(formal, summary, n_variants_per_scene),
+                }
+            })
+
+        batch_input_path = Path(f"_batch_input_{constraint_type}.jsonl")
+        with open(batch_input_path, "w") as f:
+            for req in batch_requests:
+                f.write(json.dumps(req) + "\n")
+
+        with open(batch_input_path, "rb") as f:
+            batch_file = client.files.create(file=f, purpose="batch")
+
+        batch = client.batches.create(
+            input_file_id=batch_file.id,
+            endpoint="/v1/chat/completions",
+            completion_window="24h",
+        )
+        batch_ids[constraint_type] = batch.id
+        batch_input_path.unlink(missing_ok=True)
+        print(f"  {constraint_type} batch submitted: {batch.id}")
+
+    # step 3: poll all batches together until all done
+    print("\nWaiting for all batches...")
+    pending = set(batch_ids.values())
+    results = {}
+    while pending:
+        for constraint_type, batch_id in batch_ids.items():
+            if batch_id not in pending:
+                continue
+            batch = client.batches.retrieve(batch_id)
+            print(f"  {constraint_type}: {batch.status} "
+                  f"({batch.request_counts.completed}/{batch.request_counts.total})")
+            if batch.status == "completed":
+                results[constraint_type] = client.files.content(batch.output_file_id).text
+                pending.remove(batch_id)
+            elif batch.status in ("failed", "cancelled"):
+                raise RuntimeError(f"{constraint_type} batch failed: {batch.status}")
+        if pending:
+            time.sleep(30)
+
+    # step 4: write all output files
+    for constraint_type, scenes in all_scenes.items():
+        out_path = output_dir / f"dataset_{constraint_type}.jsonl"
+        raw_results = {
+            json.loads(line)["custom_id"]: json.loads(line)
+            for line in results[constraint_type].splitlines() if line.strip()
+        }
+
+        generated = skipped = 0
+        with open(out_path, "a") as f:
+            for i, scene in enumerate(scenes):
+                result = raw_results.get(f"scene-{i}")
+                if result is None or result.get("error"):
+                    skipped += 1
+                    continue
+                raw = result["response"]["body"]["choices"][0]["message"]["content"]
+                variants = parse_variants(raw)
+                if not variants:
+                    skipped += 1
+                    continue
+                record = {
+                    "geometry":    serialize_geometry(scene["points"], scene["lines"], scene["circles"]),
+                    "constraints": serialize_constraints(scene["constraints"]),
+                    "nl_variants": variants,
+                }
+                f.write(json.dumps(record) + "\n")
+                generated += 1
+
+        print(f"{constraint_type}: {generated} written, {skipped} skipped → {out_path}")
 # ---------------------------------------------------------------------------
 # 8. QUICK DEMO
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print("=== Single scene demo ===\n")
-
-    # points, lines, circles, constraints = random_scene()
-    # formal  = serialize_scene(points, lines, circles, constraints)
-    # summary = constraints_only_str(constraints)
-
-    # print("Formal:\n" + formal)
-    # print("\nConstraint summary:\n" + summary)
-
-    # print("\nGenerating NL variants...")
-    # scene = {"points": points, "lines": lines, "circles": circles, "constraints": constraints}
-    # variants = generate_nl_variants_batched([scene], n_variants=5)[0]
-    # for i, v in enumerate(variants, 1):
-    #     print(f"  {i}. {v}")
-
     print("\n=== Generating curriculum datasets ===\n")
     generate_curriculum_datasets(
-        n_simple=10,
-        n_medium=10,
-        n_complex=10,
+        n_simple=100, n_medium=200, n_complex=300,
+        n_variants_per_scene=5, output_dir="curriculum_data",
+    )
+
+    print("\n=== Generating constraint-specific datasets ===\n")
+    generate_constraint_specific_datasets(
+        n_scenes_per_type=50,
         n_variants_per_scene=5,
-        output_dir="curriculum_data",
+        output_dir="constraint_data",
     )
