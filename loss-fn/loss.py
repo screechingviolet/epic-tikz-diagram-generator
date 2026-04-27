@@ -267,7 +267,7 @@ def check_constraints(pred_geo, truth_constr):
                         all_refs += 1
                         if pred[1][1] in refs:
                             valid_refs += 1
-        return 1+(valid_refs/all_refs)
+        return 1+(valid_refs/max(all_refs, 1))
     except AssertionError as e:
         print("Type check failed\n", traceback.format_exc())
         return 0.75

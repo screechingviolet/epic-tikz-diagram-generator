@@ -16,7 +16,7 @@ from peft import LoraConfig
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "loss-fn"))
 
-from loss import check_constraints, parse_fn, BIG_BAD_LOSS  # noqa: E402
+from loss import check_constraints, Confusion  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
@@ -271,80 +271,31 @@ def _parse_completion_to_geometry(text: str) -> list[str]:
     return primitives
 
 
-def _structural_validity(pred_geo):
-    """Return (all_valid, fraction_valid) over the predicted primitives.
-
-    Walks `pred_geo` in order, building a name table, and counts how many
-    primitives have arguments that resolve cleanly:
-
-      point(name, x, y)         → x and y parse as float
-      line(name, p1, p2)        → p1 and p2 are previously defined point names
-      circle(name, center, r)   → center is a previously defined point name
-                                  AND r parses as float
-
-    Mirrors the rules check_constraints uses, but counts partial success
-    instead of raising on the first bad reference. This lets the reward
-    function award partial credit between the 0.05 and 0.10 tiers, giving
-    the model a gradient to climb out of the "structurally invalid" plateau.
-    """
-    point_names = set()
-    valid_count = 0
-    total = len(pred_geo)
-    if total == 0:
-        return False, 0.0
-
-    for prim in pred_geo:
-        try:
-            head, params = parse_fn(prim)
-        except Exception:
-            continue
-
-        if head == "point" and len(params) == 3:
-            try:
-                float(params[1])
-                float(params[2])
-            except ValueError:
-                continue
-            point_names.add(params[0])
-            valid_count += 1
-        elif head == "line" and len(params) == 3:
-            if params[1] in point_names and params[2] in point_names:
-                valid_count += 1
-        elif head == "circle" and len(params) == 3:
-            try:
-                float(params[2])
-            except ValueError:
-                continue
-            if params[1] in point_names:
-                valid_count += 1
-
-    return (valid_count == total), valid_count / total
-
-
 def reward_constraints(completions, constraints, **kwargs):
-    """Per-completion reward: fraction of truth constraints that are satisfied.
+    """Per-completion reward: bounded [0, 1] mapping of `check_constraints`.
 
     Reward is bounded in [0, 1] on purpose. GRPO normalises advantages within
-    each group of `num_generations` samples; large-magnitude outliers (e.g.
-    a -100 penalty for one bad parse) blow up the z-score and drown the
-    learning signal from the other samples in the group.
+    each group of `num_generations` samples; large-magnitude outliers blow up
+    the z-score and drown the learning signal from the other samples in the
+    group.
 
-    Tier structure (strictly monotone — better-shaped output always scores
-    at least as much as worse-shaped output):
+    `check_constraints` already returns a continuous, monotone score in [0, 3]
+    that encodes partial credit at every failure mode — bad parse, bad floats,
+    wrong arg count, missing refs (with internal ramp on fraction-valid), and
+    success (with internal ramp on fraction-of-constraints-satisfied). We map
+    that to [0, 1] by dividing by 3.
 
-      0.00                              unparseable completion (no primitives)
-      0.05 + 0.05 * frac_refs_valid     primitives parsed; ramp on the fraction
-                                        whose refs resolve. Range (0.05, 0.10).
-      0.10                              all refs resolve but truth-side lookup
-                                        failed (truth references a shape the
-                                        model didn't define).
-      0.10 + 0.90 * (score/len(truth))  fully valid; satisfied constraints
-                                        pull reward up toward 1.0.
+    Mapping (from loss.py):
+      0.000    parse error / unknown failure          (score 0)
+      0.083    wrong arg count                        (score 0.25)
+      0.167    bad float                              (score 0.5)
+      0.250    type check failed                      (score 0.75)
+      [0.333, 0.667]   parseable but missing refs    (score 1 + valid/total)
+      [0.667, 1.000]   fully valid; constraint ramp  (score 2 + correct/total)
 
-    The 0.05 → 0.10 ramp is the key change vs the previous cliff. Models
-    plateau at the 0.05 tier when format is learned but cross-refs aren't;
-    the ramp gives a gradient to climb (more valid refs ⇒ higher reward)
-    instead of a step the policy has to vault over in a single jump.
+    `Confusion` is returned if the *truth* list contains an unknown constraint
+    label — that's a dataset bug, not the model's fault. We award the floor of
+    the success tier (0.667) so a Confusion sentinel doesn't poison the group.
 
     Args:
         completions: list of model completions. With a chat-style prompt these
@@ -362,32 +313,33 @@ def reward_constraints(completions, constraints, **kwargs):
 
         pred_geo = _parse_completion_to_geometry(text)
         if not pred_geo:
+            # No extractable primitives — short-circuit to the floor and skip
+            # the (defensive) call into check_constraints.
             rewards.append(0.0)
             continue
 
-        all_valid, frac_valid = _structural_validity(pred_geo)
-        if not all_valid:
-            # Smooth ramp 0.05 → 0.10 on the fraction of primitives whose
-            # references resolve cleanly. With frac_valid = 0 we sit at the
-            # old 0.05 floor; as more refs become valid the reward rises
-            # continuously toward the all-valid tier.
-            rewards.append(0.05 + 0.05 * frac_valid)
+        # Swallow check_constraints' print spam from its exception handlers
+        # so the trainer log stays clean. Guard against unexpected raises
+        # too — rewards must never crash the trainer. (Known case: if pred_geo
+        # contains only points, the KeyError handler in loss.py divides by
+        # all_refs == 0.) On any unexpected raise, treat as the parseable
+        # floor of the "missing refs" tier — model emitted *something*.
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                score = check_constraints(pred_geo, truth)
+        except Exception:
+            rewards.append(1.0 / 3.0)
             continue
 
-        # All references resolve — safe to call check_constraints, which can
-        # still raise if a *truth* constraint references a shape the model
-        # didn't emit. Swallow its print spam so the trainer log stays clean.
-        with contextlib.redirect_stdout(io.StringIO()):
-            score = check_constraints(pred_geo, truth)
-        if score == BIG_BAD_LOSS:
-            # Pre-check passed but check_constraints still raised — almost
-            # always a missing-shape lookup against the truth list. Award the
-            # all-valid tier; nothing the model can do about which constraints
-            # were chosen.
-            rewards.append(0.10)
+        if score is Confusion:
+            # Dataset-side failure: an unknown constraint label in truth.
+            # Award the all-refs-valid floor; nothing the model can do.
+            rewards.append(2.0 / 3.0)
         else:
-            denom = max(len(truth), 1)
-            rewards.append(0.10 + 0.90 * float(score) / denom)
+            # score is in [0, 3]; map linearly to [0, 1] and clamp defensively.
+            r = float(score) / 3.0
+            rewards.append(max(0.0, min(1.0, r)))
+
     max_reward_cb.record(rewards)
     completion_peek_cb.record(
         kwargs.get("prompts"), completions, rewards, constraints
