@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from datasets import Dataset
+from transformers import TrainerCallback
 from trl import GRPOConfig, GRPOTrainer
 from peft import LoraConfig
 
@@ -15,7 +16,7 @@ from peft import LoraConfig
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "loss-fn"))
 
-from loss import check_constraints, BIG_BAD_LOSS  # noqa: E402
+from loss import check_constraints, parse_fn, BIG_BAD_LOSS  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
@@ -35,11 +36,25 @@ SYSTEM_PROMPT = (
     "  circle(name: str, center: str, radius: float)  "
     "# center must name a previously defined point\n"
     "\n"
-    "Example:\n"
+    "Example 1:\n"
     "Description: Two points, 5 units apart, connected by a line.\n"
     "Output:\n"
     "point(P0, 0, 0)\n"
     "point(P1, 5, 0)\n"
+    "line(L0, P0, P1)\n"
+    "\n"
+    "Example 2:\n"
+    "Description: A circle of radius 2 centered at the origin.\n"
+    "Output:\n"
+    "point(P0, 0, 0)\n"
+    "circle(C0, P0, 2)\n"
+    "\n"
+    "Example 3:\n"
+    "Description: A circle of radius 1 sits at one end of a line of length 3.\n"
+    "Output:\n"
+    "point(P0, 0, 0)\n"
+    "point(P1, 3, 0)\n"
+    "circle(C0, P0, 1)\n"
     "line(L0, P0, P1)"
 )
 
@@ -78,6 +93,40 @@ PRIMITIVE_PREFIXES = ("point(", "line(", "circle(")
 _LIST_PREFIXES = ("- ", "* ", "+ ")
 
 
+class MaxRewardCallback(TrainerCallback):
+    """Track the max reward seen between log events and inject it into logs.
+
+    GRPOTrainer logs `rewards/<func>/mean` and `rewards/<func>/std` but not the
+    max. We feed every reward batch into `record()` from the reward function;
+    on each `on_log` call we surface the running max as
+    `rewards/reward_constraints/max` (and `reward_max` to mirror the
+    aggregate-style key TRL already emits).
+    """
+
+    def __init__(self):
+        self._max = float("-inf")
+        self._count = 0
+
+    def record(self, rewards):
+        if not rewards:
+            return
+        batch_max = max(rewards)
+        if batch_max > self._max:
+            self._max = batch_max
+        self._count += len(rewards)
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if logs is not None and self._count > 0:
+            logs["rewards/reward_constraints/max"] = self._max
+            logs["reward_max"] = self._max
+        # Reset for the next logging interval.
+        self._max = float("-inf")
+        self._count = 0
+
+
+max_reward_cb = MaxRewardCallback()
+
+
 def _parse_completion_to_geometry(text: str) -> list[str]:
     """Extract primitive calls (point/line/circle …) from a completion string."""
     primitives = []
@@ -97,6 +146,56 @@ def _parse_completion_to_geometry(text: str) -> list[str]:
     return primitives
 
 
+def _structural_validity(pred_geo):
+    """Return (all_valid, fraction_valid) over the predicted primitives.
+
+    Walks `pred_geo` in order, building a name table, and counts how many
+    primitives have arguments that resolve cleanly:
+
+      point(name, x, y)         → x and y parse as float
+      line(name, p1, p2)        → p1 and p2 are previously defined point names
+      circle(name, center, r)   → center is a previously defined point name
+                                  AND r parses as float
+
+    Mirrors the rules check_constraints uses, but counts partial success
+    instead of raising on the first bad reference. This lets the reward
+    function award partial credit between the 0.05 and 0.10 tiers, giving
+    the model a gradient to climb out of the "structurally invalid" plateau.
+    """
+    point_names = set()
+    valid_count = 0
+    total = len(pred_geo)
+    if total == 0:
+        return False, 0.0
+
+    for prim in pred_geo:
+        try:
+            head, params = parse_fn(prim)
+        except Exception:
+            continue
+
+        if head == "point" and len(params) == 3:
+            try:
+                float(params[1])
+                float(params[2])
+            except ValueError:
+                continue
+            point_names.add(params[0])
+            valid_count += 1
+        elif head == "line" and len(params) == 3:
+            if params[1] in point_names and params[2] in point_names:
+                valid_count += 1
+        elif head == "circle" and len(params) == 3:
+            try:
+                float(params[2])
+            except ValueError:
+                continue
+            if params[1] in point_names:
+                valid_count += 1
+
+    return (valid_count == total), valid_count / total
+
+
 def reward_constraints(completions, constraints, **kwargs):
     """Per-completion reward: fraction of truth constraints that are satisfied.
 
@@ -108,12 +207,19 @@ def reward_constraints(completions, constraints, **kwargs):
     Tier structure (strictly monotone — better-shaped output always scores
     at least as much as worse-shaped output):
 
-      0.00              unparseable completion (no point/line/circle primitives)
-      0.05              primitives parsed but structurally invalid (bad refs,
-                        wrong arity, etc.) — loss.py raised an exception
-      0.10 + 0.90 * (score/len(truth))    well-formed; floor of 0.10 so a
-                                          valid-but-zero-constraints completion
-                                          still beats a malformed one
+      0.00                              unparseable completion (no primitives)
+      0.05 + 0.05 * frac_refs_valid     primitives parsed; ramp on the fraction
+                                        whose refs resolve. Range (0.05, 0.10).
+      0.10                              all refs resolve but truth-side lookup
+                                        failed (truth references a shape the
+                                        model didn't define).
+      0.10 + 0.90 * (score/len(truth))  fully valid; satisfied constraints
+                                        pull reward up toward 1.0.
+
+    The 0.05 → 0.10 ramp is the key change vs the previous cliff. Models
+    plateau at the 0.05 tier when format is learned but cross-refs aren't;
+    the ramp gives a gradient to climb (more valid refs ⇒ higher reward)
+    instead of a step the policy has to vault over in a single jump.
 
     Args:
         completions: list of model completions. With a chat-style prompt these
@@ -134,23 +240,30 @@ def reward_constraints(completions, constraints, **kwargs):
             rewards.append(0.0)
             continue
 
-        # loss.check_constraints() prints the stringified exception on every
-        # malformed primitive — bursts of noise that drown the training log.
-        # Swallow stdout for the duration of the call so the trainer's per-step
-        # metrics stay readable.
+        all_valid, frac_valid = _structural_validity(pred_geo)
+        if not all_valid:
+            # Smooth ramp 0.05 → 0.10 on the fraction of primitives whose
+            # references resolve cleanly. With frac_valid = 0 we sit at the
+            # old 0.05 floor; as more refs become valid the reward rises
+            # continuously toward the all-valid tier.
+            rewards.append(0.05 + 0.05 * frac_valid)
+            continue
+
+        # All references resolve — safe to call check_constraints, which can
+        # still raise if a *truth* constraint references a shape the model
+        # didn't emit. Swallow its print spam so the trainer log stays clean.
         with contextlib.redirect_stdout(io.StringIO()):
             score = check_constraints(pred_geo, truth)
         if score == BIG_BAD_LOSS:
-            # loss.check_constraints returns BIG_BAD_LOSS as an error sentinel
-            # (e.g. a line referencing an undefined point). Give a tiny credit
-            # for at least emitting parseable primitives so the model has a
-            # gradient to climb away from total garbage.
-            rewards.append(0.05)
+            # Pre-check passed but check_constraints still raised — almost
+            # always a missing-shape lookup against the truth list. Award the
+            # all-valid tier; nothing the model can do about which constraints
+            # were chosen.
+            rewards.append(0.10)
         else:
             denom = max(len(truth), 1)
-            # Floor at 0.10 so well-formed geometry always outranks malformed
-            # output, even when zero truth constraints happen to be satisfied.
             rewards.append(0.10 + 0.90 * float(score) / denom)
+    max_reward_cb.record(rewards)
     return rewards
 
 
@@ -204,11 +317,12 @@ training_args = GRPOConfig(
 )
 
 trainer = GRPOTrainer(
-    model="Qwen/Qwen2-0.5B-Instruct",
+    model="Qwen/Qwen2-3B-Instruct",
     reward_funcs=reward_constraints,
     args=training_args,
     train_dataset=dataset,
     peft_config=peft_config,
+    callbacks=[max_reward_cb],
 )
 
 trainer.train()
