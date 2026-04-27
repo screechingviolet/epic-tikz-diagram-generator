@@ -1,6 +1,6 @@
 import math
 from shapely.geometry import LineString
-
+import traceback
 
 # given geometrylanguage thing and constraint language label, check constraints against geometry
 '''
@@ -22,6 +22,15 @@ line(name, point_1_name, point_2_name)
 circle(name, center, radius)
 
 '''
+
+class ConstraintLabelError(Exception):
+    pass
+
+class ParseError(Exception):
+    pass
+
+class Confusion():
+    pass # let me have my fun ok
 
 BIG_BAD_LOSS = 100
 FLOAT_CMP = 0.05
@@ -151,10 +160,10 @@ def parse_fn(str1):
     # returns string name and list of arguments
     name_params_split = str1.split("(")
     if len(name_params_split) != 2:
-        raise ValueError
+        raise ParseError
     fn_name = name_params_split[0]
     if name_params_split[1][-1] != ")":
-        raise ValueError
+        raise ParseError
 
     params = name_params_split[1][:-1]
     params = [item.strip() for item in params.split(",")]
@@ -174,6 +183,8 @@ def check_constraints(pred_geo, truth_constr):
                     shape_dict[parsed[1][0]] = Circle(parsed[1][0], parsed[1][1], float(parsed[1][2]))
                 case "line":
                     shape_dict[parsed[1][0]] = Line(parsed[1][0], parsed[1][1], parsed[1][2])
+                case _:
+                    raise ParseError
 
         for name, shape in shape_dict.items():
             if isinstance(shape, Line):
@@ -216,18 +227,60 @@ def check_constraints(pred_geo, truth_constr):
                     if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
                         correct_constraints += 1
                 case _:
-                    raise ValueError
+                    raise ConstraintLabelError
                 # etc
-        return correct_constraints
+        return 2+(correct_constraints/(len(truth_constr)))
+    except ConstraintLabelError as e:
+        print("The constraint label provided contains improper functions\n", e) 
+        return Confusion
+    except ParseError as e:
+        print("Parse error\n", traceback.format_exc())
+        return 0
+    except ValueError as e:
+        print("ValueError (probably in converting string to float)\n", traceback.format_exc())
+        return 0.5
+    except IndexError as e:
+        print("Wrong number of arguments to a function\n", traceback.format_exc())
+        return 0.25
+    except KeyError as e:
+        print("No such key in dict (bad label)\n", traceback.format_exc())
+        valid_refs = 0
+        all_refs = 0
+        refs = {}
+        parsed_preds = []
+        for pred in pred_geo:
+            parsed = parse_fn(pred)
+            parsed_preds.append(parsed)
+            refs[parsed[1][0]] = 1
+        for pred in parsed_preds:
+            for arg in pred[1]:
+                match pred[0]:
+                    case "point":
+                        pass
+                    case "line":
+                        all_refs += 2
+                        if pred[1][1] in refs:
+                            valid_refs += 1
+                        if pred[1][2] in refs:
+                            valid_refs += 1
+                    case "circle":
+                        all_refs += 1
+                        if pred[1][1] in refs:
+                            valid_refs += 1
+        return 1+(valid_refs/all_refs)
+    except AssertionError as e:
+        print("Type check failed\n", traceback.format_exc())
+        return 0.75
     except Exception as e:
-        print(e)
-        return BIG_BAD_LOSS
+        print(traceback.format_exc())
+        return 0
+
 
 if __name__ == "__main__":
     # testing oof
     print(check_constraints(["point(p1, 10, 10.45)", "line(l1, p1, p2)", "point(p2, 15, 10.45)"], ["length(l1,5)"]))
     print(check_constraints(
-        ["point(c, 0, 0)", "circle(c1, c, 5)", "point(p, 3, 4)"],
+        ["point(c, 0,0)", "circle(c1, c, 5)", "point(p, 3, 4)"],
         ["on_circle(p, c1)"]
     ))
     print(check_constraints(
@@ -236,7 +289,7 @@ if __name__ == "__main__":
             "point(c, 1, 0)", "point(d, 3, 2)",
             "line(l1, a, b)", "line(l2, c, d)"
         ],
-        ["parallel(l1, l2)"]
+        ["parallel(l1, l2)", "perpendicular(l2, l1)"]
     ))
     print(check_constraints(
         [
@@ -258,6 +311,13 @@ if __name__ == "__main__":
         [
             "point(c1c, 0, 0)", "circle(c1, c1c, 5)",
             "point(c2c, 10, 0)", "circle(c2, c2c, 5)"
+        ],
+        ["circle_tangent(c1, c2)"]
+    ))
+    print(check_constraints(
+        [
+            "point(c1c, 0, 0)", "circle(c1, c1c, 5)",
+            "point(c2c, 10, 0)", "circle(c2, c3, 5)"
         ],
         ["circle_tangent(c1, c2)"]
     ))
