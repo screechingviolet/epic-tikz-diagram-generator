@@ -318,16 +318,6 @@ def reward_constraints(completions, constraints, **kwargs):
             rewards.append(0.0)
             continue
 
-        names = []
-        for p in pred_geo:
-            try:
-                _, params = parse_fn(p)
-                if params:
-                    names.append(params[0])
-            except Exception:
-                pass
-        duplicate_penalty = len(set(names)) / max(len(names), 1)
-
         # Swallow check_constraints' print spam from its exception handlers
         # so the trainer log stays clean. Guard against unexpected raises
         # too — rewards must never crash the trainer. (Known case: if pred_geo
@@ -348,7 +338,6 @@ def reward_constraints(completions, constraints, **kwargs):
         else:
             # score is in [0, 3]; map linearly to [0, 1] and clamp defensively.
             r = float(score) / 3.0
-            r = r * (0.5 + 0.5 * duplicate_penalty)
             rewards.append(max(0.0, min(1.0, r)))
 
     max_reward_cb.record(rewards)
@@ -404,6 +393,7 @@ training_args = GRPOConfig(
     beta=0.04,
     bf16=True,
     # save_strategy="no",
+    output_dir="Qwen2-0.5B-GRPO-geometry-simple",
     save_strategy="steps",   # changed from "no"
     save_steps=25,           # added
     save_total_limit=3, 
