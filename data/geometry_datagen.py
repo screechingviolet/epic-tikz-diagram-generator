@@ -958,14 +958,19 @@ def generate_constraint_specific_datasets(
     n_scenes_per_type: int = 100,
     n_variants_per_scene: int = 5,
     output_dir: str = ".",
+    constraint_types: list[str] | None = None,  # None means all
 ):
+    scenes_to_generate = {
+        k: v for k, v in CONSTRAINT_SPECIFIC_SCENES.items()
+        if constraint_types is None or k in constraint_types
+    }
     client = OpenAI()
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # step 1: generate all scenes locally for all constraint types
     all_scenes = {}
-    for constraint_type, scene_fn in CONSTRAINT_SPECIFIC_SCENES.items():
+    for constraint_type, scene_fn in scenes_to_generate.items():
         print(f"Generating {constraint_type} scenes...")
         scenes = [
             dict(zip(("points", "lines", "circles", "constraints"), scene_fn()))
@@ -1059,22 +1064,15 @@ def generate_constraint_specific_datasets(
 
         print(f"{constraint_type}: {generated} written, {skipped} skipped → {out_path}")
 # ---------------------------------------------------------------------------
-# 8. QUICK DEMO
+# 8. GENERATION
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print("\n=== Generating curriculum datasets ===\n")
-    # for i in range(17):
-    #     generate_curriculum_datasets(
-    #         n_simple= 50, n_medium=100, n_complex=200,
-    #         n_variants_per_scene=5, output_dir="curriculum_data",
-    #     )
-
-    print("\n=== Generating constraint-specific datasets ===\n")
-    for i in range(15):
+    print("\n=== Generating parallel dataset ===\n")
+    for i in range(6):
         generate_constraint_specific_datasets(
             n_scenes_per_type=35,
             n_variants_per_scene=5,
             output_dir="constraint_data",
+            constraint_types=["parallel"],  # add this filter
         )
-        
