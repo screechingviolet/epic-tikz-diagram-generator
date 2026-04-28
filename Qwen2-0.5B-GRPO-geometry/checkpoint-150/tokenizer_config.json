@@ -10,6 +10,7 @@
     "<|im_end|>"
   ],
   "is_local": false,
+  "local_files_only": false,
   "model_max_length": 32768,
   "pad_token": "<|endoftext|>",
   "padding_side": "left",
