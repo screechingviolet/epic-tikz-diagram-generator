@@ -57,8 +57,9 @@ class Line:
 def radius(circle) -> float:
     return circle.radius # lol
 
-def length(line1) -> float:
-    return ((line1.point_1.x - line1.point_2.x)**2 + (line1.point_1.y - line1.point_2.y)**2)**0.5
+def length(line1, truth) -> float:
+    actual = ((line1.point_1.x - line1.point_2.x)**2 + (line1.point_1.y - line1.point_2.y)**2)**0.5
+    return min(actual, truth)/max(actual, truth)
 
 def line_intersect_is_pain(line1, line2):
     return LineString([(line1.point_1.x, line1.point_1.y), (line1.point_2.x, line1.point_2.y)]).intersects(LineString([(line2.point_1.x, line2.point_1.y), (line2.point_2.x, line2.point_2.y)]))
@@ -122,7 +123,7 @@ def tangent(line, circle) -> bool:
     dist = math.hypot(cx - closest_x, cy - closest_y)
     return math.isclose(dist, circle.radius, rel_tol=FLOAT_CMP)
 
-def angle(line1, line2) -> float:
+def angle(line1, line2, truth) -> float:
     dx1 = line1.point_2.x - line1.point_1.x
     dy1 = line1.point_2.y - line1.point_1.y
     dx2 = line2.point_2.x - line2.point_1.x
@@ -133,7 +134,8 @@ def angle(line1, line2) -> float:
     cos_theta = dot / (mag1 * mag2)
     angle = math.degrees(math.acos(max(-1, min(1, cos_theta))))
 
-    return min(angle, 360 - angle)
+    actual = min(angle, 360 - angle)
+    return 1-(abs(truth-actual)/180)
 
 def slope(line):
     dx = line.point_2.x - line.point_1.x
@@ -213,8 +215,9 @@ def check_constraints(pred_geo, truth_constr):
                     if math.isclose(radius(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
                         correct_constraints += 1
                 case "length":
-                    if math.isclose(length(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
-                        correct_constraints += 1
+                    correct_constraints += length(shape_dict[parsed[1][0]], float(parsed[1][1]))
+                    # if math.isclose(length(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
+                    #    correct_constraints += 1
                 case "intersect":
                     if intersect(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
@@ -246,12 +249,63 @@ def check_constraints(pred_geo, truth_constr):
                     if on_circle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
                 case "angle":
-                    if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                #     if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                #         correct_constraints += 1
+                    correct_constraints += angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]], float(parsed[1][2]))
+                case "point":
+                    # existence assertion: name resolves to a Point
+                    if isinstance(shape_dict[parsed[1][0]], Point):
+                        correct_constraints += 1
+                case "line":
+                    # identity assertion: name resolves to a Line whose endpoints
+                    # are exactly the named points. Order-insensitive — a line
+                    # from P0 to P1 is the same segment as from P1 to P0.
+                    s = shape_dict[parsed[1][0]]
+                    if (isinstance(s, Line)
+                            and {s.point_1.name, s.point_2.name}
+                                == {parsed[1][1], parsed[1][2]}):
+                        correct_constraints += 1
+                case "circle":
+                    # identity assertion: name resolves to a Circle centered on
+                    # the named point.
+                    s = shape_dict[parsed[1][0]]
+                    if (isinstance(s, Circle)
+                            and s.center.name == parsed[1][1]):
                         correct_constraints += 1
                 case _:
                     raise ConstraintLabelError
                 # etc
-        return 2+(correct_constraints/(len(truth_constr)))
+
+        # Mix in the name-quality term (duplicates / extraneous names),
+        # the same 50/50 shaping used in the KeyError tier. Set-intersection
+        # in the numerator is what penalises duplicates: emitting P0 twice
+        # adds to total_outputs but adds only one entry to the unique-names
+        # set, dragging the ratio below 1.
+        constraint_names = set()
+        for c in truth_constr:
+            try:
+                _, c_params = parse_fn(c)
+            except Exception:
+                continue
+            for p in c_params:
+                try:
+                    float(p)
+                except ValueError:
+                    constraint_names.add(p)
+        output_names = []
+        for pred in pred_geo:
+            try:
+                _, p_params = parse_fn(pred)
+                if p_params:
+                    output_names.append(p_params[0])
+            except Exception:
+                continue
+        total_outputs = len(output_names)
+        named_in_constraints = len(set(output_names) & constraint_names)
+
+        constraints_score = correct_constraints / len(truth_constr)
+        names_score = named_in_constraints / max(total_outputs, 1)
+        return 1.5 + constraints_score + 0.5 * names_score
     except ConstraintLabelError as e:
         print("The constraint label provided contains improper functions\n", e) 
         return Confusion
@@ -289,7 +343,33 @@ def check_constraints(pred_geo, truth_constr):
                         all_refs += 1
                         if pred[1][1] in refs:
                             valid_refs += 1
-        return 1+(valid_refs/all_refs)
+
+        # Names that appear anywhere in the truth constraints (non-numeric
+        # parameter positions). Used to penalize the model for emitting objects
+        # whose names aren't part of the problem statement.
+        constraint_names = set()
+        for c in truth_constr:
+            try:
+                _, c_params = parse_fn(c)
+            except Exception:
+                continue
+            for p in c_params:
+                try:
+                    float(p)
+                except ValueError:
+                    constraint_names.add(p)
+
+        # Output names with multiplicity in the denominator (so duplicates
+        # inflate it without inflating the numerator), and the set of unique
+        # output names that appear in the constraints in the numerator (so
+        # duplicates don't double-count credit).
+        output_names = [pred[1][0] for pred in parsed_preds if len(pred[1]) >= 1]
+        total_outputs = len(output_names)
+        named_in_constraints = len(set(output_names) & constraint_names)
+
+        refs_score = valid_refs / max(all_refs, 1)
+        names_score = named_in_constraints / max(total_outputs, 1)
+        return 1 + 0.5 * refs_score + 0.5 * names_score
     except AssertionError as e:
         print("Type check failed\n", traceback.format_exc())
         return 0.75
@@ -319,7 +399,7 @@ if __name__ == "__main__":
             "point(c, 0, 0)", "point(d, 1, 1)",
             "line(l1, a, b)", "line(l2, c, d)"
         ],
-        ["angle(l1,l2,0.7854)"]
+        ["angle(l1,l2,45)"]
     ))
     print(check_constraints(
         [
@@ -343,3 +423,5 @@ if __name__ == "__main__":
         ],
         ["circle_tangent(c1, c2)"]
     ))
+
+
