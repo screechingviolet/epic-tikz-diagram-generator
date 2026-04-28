@@ -104,8 +104,8 @@ def tangent(line, circle) -> bool:
         return False
     t = ((cx - p1.x)*dx + (cy - p1.y)*dy) / (dx*dx + dy*dy)
 
-    if t < 0 or t > 1: # not within bounds of line
-        return False
+    # if t < 0 or t > 1: # not within bounds of line
+    #    return False
 
     closest_x = p1.x + t*dx
     closest_y = p1.y + t*dy
@@ -133,7 +133,14 @@ def slope(line):
     return dy / dx
 
 def parallel(line1, line2) -> bool:
-    return slope(line1) == slope(line2)
+    #return slope(line1) == slope(line2)
+    s1 = slope(line1)
+    s2 = slope(line2)
+    if s1 is None and s2 is None:
+        return True
+    if s1 is None or s2 is None:
+        return False
+    return math.isclose(s1, s2, rel_tol=FLOAT_CMP)
 
 def perpendicular(line1, line2) -> bool:
     m1 = slope(line1)
