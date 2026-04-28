@@ -667,7 +667,7 @@ that converts natural language into formal geometric descriptions.
 
 Generate natural language descriptions following these rules:
 - Each description must be semantically equivalent (same objects and constraints)
-- Vary vocabulary: tangent / just touches / perpendicular / at right angles, etc.
+- Use ONLY standard geometric vocabulary: tangent, parallel, perpendicular, intersect, radius, length, angle, circle, line, point. Do NOT use informal language.
 - Mention the name of every object
 - Vary structure: some terse, some verbose, some conversational, some formal
 - Do NOT mention coordinate values — describe relationships only
@@ -910,6 +910,12 @@ def generate_curriculum_datasets(
                 results[level] = client.files.content(batch.output_file_id).text
                 pending.remove(batch_id)
             elif batch.status in ("failed", "cancelled"):
+                # fetch error details before raising
+                batch_details = client.batches.retrieve(batch_id)
+                print(f"  Error details: {batch_details.errors}")
+                if batch_details.output_file_id:
+                    output = client.files.content(batch_details.output_file_id).text
+                    print(f"  Output: {output[:2000]}")  # first 2000 chars
                 raise RuntimeError(f"{level} batch failed: {batch.status}")
         if pending:
             time.sleep(30)
@@ -1053,15 +1059,17 @@ def generate_constraint_specific_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    print("\n=== Generating curriculum datasets ===\n")
-    generate_curriculum_datasets(
-        n_simple=100, n_medium=200, n_complex=300,
-        n_variants_per_scene=5, output_dir="curriculum_data",
-    )
+    # print("\n=== Generating curriculum datasets ===\n")
+    # for i in range(17):
+    #     generate_curriculum_datasets(
+    #         n_simple= 50, n_medium=100, n_complex=200,
+    #         n_variants_per_scene=5, output_dir="curriculum_data",
+    #     )
 
     print("\n=== Generating constraint-specific datasets ===\n")
-    generate_constraint_specific_datasets(
-        n_scenes_per_type=50,
-        n_variants_per_scene=5,
-        output_dir="constraint_data",
-    )
+    for i in range(6):
+        generate_constraint_specific_datasets(
+            n_scenes_per_type=35,
+            n_variants_per_scene=5,
+            output_dir="constraint_data",
+        )
