@@ -1,12 +1,15 @@
 ---
 base_model: Qwen/Qwen2-0.5B-Instruct
-library_name: transformers
+library_name: peft
 model_name: Qwen2-0.5B-GRPO-geometry
 tags:
-- generated_from_trainer
+- base_model:adapter:Qwen/Qwen2-0.5B-Instruct
 - grpo
+- lora
+- transformers
 - trl
 licence: license
+pipeline_tag: text-generation
 ---
 
 # Model Card for Qwen2-0.5B-GRPO-geometry
@@ -35,6 +38,7 @@ This model was trained with GRPO, a method introduced in [DeepSeekMath: Pushing 
 
 ### Framework versions
 
+- PEFT 0.19.1
 - TRL: 1.3.0
 - Transformers: 5.6.2
 - Pytorch: 2.11.0+cu128
