@@ -44,14 +44,19 @@ from prompts import MODEL_NAME, SYSTEM_PROMPT  # noqa: E402
 SAVE_DIR = "Qwen2-0.5B-GRPO-geometry"
 
 
+_DATASET_DIRS = ("curriculum_data", "constraint_data")
+
+
 def _resolve_dataset_path(name: str) -> Path:
-    """Resolve <name>.jsonl under curriculum_data/."""
-    candidate = PROJECT_ROOT / "curriculum_data" / f"{name}.jsonl"
-    if not candidate.is_file():
-        raise FileNotFoundError(
-            f"No dataset {name!r}.jsonl found under curriculum_data/"
-        )
-    return candidate
+    """Resolve <name>.jsonl under curriculum_data/ or constraint_data/."""
+    for parent in _DATASET_DIRS:
+        candidate = PROJECT_ROOT / parent / f"{name}.jsonl"
+        if candidate.is_file():
+            return candidate
+    raise FileNotFoundError(
+        f"No dataset {name!r}.jsonl found under "
+        + " or ".join(f"{d}/" for d in _DATASET_DIRS)
+    )
 
 
 def _parse_args() -> argparse.Namespace:
@@ -60,7 +65,7 @@ def _parse_args() -> argparse.Namespace:
         "--dataset",
         default="dataset_simple",
         help="Dataset name without .jsonl (default: dataset_simple). "
-             "Resolved against curriculum_data/.",
+             "Resolved against curriculum_data/ then constraint_data/.",
     )
     parser.add_argument(
         "--resume-from",
