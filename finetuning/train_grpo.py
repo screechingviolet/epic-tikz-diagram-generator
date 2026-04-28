@@ -371,10 +371,10 @@ training_args = GRPOConfig(
     # num_generations=2 was effectively giving us one comparison per prompt,
     # so the within-group advantage was almost pure noise. 4 is the sweet
     # spot for a small-model PoC: meaningful relative ranking, still cheap.
-    num_generations=8,
+    num_generations=16,
     # per_device_train_batch_size must be divisible by num_generations.
     # 4 samples = 1 unique prompt × 4 generations per device step.
-    per_device_train_batch_size=8,
+    per_device_train_batch_size=16,
     # Bumps the effective batch to 8 samples = 2 unique prompts per
     # optimizer step, which smooths the gradient noticeably.
     gradient_accumulation_steps=2,
@@ -390,7 +390,7 @@ training_args = GRPOConfig(
     temperature=1.2,
     # KL coefficient against the reference policy. Default is 0.04; making
     # it explicit so it's obvious where to dial if the policy drifts.
-    beta=0.04,
+    beta=0.02,
     bf16=True,
     # Periodic crash-safety checkpoints. With max_steps=150 and save_steps=25
     # we get ~6 checkpoints over a run; save_total_limit=2 keeps only the two
