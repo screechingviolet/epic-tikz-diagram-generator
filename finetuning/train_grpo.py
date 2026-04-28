@@ -22,7 +22,7 @@ from loss import check_constraints, Confusion  # noqa: E402
 # Dataset loading: expand demo_dataset.jsonl into (prompt, constraints) rows.
 # Each scene contributes one training example per natural-language variant.
 # ---------------------------------------------------------------------------
-DATASET_PATH = PROJECT_ROOT / "curriculum_data" / "dataset_complex.jsonl"
+DATASET_PATH = PROJECT_ROOT / "curriculum_data" / "dataset_simple.jsonl"
 
 SYSTEM_PROMPT = (
     "You convert a natural-language description of a geometric diagram into a "
@@ -403,7 +403,10 @@ training_args = GRPOConfig(
     # it explicit so it's obvious where to dial if the policy drifts.
     beta=0.04,
     bf16=True,
-    save_strategy="no",
+    # save_strategy="no",
+    save_strategy="steps",   # changed from "no"
+    save_steps=25,           # added
+    save_total_limit=3, 
     report_to="none",
 )
 
