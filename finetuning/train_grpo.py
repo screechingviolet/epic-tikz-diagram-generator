@@ -363,7 +363,7 @@ peft_config = LoraConfig(
 )
 
 training_args = GRPOConfig(
-    output_dir="Qwen2-0.5B-GRPO-geometry",
+    #output_dir="Qwen2-0.5B-GRPO-geometry",
     # ~10–15 min on a single consumer GPU. Long enough to see the reward
     # curve trend up off the floor, short enough to iterate on.
     max_steps=150,
