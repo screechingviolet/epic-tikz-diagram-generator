@@ -489,7 +489,10 @@ def check_parallel(l1: Line, l2: Line, eps=1e-6) -> Parallel | None:
     d1 = pt(l1.p2) - pt(l1.p1)
     d2 = pt(l2.p2) - pt(l2.p1)
     if abs(float(d1[0] * d2[1] - d1[1] * d2[0])) < eps:
-        return Parallel(line_1_name=l1.name, line_2_name=l2.name)
+        # distance from any point on l2 to l1
+        dist = point_to_line_distance(pt(l2.p1), pt(l1.p1), pt(l1.p2))
+        return Parallel(line_1_name=l1.name, line_2_name=l2.name,
+                        distance=round(dist, 4))
     return None
 
 def check_perpendicular(l1: Line, l2: Line, eps=1e-6) -> Perpendicular | None:
@@ -610,7 +613,7 @@ def serialize_constraints(constraints) -> list[str]:
         elif isinstance(c, Tangent):
             out.append(f"tangent({c.line_name}, {c.circle_name})")
         elif isinstance(c, Parallel):
-            out.append(f"parallel({c.line_1_name}, {c.line_2_name})")
+            out.append(f"parallel({c.line_1_name}, {c.line_2_name}, {c.distance:.4f})")
         elif isinstance(c, Perpendicular):
             out.append(f"perpendicular({c.line_1_name}, {c.line_2_name})")
         elif isinstance(c, Angle):
@@ -636,7 +639,8 @@ def constraints_only_str(constraints) -> str:
         elif isinstance(c, Tangent):
             parts.append(f"line {c.line_name} is tangent to circle {c.circle_name}")
         elif isinstance(c, Parallel):
-            parts.append(f"lines {c.line_1_name} and {c.line_2_name} are parallel")
+            parts.append(f"lines {c.line_1_name} and {c.line_2_name} are parallel "
+                 f"with perpendicular distance {c.distance}")
         elif isinstance(c, Perpendicular):
             parts.append(f"lines {c.line_1_name} and {c.line_2_name} are perpendicular")
         elif isinstance(c, Angle):
@@ -1067,9 +1071,10 @@ if __name__ == "__main__":
     #     )
 
     print("\n=== Generating constraint-specific datasets ===\n")
-    for i in range(6):
+    for i in range(15):
         generate_constraint_specific_datasets(
             n_scenes_per_type=35,
             n_variants_per_scene=5,
             output_dir="constraint_data",
         )
+        

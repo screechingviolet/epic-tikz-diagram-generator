@@ -50,6 +50,7 @@ class Angle:
 class Parallel:
     line_1_name: str
     line_2_name: str
+    distance: float
 
 @dataclass
 class Perpendicular:
