@@ -146,65 +146,49 @@ class MaxRewardCallback(TrainerCallback):
 
 
 class LogReorderCallback(TrainerCallback):
-    """Reorder per-step log entries so the most important metrics print first
-    and drop redundant / always-zero keys.
+    """Trim per-step log entries down to the essentials and order them.
 
     HuggingFace Trainer prints `logs` by iterating its keys, and Python dicts
-    preserve insertion order, so reordering the dict in `on_log` reorders the
-    printed line.
+    preserve insertion order, so rewriting the dict in `on_log` rewrites the
+    printed line. We replace the dict with *only* the keys in KEEP — every
+    other key TRL emits is dropped, so the line fits in a single terminal
+    row.
 
-    Two transformations:
-      1. Drop keys starting with any prefix in DROP_PREFIXES — these are
-         either per-reward-function duplicates of the aggregate keys
-         (`reward`/`reward_std`/`reward_max`) or PPO-clipping internals that
-         are always zero in this GRPO setup.
-      2. Reorder remaining keys: PRIORITY_KEYS first in the documented order,
-         then everything else in its original position.
+    The kept keys, in priority order:
+      reward                  — headline metric
+      reward_max              — best in batch (some sample is doing well)
+      frac_reward_zero_std    — exploration health (1.0 ⇒ policy collapsed)
+      loss                    — optimization health
+      grad_norm               — gradient health
+      kl                      — drift from the reference policy
+      step_time               — wall time per step
 
-    Must be registered AFTER any callback that injects new keys (e.g.
-    MaxRewardCallback adds `reward_max`), so the new keys are present at the
-    time we reorder.
+    Dropped (and why): reward_std (covered by frac_reward_zero_std),
+    entropy (similar info to kl), epoch (too granular at step level),
+    learning_rate (rarely changing meaningfully), all completions/* length
+    stats (typically constant), num_tokens (not actionable), and every
+    `rewards/<func>/...` and `clip_ratio/...` key.
+
+    Must be registered AFTER MaxRewardCallback, which injects `reward_max`
+    into the logs.
     """
 
-    PRIORITY_KEYS = (
-        # Reward signal — the thing you actually watch during training.
+    KEEP = (
         "reward",
         "reward_max",
-        "reward_std",
         "frac_reward_zero_std",
-        # Optimization health.
         "loss",
-        "kl",
-        "entropy",
         "grad_norm",
-        # Progress.
-        "epoch",
+        "kl",
         "step_time",
-        "learning_rate",
-        # Output stats.
-        "completions/mean_length",
-        "completions/min_length",
-        "completions/max_length",
-        "completions/clipped_ratio",
-        "num_tokens",
-    )
-
-    DROP_PREFIXES = (
-        "rewards/",     # per-reward-function metrics duplicate the aggregates
-        "clip_ratio/",  # PPO-clipping internals; uniformly zero here
     )
 
     def on_log(self, args, state, control, logs=None, **kwargs):
         if logs is None:
             return
-        for key in [k for k in logs if k.startswith(self.DROP_PREFIXES)]:
-            del logs[key]
-        ordered = {key: logs[key] for key in self.PRIORITY_KEYS if key in logs}
-        for key, value in logs.items():
-            if key not in ordered:
-                ordered[key] = value
+        kept = {key: logs[key] for key in self.KEEP if key in logs}
         logs.clear()
-        logs.update(ordered)
+        logs.update(kept)
 
 
 class CompletionPeekCallback(TrainerCallback):
