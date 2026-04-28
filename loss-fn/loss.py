@@ -123,7 +123,7 @@ def tangent(line, circle) -> bool:
     dist = math.hypot(cx - closest_x, cy - closest_y)
     return math.isclose(dist, circle.radius, rel_tol=FLOAT_CMP)
 
-def angle(line1, line2, truth) -> float:
+def angle_calc_deg(line1, line2) -> float:
     dx1 = line1.point_2.x - line1.point_1.x
     dy1 = line1.point_2.y - line1.point_1.y
     dx2 = line2.point_2.x - line2.point_1.x
@@ -135,6 +135,10 @@ def angle(line1, line2, truth) -> float:
     angle = math.degrees(math.acos(max(-1, min(1, cos_theta))))
 
     actual = min(angle, 360 - angle)
+    return actual 
+
+def angle(line1, line2, truth) -> float:
+    actual = angle_calc_deg(line1, line2)
     return 1-(abs(truth-actual)/180)
 
 def slope(line):
@@ -144,8 +148,11 @@ def slope(line):
         return None
     return dy / dx
 
-def parallel(line1, line2) -> bool:
-    return slope(line1) == slope(line2)
+def parallel(line1, line2) -> float:
+    # return slope(line1) == slope(line2)
+    angle = angle_calc_deg(line1, line2)
+    reduced = min(angle, 180 - angle)
+    return 1-(reduced/90)
 
 def perpendicular(line1, line2) -> bool:
     m1 = slope(line1)
@@ -154,7 +161,7 @@ def perpendicular(line1, line2) -> bool:
         return m2 == 0
     if m2 is None:
         return m1 == 0
-
+    
     return math.isclose(m1 * m2, -1, rel_tol=FLOAT_CMP)
 
 def circle_tangent(circle1, circle2) -> bool:
@@ -225,20 +232,21 @@ def check_constraints(pred_geo, truth_constr):
                     if tangent(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
                 case "parallel":
-                    if parallel(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
-                        if len(parsed[1]) > 2:  # distance argument present
-                            p1 = shape_dict[parsed[1][0]]
-                            p2 = shape_dict[parsed[1][1]]
-                            # recompute perpendicular distance
-                            actual_dist = point_to_line_distance(
-                                np.array([p2.point_1.x, p2.point_1.y]),
-                                np.array([p1.point_1.x, p1.point_1.y]),
-                                np.array([p1.point_2.x, p1.point_2.y])
-                            )
-                            if math.isclose(actual_dist, float(parsed[1][2]), rel_tol=FLOAT_CMP):
-                                correct_constraints += 1
-                        else:
-                            correct_constraints += 1
+                    par = parallel(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]])
+                    # if math.isclose(par, 1, rel_tol=FLOAT_CMP) and :
+                    if len(parsed[1]) > 2:  # distance argument present
+                        p1 = shape_dict[parsed[1][0]]
+                        p2 = shape_dict[parsed[1][1]]
+                        # recompute perpendicular distance
+                        actual_dist = point_to_line_distance(
+                            np.array([p2.point_1.x, p2.point_1.y]),
+                            np.array([p1.point_1.x, p1.point_1.y]),
+                            np.array([p1.point_2.x, p1.point_2.y])
+                        )
+                        if math.isclose(actual_dist, float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                            correct_constraints += par
+                    else:
+                        correct_constraints += par
                 case "perpendicular":
                     if perpendicular(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
@@ -380,7 +388,7 @@ def check_constraints(pred_geo, truth_constr):
 
 if __name__ == "__main__":
     # testing oof
-    print(check_constraints(["point(p1, 10, 10.45)", "line(l1, p1, p2)", "point(p2, 15, 10.45)"], ["length(l1,5)"]))
+    print(check_constraints(["point(p1, 10, 10.45)", "line(l1, p1, p2)", "point(p2, 15, 10.45)"], ["length(l1,5)", "point(p1)", "point(p2)"]))
     print(check_constraints(
         ["point(c, 0,0)", "circle(c1, c, 5)", "point(p, 3, 4)"],
         ["on_circle(p, c1)"]
@@ -391,7 +399,9 @@ if __name__ == "__main__":
             "point(c, 1, 0)", "point(d, 3, 2)",
             "line(l1, a, b)", "line(l2, c, d)"
         ],
-        ["parallel(l1, l2)", "perpendicular(l2, l1)"]
+        ["parallel(l1, l2)", "perpendicular(l2, l1)", "point(a)", 
+        "point(b)", "point(c)", "point(d)", "line(l1, a,b)", 
+        "line(l2, c,d)"]
     ))
     print(check_constraints(
         [
