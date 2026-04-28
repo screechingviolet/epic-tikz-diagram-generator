@@ -161,8 +161,13 @@ def perpendicular(line1, line2) -> bool:
         return m2 == 0
     if m2 is None:
         return m1 == 0
-    
+
     return math.isclose(m1 * m2, -1, rel_tol=FLOAT_CMP)
+
+def perpendicular_cont(line1, line2) -> float:
+    angle = angle_calc_deg(line1, line2)
+    # angle should be 90 degrees for perpendicularity
+    return 1-(abs(angle-90)/90)
 
 def circle_tangent(circle1, circle2) -> bool:
     d = math.hypot(circle1.center.x - circle2.center.x, circle1.center.y - circle2.center.y)
@@ -248,8 +253,9 @@ def check_constraints(pred_geo, truth_constr):
                     else:
                         correct_constraints += par
                 case "perpendicular":
-                    if perpendicular(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
-                        correct_constraints += 1
+                    # if perpendicular(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
+                    #     correct_constraints += 1
+                    correct_constraints += perpendicular_cont(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]])
                 case "circle_tangent":
                     if circle_tangent(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
