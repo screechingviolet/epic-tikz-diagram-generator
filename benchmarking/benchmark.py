@@ -20,10 +20,10 @@ import subprocess
 import tempfile
 import time
 
-import anthropic
+
 import torch
 from dotenv import load_dotenv
-from openai import OpenAI
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 load_dotenv(Path(__file__).parent.parent / "data" / ".env")
@@ -32,9 +32,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run3"
+RUN_NAME     = "run4"
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_medium.jsonl"
+DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
@@ -43,19 +43,15 @@ BATCH_SIZE   = 10
 DELAY        = 1.0
 
 BASE_MODEL_ID = "Qwen/Qwen2.5-0.5B-Instruct"
-ADAPTER_PATH = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry" / "checkpoint-300")
+ADAPTER_PATH = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry")
 
 MODELS = {
-    "gpt-4o-mini":                 "openai",
-    "claude-haiku-4-5-20251001":   "anthropic",
     "Qwen/Qwen2.5-0.5B-Instruct": "hf_local",
     "qwen-geometry-adapter":       "hf_adapter",
 }
 
 # Modes to run per provider — local models only do mode2 (NL->Geo)
 MODEL_MODES = {
-    "openai":     [1, 2, 3],
-    "anthropic":  [1, 2, 3],
     "hf_local":   [2, 3],
     "hf_adapter": [2, 3],
 }
@@ -241,11 +237,7 @@ def cache_key(model: str, mode: str, inp: str) -> str:
 # API CLIENTS
 # ---------------------------------------------------------------------------
 
-def init_clients():
-    return {
-        "openai":    OpenAI(),
-        "anthropic": anthropic.Anthropic(),
-    }
+
 
 def query_api(clients, model_name, provider, system, user_message) -> str:
     try:
@@ -487,8 +479,7 @@ def load_samples() -> tuple[list[str], list[str], list[list[str]]]:
 
 def run_benchmark():
     print(f"Run: {RUN_NAME}")
-    print("Initializing clients...")
-    clients = init_clients()
+
 
     print("Loading samples...")
     nls, geos, constrs = load_samples()
@@ -524,7 +515,7 @@ def run_benchmark():
             for b, idx_batch in enumerate(batches):
                 nls_batch = [nls[i] for i in idx_batch]
                 print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
-                r1s = run_mode1_batch(clients, nls_batch, model_name, provider, cache)
+                r1s = run_mode1_batch([], nls_batch, model_name, provider, cache)
                 n_ok = sum(r["compiles"] for r in r1s)
                 print(f"{n_ok}/{len(r1s)} compiled")
                 for r in r1s:
@@ -542,7 +533,7 @@ def run_benchmark():
                 nls_batch     = [nls[i]     for i in idx_batch]
                 constrs_batch = [constrs[i] for i in idx_batch]
                 print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
-                r2s = run_mode2_batch(clients, nls_batch, constrs_batch, model_name, provider, cache)
+                r2s = run_mode2_batch([], nls_batch, constrs_batch, model_name, provider, cache)
                 avg = sum(to_binary(r["score"]) for r in r2s) / len(r2s)
                 print(f"avg score {avg:.2f}")
                 for r in r2s:
@@ -559,7 +550,7 @@ def run_benchmark():
                 geos_batch    = [geos[i]    for i in idx_batch]
                 constrs_batch = [constrs[i] for i in idx_batch]
                 print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
-                r3s = run_mode3_batch(clients, geos_batch, constrs_batch, model_name, provider, cache)
+                r3s = run_mode3_batch([], geos_batch, constrs_batch, model_name, provider, cache)
                 avg = sum(to_binary(r["score"]) for r in r3s) / len(r3s)
                 print(f"avg score {avg:.2f}")
                 for r in r3s:
