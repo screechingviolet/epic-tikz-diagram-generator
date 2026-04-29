@@ -1,0 +1,1 @@
+A line connecting two points has a length of 2.843 units, while a circle centered at another point has a radius of 2.6083 units.

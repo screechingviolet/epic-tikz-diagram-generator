@@ -1,11 +1,12 @@
 """
 benchmark.py
 
-Tests NL descriptions against 2 models (GPT, Claude) in 3 modes:
+Tests 50 NL descriptions against 2 models (GPT, Claude) in 3 modes:
   Mode 1: NL -> TikZ directly (compile check)
   Mode 2: NL -> Epic Geometry Language -> score via loss function
   Mode 3: Ground truth geometry -> Epic Geometry Language -> score via loss function
 
+All 3 modes use the same 50 NL inputs from the dataset.
 Batched + cached — safe to interrupt and resume.
 """
 
@@ -30,17 +31,14 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-N_MODE1_SAMPLES  = 75
-N_MODE23_SAMPLES = 50
-DATASET_PATH     = "../data/demo_dataset.jsonl"
-OUTPUT_PATH      = "benchmark_results.jsonl"
-SCORES_PATH      = "benchmark_scores.json"
-INPUTS_PATH      = "benchmark_inputs.json"
-CACHE_PATH       = "benchmark_cache.json"
-COMPILED_DIR     = Path("compiled_outputs")
-BATCH_SIZE       = 10
-DELAY            = 1.0
-SEED             = 42
+N_SAMPLES    = 50
+DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
+OUTPUT_PATH  = "benchmark_results.jsonl"
+SCORES_PATH  = "benchmark_scores.json"
+CACHE_PATH   = "benchmark_cache.json"
+COMPILED_DIR = Path("compiled_outputs")
+BATCH_SIZE   = 10
+DELAY        = 1.0
 
 MODELS = {
     "gpt-4o-mini":               "openai",
@@ -144,8 +142,7 @@ Here are the {n} inputs:
 # LOSS FUNCTION
 # ---------------------------------------------------------------------------
 
-BIG_BAD_LOSS = 100
-FLOAT_CMP    = 0.05
+FLOAT_CMP = 0.05
 
 class _Circle:
     def __init__(self, name, center, radius):
@@ -247,11 +244,11 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
                 fn, params = _parse_fn(pred)
             except ValueError:
                 continue
-            if fn == "point":
+            if fn == "point" and len(params) == 3:
                 shape_dict[params[0]] = _Point(params[0], float(params[1]), float(params[2]))
-            elif fn == "circle":
+            elif fn == "circle" and len(params) == 3:
                 shape_dict[params[0]] = _Circle(params[0], params[1], float(params[2]))
-            elif fn == "line":
+            elif fn == "line" and len(params) == 3:
                 shape_dict[params[0]] = _Line(params[0], params[1], params[2])
 
         for shape in shape_dict.values():
@@ -264,9 +261,14 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
                     shape.center = shape_dict[shape.center]
 
         correct = 0
+        total   = 0
         for constraint in truth_constr:
             try:
                 fn, params = _parse_fn(constraint)
+                # skip bare declarations
+                if fn == "point"  and len(params) == 1: continue
+                if fn == "circle" and len(params) == 2: continue
+                total += 1
                 match fn:
                     case "radius":
                         if math.isclose(_radius(shape_dict[params[0]]), float(params[1]), rel_tol=FLOAT_CMP):
@@ -296,10 +298,12 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
                         if math.isclose(_angle(shape_dict[params[0]], shape_dict[params[1]]),
                                         float(params[2]), rel_tol=FLOAT_CMP):
                             correct += 1
+                    case _:
+                        total -= 1
             except (KeyError, ValueError, TypeError):
                 pass
 
-        return correct / len(truth_constr)
+        return correct / total if total > 0 else 1.0
 
     except Exception:
         return 0.0
@@ -505,33 +509,30 @@ def run_mode3_batch(clients, geo_inputs, truth_constraints_list, model_name, pro
 
 
 # ---------------------------------------------------------------------------
-# LOAD INPUTS
+# LOAD INPUTS  (all 3 modes use the same 50 dataset records)
 # ---------------------------------------------------------------------------
 
-def load_mode1_samples() -> list[str]:
-    inputs_file = Path(INPUTS_PATH)
-    if inputs_file.exists():
-        samples = json.loads(inputs_file.read_text())
-        print(f"Loaded {len(samples)} hand-crafted inputs from {inputs_file}")
-        return samples[:N_MODE1_SAMPLES]
-    print(f"No {INPUTS_PATH} found.")
-    return []
-
-def load_mode23_samples() -> tuple[list[str], list[str], list[list[str]]]:
+def load_samples() -> tuple[list[str], list[str], list[list[str]]]:
+    """Returns (nl_variants, geo_strings, constraints_list) from last 50 dataset records."""
     nls, geos, constraints_list = [], [], []
     try:
+        records = []
         with open(DATASET_PATH) as f:
             for line in f:
-                record = json.loads(line)
-                if record.get("nl_variants") and record.get("geometry") and record.get("constraints"):
-                    nls.append(record["nl_variants"][0])
-                    geos.append("\n".join(record["geometry"]))
-                    constraints_list.append(record["constraints"])
-                if len(nls) >= N_MODE23_SAMPLES:
-                    break
+                records.append(json.loads(line))
+
+        records = records[-N_SAMPLES:]
+
+        for record in records:
+            if record.get("nl_variants") and record.get("geometry") and record.get("constraints"):
+                nls.append(record["nl_variants"][0])
+                geos.append("\n".join(record["geometry"]))
+                constraints_list.append(record["constraints"])
+
     except FileNotFoundError:
         print(f"Dataset not found at {DATASET_PATH}")
-    print(f"Loaded {len(nls)} dataset samples for modes 2 and 3")
+
+    print(f"Loaded {len(nls)} samples from dataset (last {N_SAMPLES} records)")
     return nls, geos, constraints_list
 
 
@@ -543,12 +544,11 @@ def run_benchmark():
     print("Initializing clients...")
     clients = init_clients()
 
-    print("Loading inputs...")
-    mode1_samples                            = load_mode1_samples()
-    mode23_nls, mode23_geos, mode23_constrs = load_mode23_samples()
+    print("Loading samples...")
+    nls, geos, constrs = load_samples()
 
-    if not mode1_samples:
-        print("No mode1 inputs — make sure benchmark_inputs.json exists.")
+    if not nls:
+        print("No samples found — check dataset path.")
         return
 
     cache = load_cache(CACHE_PATH)
@@ -565,19 +565,19 @@ def run_benchmark():
         for model in MODELS
     }
 
-    mode1_batches  = [mode1_samples[i:i+BATCH_SIZE] for i in range(0, len(mode1_samples), BATCH_SIZE)]
-    mode23_batches = [list(range(i, min(i+BATCH_SIZE, len(mode23_nls)))) for i in range(0, len(mode23_nls), BATCH_SIZE)]
+    batches = [list(range(i, min(i+BATCH_SIZE, len(nls)))) for i in range(0, len(nls), BATCH_SIZE)]
 
     for model_name, provider in MODELS.items():
         print(f"\n{'='*60}")
         print(f"Model: {model_name}")
         print(f"{'='*60}")
 
-        # --- Mode 1 ---
-        print(f"\n  [Mode 1: NL -> TikZ] {len(mode1_samples)} samples")
-        for b, batch in enumerate(mode1_batches):
-            print(f"    Batch {b+1}/{len(mode1_batches)} ...", end=" ", flush=True)
-            r1s = run_mode1_batch(clients, batch, model_name, provider, cache)
+        # --- Mode 1: NL -> TikZ ---
+        print(f"\n  [Mode 1: NL -> TikZ] {len(nls)} samples")
+        for b, idx_batch in enumerate(batches):
+            nls_batch = [nls[i] for i in idx_batch]
+            print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
+            r1s = run_mode1_batch(clients, nls_batch, model_name, provider, cache)
             n_ok = sum(r["compiles"] for r in r1s)
             print(f"{n_ok}/{len(r1s)} compiled")
             for r in r1s:
@@ -589,41 +589,37 @@ def run_benchmark():
             save_cache(cache, CACHE_PATH)
             time.sleep(DELAY)
 
-        # --- Mode 2 ---
-        if mode23_nls:
-            print(f"\n  [Mode 2: NL -> Geo -> Score] {len(mode23_nls)} samples")
-            for b, idx_batch in enumerate(mode23_batches):
-                nls_batch    = [mode23_nls[i]     for i in idx_batch]
-                constrs_batch = [mode23_constrs[i] for i in idx_batch]
-                print(f"    Batch {b+1}/{len(mode23_batches)} ...", end=" ", flush=True)
-                r2s = run_mode2_batch(clients, nls_batch, constrs_batch, model_name, provider, cache)
-                avg = sum(r["score"] for r in r2s) / len(r2s)
-                print(f"avg score {avg:.2f}")
-                for r in r2s:
-                    all_results.append(r)
-                    scores[model_name]["mode2"]["score_sum"] += r["score"]
-                    scores[model_name]["mode2"]["total"]     += 1
-                save_cache(cache, CACHE_PATH)
-                time.sleep(DELAY)
+        # --- Mode 2: NL -> Geo -> Score ---
+        print(f"\n  [Mode 2: NL -> Geo -> Score] {len(nls)} samples")
+        for b, idx_batch in enumerate(batches):
+            nls_batch    = [nls[i]    for i in idx_batch]
+            constrs_batch = [constrs[i] for i in idx_batch]
+            print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
+            r2s = run_mode2_batch(clients, nls_batch, constrs_batch, model_name, provider, cache)
+            avg = sum(r["score"] for r in r2s) / len(r2s)
+            print(f"avg score {avg:.2f}")
+            for r in r2s:
+                all_results.append(r)
+                scores[model_name]["mode2"]["score_sum"] += r["score"]
+                scores[model_name]["mode2"]["total"]     += 1
+            save_cache(cache, CACHE_PATH)
+            time.sleep(DELAY)
 
-            # --- Mode 3 ---
-            print(f"\n  [Mode 3: GT Geo -> Geo -> Score] {len(mode23_geos)} samples")
-            for b, idx_batch in enumerate(mode23_batches):
-                geos_batch    = [mode23_geos[i]    for i in idx_batch]
-                constrs_batch = [mode23_constrs[i] for i in idx_batch]
-                print(f"    Batch {b+1}/{len(mode23_batches)} ...", end=" ", flush=True)
-                r3s = run_mode3_batch(clients, geos_batch, constrs_batch, model_name, provider, cache)
-                avg = sum(r["score"] for r in r3s) / len(r3s)
-                print(f"avg score {avg:.2f}")
-                for r in r3s:
-                    all_results.append(r)
-                    scores[model_name]["mode3"]["score_sum"] += r["score"]
-                    scores[model_name]["mode3"]["total"]     += 1
-                save_cache(cache, CACHE_PATH)
-                time.sleep(DELAY)
-        else:
-            print("\n  Skipping modes 2 and 3 — no dataset samples found.")
-            print("  Run geometry_datagen.py with n_scenes=50 first.")
+        # --- Mode 3: GT Geo -> Geo -> Score ---
+        print(f"\n  [Mode 3: GT Geo -> Geo -> Score] {len(geos)} samples")
+        for b, idx_batch in enumerate(batches):
+            geos_batch    = [geos[i]    for i in idx_batch]
+            constrs_batch = [constrs[i] for i in idx_batch]
+            print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
+            r3s = run_mode3_batch(clients, geos_batch, constrs_batch, model_name, provider, cache)
+            avg = sum(r["score"] for r in r3s) / len(r3s)
+            print(f"avg score {avg:.2f}")
+            for r in r3s:
+                all_results.append(r)
+                scores[model_name]["mode3"]["score_sum"] += r["score"]
+                scores[model_name]["mode3"]["total"]     += 1
+            save_cache(cache, CACHE_PATH)
+            time.sleep(DELAY)
 
     # Save raw results
     with open(OUTPUT_PATH, "w") as f:

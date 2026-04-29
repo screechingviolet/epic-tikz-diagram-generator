@@ -1,12 +1,12 @@
 {
   "gpt-4o-mini": {
-    "mode1_compile_rate": 0.9324324324324325,
-    "mode2_avg_score": 0.37969047619047613,
-    "mode3_avg_score": 0.9607619047619047
+    "mode1_compile_rate": 1.0,
+    "mode2_avg_score": 0.7933333333333331,
+    "mode3_avg_score": 0.9133333333333333
   },
   "claude-haiku-4-5-20251001": {
-    "mode1_compile_rate": 0.9594594594594594,
-    "mode2_avg_score": 0.733547619047619,
-    "mode3_avg_score": 0.9607619047619047
+    "mode1_compile_rate": 0.88,
+    "mode2_avg_score": 0.9266666666666665,
+    "mode3_avg_score": 0.9133333333333333
   }
 }

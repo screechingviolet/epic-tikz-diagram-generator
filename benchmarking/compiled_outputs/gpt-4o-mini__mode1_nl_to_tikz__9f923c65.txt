@@ -1,0 +1,1 @@
+There exists point E, and point A is also defined. Circle ω25 is centered at point E with a radius of 1.9889. Notably, point A lies on the circumference of circle ω25.

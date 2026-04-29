@@ -1,0 +1,1 @@
+There are two lines, one of which is shorter, measuring 4.3904 units, while the other stretches to 7.1269 units. Both lines are parallel to each other and touch a circle with a radius of 0.6413 units at exactly one point each.
