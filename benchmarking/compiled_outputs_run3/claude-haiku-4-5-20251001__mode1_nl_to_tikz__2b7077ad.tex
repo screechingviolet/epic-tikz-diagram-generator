@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) node[circle,fill,inner sep=2pt] (I) {};
+  \draw (1,1) node[circle,fill,inner sep=2pt] (Y) {};
+  \draw (7.167,0) node[circle,fill,inner sep=2pt] (H) {};
+  \draw (I) -- (H);
+  \node at (-0.3,-0.3) {I};
+  \node at (1.2,1.2) {Y};
+  \node at (7.3,-0.3) {H};
+\end{tikzpicture}
+\end{document}

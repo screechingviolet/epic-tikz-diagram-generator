@@ -32,9 +32,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run2"
+RUN_NAME     = "run3"
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
+DATASET_PATH = "../curriculum_data/dataset_medium.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"

@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (E);
+  \draw (1.3725,0) coordinate (W);
+  \draw (7.1225,0) coordinate (M);
+  \draw (M) -- (W);
+  \draw (W) -- (E);
+  \draw (E) circle (1.4186);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+Point O exists with a circle ω8 centered at it, having a radius of 2.8021. Additionally, point Y and point Q are defined. A line lu connects point Q to point Y, and this line has a length of 3.4845.

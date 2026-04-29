@@ -1,0 +1,1 @@
+Point H exists, point X exists, and there is a line ld that connects these two points. The length of line ld is 5.191.

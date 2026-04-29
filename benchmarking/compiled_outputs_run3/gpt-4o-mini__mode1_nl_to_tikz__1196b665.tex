@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (C);
+  \draw (0,3) coordinate (I);
+  \draw (3,0) coordinate (K);
+  \draw (C) -- (I) node[midway, left] {lh};
+  \draw (C) -- (K) node[midway, below right] {lf};
+\end{tikzpicture}
+\end{document}

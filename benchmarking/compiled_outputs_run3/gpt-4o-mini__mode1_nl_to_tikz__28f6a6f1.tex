@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (R);
+  \draw (2,0) coordinate (S);
+  \draw (2.5,3) coordinate (T);
+  \draw (0.5,2) coordinate (J);
+  \draw (J) -- (T) node[midway, below] {ls};
+  \draw (S) -- (T) node[midway, right] {li};
+  \draw (R) circle[radius=0.5129];
+\end{tikzpicture}
+\end{document}

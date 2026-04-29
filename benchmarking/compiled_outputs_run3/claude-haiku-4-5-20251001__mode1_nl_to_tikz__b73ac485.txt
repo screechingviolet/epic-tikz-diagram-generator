@@ -1,0 +1,1 @@
+Point F is defined. Point V is defined. Point C is defined. Line li is formed by connecting points C and V, and this line has a length of 2.4993.

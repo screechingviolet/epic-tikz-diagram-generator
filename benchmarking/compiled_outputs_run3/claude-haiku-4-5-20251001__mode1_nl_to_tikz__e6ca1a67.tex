@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) node[circle,fill,inner sep=2pt] (T) {};
+  \draw (5.098,0) node[circle,fill,inner sep=2pt] (D) {};
+  \draw (T) -- (D);
+  \node at (-0.3,-0.3) {T};
+  \node at (5.3,-0.3) {D};
+\end{tikzpicture}
+\end{document}

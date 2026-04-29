@@ -1,0 +1,1 @@
+Point G is defined as existing. Point L also exists, as does point M. Point D is present as well. There is a line named lo that connects points M and D, and the length of line lo is measured at 1.7652.

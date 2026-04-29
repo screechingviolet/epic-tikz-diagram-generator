@@ -1,0 +1,1 @@
+There exists a point Z and a point O. A line named lw connects point Z and point O, with a length of 3.2668.

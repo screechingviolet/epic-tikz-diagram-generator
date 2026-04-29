@@ -1,0 +1,1 @@
+There exists point C, point H, and point D. Line lq connects point C to point H, while line lr connects point D to point C. The circle γ17 is centered at point D with a radius of 2.2521. The length of line lq is 8.0974, the length of line lr is 1.9857, and the angle formed between lines lq and lr is 96.08°.

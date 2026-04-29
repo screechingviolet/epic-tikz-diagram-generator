@@ -1,0 +1,1 @@
+Point P exists in the geometric space. Point D is also present. There is a point named L and another point named Q. A line, identified as line le, connects point Q to point L. Another line, referred to as line lr, joins point L to point D. The length of line le is 8.8283, while the length of line lr is 5.25. The angle formed between lines le and lr is 135.9 degrees.

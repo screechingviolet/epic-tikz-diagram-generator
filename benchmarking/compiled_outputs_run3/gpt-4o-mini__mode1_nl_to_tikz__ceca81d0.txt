@@ -1,0 +1,1 @@
+Point D exists. Point U exists. Point Q exists. Line lb connects point Q to point U and has a length of 3.1003.

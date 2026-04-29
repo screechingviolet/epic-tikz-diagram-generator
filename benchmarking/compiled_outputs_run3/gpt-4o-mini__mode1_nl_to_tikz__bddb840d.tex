@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (U);
+  \draw (2,0) coordinate (E);
+  \draw (U) circle[radius=2.3905];
+  \draw (U) -- (E) node[midway, below] {lg};
+\end{tikzpicture}
+\end{document}

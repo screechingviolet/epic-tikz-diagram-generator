@@ -1,0 +1,1 @@
+Point B is defined. Point U is defined. Point C is defined. Line lz connects points C and U. Line lh connects points C and B. The length of line lz is 4.8626. The length of line lh is 3.6391. Lines lz and lh intersect at an angle of 41.86 degrees.

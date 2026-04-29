@@ -1,0 +1,1 @@
+Point X exists, and point E exists. A line, denoted as lx, connects point X to point E, and the length of line lx is 5.8212.

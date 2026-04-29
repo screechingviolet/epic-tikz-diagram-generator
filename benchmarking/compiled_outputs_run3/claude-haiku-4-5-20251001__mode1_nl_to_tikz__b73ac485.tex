@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) node[circle,fill,inner sep=2pt] (F) {};
+  \draw (1,1) node[circle,fill,inner sep=2pt] (V) {};
+  \draw (2.4993,0) node[circle,fill,inner sep=2pt] (C) {};
+  \draw (C) -- (V);
+  \node at (-0.3,-0.3) {F};
+  \node at (1.2,1.2) {V};
+  \node at (2.7,-0.3) {C};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+There exists a point labeled E, a point labeled W, and a point labeled M. A line designated as lt connects points M and W, while another line labeled lg connects points W and E. The circle named ω14 is centered at point E with a radius of 1.4186. The length of line lt is 1.3725, the length of line lg is 7.1225, and the angle formed between lines lt and lg is 72.03°.

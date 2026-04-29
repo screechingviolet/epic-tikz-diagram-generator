@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (N);
+  \draw (3,0) coordinate (M);
+  \draw (1,2) coordinate (I);
+  \draw (2,2) coordinate (G);
+  \draw (G) -- (N) node[midway, right] {la};
+  \draw (I) -- (N) node[midway, left] {lr};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+Point Q exists and has a radius of 0.6557. Point U and point K also exist, with line lg connecting them. The length of line lg is 2.8713. Furthermore, circle ω25 is centered at point Q.

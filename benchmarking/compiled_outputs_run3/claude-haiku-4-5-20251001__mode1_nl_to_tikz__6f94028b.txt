@@ -1,0 +1,1 @@
+The point named R exists, as does the point named O. There is a line labeled lf that connects points O and R. The circle designated as ω1 is centered at point O, having a radius of 0.9919. The length of line lf is 8.0829.

@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) node[circle,fill,inner sep=2pt] (H) {};
+  \draw (1,0) node[circle,fill,inner sep=2pt] (P) {};
+  \draw (3,1) node[circle,fill,inner sep=2pt] (U) {};
+  \draw (2,2) node[circle,fill,inner sep=2pt] (I) {};
+  \draw (P) -- (U);
+  \node at (-0.3,-0.3) {H};
+  \node at (1.2,-0.3) {P};
+  \node at (3.2,0.8) {U};
+  \node at (2.2,2.2) {I};
+\end{tikzpicture}
+\end{document}
