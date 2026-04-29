@@ -2,9 +2,11 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (8.46,0);
-  \draw (4.26, 0) -- (6.36, 0);
-  \draw (0,0) circle(0.69);
-  \draw (1,2.09) circle(2.09);
+  \coordinate (O) at (0,0);
+  \coordinate (N) at (3.9577,0);
+  \coordinate (P) at (3.9577,1.4731);
+  \draw[thick] (O) -- (N) node[midway, below] {$l_u$};
+  \draw[thick] (P) -- (N) node[midway, above right] {$l_s$};
+  \draw (P) circle (0.5196);
 \end{tikzpicture}
 \end{document}

@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (E) at (0,0);
+  \coordinate (D) at (2.4399,0);
+  \coordinate (P) at (0,1.7975);
+  \draw (P) -- (D);
+  \draw[dashed] (D) -- (D);
+  \draw[thick] (E) circle (1.7975);
+\end{tikzpicture}
+\end{document}

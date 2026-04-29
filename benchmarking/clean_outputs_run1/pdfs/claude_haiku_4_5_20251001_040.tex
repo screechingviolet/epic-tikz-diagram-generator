@@ -1,0 +1,25 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  % Place M at origin (center of circle)
+  \coordinate (M) at (0, 0);
+  % Place circle center at M with radius 1.1504
+  % Line la is tangent to the circle, length 4.3181
+  % Distance from M to line la is 1.1504
+  % Place N and Q such that NQ is tangent and has length 4.3181
+  \coordinate (N) at (1.1504, 2.066);
+  \coordinate (Q) at (1.1504 + 4.3181, 2.066);
+  
+  % Draw line
+  \draw (N) -- (Q);
+  
+  % Draw circle
+  \draw (M) circle (1.1504);
+  
+  % Mark points
+  \filldraw (M) circle (1.5pt);
+  \filldraw (Q) circle (1.5pt);
+  \filldraw (N) circle (1.5pt);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  % Place B at origin
+  \coordinate (B) at (0, 0);
+  % Place I such that li = 5.8191
+  \coordinate (I) at (5.8191, 0);
+  % Place Y such that lm is parallel to li with perpendicular distance 2.482
+  \coordinate (Y) at (0, 2.482);
+  % Place Z such that lm = 6.6828
+  \coordinate (Z) at (6.6828, 2.482);
+  
+  % Draw lines
+  \draw (I) -- (B);
+  \draw (Z) -- (Y);
+  
+  % Draw circle
+  \draw (Y) circle (0.7624);
+  
+  % Place other points
+  \coordinate (R) at (1, 4);
+  \coordinate (G) at (2, 4);
+  
+  % Mark points
+  \filldraw (B) circle (1.5pt);
+  \filldraw (R) circle (1.5pt);
+  \filldraw (G) circle (1.5pt);
+  \filldraw (Y) circle (1.5pt);
+  \filldraw (I) circle (1.5pt);
+  \filldraw (Z) circle (1.5pt);
+\end{tikzpicture}
+\end{document}

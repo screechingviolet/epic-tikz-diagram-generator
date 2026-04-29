@@ -2,8 +2,15 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (2.2,0);
-  \draw (2.2,0) -- (6.14,1);
-  \draw (0,0) arc (0:7.73:0.56);
+  \coordinate (G) at (0,0);
+  \coordinate (I) at (4.4718,0);
+  \coordinate (O) at (2,2);
+  \coordinate (T) at (1,2);
+  \coordinate (D) at (0.7161,0.7161);
+  \draw (G) -- (I);
+  \draw (G) -- (O);
+  \draw (I) -- (T);
+  \draw[thick] (O) circle (1.6637);
+  \draw[thick] (I) circle (2.4641);
 \end{tikzpicture}
 \end{document}

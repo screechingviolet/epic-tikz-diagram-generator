@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (W) at (0,0);
+  \coordinate (B) at (0,2.5);
+  \coordinate (F) at (3.6102,2.5);
+  \draw[thick] (W) -- (F) node[midway, above right] {$l_k$};
+  \draw[thick] (B) -- (F) node[midway, above left] {$l_j$};
+  \draw[thick] (B) -- (W) node[midway, left] {$l_i$};
+  \draw (W) circle (2.9397);
+\end{tikzpicture}
+\end{document}

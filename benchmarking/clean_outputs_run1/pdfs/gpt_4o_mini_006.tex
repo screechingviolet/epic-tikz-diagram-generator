@@ -2,9 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (2,2);
-  \draw (0,0) -- (2,-2);
-  \draw (2,2) -- (4,0);
-  \draw (1,1.9291) circle (1.9291cm);
+  \coordinate (P) at (0, 0);
+  \coordinate (A) at (2, 2);
+  \coordinate (V) at (3, 1);
+  \coordinate (B) at (1, 2);
+  \coordinate (Y) at (4, 0);
+  \draw [line width=0.5mm] (P) -- (Y);
+  \draw [draw=black, fill=none] (V) circle(0.8747);
 \end{tikzpicture}
 \end{document}

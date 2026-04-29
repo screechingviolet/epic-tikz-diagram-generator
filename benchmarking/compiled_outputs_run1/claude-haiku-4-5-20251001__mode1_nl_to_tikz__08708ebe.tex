@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (J) at (0,0);
+  \coordinate (Z) at (2,2);
+  \coordinate (S) at (5,0);
+  \draw (J) -- (S);
+  \node at (J) [circle,fill,inner sep=2pt] {};
+  \node at (Z) [circle,fill,inner sep=2pt] {};
+  \node at (S) [circle,fill,inner sep=2pt] {};
+\end{tikzpicture}
+\end{document}

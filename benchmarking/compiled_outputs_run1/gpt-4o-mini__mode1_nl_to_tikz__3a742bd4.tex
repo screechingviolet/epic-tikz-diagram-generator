@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (V) at (2,0);
+  \coordinate (H) at (0,2.5605);
+  \coordinate (E) at (0,0);
+  \coordinate (A) at (3.1397,0);
+  \draw (A) -- (V);
+  \draw[thick] (H) circle (2.5605);
+  \draw[dashed] (A) -- ++(0,2.5605);
+\end{tikzpicture}
+\end{document}

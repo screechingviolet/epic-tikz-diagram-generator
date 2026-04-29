@@ -2,8 +2,11 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (5.88,0);
-  \draw (0,0) -- (0,6.39);
-  \draw (0,0) circle(2.67);
+  \coordinate (L) at (0,0);
+  \coordinate (V) at (2,0);
+  \coordinate (E) at (0,2.4923);
+  \draw[thick] (V) -- (V) node[midway, above] {$l_v$};
+  \draw[thick] (V) -- (L) node[midway, right] {$l_x$};
+  \draw (E) circle (2.4923);
 \end{tikzpicture}
 \end{document}

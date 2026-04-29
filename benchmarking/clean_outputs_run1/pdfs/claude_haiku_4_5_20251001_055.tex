@@ -2,9 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle (1.30cm);
-  \draw (0,0) circle (2.25cm);
-  \draw (0,1) -- (2.53,1);
-  \draw (0,-1) -- (2.53,-1);
+  \coordinate (O) at (0,0);
+  \coordinate (W) at (-2.5,0);
+  \coordinate (I) at (1.5,0);
+  \draw (W) -- (I);
+  \draw circle (1.7945);
+  \node at (O) [circle,fill,inner sep=2pt] {};
+  \node at (W) [circle,fill,inner sep=2pt] {};
+  \node at (I) [circle,fill,inner sep=2pt] {};
 \end{tikzpicture}
 \end{document}

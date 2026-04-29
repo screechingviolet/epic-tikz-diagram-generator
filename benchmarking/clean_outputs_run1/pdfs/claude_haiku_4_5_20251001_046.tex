@@ -1,0 +1,13 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (O) at (0, 0);
+  \coordinate (C) at (0.5, 0);
+  \coordinate (D) at (0.25, 0.7302);
+  
+  \draw (O) -- (C);
+  \draw (C) -- (O);
+  \draw (D) circle (0.7302);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (O) at (0,0);
+  \coordinate (W) at (-2.5,0);
+  \coordinate (I) at (1.5,0);
+  \draw (W) -- (I);
+  \draw circle (1.7945);
+  \node at (O) [circle,fill,inner sep=2pt] {};
+  \node at (W) [circle,fill,inner sep=2pt] {};
+  \node at (I) [circle,fill,inner sep=2pt] {};
+\end{tikzpicture}
+\end{document}

@@ -2,9 +2,11 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (4.8543,0);
-  \draw (8.6545,0) -- (0,0);
-  \draw (4.8543,1) -- (10.8543,1);
-  \draw (1.1161,0) circle (1.1161cm);
+  \coordinate (O) at (0,0);
+  \coordinate (W) at (-2,1);
+  \coordinate (I) at (1,2);
+  \draw (W) -- (I);
+  \draw[thick] (O) circle (1.7945);
+  \draw[dashed] (W) -- ++(0,1.7945);
 \end{tikzpicture}
 \end{document}

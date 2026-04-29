@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (V) at (0, 0);
+  \coordinate (S) at (2, 2);
+  \coordinate (D) at (3, 0);
+  \coordinate (G) at (3, 2);
+  \coordinate (M) at (5, 2);
+  \draw [line width=0.5mm] (G) -- (M);
+  \draw [line width=0.5mm] (S) -- (V);
+  \draw [draw=black, fill=none] (S) circle(1.9163);
+\end{tikzpicture}
+\end{document}

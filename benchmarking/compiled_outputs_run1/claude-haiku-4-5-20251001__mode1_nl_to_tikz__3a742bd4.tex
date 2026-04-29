@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (H) at (0,0);
+  \coordinate (A) at (2,0);
+  \coordinate (V) at (5,0);
+  \draw (A) -- (V);
+  \draw circle (2.5605);
+  \node at (H) [circle,fill,inner sep=2pt] {};
+  \node at (A) [circle,fill,inner sep=2pt] {};
+  \node at (V) [circle,fill,inner sep=2pt] {};
+\end{tikzpicture}
+\end{document}

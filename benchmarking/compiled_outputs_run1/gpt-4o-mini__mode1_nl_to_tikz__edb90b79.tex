@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (T) at (0, 0);
+  \coordinate (V) at (3, 2);
+  \coordinate (C) at (2, 0);
+  \draw [line width=0.5mm] (V) -- (T);
+  \draw [line width=0.5mm] (C) -- (T);
+  \draw [draw=black, fill=none] (C) circle(1.3046);
+\end{tikzpicture}
+\end{document}

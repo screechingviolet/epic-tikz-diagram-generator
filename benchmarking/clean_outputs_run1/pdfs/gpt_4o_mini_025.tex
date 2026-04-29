@@ -2,8 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle (0.6446cm);
-  \draw (1.2878,0) circle (2.1022cm);
-  \draw (0,0) -- (2.7468,0);
+  \coordinate (Y) at (0, 0);
+  \coordinate (S) at (1.7026, 1);
+  \coordinate (Q) at (0.8491, 1);
+  \draw (S) -- (Y);
+  \draw (Q) -- (Y);
+  \draw (S) -- (Q);
+  \draw[red] (Q) circle (1.0443);
+  \draw[blue] (Y) circle (0.7032);
 \end{tikzpicture}
 \end{document}

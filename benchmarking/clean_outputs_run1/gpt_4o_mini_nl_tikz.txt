@@ -1,612 +1,636 @@
 ============================================================
 #1
 NL:
-There are two circles in this diagram, one centered at point P2 with a radius of approximately 2.38, and another centered at point P1 with a radius of about 1.12. A line connecting points P3 and P1 measures approximately 4.66 units in length.
+Point K is defined in the diagram. Point M is also present. Additionally, point B and point T are included. Line li is drawn connecting point T and point B. Circle ω11, centered at point T, has a radius of 1.7703. Another circle, ω2, is centered at point M with a radius of 2.2384. The length of line li measures 3.1891. Notably, circles ω11 and ω2 are externally tangent.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (2,0) circle (2.38cm);
-  \draw (0,0) circle (1.12cm);
-  \draw (4.66,0) -- (0,0);
+  \coordinate (K) at (0, 0);
+  \coordinate (M) at (3, 0);
+  \coordinate (B) at (1.5, 2);
+  \coordinate (T) at (1.5, 0);
+  \draw [line width=0.5mm] (T) -- (B);
+  \draw [draw=black, fill=none] (T) circle(1.7703);
+  \draw [draw=black, fill=none] (M) circle(2.2384);
 \end{tikzpicture}
 
 ============================================================
 #2
 NL:
-There are two circles in the diagram, with the first circle centered at one point and having a radius of approximately 1.2 units, while the second circle has a slightly smaller radius of about 1.03 units. Additionally, three lines connect various points, with the first line measuring around 2.7 units in length, the second line measuring almost 4.7 units, and the third line being about 2.6 units. Notably, the second line just grazes the first circle, and the first and second lines intersect at an angle of approximately 27.81 degrees, while the first and third lines meet at an angle of roughly 56.61 degrees, and the second and third lines form an angle of about 28.81 degrees.
+Point Z exists alongside point C, point E, point H, and point O. A line, referred to as li, connects point O to point Z, while another line, named ls, connects point Z to point H. The circle, ω13, is centered at point E and has a radius of 2.4282. The length of line li measures 1.2808, and the length of line ls is 5.8769. The angle formed between lines li and ls is 98.27°.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle (1.2cm);
-  \draw (3.2,0) circle (1.03cm);
-  \draw (0,0) -- (2.7,1.2);
-  \draw (0,0) -- (4.7,0);
-  \draw (2.6,1.2) -- (0,0);
+  \coordinate (Z) at (0, 0);
+  \coordinate (C) at (2, 3);
+  \coordinate (E) at (1, 2);
+  \coordinate (H) at (4, 0);
+  \coordinate (O) at (2, 0);
+  \draw [line width=0.5mm] (O) -- (Z);
+  \draw [line width=0.5mm] (Z) -- (H);
+  \draw [draw=black, fill=none] (E) circle(2.4282);
 \end{tikzpicture}
 
 ============================================================
 #3
 NL:
-A line connects points P2 and P0, measuring approximately 5.92 units in length. In addition, a circle is centered at point P3 with a radius of about 1.28 units.
+There exists point T, point V, and point C. Line lp connects points V and T and has a length of 3.1522. Line ll connects point C and point T with a length of 2.775. Circle γ8 is centered at point C and has a radius of 1.3046. The lines lp and ll intersect at an angle of 24.45 degrees.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (5.92,0);
-  \draw (3,1.28) circle (1.28cm);
+  \coordinate (T) at (0, 0);
+  \coordinate (V) at (3, 2);
+  \coordinate (C) at (2, 0);
+  \draw [line width=0.5mm] (V) -- (T);
+  \draw [line width=0.5mm] (C) -- (T);
+  \draw [draw=black, fill=none] (C) circle(1.3046);
 \end{tikzpicture}
 
 ============================================================
 #4
 NL:
-There are three points labeled P0, P1, and P2, with lines connecting P0 to P1 and P2. Line L0, which joins P0 and P1, measures 5.3552 units in length. Line L1 connects P2 to P0 and has a length of 2.5296 units. Additionally, line L2 is another segment linking P0 and P1 with the same length as L0. A circle centered at P2 has a radius of 0.5470 units, and both lines L0 and L2 are tangent to this circle. The angle formed between line L0 and line L1 measures 167.51 degrees, and lines L0 and L2 are parallel, while lines L1 and L2 intersect at an angle of 167.51 degrees.
+Point V exists in this geometric configuration. Point S is present as well. In addition, point D and point G are defined, alongside point M. Line lq is formed by connecting points G and M, and it is parallel to another line lw that also connects the same points. Line lh connects points S and V. The circle ω11 is centered at point S and has a radius of 1.9163. Notably, line lq is tangent to circle ω11, and so is line lw. The length of line lq is confirmed to be 3.6409, which matches the length of line lw. Meanwhile, line lh has a confirmed length of 5.298. The angle formed between lines lq and lh measures 146.77°, which is equal to the angle formed between lines lw and lh.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (5.3552,0);
-  \draw (1.5,0) -- (2.5296,3);
-  \draw (0,0) -- (5.3552,0);
-  \draw (1.5,0) circle (0.5470cm);
+  \coordinate (V) at (0, 0);
+  \coordinate (S) at (2, 2);
+  \coordinate (D) at (3, 0);
+  \coordinate (G) at (3, 2);
+  \coordinate (M) at (5, 2);
+  \draw [line width=0.5mm] (G) -- (M);
+  \draw [line width=0.5mm] (S) -- (V);
+  \draw [draw=black, fill=none] (S) circle(1.9163);
 \end{tikzpicture}
 
 ============================================================
 #5
 NL:
-There are two lines that touch a circle at distinct points: line L0 grazes circle C0, and likewise, line L2 also makes contact with the circle. The lengths of lines L0 and L2 are equal, while line L1 is shorter. The angle between lines L0 and L1 is 150.79 degrees, while lines L1 and L2 create an angle of 29.21 degrees. Furthermore, lines L0 and L2 are parallel.
+Point L exists, with line lt connecting point A and point G, which measures 7.8129 in length. Line lk joins point B and point G with a length of 8.7512. Line le, which connects point L and point A, measures 4.2118 and is tangent to circle ω9 centered at point B, which has a radius of 1.9742. The angle between lines lt and lk is 17.63°, between lines lt and le is 125.68°, and between lines lk and le is 108.04°.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (1,0) -- (3,2);
-  \draw (1,3) -- (3,2);
-  \draw (2,1) circle (1cm);
+  \coordinate (L) at (0, 0);
+  \coordinate (A) at (4, 0);
+  \coordinate (G) at (3, 2);
+  \coordinate (B) at (1, 1);
+  \draw [line width=0.5mm] (A) -- (G);
+  \draw [line width=0.5mm] (B) -- (G);
+  \draw [line width=0.5mm] (L) -- (A);
+  \draw [draw=black, fill=none] (B) circle(1.9742);
 \end{tikzpicture}
 
 ============================================================
 #6
 NL:
-There are two lines, L0 and L1, which intersect at an angle of 113.35 degrees, while L0 also forms an angle of 28.99 degrees with line L2. Line L1 grazes circle C0, which has a radius of 1.9291 units, and L1 is significantly longer, measuring 4.4494 units, compared to L0's length of 1.2195 units and L2's length of 3.1575 units.
+Point P exists in the geometry, and point A is also defined. Additionally, point V has been established. Point B and point Y are included in this configuration. Line lo is formed by the connection of points P and Y. Circle ω17 is centered at point V with a radius of 0.8747. Notably, line lo has a length of 2.7856 and is tangent to circle ω17.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2,2);
-  \draw (0,0) -- (2,-2);
-  \draw (2,2) -- (4,0);
-  \draw (1,1.9291) circle (1.9291cm);
+  \coordinate (P) at (0, 0);
+  \coordinate (A) at (2, 2);
+  \coordinate (V) at (3, 1);
+  \coordinate (B) at (1, 2);
+  \coordinate (Y) at (4, 0);
+  \draw [line width=0.5mm] (P) -- (Y);
+  \draw [draw=black, fill=none] (V) circle(0.8747);
 \end{tikzpicture}
 
 ============================================================
 #7
 NL:
-There is a line that touches a circle at exactly one point, and this line has a length of about 1.3873 units. The circle has a radius of 1.754 units.
+Point B exists, as does point R, point G, point Y, point I, and point Z. Line li is drawn connecting points I and B, while line lm is formed between points Z and Y. Circle γ24 is centered at point Y and has a radius of 0.7624. The length of line li is measured to be 5.8191, and line lm has a length of 6.6828. Notably, lines li and lm are parallel, separated by a perpendicular distance of 2.482.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (1.3873,0);
-  \draw (1.3873,0) circle (1.754cm);
+  \coordinate (B) at (0, 0);
+  \coordinate (R) at (2, 2);
+  \coordinate (G) at (0, 3);
+  \coordinate (Y) at (5, 0);
+  \coordinate (I) at (3, 1);
+  \coordinate (Z) at (3, 3);
+  \draw [line width=0.5mm] (I) -- (B);
+  \draw [line width=0.5mm] (Z) -- (Y);
+  \draw [draw=black, fill=none] (Y) circle(0.7624);
 \end{tikzpicture}
 
 ============================================================
 #8
 NL:
-There is a line that connects two points, and this line has a length of approximately 4.91 units. A small circle, centered at one of these points, has a radius of about 0.57 units, and the line just grazes this circle. In addition, there is a larger circle, also centered at the same point, which has a radius of roughly 2.89 units.
+Point P exists and has a connection through line la to point T, where line la has a length of 3.4083. Point O is also present and connects to point T via line ld, which measures 10.1825 in length. Additionally, circle ω7 is drawn around point O with a radius of 2.5786, while circle ω21 is centered at point P with a radius of 1.2855. Notably, line la and line ld are parallel.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.91,0);
-  \draw (0,0) circle (0.57cm);
-  \draw (0,0) circle (2.89cm);
+  \coordinate (P) at (0, 0);
+  \coordinate (T) at (2, 0);
+  \coordinate (O) at (3, 3);
+  \draw [line width=0.5mm] (P) -- (T);
+  \draw [line width=0.5mm] (T) -- (O);
+  \draw [draw=black, fill=none] (O) circle(2.5786);
+  \draw [draw=black, fill=none] (P) circle(1.2855);
 \end{tikzpicture}
 
 ============================================================
 #9
 NL:
-There are two parallel lines, of which one has a length of approximately 2.53 units. Additionally, there are two circles centered at the same point; the first has a radius of about 1.30 units, while the second has a radius of roughly 2.25 units.
+The point W is located in the plane. There exists another point X also in the plane, as well as a third point K. A line denoted lx connects points K and W, while another line labeled lm connects points W and X. Circle γ11, with center at point K, has a radius of 2.1949. Circle γ21, centered at point X, has a radius of 2.6261. The length of line lx is 9.9257, and the length of line lm is 5.259. The intersection of lines lx and lm creates an angle measuring 170.39 degrees. Furthermore, circles γ11 and γ21 are tangent to each other externally.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2.53,0);
-  \draw (0,0) circle (1.30cm);
-  \draw (0,0) circle (2.25cm);
+  \coordinate (W) at (0,0);
+  \coordinate (X) at (9.9257,0);
+  \coordinate (K) at (1.5,1.5);
+  \draw[thick] (K) -- (W) node[midway, left] {$l_x$};
+  \draw[thick] (W) -- (X) node[midway, below] {$l_m$};
+  \draw (K) circle (2.1949);
+  \draw (X) circle (2.6261);
 \end{tikzpicture}
 
 ============================================================
 #10
 NL:
-There are two circles, C0 and C1, that are externally tangent to each other. Circle C0 has a radius of 1.357, while circle C1 has a radius of 1.8021. Additionally, there is a line, L0, connecting points P2 and P3, which measures 3.1591 units in length.
+Point E is defined, and point H also exists. Additionally, point Y is present, along with point Q and point I. Line ly connects points H and I, while line li links points Q and E. Circle ω19 is centered at point I. The length of line ly is 1.863, and line li measures 8.9843 in length. The radius of circle ω19 is 0.8979. Notably, lines ly and li are parallel to each other, separated by a perpendicular distance of 0.176.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle (1.357cm);
-  \draw (3,0) circle (1.8021cm);
-  \draw (0,0) -- (3.1591,0);
+  \coordinate (E) at (0,0);
+  \coordinate (H) at (0,1.863);
+  \coordinate (I) at (0,1.863+0.8979);
+  \coordinate (Q) at (8.9843,0);
+  \draw[thick] (H) -- (I) node[midway, right] {$l_y$};
+  \draw[thick] (Q) -- (E) node[midway, below] {$l_i$};
+  \draw (I) circle (0.8979);
 \end{tikzpicture}
 
 ============================================================
 #11
 NL:
-There are two circles centered at the same point; the first circle has a radius of approximately 2.96 units, while the second circle has a radius of about 2.54 units. Additionally, a line connecting two points has a length of roughly 3.88 units.
+Point L is established. Point H is defined. Point J exists as well. Point K is also noted. Point X is situated. Line ln is drawn connecting points X and H, while line le connects points X and L. Additionally, line lm links point X to point J. Circle ω11 is centered at point X with a radius of 0.674. Circle γ11 is centered at point J and has a radius of 2.6486. The length of line ln is 3.3381, the length of line le is 8.4601, and line lm measures 2.44. The angle between lines ln and le is 56.45 degrees, between lines ln and lm is 177.49 degrees, and between lines le and lm is 121.05 degrees.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle(2.96);
-  \draw (0,0) circle(2.54);
-  \draw (3.88, 0) -- (0, 0);
+  \coordinate (H) at (0,0);
+  \coordinate (X) at (3.3381,0);
+  \coordinate (L) at (X);
+  \coordinate (J) at (5.5,2.6486);
+  \draw[thick] (X) -- (H) node[midway, left] {$l_n$};
+  \draw[thick] (X) -- (L) node[midway, above right] {$l_e$};
+  \draw[thick] (X) -- (J) node[midway, below right] {$l_m$};
+  \draw (X) circle (0.674);
+  \draw (J) circle (2.6486);
 \end{tikzpicture}
 
 ============================================================
 #12
 NL:
-There are three points forming the vertices of a triangle, connected by three line segments. One line segment is longer than the others, measuring approximately 6.05 units, while another is about 1.50 units, and the shortest measures roughly 2.93 units. Additionally, two circles are drawn, the first having a radius of about 2.32 units and the second with a smaller radius of around 0.65 units. At the intersection of the longest line and the second line, the angle formed is about 13.54 degrees, while the angle between the second and shortest lines is 98.20 degrees, and the angle between the longest and the shortest line is 111.74 degrees.
+Point O exists with a circle, ω3, centered at it with a radius of 2.3943. Point P is also defined, and there is point I as well. A line, lw, is drawn connecting points I and O, while another line, lo, extends from point O to point P. The length of line lw measures 9.1496, and line lo measures 9.6327. Notably, the lines lw and lo are parallel to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (6.05,0);
-  \draw (0,0) -- (1.5, 2.93);
-  \draw (1.5, 2.93) -- (6.05,0);
-  \draw (0,0) circle(2.32);
-  \draw (1.5,2.93) circle(0.65);
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (9.6327,0);
+  \coordinate (I) at (9.1496,1.5);
+  \draw[thick] (O) -- (I) node[midway, left] {$l_w$};
+  \draw[thick] (O) -- (P) node[midway, right] {$l_o$};
+  \draw (O) circle (2.3943);
 \end{tikzpicture}
 
 ============================================================
 #13
 NL:
-There are two circles in this scene: one with a radius of approximately 1.93 and another with a radius of about 2.82. These two circles touch each other on the outside. Additionally, there is a line that connects two points and has a length of approximately 2.91, which runs parallel to another line defined by a single point.
+Point W exists, as does point B and point F. Line lk is formed by connecting points W and F, while line lj connects points B and F. Additionally, line li connects points B and W. A circle γ24 is centered at point W, with a radius measuring 2.9397. The length of line lk is 3.6102, the length of line lj is 2.5083, and the length of line li is 3.8057. The angle between lines lk and lj is 74.5°, the angle between lines lk and li is 140.57°, and the angle between lines lj and li is 66.08°.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle(1.93);
-  \draw (3.03,0) circle(2.82);
-  \draw (2.91,0) -- (0,0);
+  \coordinate (W) at (0,0);
+  \coordinate (B) at (0,2.5);
+  \coordinate (F) at (3.6102,2.5);
+  \draw[thick] (W) -- (F) node[midway, above right] {$l_k$};
+  \draw[thick] (B) -- (F) node[midway, above left] {$l_j$};
+  \draw[thick] (B) -- (W) node[midway, left] {$l_i$};
+  \draw (W) circle (2.9397);
 \end{tikzpicture}
 
 ============================================================
 #14
 NL:
-There is a line segment connecting two points with a length of approximately 2.58 units, and another line segment that connects two different points that measures about 1.70 units. A third line segment, longer than the previous two, spans 5.48 units. Additionally, one circle with a radius of roughly 2.80 units is centered at one point, while another circle, smaller at about 2.42 units in radius, is centered at a different point. The second line segment just grazes the smaller circle, and the angles formed by the intersections of these lines are 110.11°, 140.99°, and 30.88° respectively.
+Point O exists, and it is connected to point C by line lc, which has a length of 0.5. Line lx connects points C and O, also having a length of 0.5. Circle ω6 is centered at point D with a radius of 0.7302. Both lines lc and lx are tangent to circle ω6. Moreover, lines lc and lx are parallel.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2.58,0);
-  \draw (0,1.70) -- (1.70,0);
-  \draw (0,0) -- (5.48,0);
-  \draw (1.70,1.40) circle(2.80);
-  \draw (2.38,0) circle(2.42);
+  \coordinate (O) at (0,0);
+  \coordinate (C) at (0.5,0);
+  \coordinate (D) at (1.5,0.7);
+  \draw[thick] (O) -- (C) node[midway, above] {$l_c$};
+  \draw[thick] (C) -- (O) node[midway, below] {$l_x$};
+  \draw (D) circle (0.7302);
 \end{tikzpicture}
 
 ============================================================
 #15
 NL:
-There are two lines in the diagram: one that stretches significantly longer than the other. The first line connects two points and measures approximately 8.46 units, while the second line connects a different pair of points and is about 2.1 units long. Additionally, there are two circles, one with a radius of around 0.69 units and the other at about 2.09 units. The two lines intersect at an angle of approximately 3.33 degrees.
+Point O exists, and it is connected to point N by line lu. Line ls connects point P to point N. Circle γ16 is centered at point P with a radius of 0.5196. The length of line lu is 3.9577, while the length of line ls is 1.4731. Lines lu and ls are parallel.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (8.46,0);
-  \draw (4.26, 0) -- (6.36, 0);
-  \draw (0,0) circle(0.69);
-  \draw (1,2.09) circle(2.09);
+  \coordinate (O) at (0,0);
+  \coordinate (N) at (3.9577,0);
+  \coordinate (P) at (3.9577,1.4731);
+  \draw[thick] (O) -- (N) node[midway, below] {$l_u$};
+  \draw[thick] (P) -- (N) node[midway, above right] {$l_s$};
+  \draw (P) circle (0.5196);
 \end{tikzpicture}
 
 ============================================================
 #16
 NL:
-There is a line that connects two points, and this line has a length of approximately 8.16 units. Additionally, a circle is centered at a given point with a radius of about 1.35 units.
+Point C exists and is connected to point Z by line lw, which has a length of 3.1133. Line ls links point O to point Z and has a length of 2.9842, while line lm connects point E to point O with a length of 5.9206. Circle γ11, with a radius of 1.1032, is centered at point E, and circle ω2, centered at point Z, has a radius of 2.3423. The angle between lines lw and ls is 151.01°, between lines lw and lm is 53.75°, and between lines ls and lm is 155.24°. Notably, circles γ11 and ω2 are externally tangent to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (8.16,0);
-  \draw (0,0) circle(1.35);
+  \coordinate (C) at (0,0);
+  \coordinate (Z) at (3.1133,0);
+  \coordinate (O) at (2.9842,2);
+  \coordinate (E) at (5,0);
+  \draw[thick] (C) -- (Z) node[midway, below] {$l_w$};
+  \draw[thick] (O) -- (Z) node[midway, left] {$l_s$};
+  \draw[thick] (E) -- (O) node[midway, right] {$l_m$};
+  \draw (E) circle (1.1032);
+  \draw (Z) circle (2.3423);
 \end{tikzpicture}
 
 ============================================================
 #17
 NL:
-There are two lines, one connecting points P2 and P1, and the other connecting points P2 and P0. These lines intersect at right angles. The first line is about 5.88 units long, while the second line measures approximately 6.39 units. Additionally, there is a circle centered at point P2 with a radius of approximately 2.67 units.
+Point L exists, as does point V, point E, and point Y. Line lv is formed by connecting point V to itself, while line lx connects point V to point L. Circle ω10 is centered at point E and has a radius of 2.4923. The length of line lx is 5.2091, and lines lv and lx are parallel with a perpendicular distance of 0.0.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (5.88,0);
-  \draw (0,0) -- (0,6.39);
-  \draw (0,0) circle(2.67);
+  \coordinate (L) at (0,0);
+  \coordinate (V) at (2,0);
+  \coordinate (E) at (0,2.4923);
+  \draw[thick] (V) -- (V) node[midway, above] {$l_v$};
+  \draw[thick] (V) -- (L) node[midway, right] {$l_x$};
+  \draw (E) circle (2.4923);
 \end{tikzpicture}
 
 ============================================================
 #18
 NL:
-There is a line that connects two points, which has a total length of approximately 4.29 units. Additionally, two circles are present, the first with a radius of around 2.97 units centered at one of the points, and the second with a radius of about 2.15 units centered at the other point.
+Point Y exists, while point H and point C are also defined. Line lj connects point H to point Y, having a length of 3.3581. Line lb connects point C to point Y with a length of 6.7813, and line lp connects points H and C, measuring 4.2641 in length. Circle γ12 is centered at point Y with a radius of 1.4987, and circle ω18 is centered at point H with a radius of 1.8594. The lines lj and lb intersect at an angle of 30.9 degrees, lj and lp intersect at an angle of 125.25 degrees, and lb and lp are at an angle of 156.15 degrees. Furthermore, circles γ12 and ω18 are externally tangent to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.29,0);
-  \draw (0,0) circle(2.97);
-  \draw (4.29,0) circle(2.15);
+  \coordinate (Y) at (0,0);
+  \coordinate (H) at (0,3.3581);
+  \coordinate (C) at (6.7813,0);
+  \draw[thick] (H) -- (Y) node[midway, left] {$l_j$};
+  \draw[thick] (C) -- (Y) node[midway, below] {$l_b$};
+  \draw[thick] (H) -- (C) node[midway, above right] {$l_p$};
+  \draw (Y) circle (1.4987);
+  \draw (H) circle (1.8594);
 \end{tikzpicture}
 
 ============================================================
 #19
 NL:
-In this geometric configuration, two circles touch each other externally, with one having a radius of 1.8106 and the other 1.6173. There are three points defining two lines; one line has a length of 3.4279 and is parallel to another line of length 6.3904, which forms an angle of 165.63 degrees with it.
+Point F is present, and it is connected to point V by line lk, which has a length of 7.9914. Additionally, line lm connects point F to point S, with a length of 5.2814, and line ly also connects S back to F, having the same length as line lm. A circle ω23 is centered at point F with a radius of 2.3575. The angle between lines lk and lm is 20.63°, while the angle between lines lk and ly is 159.37°. Notably, lines lm and ly are parallel to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle(1.8106);
-  \draw (3.4279,0) -- (0,0);
-  \draw (0,0) -- (6.3904,0);
+  \draw (0,0) coordinate (F);
+  \draw (F) -- ++(20.63:7.9914) coordinate (V);
+  \draw (F) -- ++(0:5.2814) coordinate (S);
+  \draw (S) -- (F);
+  \draw (F) circle (2.3575);
+  \draw (S) -- ++(0:5.2814);
+  \draw (V) -- ++(159.37:7.9914);
 \end{tikzpicture}
 
 ============================================================
 #20
 NL:
-There are two circles in the diagram, one centered at point P0 with a radius of approximately 1.02 units and another centered at point P4 with a radius of about 2.89 units. Line L0 connects points P4 and P3 and measures 6.08 units long. Line L1, extending from P3 to P5, has a length of 7.24 units, while line L2 connects P2 and P3, measuring 2.63 units. The angle formed between lines L0 and L1 is roughly 76.46 degrees, and lines L0 and L2 meet at about 79.42 degrees, while lines L1 and L2 intersect at an angle of 155.88 degrees.
+Point X exists in the geometric space. Point T is situated, and point D is also present. Additionally, point N, point L, and point G are defined. A line, referred to as ly, connects points G and D, demonstrating a length of 5.1099. There exists a circle, denoted as γ10, with its center at point T and a radius of 0.5843. Another circle, labeled γ17, is centered at point L and has a radius of 0.8245. Notably, line ly acts as a tangent to circle γ17.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle(1.02);
-  \draw (2.89, 0) circle(2.89);
-  \draw (6.08,0) -- (2,0);
-  \draw (7.24,1) -- (2,0);
-  \draw (2.63,0) -- (0,0);
+  \coordinate (X) at (0, 0);
+  \coordinate (T) at (1.5, 1);
+  \coordinate (D) at (1, -1);
+  \coordinate (N) at (-2, 0);
+  \coordinate (L) at (2, 1);
+  \coordinate (G) at (2, -1);
+  \draw (G) -- (D);
+  \draw[red] (T) circle (0.5843);
+  \draw[blue] (L) circle (0.8245);
+  \draw[blue] (G) -- (D);
 \end{tikzpicture}
 
 ============================================================
 #21
 NL:
-There are two lines, L0 and L1, which intersect at an angle of 90 degrees. Line L0 has a length of 4.0972, while line L1 measures 7.5159. Additionally, there are two circles centered at point P5: the first circle has a radius of 2.3315 and the second circle has a radius of 1.6946.
+Point B is defined, and it is associated with another point L. Point X also exists, along with point R. Additionally, point Z exists. Line lc connects points X and Z, having a measured length of 3.6217. Circle ω11, which has a radius of 2.7751, is centered at point Z. Furthermore, circle ω8, centered at point B, has a radius of 1.4484. Notably, circles ω11 and ω8 are externally tangent to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.0972,0);
-  \draw (0,0) -- (0,7.5159);
-  \draw (2.3315,0) circle (2.3315cm);
-  \draw (1.6946,0) circle (1.6946cm);
+  \coordinate (B) at (0, 0);
+  \coordinate (L) at (1, 1);
+  \coordinate (X) at (2, -1);
+  \coordinate (R) at (2, 1);
+  \coordinate (Z) at (3, 0);
+  \draw (X) -- (Z);
+  \draw[red] (Z) circle (2.7751);
+  \draw[blue] (B) circle (1.4484);
 \end{tikzpicture}
 
 ============================================================
 #22
 NL:
-There is a line that connects two points and has a length of approximately 1.63 units. This same line just touches a circle with radius around 2.73 units, which is positioned at a specific point, while another circle with a radius of about 2.70 units is centered at a different point.
+Point A exists and is connected to point J by line lb. Line lb has a length of 3.4278. Point W connects to point A with line lg, which measures 2.7964. Additionally, line lp connects points W and J with a length of 1.2362. Circle ω20, centered at point J, has a radius of 2.1365, while circle ω0, centered at point N, has a radius of 1.3642. The angle formed by lines lb and lg is 19.77°, and the angle between lines lb and lp is 130.09°. Lastly, lines lg and lp create an angle of 110.33°. Notably, circles ω20 and ω0 are externally tangent to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (1.63,0);
-  \draw (1.63,0) arc (0:180:2.73cm);
-  \draw (3,0) arc (0:180:2.70cm);
+  \coordinate (A) at (0, 0);
+  \coordinate (J) at (3.4278, 0);
+  \coordinate (W) at (2.7964, 1);
+  \coordinate (N) at (1, 1);
+  \draw (A) -- (J);
+  \draw (A) -- (W);
+  \draw (W) -- (J);
+  \draw[red] (J) circle (2.1365);
+  \draw[blue] (N) circle (1.3642);
 \end{tikzpicture}
 
 ============================================================
 #23
 NL:
-There are three lines in this configuration: two of them are parallel, both with equal lengths, and the third line, while also parallel to the first two, is slightly longer. Additionally, a circle is centered at one of the intersection points of the lines, and it has a specific radius.
+Point N exists and is connected to point R by line lf, which has a length of 4.6799. Point E is connected to point Z through line ll with a length of 3.7183, and line ll is tangent to circle ω22, centered at point H. Line lx, which connects point H to point R, is 7.7762 long. The angle between lines lf and ll is 16.38°, while the angle between lines lf and lx is 112.76°, and the angle formed by lines ll and lx is 129.14°.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4,0);
-  \draw (0,1) -- (4,1);
-  \draw (0,2) -- (5,2);
-  \draw (2,0) circle (1);
+  \coordinate (N) at (0, 0);
+  \coordinate (R) at (4.6799, 0);
+  \coordinate (E) at (3, 1);
+  \coordinate (H) at (4, 2);
+  \coordinate (Z) at (1, 2);
+  \draw (N) -- (R);
+  \draw (E) -- (Z);
+  \draw (H) -- (R);
 \end{tikzpicture}
 
 ============================================================
 #24
 NL:
-There is a line connecting two points with a length of 6.15 units and a circle centered at a different point with a radius of 2.782 units.
+Point Z exists in the plane, as does point K. There is also point J and point Q. Line lh is formed by connecting point J and point Z, while line li is drawn between point Q and point Z. A circle named ω7, which has a radius of 2.4382, is centered at point Q. The length of line lh is 3.6201, the length of line li is 6.0446, and the angle between lines lh and li is measured at 34.33 degrees.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (6.15,0);
-  \draw (2.782,0) circle (2.782cm);
+  \coordinate (Z) at (0, 0);
+  \coordinate (K) at (1, 1);
+  \coordinate (J) at (2, 0);
+  \coordinate (Q) at (1.5, 2);
+  \draw (J) -- (Z);
+  \draw (Q) -- (Z);
+  \draw[red] (Q) circle (2.4382);
 \end{tikzpicture}
 
 ============================================================
 #25
 NL:
-There are two circles in the diagram. Circle C0 has a radius of 0.6446, while circle C1 is larger with a radius of 2.1022. These two circles are positioned such that they touch each other externally. There is also a line, labeled L0, connecting two points, which has a total length of 2.7468.
+Point Y exists. Point S exists. Point Q exists. Line ld, connecting point S and point Y, has a length of 1.7026. Line ls connects point Q and point Y with a length of 0.8491. Line lo joins point S and point Q, measuring 0.8535 in length. Circle ω3 is centered at point Q with a radius of 1.0443, while circle ω22 is centered at point Y with a radius of 0.7032. Lines ld, ls, and lo are mutually parallel.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle (0.6446cm);
-  \draw (1.2878,0) circle (2.1022cm);
-  \draw (0,0) -- (2.7468,0);
+  \coordinate (Y) at (0, 0);
+  \coordinate (S) at (1.7026, 1);
+  \coordinate (Q) at (0.8491, 1);
+  \draw (S) -- (Y);
+  \draw (Q) -- (Y);
+  \draw (S) -- (Q);
+  \draw[red] (Q) circle (1.0443);
+  \draw[blue] (Y) circle (0.7032);
 \end{tikzpicture}
 
 ============================================================
 #26
 NL:
-There are two circles, one with a radius of 2.8154 and another with a radius of 2.7678, that touch each other externally. Alongside, line L0, measuring 7.2948, runs parallel to line L1, while line L2, with a length of 6.0297, is also parallel to line L1. The angle formed between lines L0 and L2 is 41.68 degrees.
+Point T is present in the configuration. Additionally, point Z and point B exist, connected by line ln. Line lw joins point B to point Q. A circle denoted as γ12 is centered at point Q, possessing a radius of 0.9249. The length of line ln is 3.8789, while the length of line lw is 4.7273. Lines ln and lw form an angle of 165.32° at their intersection.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (7.2948,0);
-  \draw (0,1) -- (7.2948,1);
-  \draw (0,2) -- (6.0297,2);
-  \draw (0,0) circle (2.8154cm);
-  \draw (1.5781,0) circle (2.7678cm);
+  \coordinate (T) at (0, 0);
+  \coordinate (Z) at (3.8789, 1);
+  \coordinate (B) at (1, 0);
+  \coordinate (Q) at (5, 1);
+  \draw (Z) -- (B);
+  \draw (B) -- (Q);
+  \draw[red] (Q) circle (0.9249);
 \end{tikzpicture}
 
 ============================================================
 #27
 NL:
-There are two circles, one with a radius of 0.5762 and the other with a radius of 1.2864, which are externally tangent to each other. Additionally, there is a line connecting two points with a length of 3.4309.
+Point W exists alongside point J and point F. There is a line lr that connects point W and point F, and another line ln that connects point W to point J. Additionally, there is a line lx that also connects point W to point J. Circle γ14 is centered at point F with a radius of 1.5129, while circle γ16, also centered at point F, has a radius of 2.3777. The length of line lr is 5.1288, while lines ln and lx each have a length of 3.2621. The angle formed between lines lr and ln is 49.01 degrees, as is the angle between lines lr and lx. Notably, lines ln and lx are parallel to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) circle (0.5762cm);
-  \draw (1.8626,0) circle (1.2864cm);
-  \draw (0,0) -- (3.4309,0);
+  \coordinate (W) at (0, 0);
+  \coordinate (J) at (3.2621, 1);
+  \coordinate (F) at (2, 2);
+  \draw (W) -- (F);
+  \draw (W) -- (J);
+  \draw[red] (F) circle (1.5129);
+  \draw[blue] (F) circle (2.3777);
 \end{tikzpicture}
 
 ============================================================
 #28
 NL:
-There is a line that connects point P3 to point P1, measuring 1.5695 units in length. Additionally, two circles exist centered at point P2: the first with a radius of 1.8075 units and the second with a smaller radius of 0.8657 units.
+Point F exists in the geometric space. Point A and point Q are defined, with line ll connecting them. Circle ω9, centered at point Q, has a radius of 0.6183. Circle ω21, centered at point K, has a radius of 2.1053. The length of line ll is 1.7142, and it is tangent to circle ω21.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (1.5695,0);
-  \draw (1.8075,0) circle (1.8075cm);
-  \draw (0.8657,0) circle (0.8657cm);
+  \coordinate (F) at (0, 0);
+  \coordinate (A) at (1.7142, 1);
+  \coordinate (Q) at (2, 1);
+  \coordinate (K) at (3, 1);
+  \draw (A) -- (Q);
+  \draw[red] (Q) circle (0.6183);
+  \draw[blue] (K) circle (2.1053);
 \end{tikzpicture}
 
 ============================================================
 #29
 NL:
-The line connecting points P0 and P3 has a length of approximately 0.93 units, and it touches the circle centered at point P2 without crossing it, as the radius of the circle is about 0.73 units.
+Point S, point I, point Q, point Y, point M, and point U are defined. Line le, which has a length of 1.3594, connects points U and M. Line la, with a length of 6.4661, connects points Q and Y. Line lq, having a length of 2.5931, connects points Q and S. A circle γ3 is centered at point S and has a radius of 1.2859. Line le is tangent to circle γ3. The angle between lines le and la is 67.92°, as is the angle between lines le and lq. Furthermore, lines la and lq are parallel with a distance of 0.0 between them.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (0.93,0);
-  \draw (0.73,0) circle (0.73cm);
+  \coordinate (S) at (0, 0);
+  \coordinate (I) at (1, 0);
+  \coordinate (Q) at (2, 1);
+  \coordinate (Y) at (4, 1);
+  \coordinate (M) at (3, 2);
+  \coordinate (U) at (5, 1);
+  \draw (U) -- (M);
+  \draw (Q) -- (Y);
+  \draw (Q) -- (S);
+  \draw[red] (S) circle (1.2859);
 \end{tikzpicture}
 
 ============================================================
 #30
 NL:
-In this geometric configuration, line L0 connects point P4 to point P0 and has a length of 4.8543 units. Meanwhile, line L1 runs from P1 to P0, measuring 8.6545 units, and they intersect with an angle of 108.64 degrees. Additionally, line L2 extends from P4 to P2 at a length of 6.1617 units, and it is parallel to line L0, while it forms another angle of 108.64 degrees with line L1. The circle C0, centered at P0, has a radius of 1.1161 units.
+Point O is established in the diagram. Additionally, point W exists alongside point E and point I. Line lm, which has a length of 3.988, connects points W and I. Circle γ10, centered at point O, possesses a radius of 1.7945. Furthermore, line lm is tangent to circle γ10.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.8543,0);
-  \draw (8.6545,0) -- (0,0);
-  \draw (4.8543,1) -- (10.8543,1);
-  \draw (1.1161,0) circle (1.1161cm);
+  \coordinate (O) at (0,0);
+  \coordinate (W) at (-2,1);
+  \coordinate (I) at (1,2);
+  \draw (W) -- (I);
+  \draw[thick] (O) circle (1.7945);
+  \draw[dashed] (W) -- ++(0,1.7945);
 \end{tikzpicture}
 
 ============================================================
 #31
 NL:
-There are two parallel lines that are both equal in length, and they intersect with another line at an angle of approximately 152 degrees. Two circles are present; one has a radius that measures just over 1.5 units, while the other has a slightly smaller radius, around 1.3 units. Interestingly, these circles touch each other externally.
+Point Y exists at a specific location. Point H is also defined at another unique position. Additionally, point S is present, as are points R and X. Point F is located, connecting line lm that joins points S and H. Another line, lp, connects points F and Y. A circle, designated as γ17, is centered at point F with a radius of 2.2412. The length of line lm is measured to be 1.3313, while line lp has a total length of 8.9286. Lines lm and lp are parallel, separated by a distance of 2.1564.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (5,0) coordinate (A);
-  \draw (0,1) -- (5,1);
-  \draw (2,0) circle (1.5);
-  \draw (3,1) circle (1.3);
+  \coordinate (Y) at (0,0);
+  \coordinate (H) at (0,3.3313);
+  \coordinate (S) at (2,0);
+  \coordinate (R) at (2,3.3313);
+  \coordinate (X) at (2,-2);
+  \coordinate (F) at (1,1);
+  \draw (S) -- (H);
+  \draw (F) -- (Y);
+  \draw (F) to[out=0,in=180] (H);
+  \draw[dashed] (S) -- (R);
 \end{tikzpicture}
 
 ============================================================
 #32
 NL:
-There is a circle with a radius of 0.9324 that is touched by a line of length 2.5486, known as L0. This line, L0, intersects another line, L1, which is longer at 6.8707, forming an angle of 16.15 degrees between them.
+Point V is defined. Point H is defined. Point E is defined. Point A is defined. Line lz connects point A to point V. Circle γ7 is centered at point H with a radius of 2.5605. The length of line lz is 3.1397. Additionally, line lz is tangent to circle γ7.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2.5486,0);
-  \draw (0,0) -- (4,6.8707);
-  \draw (0,0) arc (0:16.15:0.9324);
+  \coordinate (V) at (2,0);
+  \coordinate (H) at (0,2.5605);
+  \coordinate (E) at (0,0);
+  \coordinate (A) at (3.1397,0);
+  \draw (A) -- (V);
+  \draw[thick] (H) circle (2.5605);
+  \draw[dashed] (A) -- ++(0,2.5605);
 \end{tikzpicture}
 
 ============================================================
 #33
 NL:
-There are three lines in the diagram, with the first line connecting two points and measuring about 2.20 units in length, while the second line, which also connects a different pair of points, is approximately 3.97 units long. The third line, spanning between other points, is the longest at around 6.14 units. Additionally, there's a circle centered on one of the points with a radius of about 0.56 units. The first and second lines intersect at an angle of about 168 degrees, while the first and third lines meet at a nearly flat angle of 7.73 degrees. The second and third lines also come together at an angle close to 176 degrees.
+Point G is defined, and point I is also defined. Additionally, point O, point T, and point D are present. Line ls connects points G and I, having a length of 4.4718. Line lc extends from point G to point O, measuring 4.3013 in length. There exists line ln connecting points I and T, with a total length of 0.7161. Circle γ3 is centered at point O with a radius of 1.6637. Circle γ21 is centered at point I with a radius of 2.4641. The angle formed between lines ls and lc is 56.09°, while lines ls and ln are parallel with a perpendicular distance of 0. The angle between lines lc and ln is also 56.09°. Notably, circles γ3 and γ21 are externally tangent to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2.2,0);
-  \draw (2.2,0) -- (6.14,1);
-  \draw (0,0) arc (0:7.73:0.56);
+  \coordinate (G) at (0,0);
+  \coordinate (I) at (4.4718,0);
+  \coordinate (O) at (2,2);
+  \coordinate (T) at (1,2);
+  \coordinate (D) at (0.7161,0.7161);
+  \draw (G) -- (I);
+  \draw (G) -- (O);
+  \draw (I) -- (T);
+  \draw[thick] (O) circle (1.6637);
+  \draw[thick] (I) circle (2.4641);
 \end{tikzpicture}
 
 ============================================================
 #34
 NL:
-There are two lines in the diagram, L0 and L1, that are parallel to each other. Line L0 has a length of approximately 3.51 units, while line L1 measures about 7.95 units. Additionally, there is a circle centered at point P3 with a radius of roughly 1.10 units.
+Point R is established, as is point C and point S. A line denoted as lm connects points C and R, while another line lj links point S to point R. Furthermore, line lh extends between points R and C. The circle ω17 is centered at point C, possessing a radius of 0.8614. The length of line lm is 14.7304, and line lj measures 8.3177 in length, with line lh also measuring 14.7304. The angle formed between lines lm and lj is 10.78°, and lines lm and lh are parallel. An angle of 169.22° is formed where lines lj and lh intersect.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (3.51,0);
-  \draw (0,0) -- (7.95,0);
-  \draw (2.5,0) circle (1.10);
+  \coordinate (R) at (0,0);
+  \coordinate (C) at (0,14.7304);
+  \coordinate (S) at (8.3177,0);
+  \draw (C) -- (R);
+  \draw (S) -- (R);
+  \draw (R) -- (C);
+  \draw[thick] (C) circle (0.8614);
 \end{tikzpicture}
 
 ============================================================
 #35
 NL:
-There is a line connecting two points which measures approximately 2.26 units in length, and a circle that is centered at another point with a radius of 1.06 units.
+["Point J exists in the geometric space.", "Point Z is situated in the geometric construction.", "Point S is defined as a distinct point in the diagram.", "Line li extends between points J and S, establishing a direct connection.", "Line lb, originating from point J, intersects with itself."],
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (2.26,0);
-  \draw (1,1) circle (1.06);
+  \coordinate (J) at (0,0);
+  \coordinate (Z) at (2,2);
+  \coordinate (S) at (1,1);
+  \draw (J) -- (S);
+  \draw[dashed] (J) -- (J);
 \end{tikzpicture}
 
 ============================================================
 #36
 NL:
-There is a line connecting two points, which has a length of 4.683 units. Additionally, there are two circles centered at one of the points; the first circle has a radius of 1.5229 units, and the second circle has a larger radius of 2.021 units.
+[
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.683,0);
-  \draw (0,0) circle (1.5229);
-  \draw (0,0) circle (2.021);
+  
 \end{tikzpicture}
 
 ============================================================
 #37
 NL:
-There are two lines, one of which is shorter, measuring 4.3904 units, while the other stretches to 7.1269 units. Both lines are parallel to each other and touch a circle with a radius of 0.6413 units at exactly one point each.
+Point D exists, point L exists, and point K exists. A line named lv connects points K and D, while line lj connects points D and L. Line ll also connects points L and D. There exists a circle γ21 centered at point K with a radius of 2.736. The length of line lv is 3.3868, and both lines lj and ll each measure 3.0671 in length. The angle formed between lines lv and lj is 116.87°, and the angle between lines lv and ll is 63.13°. Furthermore, lines lj and ll are parallel, maintaining a perpendicular distance of 0.0000.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.3904,0);
-  \draw (0,1) -- (7.1269,1);
-  \draw (3,0.6413) circle (0.6413);
+  \coordinate (D) at (0,0);
+  \coordinate (L) at (3.0671,3.0671);
+  \coordinate (K) at (0,3.3868);
+  \draw (K) -- (D);
+  \draw (D) -- (L);
+  \draw (L) -- (D);
+  \draw[thick] (K) circle (2.736);
 \end{tikzpicture}
 
 ============================================================
 #38
 NL:
-There are three points that form lines: the first line connects points P0 and P1, measuring 4.7003 units in length, while the second line joins points P1 and P4 with a length of 3.1703 units. A third line, connecting points P5 and P4, is 2.6943 units long. Additionally, a circle centered at point P4 has a radius of 1.2682 units. Lines L0 and L1 intersect, forming an angle of 73.45 degrees, while lines L0 and L2 form an angle of 55.94 degrees. Lastly, lines L1 and L2 meet at an angle of 129.39 degrees.
+Point E is established, point D is registered, and point P is identified. Line ln is defined as the connection between points P and D, while line lh is formed by point D connecting to itself. Circle γ8 is centered at point E with a radius of 1.7975. The length of line ln measures 2.4399, and lines ln and lh are confirmed to be parallel with no perpendicular distance between them.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (4.7003,0) coordinate (A);
-  \draw (A) -- (3.1703,1) coordinate (B);
-  \draw (0,0) -- (2.6943,2);
-  \draw (3,1) circle (1.2682);
+  \coordinate (E) at (0,0);
+  \coordinate (D) at (2.4399,0);
+  \coordinate (P) at (0,1.7975);
+  \draw (P) -- (D);
+  \draw[dashed] (D) -- (D);
+  \draw[thick] (E) circle (1.7975);
 \end{tikzpicture}
 
 ============================================================
 #39
 NL:
-There are two lines, one of length 9.3407 and another of length 6.4224, which intersect at an angle of 83.11 degrees. Additionally, a circle with a radius of 2.7404 is centered at the endpoint of the longer line.
+Point X is present. Point E is also present. Point Q is established. Line lx connects point E to point Q. Line lm connects point X to point Q. Line lp connects point Q to point E. There exists circle γ23 which is centered at point X. The length of line lx is 4.3631, while the length of line lm is 3.4254. Line lp has the same length as line lx at 4.3631. Circle γ23 has a radius of 1.709. Furthermore, line lx is perpendicular to line lm, and line lx is parallel to line lp with a perpendicular distance of 0.0. Additionally, lines lm and lp are perpendicular to each other.
 
 TikZ:
 \begin{tikzpicture}
-  \draw (0,0) -- (9.3407,0);
-  \draw (0,0) -- (6.4224,1);
-  \draw (9.3407,0) circle (2.7404);
-\end{tikzpicture}
-
-============================================================
-#40
-NL:
-A line connecting two points has a length of 2.843 units, while a circle centered at another point has a radius of 2.6083 units.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) -- (2.843,0);
-  \draw (4,0) circle (2.6083);
-\end{tikzpicture}
-
-============================================================
-#41
-NL:
-There are two parallel lines that have equal lengths, each measuring approximately 2.3841 units. Both lines are tangent to a circle with a radius of about 2.9527 units. Additionally, one of the lines forms an angle of 84.05 degrees with a third line that measures approximately 2.9687 units.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) -- (2.3841,0);
-  \draw (0,-3) -- (2.3841,-3);
-  \draw (4,-1.5) circle (2.9527);
-  \draw (2.3841,-1.5) -- (4,-1.5);
-\end{tikzpicture}
-
-============================================================
-#42
-NL:
-There are two circles in the diagram, one with a radius of approximately 2.73 units and another with a radius of about 1.33 units. These circles are positioned such that they touch each other externally. Additionally, a line connecting two specific points has a total length of 2.83 units.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) circle (2.73);
-  \draw (5,0) circle (1.33);
-  \draw (1,0) -- (3.83,0);
-\end{tikzpicture}
-
-============================================================
-#43
-NL:
-There are two points, P0 and P1, from which a circle with radius 1.5793 units, C0, is drawn around P1, and a smaller circle with a radius of 0.5313 units, C1, is also centered at P1. Line L0 connects point P2 to P0 and has a length of 9.0277 units. Line L1, which connects P3 to P0, measures 3.7660 units in length and is tangent to circle C0. The angle between lines L0 and L1 is 48.17 degrees.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) circle (1.5793);
-  \draw (0,0) circle (0.5313);
-  \draw (0,0) -- (9.0277,0);
-  \draw (3.7660,0) -- (0,0);
-  \draw[->] (0,0) -- (1,1); % angle line
-\end{tikzpicture}
-
-============================================================
-#44
-NL:
-In this geometric configuration, two circles, C0 and C1, are externally tangent, meaning they just touch each other without overlapping. Line L0 connects points P0 and P1, measuring 8.0521 units in length. Line L1, which extends between points P4 and P2, has a length of 2.821 units, forming an angle of 23.95 degrees with line L0. Line L2 links points P3 and P0 and has a length of 7.755 units. The angle between line L0 and line L2 is 139.41 degrees, while lines L1 and L2 intersect at an angle of 115.47 degrees. Additionally, circle C0 has a radius of 0.8979 units, and circle C1 has a radius of 0.5382 units.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) circle (0.8979);
-  \draw (4,0) circle (0.5382);
-  \draw (0,0) -- (8.0521,0);
-  \draw (2.821,2) -- (1,0);
-  \draw (0,0) -- (7.755,0);
-\end{tikzpicture}
-
-============================================================
-#45
-NL:
-There are two circles centered at the same point, with one circle having a radius of approximately 2.15 and the other with a radius of about 1.91. A line from one point touches the first circle without crossing it, indicating it is tangent. Additionally, three lines connect various points, with two lines meeting at an angle of approximately 68.75 degrees, another pair at about 57.73 degrees, and the last pair at approximately 11.02 degrees.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) circle (2.15);
-  \draw (0,0) circle (1.91);
-  \draw[->] (2.15,0) -- (2.15,2.15); % tangent line
-  \draw (3,2) -- (1,0);
-  \draw (1,0) -- (0,2);
-  \draw[->] (1,0) -- (2,2); % varying angles
-\end{tikzpicture}
-
-============================================================
-#46
-NL:
-There are two lines, L0 and L1, which intersect at a right angle. Line L0 measures approximately 2.0066 units in length, while line L1 is slightly longer at around 2.3538 units. Additionally, a circle centered at the endpoint of line L1 has a radius of 1.3658 units.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) -- (2.0066,0);
-  \draw (0,0) -- (0,2.3538);
-  \draw (0.2,2.3538) circle (1.3658);
-\end{tikzpicture}
-
-============================================================
-#47
-NL:
-In this geometry diagram, there are two circles, C0 and C1, that are externally tangent to one another. The radius of circle C0 is 1.9362, while circle C1 has a radius of 2.4265. Three lines, L0, L1, and L2, have lengths of 3.6776, 2.8213, and 7.6500 respectively. The lines L0 and L1 intersect at an angle of 118.16 degrees, L0 and L2 meet at 59.46 degrees, and L1 and L2 form an angle of 58.7 degrees.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) circle (1.9362);
-  \draw (5,0) circle (2.4265);
-  \draw (0,0) -- (3.6776,0);
-  \draw (1,1) -- (2.8213,-1);
-  \draw (0,0) -- (7.6500,2);
-\end{tikzpicture}
-
-============================================================
-#48
-NL:
-There are three points connected by lines: the first line, stretching between two points, has a length of just over 1.09 units, while the second line measures about 1.59 units. The third line is significantly longer, at roughly 4.01 units. Additionally, two circles are present; the larger circle has a radius of approximately 2.12 units, and the smaller one has a radius of 0.53 units. The first and second lines intersect at an angle of about 106.82 degrees, the first and third lines meet at an angle of 75.83 degrees, and the second and third lines form an angle of 177.36 degrees.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) -- (1.09,0);
-  \draw (1.09,0) -- (2.68,0);
-  \draw (0,0) -- (4.01,0);
-  \draw (5,0) circle (2.12);
-  \draw (5,1) circle (0.53);
-\end{tikzpicture}
-
-============================================================
-#49
-NL:
-There are two lines, one measuring approximately 5.15 units and the other about 6.40 units, that form an angle of 174.19 degrees where they intersect. Additionally, there are two circles; the first has a radius of around 1.66 units, while the second has a radius of about 2.95 units, and they graze each other externally.
-
-TikZ:
-\begin{tikzpicture}
-  \draw (0,0) -- (5.15,0);
-  \draw (5.15,0) -- (6.40,1.5);
-  \draw (0,0) circle (1.66);
-  \draw (5,0) circle (2.95);
+  \coordinate (X) at (0,0);
+  \coordinate (E) at (4.3631,0);
+  \coordinate (Q) at (0,3.4254);
+  \draw (E) -- (Q);
+  \draw (X) -- (Q);
+  \draw (Q) -- (E);
+  \draw[thick] (X) circle (1.709);
 \end{tikzpicture}
 

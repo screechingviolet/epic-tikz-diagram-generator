@@ -2,9 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (4,0);
-  \draw (0,1) -- (4,1);
-  \draw (0,2) -- (5,2);
-  \draw (2,0) circle (1);
+  \coordinate (N) at (0, 0);
+  \coordinate (R) at (4.6799, 0);
+  \coordinate (E) at (3, 1);
+  \coordinate (H) at (4, 2);
+  \coordinate (Z) at (1, 2);
+  \draw (N) -- (R);
+  \draw (E) -- (Z);
+  \draw (H) -- (R);
 \end{tikzpicture}
 \end{document}

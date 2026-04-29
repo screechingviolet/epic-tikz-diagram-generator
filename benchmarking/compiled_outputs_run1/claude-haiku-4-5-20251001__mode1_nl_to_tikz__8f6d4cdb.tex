@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  % Place V at origin
+  \coordinate (V) at (0, 0);
+  % Line lo is tangent to circle, length 2.7856
+  % Place P and Y such that lo is tangent and has correct length
+  \coordinate (P) at (1, 1);
+  \coordinate (Y) at (1 + 2.7856, 1);
+  
+  % Draw line
+  \draw (P) -- (Y);
+  
+  % Draw circle
+  \draw (V) circle (0.8747);
+  
+  % Place A arbitrary
+  \coordinate (A) at (2, 3);
+  
+  % Mark points
+  \filldraw (P) circle (1.5pt);
+  \filldraw (A) circle (1.5pt);
+  \filldraw (V) circle (1.5pt);
+  \filldraw (Y) circle (1.5pt);
+\end{tikzpicture}
+\end{document}

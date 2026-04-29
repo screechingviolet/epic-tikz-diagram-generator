@@ -31,9 +31,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run1"   # change this for each run
+RUN_NAME     = "run1"
 N_SAMPLES    = 50
-DATASET_PATH = "../data/demo_dataset.jsonl"
+DATASET_PATH = "../curriculum_data/dataset_complex.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
@@ -140,7 +140,7 @@ Here are the {n} inputs:
 
 
 # ---------------------------------------------------------------------------
-# LOSS FUNCTION
+# LOSS FUNCTION  (binary: 1.0 if ALL constraints satisfied, else 0.0)
 # ---------------------------------------------------------------------------
 
 FLOAT_CMP = 0.05
@@ -235,6 +235,7 @@ def _parse_fn(s):
     return fn, params
 
 def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
+    """Returns 1.0 if ALL constraints are satisfied, 0.0 otherwise."""
     if not truth_constr:
         return 1.0
     try:
@@ -260,49 +261,44 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
                 if shape.center in shape_dict:
                     shape.center = shape_dict[shape.center]
 
-        correct = 0
-        total   = 0
         for constraint in truth_constr:
             try:
                 fn, params = _parse_fn(constraint)
                 if fn == "point"  and len(params) == 1: continue
                 if fn == "circle" and len(params) == 2: continue
-                total += 1
                 match fn:
                     case "radius":
-                        if math.isclose(_radius(shape_dict[params[0]]), float(params[1]), rel_tol=FLOAT_CMP):
-                            correct += 1
+                        if not math.isclose(_radius(shape_dict[params[0]]), float(params[1]), rel_tol=FLOAT_CMP):
+                            return 0.0
                     case "length":
-                        if math.isclose(_length(shape_dict[params[0]]), float(params[1]), rel_tol=FLOAT_CMP):
-                            correct += 1
+                        if not math.isclose(_length(shape_dict[params[0]]), float(params[1]), rel_tol=FLOAT_CMP):
+                            return 0.0
                     case "intersect":
-                        if _intersect(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _intersect(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "tangent":
-                        if _tangent(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _tangent(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "parallel":
-                        if _parallel(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _parallel(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "perpendicular":
-                        if _perpendicular(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _perpendicular(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "circle_tangent":
-                        if _circle_tangent(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _circle_tangent(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "on_circle":
-                        if _on_circle(shape_dict[params[0]], shape_dict[params[1]]):
-                            correct += 1
+                        if not _on_circle(shape_dict[params[0]], shape_dict[params[1]]):
+                            return 0.0
                     case "angle":
-                        if math.isclose(_angle(shape_dict[params[0]], shape_dict[params[1]]),
-                                        float(params[2]), rel_tol=FLOAT_CMP):
-                            correct += 1
-                    case _:
-                        total -= 1
+                        if not math.isclose(_angle(shape_dict[params[0]], shape_dict[params[1]]),
+                                            float(params[2]), rel_tol=FLOAT_CMP):
+                            return 0.0
             except (KeyError, ValueError, TypeError):
-                pass
+                return 0.0
 
-        return correct / total if total > 0 else 1.0
+        return 1.0
 
     except Exception:
         return 0.0
@@ -314,7 +310,13 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
 
 def load_cache(path: str) -> dict:
     if Path(path).exists():
-        return json.loads(Path(path).read_text())
+        raw = json.loads(Path(path).read_text())
+        # strip stale mode2/mode3 entries so scores get recomputed
+        cleaned = {k: v for k, v in raw.items()
+                   if v.get("mode") not in ("mode2_nl_to_geo", "mode3_geo_to_geo")}
+        if len(cleaned) < len(raw):
+            print(f"  Stripped {len(raw) - len(cleaned)} stale mode2/3 cache entries")
+        return cleaned
     return {}
 
 def save_cache(cache: dict, path: str):

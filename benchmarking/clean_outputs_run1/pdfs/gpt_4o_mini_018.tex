@@ -2,8 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (4.29,0);
-  \draw (0,0) circle(2.97);
-  \draw (4.29,0) circle(2.15);
+  \coordinate (Y) at (0,0);
+  \coordinate (H) at (0,3.3581);
+  \coordinate (C) at (6.7813,0);
+  \draw[thick] (H) -- (Y) node[midway, left] {$l_j$};
+  \draw[thick] (C) -- (Y) node[midway, below] {$l_b$};
+  \draw[thick] (H) -- (C) node[midway, above right] {$l_p$};
+  \draw (Y) circle (1.4987);
+  \draw (H) circle (1.8594);
 \end{tikzpicture}
 \end{document}

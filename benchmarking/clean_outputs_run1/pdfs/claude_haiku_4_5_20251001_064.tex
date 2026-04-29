@@ -2,8 +2,15 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (4.29,0);
-  \draw (0,0) circle (2.97cm);
-  \draw (4.29,0) circle (2.15cm);
+  \coordinate (X) at (0,0);
+  \coordinate (Q) at (0,3.4254);
+  \coordinate (E) at (4.3631,3.4254);
+  \draw (E) -- (Q);
+  \draw (X) -- (Q);
+  \draw (Q) -- (E);
+  \draw circle (1.709);
+  \node at (X) [circle,fill,inner sep=2pt] {};
+  \node at (Q) [circle,fill,inner sep=2pt] {};
+  \node at (E) [circle,fill,inner sep=2pt] {};
 \end{tikzpicture}
 \end{document}

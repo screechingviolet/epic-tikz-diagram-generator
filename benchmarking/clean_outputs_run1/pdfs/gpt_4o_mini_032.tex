@@ -2,8 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (2.5486,0);
-  \draw (0,0) -- (4,6.8707);
-  \draw (0,0) arc (0:16.15:0.9324);
+  \coordinate (V) at (2,0);
+  \coordinate (H) at (0,2.5605);
+  \coordinate (E) at (0,0);
+  \coordinate (A) at (3.1397,0);
+  \draw (A) -- (V);
+  \draw[thick] (H) circle (2.5605);
+  \draw[dashed] (A) -- ++(0,2.5605);
 \end{tikzpicture}
 \end{document}

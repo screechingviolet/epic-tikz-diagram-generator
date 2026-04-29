@@ -2,7 +2,14 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (1.3873,0);
-  \draw (1.3873,0) circle (1.754cm);
+  \coordinate (B) at (0, 0);
+  \coordinate (R) at (2, 2);
+  \coordinate (G) at (0, 3);
+  \coordinate (Y) at (5, 0);
+  \coordinate (I) at (3, 1);
+  \coordinate (Z) at (3, 3);
+  \draw [line width=0.5mm] (I) -- (B);
+  \draw [line width=0.5mm] (Z) -- (Y);
+  \draw [draw=black, fill=none] (Y) circle(0.7624);
 \end{tikzpicture}
 \end{document}

@@ -2,9 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (5.3552,0);
-  \draw (1.5,0) -- (2.5296,3);
-  \draw (0,0) -- (5.3552,0);
-  \draw (1.5,0) circle (0.5470cm);
+  \coordinate (V) at (0, 0);
+  \coordinate (S) at (2, 2);
+  \coordinate (D) at (3, 0);
+  \coordinate (G) at (3, 2);
+  \coordinate (M) at (5, 2);
+  \draw [line width=0.5mm] (G) -- (M);
+  \draw [line width=0.5mm] (S) -- (V);
+  \draw [draw=black, fill=none] (S) circle(1.9163);
 \end{tikzpicture}
 \end{document}

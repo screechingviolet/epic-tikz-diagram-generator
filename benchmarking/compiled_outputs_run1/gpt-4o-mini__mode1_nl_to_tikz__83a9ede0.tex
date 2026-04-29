@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (B) at (0, 0);
+  \coordinate (L) at (1, 1);
+  \coordinate (X) at (2, -1);
+  \coordinate (R) at (2, 1);
+  \coordinate (Z) at (3, 0);
+  \draw (X) -- (Z);
+  \draw[red] (Z) circle (2.7751);
+  \draw[blue] (B) circle (1.4484);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (Y) at (0,0);
+  \coordinate (H) at (0,3.3313);
+  \coordinate (S) at (2,0);
+  \coordinate (R) at (2,3.3313);
+  \coordinate (X) at (2,-2);
+  \coordinate (F) at (1,1);
+  \draw (S) -- (H);
+  \draw (F) -- (Y);
+  \draw (F) to[out=0,in=180] (H);
+  \draw[dashed] (S) -- (R);
+\end{tikzpicture}
+\end{document}

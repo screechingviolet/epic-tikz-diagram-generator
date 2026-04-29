@@ -2,8 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle (0.57cm);
-  \draw (0,0) circle (2.89cm);
-  \draw (0,0) -- (4.91,0);
+  \coordinate (F) at (0, 0);
+  \coordinate (A) at (1, 1);
+  \coordinate (Q) at (1.7142, 0);
+  \coordinate (K) at (3, 2);
+  \draw (A) -- (Q);
+  \draw (Q) circle (0.6183cm);
+  \draw (K) circle (2.1053cm);
 \end{tikzpicture}
 \end{document}

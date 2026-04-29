@@ -2,7 +2,15 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (0.93,0);
-  \draw (0.73,0) circle (0.73cm);
+  \coordinate (S) at (0, 0);
+  \coordinate (I) at (1, 0);
+  \coordinate (Q) at (2, 1);
+  \coordinate (Y) at (4, 1);
+  \coordinate (M) at (3, 2);
+  \coordinate (U) at (5, 1);
+  \draw (U) -- (M);
+  \draw (Q) -- (Y);
+  \draw (Q) -- (S);
+  \draw[red] (S) circle (1.2859);
 \end{tikzpicture}
 \end{document}

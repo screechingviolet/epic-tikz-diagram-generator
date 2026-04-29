@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (K) at (0,0);
+  \coordinate (D) at (3.3868,0);
+  \coordinate (L) at (5.2,1.5);
+  \draw (K) circle (2.736);
+  \draw (K) -- (D);
+  \draw (D) -- (L);
+  \draw (L) -- (D);
+  \node at (K) [circle,fill,inner sep=2pt] {};
+  \node at (D) [circle,fill,inner sep=2pt] {};
+  \node at (L) [circle,fill,inner sep=2pt] {};
+\end{tikzpicture}
+\end{document}

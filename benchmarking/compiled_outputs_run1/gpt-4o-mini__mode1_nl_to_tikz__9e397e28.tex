@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (A) at (0, 0);
+  \coordinate (J) at (3.4278, 0);
+  \coordinate (W) at (2.7964, 1);
+  \coordinate (N) at (1, 1);
+  \draw (A) -- (J);
+  \draw (A) -- (W);
+  \draw (W) -- (J);
+  \draw[red] (J) circle (2.1365);
+  \draw[blue] (N) circle (1.3642);
+\end{tikzpicture}
+\end{document}

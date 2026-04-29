@@ -2,10 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (7.2948,0);
-  \draw (0,1) -- (7.2948,1);
-  \draw (0,2) -- (6.0297,2);
-  \draw (0,0) circle (2.8154cm);
-  \draw (1.5781,0) circle (2.7678cm);
+  \coordinate (T) at (0, 0);
+  \coordinate (Z) at (3.8789, 1);
+  \coordinate (B) at (1, 0);
+  \coordinate (Q) at (5, 1);
+  \draw (Z) -- (B);
+  \draw (B) -- (Q);
+  \draw[red] (Q) circle (0.9249);
 \end{tikzpicture}
 \end{document}

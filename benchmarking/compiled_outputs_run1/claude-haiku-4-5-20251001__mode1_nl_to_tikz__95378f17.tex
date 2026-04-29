@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  % Place T at origin
+  \coordinate (T) at (0, 0);
+  % Place P such that la = 3.4083
+  \coordinate (P) at (3.4083, 0);
+  % Place O such that ld = 10.1825 and la || ld
+  \coordinate (O) at (10.1825, 0);
+  
+  % Draw lines (parallel)
+  \draw (P) -- (T);
+  \draw (O) -- (T);
+  
+  % Draw circles
+  \draw (O) circle (2.5786);
+  \draw (P) circle (1.2855);
+  
+  % Mark points
+  \filldraw (P) circle (1.5pt);
+  \filldraw (T) circle (1.5pt);
+  \filldraw (O) circle (1.5pt);
+\end{tikzpicture}
+\end{document}

@@ -2,8 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle(1.8106);
-  \draw (3.4279,0) -- (0,0);
-  \draw (0,0) -- (6.3904,0);
+  \draw (0,0) coordinate (F);
+  \draw (F) -- ++(20.63:7.9914) coordinate (V);
+  \draw (F) -- ++(0:5.2814) coordinate (S);
+  \draw (S) -- (F);
+  \draw (F) circle (2.3575);
+  \draw (S) -- ++(0:5.2814);
+  \draw (V) -- ++(159.37:7.9914);
 \end{tikzpicture}
 \end{document}

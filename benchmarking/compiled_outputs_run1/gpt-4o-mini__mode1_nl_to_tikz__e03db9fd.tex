@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (Z) at (0, 0);
+  \coordinate (K) at (1, 1);
+  \coordinate (J) at (2, 0);
+  \coordinate (Q) at (1.5, 2);
+  \draw (J) -- (Z);
+  \draw (Q) -- (Z);
+  \draw[red] (Q) circle (2.4382);
+\end{tikzpicture}
+\end{document}

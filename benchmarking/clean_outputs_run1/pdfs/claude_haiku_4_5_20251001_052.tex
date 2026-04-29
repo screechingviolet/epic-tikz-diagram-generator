@@ -2,9 +2,13 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle (1.5cm);
-  \draw (-2,0) -- (2,0);
-  \draw (-1.5,-1) -- (1.5,1);
-  \draw (-2,1) -- (2,-1);
+  \coordinate (Z) at (0, 0);
+  \coordinate (X) at (3.6217, 0);
+  \coordinate (B) at (2.7751 + 1.4484, 0);
+  \coordinate (L) at (1, 2);
+  \coordinate (R) at (2, 2);
+  \draw (X) -- (Z);
+  \draw (Z) circle (2.7751cm);
+  \draw (B) circle (1.4484cm);
 \end{tikzpicture}
 \end{document}

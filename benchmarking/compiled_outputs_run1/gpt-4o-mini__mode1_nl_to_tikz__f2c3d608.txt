@@ -1,0 +1,1 @@
+Point L exists, as does point V, point E, and point Y. Line lv is formed by connecting point V to itself, while line lx connects point V to point L. Circle ω10 is centered at point E and has a radius of 2.4923. The length of line lx is 5.2091, and lines lv and lx are parallel with a perpendicular distance of 0.0.

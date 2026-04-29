@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (F) at (0,0);
+  \coordinate (S) at (0,-1.3313);
+  \coordinate (H) at (0,-1.3313);
+  \coordinate (Y) at (0,-9.9286);
+  \draw circle (2.2412);
+  \draw (S) -- (H);
+  \draw (F) -- (Y);
+  \node at (F) [circle,fill,inner sep=2pt] {};
+  \node at (S) [circle,fill,inner sep=2pt] {};
+  \node at (H) [circle,fill,inner sep=2pt] {};
+  \node at (Y) [circle,fill,inner sep=2pt] {};
+\end{tikzpicture}
+\end{document}

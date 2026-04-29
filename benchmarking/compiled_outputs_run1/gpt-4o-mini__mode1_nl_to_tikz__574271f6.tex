@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (C) at (0,0);
+  \coordinate (Z) at (3.1133,0);
+  \coordinate (O) at (2.9842,2);
+  \coordinate (E) at (5,0);
+  \draw[thick] (C) -- (Z) node[midway, below] {$l_w$};
+  \draw[thick] (O) -- (Z) node[midway, left] {$l_s$};
+  \draw[thick] (E) -- (O) node[midway, right] {$l_m$};
+  \draw (E) circle (1.1032);
+  \draw (Z) circle (2.3423);
+\end{tikzpicture}
+\end{document}

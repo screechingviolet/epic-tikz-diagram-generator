@@ -2,8 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (2.53,0);
-  \draw (0,0) circle (1.30cm);
-  \draw (0,0) circle (2.25cm);
+  \coordinate (W) at (0,0);
+  \coordinate (X) at (9.9257,0);
+  \coordinate (K) at (1.5,1.5);
+  \draw[thick] (K) -- (W) node[midway, left] {$l_x$};
+  \draw[thick] (W) -- (X) node[midway, below] {$l_m$};
+  \draw (K) circle (2.1949);
+  \draw (X) circle (2.6261);
 \end{tikzpicture}
 \end{document}

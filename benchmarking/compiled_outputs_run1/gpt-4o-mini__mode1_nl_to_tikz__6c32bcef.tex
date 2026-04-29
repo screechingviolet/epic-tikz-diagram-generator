@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (X) at (0, 0);
+  \coordinate (T) at (1.5, 1);
+  \coordinate (D) at (1, -1);
+  \coordinate (N) at (-2, 0);
+  \coordinate (L) at (2, 1);
+  \coordinate (G) at (2, -1);
+  \draw (G) -- (D);
+  \draw[red] (T) circle (0.5843);
+  \draw[blue] (L) circle (0.8245);
+  \draw[blue] (G) -- (D);
+\end{tikzpicture}
+\end{document}

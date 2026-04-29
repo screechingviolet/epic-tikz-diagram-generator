@@ -2,8 +2,15 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) circle (1.93cm);
-  \draw (4.75,0) circle (2.82cm);
-  \draw (0,0) -- (2.91,0);
+  \coordinate (C) at (0,0);
+  \coordinate (R) at (14.7304,0);
+  \coordinate (S) at (2.5,5);
+  \draw circle (0.8614);
+  \draw (C) -- (R);
+  \draw (S) -- (R);
+  \draw (R) -- (C);
+  \node at (C) [circle,fill,inner sep=2pt] {};
+  \node at (R) [circle,fill,inner sep=2pt] {};
+  \node at (S) [circle,fill,inner sep=2pt] {};
 \end{tikzpicture}
 \end{document}

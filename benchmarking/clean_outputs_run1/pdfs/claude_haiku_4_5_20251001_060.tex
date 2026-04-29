@@ -2,10 +2,12 @@
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}
-  \draw (0,0) -- (2.58,0);
-  \draw (0,0) -- (1.28,1.46);
-  \draw (1.28,1.46) -- (5.48,0);
-  \draw (0,0) circle (2.80cm);
-  \draw (1.28,1.46) circle (2.42cm);
+  \coordinate (J) at (0,0);
+  \coordinate (Z) at (2,2);
+  \coordinate (S) at (5,0);
+  \draw (J) -- (S);
+  \node at (J) [circle,fill,inner sep=2pt] {};
+  \node at (Z) [circle,fill,inner sep=2pt] {};
+  \node at (S) [circle,fill,inner sep=2pt] {};
 \end{tikzpicture}
 \end{document}

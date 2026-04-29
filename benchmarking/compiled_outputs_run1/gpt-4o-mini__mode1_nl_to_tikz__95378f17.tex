@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (P) at (0, 0);
+  \coordinate (T) at (2, 0);
+  \coordinate (O) at (3, 3);
+  \draw [line width=0.5mm] (P) -- (T);
+  \draw [line width=0.5mm] (T) -- (O);
+  \draw [draw=black, fill=none] (O) circle(2.5786);
+  \draw [draw=black, fill=none] (P) circle(1.2855);
+\end{tikzpicture}
+\end{document}
