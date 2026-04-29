@@ -366,7 +366,7 @@ training_args = GRPOConfig(
     output_dir=SAVE_DIR,
     # ~10–15 min on a single consumer GPU. Long enough to see the reward
     # curve trend up off the floor, short enough to iterate on.
-    max_steps=300,
+    max_steps=720,
     logging_steps=1,
     # num_generations=2 was effectively giving us one comparison per prompt,
     # so the within-group advantage was almost pure noise. 4 is the sweet
