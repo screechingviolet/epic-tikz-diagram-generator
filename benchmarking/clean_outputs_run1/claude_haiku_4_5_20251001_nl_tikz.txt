@@ -1,0 +1,409 @@
+============================================================
+#1
+NL:
+There are two circles in this diagram, one centered at point P2 with a radius of approximately 2.38, and another centered at point P1 with a radius of about 1.12. A line connecting points P3 and P1 measures approximately 4.66 units in length.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.12cm);
+  \draw (3,0) circle (2.38cm);
+  \draw (0,0) -- (4.66,0);
+\end{tikzpicture}
+
+============================================================
+#2
+NL:
+A line connects points P2 and P0, measuring approximately 5.92 units in length. In addition, a circle is centered at point P3 with a radius of about 1.28 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (5.92,0);
+  \draw (3,1.5) circle (1.28cm);
+\end{tikzpicture}
+
+============================================================
+#3
+NL:
+There are two lines that touch a circle at distinct points: line L0 grazes circle C0, and likewise, line L2 also makes contact with the circle. The lengths of lines L0 and L2 are equal, while line L1 is shorter. The angle between lines L0 and L1 is 150.79 degrees, while lines L1 and L2 create an angle of 29.21 degrees. Furthermore, lines L0 and L2 are parallel.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.5cm);
+  \draw (-2,0) -- (2,0);
+  \draw (-1.5,-1) -- (1.5,1);
+  \draw (-2,1) -- (2,-1);
+\end{tikzpicture}
+
+============================================================
+#4
+NL:
+There is a line that touches a circle at exactly one point, and this line has a length of about 1.3873 units. The circle has a radius of 1.754 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.754cm);
+  \draw (-1,0) -- (0.3873,-1);
+\end{tikzpicture}
+
+============================================================
+#5
+NL:
+There is a line that connects two points, and this line has a length of approximately 4.91 units. A small circle, centered at one of these points, has a radius of about 0.57 units, and the line just grazes this circle. In addition, there is a larger circle, also centered at the same point, which has a radius of roughly 2.89 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (0.57cm);
+  \draw (0,0) circle (2.89cm);
+  \draw (0,0) -- (4.91,0);
+\end{tikzpicture}
+
+============================================================
+#6
+NL:
+There are two parallel lines, of which one has a length of approximately 2.53 units. Additionally, there are two circles centered at the same point; the first has a radius of about 1.30 units, while the second has a radius of roughly 2.25 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.30cm);
+  \draw (0,0) circle (2.25cm);
+  \draw (0,1) -- (2.53,1);
+  \draw (0,-1) -- (2.53,-1);
+\end{tikzpicture}
+
+============================================================
+#7
+NL:
+There are two circles, C0 and C1, that are externally tangent to each other. Circle C0 has a radius of 1.357, while circle C1 has a radius of 1.8021. Additionally, there is a line, L0, connecting points P2 and P3, which measures 3.1591 units in length.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.357cm);
+  \draw (3.1591,0) circle (1.8021cm);
+  \draw (1,2) -- (2.1591,4.1591);
+\end{tikzpicture}
+
+============================================================
+#8
+NL:
+There are two circles centered at the same point; the first circle has a radius of approximately 2.96 units, while the second circle has a radius of about 2.54 units. Additionally, a line connecting two points has a length of roughly 3.88 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (2.96cm);
+  \draw (0,0) circle (2.54cm);
+  \draw (0,0) -- (3.88,0);
+\end{tikzpicture}
+
+============================================================
+#9
+NL:
+There are three points forming the vertices of a triangle, connected by three line segments. One line segment is longer than the others, measuring approximately 6.05 units, while another is about 1.50 units, and the shortest measures roughly 2.93 units. Additionally, two circles are drawn, the first having a radius of about 2.32 units and the second with a smaller radius of around 0.65 units. At the intersection of the longest line and the second line, the angle formed is about 13.54 degrees, while the angle between the second and shortest lines is 98.20 degrees, and the angle between the longest and the shortest line is 111.74 degrees.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (6.05,0);
+  \draw (6.05,0) -- (2.66,1.53);
+  \draw (2.66,1.53) -- (0,0);
+  \draw (0,0) circle (2.32cm);
+  \draw (6.05,0) circle (0.65cm);
+\end{tikzpicture}
+
+============================================================
+#10
+NL:
+There are two circles in this scene: one with a radius of approximately 1.93 and another with a radius of about 2.82. These two circles touch each other on the outside. Additionally, there is a line that connects two points and has a length of approximately 2.91, which runs parallel to another line defined by a single point.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.93cm);
+  \draw (4.75,0) circle (2.82cm);
+  \draw (0,0) -- (2.91,0);
+\end{tikzpicture}
+
+============================================================
+#11
+NL:
+There is a line segment connecting two points with a length of approximately 2.58 units, and another line segment that connects two different points that measures about 1.70 units. A third line segment, longer than the previous two, spans 5.48 units. Additionally, one circle with a radius of roughly 2.80 units is centered at one point, while another circle, smaller at about 2.42 units in radius, is centered at a different point. The second line segment just grazes the smaller circle, and the angles formed by the intersections of these lines are 110.11°, 140.99°, and 30.88° respectively.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (2.58,0);
+  \draw (0,0) -- (1.28,1.46);
+  \draw (1.28,1.46) -- (5.48,0);
+  \draw (0,0) circle (2.80cm);
+  \draw (1.28,1.46) circle (2.42cm);
+\end{tikzpicture}
+
+============================================================
+#12
+NL:
+There are two lines in the diagram: one that stretches significantly longer than the other. The first line connects two points and measures approximately 8.46 units, while the second line connects a different pair of points and is about 2.1 units long. Additionally, there are two circles, one with a radius of around 0.69 units and the other at about 2.09 units. The two lines intersect at an angle of approximately 3.33 degrees.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (8.46,0);
+  \draw (0,0) -- (2.09,0.12);
+  \draw (0,0) circle (0.69cm);
+  \draw (8.46,0) circle (2.09cm);
+\end{tikzpicture}
+
+============================================================
+#13
+NL:
+There is a line that connects two points, and this line has a length of approximately 8.16 units. Additionally, a circle is centered at a given point with a radius of about 1.35 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (8.16,0);
+  \draw (0,0) circle (1.35cm);
+\end{tikzpicture}
+
+============================================================
+#14
+NL:
+There are two lines, one connecting points P2 and P1, and the other connecting points P2 and P0. These lines intersect at right angles. The first line is about 5.88 units long, while the second line measures approximately 6.39 units. Additionally, there is a circle centered at point P2 with a radius of approximately 2.67 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (5.88,0);
+  \draw (0,0) -- (0,6.39);
+  \draw (0,0) circle (2.67cm);
+\end{tikzpicture}
+
+============================================================
+#15
+NL:
+There is a line that connects two points, which has a total length of approximately 4.29 units. Additionally, two circles are present, the first with a radius of around 2.97 units centered at one of the points, and the second with a radius of about 2.15 units centered at the other point.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (4.29,0);
+  \draw (0,0) circle (2.97cm);
+  \draw (4.29,0) circle (2.15cm);
+\end{tikzpicture}
+
+============================================================
+#16
+NL:
+In this geometric configuration, two circles touch each other externally, with one having a radius of 1.8106 and the other 1.6173. There are three points defining two lines; one line has a length of 3.4279 and is parallel to another line of length 6.3904, which forms an angle of 165.63 degrees with it.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.8106cm);
+  \draw (3.4279,0) circle (1.6173cm);
+  \draw (0,0) -- (3.4279,0);
+  \draw (0,0) -- (6.27,0.61);
+\end{tikzpicture}
+
+============================================================
+#17
+NL:
+There are two circles in the diagram, one centered at point P0 with a radius of approximately 1.02 units and another centered at point P4 with a radius of about 2.89 units. Line L0 connects points P4 and P3 and measures 6.08 units long. Line L1, extending from P3 to P5, has a length of 7.24 units, while line L2 connects P2 and P3, measuring 2.63 units. The angle formed between lines L0 and L1 is roughly 76.46 degrees, and lines L0 and L2 meet at about 79.42 degrees, while lines L1 and L2 intersect at an angle of 155.88 degrees.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (1.02cm);
+  \draw (6.08,0) circle (2.89cm);
+  \draw (6.08,0) -- (9.47,6.97);
+  \draw (9.47,6.97) -- (7.34,2.37);
+  \draw (6.08,0) -- (7.34,2.37);
+\end{tikzpicture}
+
+============================================================
+#18
+NL:
+There are two lines, L0 and L1, which intersect at an angle of 90 degrees. Line L0 has a length of 4.0972, while line L1 measures 7.5159. Additionally, there are two circles centered at point P5: the first circle has a radius of 2.3315 and the second circle has a radius of 1.6946.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (4.0972,0);
+  \draw (0,0) -- (0,7.5159);
+  \draw[fill=none] (0,0) circle (2.3315);
+  \draw[fill=none] (0,0) circle (1.6946);
+\end{tikzpicture}
+
+============================================================
+#19
+NL:
+There is a line that connects two points and has a length of approximately 1.63 units. This same line just touches a circle with radius around 2.73 units, which is positioned at a specific point, while another circle with a radius of about 2.70 units is centered at a different point.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (1.63,0);
+  \draw[fill=none] (1.63,0) circle (2.73);
+  \draw[fill=none] (0,0) circle (2.70);
+\end{tikzpicture}
+
+============================================================
+#20
+NL:
+There are three lines in this configuration: two of them are parallel, both with equal lengths, and the third line, while also parallel to the first two, is slightly longer. Additionally, a circle is centered at one of the intersection points of the lines, and it has a specific radius.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (5,0);
+  \draw (0,2) -- (5,2);
+  \draw (0,4) -- (5.5,4);
+  \draw[fill=none] (0,0) circle (1.5);
+\end{tikzpicture}
+
+============================================================
+#21
+NL:
+There is a line connecting two points with a length of 6.15 units and a circle centered at a different point with a radius of 2.782 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (6.15,0);
+  \draw[fill=none] (3,1.5) circle (2.782);
+\end{tikzpicture}
+
+============================================================
+#22
+NL:
+There are two circles in the diagram. Circle C0 has a radius of 0.6446, while circle C1 is larger with a radius of 2.1022. These two circles are positioned such that they touch each other externally. There is also a line, labeled L0, connecting two points, which has a total length of 2.7468.
+
+TikZ:
+\begin{tikzpicture}
+  \draw[fill=none] (0,0) circle (0.6446);
+  \draw[fill=none] (2.7468,0) circle (2.1022);
+  \draw (0,0) -- (2.7468,0);
+\end{tikzpicture}
+
+============================================================
+#23
+NL:
+There are two circles, one with a radius of 0.5762 and the other with a radius of 1.2864, which are externally tangent to each other. Additionally, there is a line connecting two points with a length of 3.4309.
+
+TikZ:
+\begin{tikzpicture}
+  \draw[fill=none] (0,0) circle (0.5762);
+  \draw[fill=none] (1.8626,0) circle (1.2864);
+  \draw (0,0) -- (3.4309,0);
+\end{tikzpicture}
+
+============================================================
+#24
+NL:
+There is a line that connects point P3 to point P1, measuring 1.5695 units in length. Additionally, two circles exist centered at point P2: the first with a radius of 1.8075 units and the second with a smaller radius of 0.8657 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (1.5695,0);
+  \draw[fill=none] (1,1) circle (1.8075);
+  \draw[fill=none] (1,1) circle (0.8657);
+\end{tikzpicture}
+
+============================================================
+#25
+NL:
+The line connecting points P0 and P3 has a length of approximately 0.93 units, and it touches the circle centered at point P2 without crossing it, as the radius of the circle is about 0.73 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (0.93,0);
+  \draw[fill=none] (0.5,0.5) circle (0.73);
+\end{tikzpicture}
+
+============================================================
+#26
+NL:
+There are two lines in the diagram, L0 and L1, that are parallel to each other. Line L0 has a length of approximately 3.51 units, while line L1 measures about 7.95 units. Additionally, there is a circle centered at point P3 with a radius of roughly 1.10 units.
+
+TikZ:
+\begin{tikzpicture}
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (3.51, 0);
+  \coordinate (P2) at (0, 1);
+  \coordinate (P3) at (7.95, 1);
+  
+  \draw (P0) -- (P1);
+  \draw (P2) -- (P3);
+  
+  \draw (P3) circle (1.10);
+\end{tikzpicture}
+
+============================================================
+#27
+NL:
+There is a line connecting two points which measures approximately 2.26 units in length, and a circle that is centered at another point with a radius of 1.06 units.
+
+TikZ:
+\begin{tikzpicture}
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (2.26, 0);
+  \coordinate (C) at (1, 0.5);
+  
+  \draw (P0) -- (P1);
+  \draw (C) circle (1.06);
+\end{tikzpicture}
+
+============================================================
+#28
+NL:
+There is a line connecting two points, which has a length of 4.683 units. Additionally, there are two circles centered at one of the points; the first circle has a radius of 1.5229 units, and the second circle has a larger radius of 2.021 units.
+
+TikZ:
+\begin{tikzpicture}
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (4.683, 0);
+  
+  \draw (P0) -- (P1);
+  
+  \draw (P0) circle (1.5229);
+  \draw (P0) circle (2.021);
+\end{tikzpicture}
+
+============================================================
+#29
+NL:
+There are two lines, one of which is shorter, measuring 4.3904 units, while the other stretches to 7.1269 units. Both lines are parallel to each other and touch a circle with a radius of 0.6413 units at exactly one point each.
+
+TikZ:
+\begin{tikzpicture}
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (4.3904, 0);
+  \coordinate (P2) at (0, 1.5);
+  \coordinate (P3) at (7.1269, 1.5);
+  
+  \draw (P0) -- (P1);
+  \draw (P2) -- (P3);
+  
+  \draw (0.5, 0.75) circle (0.6413);
+\end{tikzpicture}
+
+============================================================
+#30
+NL:
+A line connecting two points has a length of 2.843 units, while a circle centered at another point has a radius of 2.6083 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (2.843,0);
+  \draw (4,0) circle (2.6083cm);
+\end{tikzpicture}
+
+============================================================
+#31
+NL:
+There are two circles in the diagram, one with a radius of approximately 2.73 units and another with a radius of about 1.33 units. These circles are positioned such that they touch each other externally. Additionally, a line connecting two specific points has a total length of 2.83 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) circle (2.73cm);
+  \draw (4.0382,0) circle (1.33cm);
+  \draw (0,0) -- (4.06,0);
+\end{tikzpicture}
+
+============================================================
+#32
+NL:
+There are two lines, L0 and L1, which intersect at a right angle. Line L0 measures approximately 2.0066 units in length, while line L1 is slightly longer at around 2.3538 units. Additionally, a circle centered at the endpoint of line L1 has a radius of 1.3658 units.
+
+TikZ:
+\begin{tikzpicture}
+  \draw (0,0) -- (2.0066,0);
+  \draw (2.0066,0) -- (2.0066,2.3538);
+  \draw (2.0066,2.3538) circle (1.3658cm);
+\end{tikzpicture}
+

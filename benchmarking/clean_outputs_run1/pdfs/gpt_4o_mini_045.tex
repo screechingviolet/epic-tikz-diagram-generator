@@ -1,0 +1,12 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) circle (2.15);
+  \draw (0,0) circle (1.91);
+  \draw[->] (2.15,0) -- (2.15,2.15); % tangent line
+  \draw (3,2) -- (1,0);
+  \draw (1,0) -- (0,2);
+  \draw[->] (1,0) -- (2,2); % varying angles
+\end{tikzpicture}
+\end{document}

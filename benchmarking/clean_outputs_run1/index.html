@@ -1,0 +1,502 @@
+<!DOCTYPE html><html><head>
+<style>
+body { font-family: monospace; max-width: 960px; margin: auto; padding: 20px; }
+h2 { border-bottom: 2px solid #333; }
+.entry { margin-bottom: 40px; }
+.nl { background: #f0f0f0; padding: 10px; border-radius: 4px; margin-bottom: 8px; }
+.models { display: flex; gap: 20px; }
+.model { flex: 1; }
+iframe { width: 100%; height: 300px; border: 1px solid #ccc; }
+</style></head><body>
+<h1>Benchmark run1 — NL → TikZ</h1>
+<div class="entry"><h2>#1</h2>
+<div class="nl">There are two circles in this diagram, one centered at point P2 with a radius of approximately 2.38, and another centered at point P1 with a radius of about 1.12. A line connecting points P3 and P1 measures approximately 4.66 units in length.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_001.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_050.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#2</h2>
+<div class="nl">There are two circles in the diagram, with the first circle centered at one point and having a radius of approximately 1.2 units, while the second circle has a slightly smaller radius of about 1.03 units. Additionally, three lines connect various points, with the first line measuring around 2.7 units in length, the second line measuring almost 4.7 units, and the third line being about 2.6 units. Notably, the second line just grazes the first circle, and the first and second lines intersect at an angle of approximately 27.81 degrees, while the first and third lines meet at an angle of roughly 56.61 degrees, and the second and third lines form an angle of about 28.81 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_002.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#3</h2>
+<div class="nl">A line connects points P2 and P0, measuring approximately 5.92 units in length. In addition, a circle is centered at point P3 with a radius of about 1.28 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_003.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_051.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#4</h2>
+<div class="nl">There are three points labeled P0, P1, and P2, with lines connecting P0 to P1 and P2. Line L0, which joins P0 and P1, measures 5.3552 units in length. Line L1 connects P2 to P0 and has a length of 2.5296 units. Additionally, line L2 is another segment linking P0 and P1 with the same length as L0. A circle centered at P2 has a radius of 0.5470 units, and both lines L0 and L2 are tangent to this circle. The angle formed between line L0 and line L1 measures 167.51 degrees, and lines L0 and L2 are parallel, while lines L1 and L2 intersect at an angle of 167.51 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_004.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#5</h2>
+<div class="nl">There are two lines that touch a circle at distinct points: line L0 grazes circle C0, and likewise, line L2 also makes contact with the circle. The lengths of lines L0 and L2 are equal, while line L1 is shorter. The angle between lines L0 and L1 is 150.79 degrees, while lines L1 and L2 create an angle of 29.21 degrees. Furthermore, lines L0 and L2 are parallel.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_005.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_052.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#6</h2>
+<div class="nl">There are two lines, L0 and L1, which intersect at an angle of 113.35 degrees, while L0 also forms an angle of 28.99 degrees with line L2. Line L1 grazes circle C0, which has a radius of 1.9291 units, and L1 is significantly longer, measuring 4.4494 units, compared to L0's length of 1.2195 units and L2's length of 3.1575 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_006.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#7</h2>
+<div class="nl">There is a line that touches a circle at exactly one point, and this line has a length of about 1.3873 units. The circle has a radius of 1.754 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_007.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_053.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#8</h2>
+<div class="nl">There is a line that connects two points, and this line has a length of approximately 4.91 units. A small circle, centered at one of these points, has a radius of about 0.57 units, and the line just grazes this circle. In addition, there is a larger circle, also centered at the same point, which has a radius of roughly 2.89 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_008.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_054.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#9</h2>
+<div class="nl">There are two parallel lines, of which one has a length of approximately 2.53 units. Additionally, there are two circles centered at the same point; the first has a radius of about 1.30 units, while the second has a radius of roughly 2.25 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_009.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_055.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#10</h2>
+<div class="nl">There are two circles, C0 and C1, that are externally tangent to each other. Circle C0 has a radius of 1.357, while circle C1 has a radius of 1.8021. Additionally, there is a line, L0, connecting points P2 and P3, which measures 3.1591 units in length.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_010.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_056.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#11</h2>
+<div class="nl">There are two circles centered at the same point; the first circle has a radius of approximately 2.96 units, while the second circle has a radius of about 2.54 units. Additionally, a line connecting two points has a length of roughly 3.88 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_011.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_057.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#12</h2>
+<div class="nl">There are three points forming the vertices of a triangle, connected by three line segments. One line segment is longer than the others, measuring approximately 6.05 units, while another is about 1.50 units, and the shortest measures roughly 2.93 units. Additionally, two circles are drawn, the first having a radius of about 2.32 units and the second with a smaller radius of around 0.65 units. At the intersection of the longest line and the second line, the angle formed is about 13.54 degrees, while the angle between the second and shortest lines is 98.20 degrees, and the angle between the longest and the shortest line is 111.74 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_012.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_058.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#13</h2>
+<div class="nl">There are two circles in this scene: one with a radius of approximately 1.93 and another with a radius of about 2.82. These two circles touch each other on the outside. Additionally, there is a line that connects two points and has a length of approximately 2.91, which runs parallel to another line defined by a single point.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_013.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_059.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#14</h2>
+<div class="nl">There is a line segment connecting two points with a length of approximately 2.58 units, and another line segment that connects two different points that measures about 1.70 units. A third line segment, longer than the previous two, spans 5.48 units. Additionally, one circle with a radius of roughly 2.80 units is centered at one point, while another circle, smaller at about 2.42 units in radius, is centered at a different point. The second line segment just grazes the smaller circle, and the angles formed by the intersections of these lines are 110.11°, 140.99°, and 30.88° respectively.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_014.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_060.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#15</h2>
+<div class="nl">There are two lines in the diagram: one that stretches significantly longer than the other. The first line connects two points and measures approximately 8.46 units, while the second line connects a different pair of points and is about 2.1 units long. Additionally, there are two circles, one with a radius of around 0.69 units and the other at about 2.09 units. The two lines intersect at an angle of approximately 3.33 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_015.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_061.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#16</h2>
+<div class="nl">There is a line that connects two points, and this line has a length of approximately 8.16 units. Additionally, a circle is centered at a given point with a radius of about 1.35 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_016.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_062.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#17</h2>
+<div class="nl">There are two lines, one connecting points P2 and P1, and the other connecting points P2 and P0. These lines intersect at right angles. The first line is about 5.88 units long, while the second line measures approximately 6.39 units. Additionally, there is a circle centered at point P2 with a radius of approximately 2.67 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_017.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_063.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#18</h2>
+<div class="nl">There is a line that connects two points, which has a total length of approximately 4.29 units. Additionally, two circles are present, the first with a radius of around 2.97 units centered at one of the points, and the second with a radius of about 2.15 units centered at the other point.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_018.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_064.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#19</h2>
+<div class="nl">In this geometric configuration, two circles touch each other externally, with one having a radius of 1.8106 and the other 1.6173. There are three points defining two lines; one line has a length of 3.4279 and is parallel to another line of length 6.3904, which forms an angle of 165.63 degrees with it.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_019.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_065.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#20</h2>
+<div class="nl">There are two circles in the diagram, one centered at point P0 with a radius of approximately 1.02 units and another centered at point P4 with a radius of about 2.89 units. Line L0 connects points P4 and P3 and measures 6.08 units long. Line L1, extending from P3 to P5, has a length of 7.24 units, while line L2 connects P2 and P3, measuring 2.63 units. The angle formed between lines L0 and L1 is roughly 76.46 degrees, and lines L0 and L2 meet at about 79.42 degrees, while lines L1 and L2 intersect at an angle of 155.88 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_020.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_066.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#21</h2>
+<div class="nl">There are two lines, L0 and L1, which intersect at an angle of 90 degrees. Line L0 has a length of 4.0972, while line L1 measures 7.5159. Additionally, there are two circles centered at point P5: the first circle has a radius of 2.3315 and the second circle has a radius of 1.6946.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_021.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_067.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#22</h2>
+<div class="nl">There is a line that connects two points and has a length of approximately 1.63 units. This same line just touches a circle with radius around 2.73 units, which is positioned at a specific point, while another circle with a radius of about 2.70 units is centered at a different point.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_022.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_068.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#23</h2>
+<div class="nl">There are three lines in this configuration: two of them are parallel, both with equal lengths, and the third line, while also parallel to the first two, is slightly longer. Additionally, a circle is centered at one of the intersection points of the lines, and it has a specific radius.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_023.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_069.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#24</h2>
+<div class="nl">There is a line connecting two points with a length of 6.15 units and a circle centered at a different point with a radius of 2.782 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_024.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_070.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#25</h2>
+<div class="nl">There are two circles in the diagram. Circle C0 has a radius of 0.6446, while circle C1 is larger with a radius of 2.1022. These two circles are positioned such that they touch each other externally. There is also a line, labeled L0, connecting two points, which has a total length of 2.7468.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_025.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_071.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#26</h2>
+<div class="nl">There are two circles, one with a radius of 2.8154 and another with a radius of 2.7678, that touch each other externally. Alongside, line L0, measuring 7.2948, runs parallel to line L1, while line L2, with a length of 6.0297, is also parallel to line L1. The angle formed between lines L0 and L2 is 41.68 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_026.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#27</h2>
+<div class="nl">There are two circles, one with a radius of 0.5762 and the other with a radius of 1.2864, which are externally tangent to each other. Additionally, there is a line connecting two points with a length of 3.4309.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_027.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_072.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#28</h2>
+<div class="nl">There is a line that connects point P3 to point P1, measuring 1.5695 units in length. Additionally, two circles exist centered at point P2: the first with a radius of 1.8075 units and the second with a smaller radius of 0.8657 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_028.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_073.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#29</h2>
+<div class="nl">The line connecting points P0 and P3 has a length of approximately 0.93 units, and it touches the circle centered at point P2 without crossing it, as the radius of the circle is about 0.73 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_029.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_074.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#30</h2>
+<div class="nl">In this geometric configuration, line L0 connects point P4 to point P0 and has a length of 4.8543 units. Meanwhile, line L1 runs from P1 to P0, measuring 8.6545 units, and they intersect with an angle of 108.64 degrees. Additionally, line L2 extends from P4 to P2 at a length of 6.1617 units, and it is parallel to line L0, while it forms another angle of 108.64 degrees with line L1. The circle C0, centered at P0, has a radius of 1.1161 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_030.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#31</h2>
+<div class="nl">There are two parallel lines that are both equal in length, and they intersect with another line at an angle of approximately 152 degrees. Two circles are present; one has a radius that measures just over 1.5 units, while the other has a slightly smaller radius, around 1.3 units. Interestingly, these circles touch each other externally.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_031.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#32</h2>
+<div class="nl">There is a circle with a radius of 0.9324 that is touched by a line of length 2.5486, known as L0. This line, L0, intersects another line, L1, which is longer at 6.8707, forming an angle of 16.15 degrees between them.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_032.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#33</h2>
+<div class="nl">There are three lines in the diagram, with the first line connecting two points and measuring about 2.20 units in length, while the second line, which also connects a different pair of points, is approximately 3.97 units long. The third line, spanning between other points, is the longest at around 6.14 units. Additionally, there's a circle centered on one of the points with a radius of about 0.56 units. The first and second lines intersect at an angle of about 168 degrees, while the first and third lines meet at a nearly flat angle of 7.73 degrees. The second and third lines also come together at an angle close to 176 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_033.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#34</h2>
+<div class="nl">There are two lines in the diagram, L0 and L1, that are parallel to each other. Line L0 has a length of approximately 3.51 units, while line L1 measures about 7.95 units. Additionally, there is a circle centered at point P3 with a radius of roughly 1.10 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_034.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_075.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#35</h2>
+<div class="nl">There is a line connecting two points which measures approximately 2.26 units in length, and a circle that is centered at another point with a radius of 1.06 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_035.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_076.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#36</h2>
+<div class="nl">There is a line connecting two points, which has a length of 4.683 units. Additionally, there are two circles centered at one of the points; the first circle has a radius of 1.5229 units, and the second circle has a larger radius of 2.021 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_036.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_077.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#37</h2>
+<div class="nl">There are two lines, one of which is shorter, measuring 4.3904 units, while the other stretches to 7.1269 units. Both lines are parallel to each other and touch a circle with a radius of 0.6413 units at exactly one point each.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_037.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_078.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#38</h2>
+<div class="nl">There are three points that form lines: the first line connects points P0 and P1, measuring 4.7003 units in length, while the second line joins points P1 and P4 with a length of 3.1703 units. A third line, connecting points P5 and P4, is 2.6943 units long. Additionally, a circle centered at point P4 has a radius of 1.2682 units. Lines L0 and L1 intersect, forming an angle of 73.45 degrees, while lines L0 and L2 form an angle of 55.94 degrees. Lastly, lines L1 and L2 meet at an angle of 129.39 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_038.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#39</h2>
+<div class="nl">There are two lines, one of length 9.3407 and another of length 6.4224, which intersect at an angle of 83.11 degrees. Additionally, a circle with a radius of 2.7404 is centered at the endpoint of the longer line.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_039.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#40</h2>
+<div class="nl">A line connecting two points has a length of 2.843 units, while a circle centered at another point has a radius of 2.6083 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_040.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_079.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#41</h2>
+<div class="nl">There are two parallel lines that have equal lengths, each measuring approximately 2.3841 units. Both lines are tangent to a circle with a radius of about 2.9527 units. Additionally, one of the lines forms an angle of 84.05 degrees with a third line that measures approximately 2.9687 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_041.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#42</h2>
+<div class="nl">There are two circles in the diagram, one with a radius of approximately 2.73 units and another with a radius of about 1.33 units. These circles are positioned such that they touch each other externally. Additionally, a line connecting two specific points has a total length of 2.83 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_042.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_080.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#43</h2>
+<div class="nl">There are two points, P0 and P1, from which a circle with radius 1.5793 units, C0, is drawn around P1, and a smaller circle with a radius of 0.5313 units, C1, is also centered at P1. Line L0 connects point P2 to P0 and has a length of 9.0277 units. Line L1, which connects P3 to P0, measures 3.7660 units in length and is tangent to circle C0. The angle between lines L0 and L1 is 48.17 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_043.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#44</h2>
+<div class="nl">In this geometric configuration, two circles, C0 and C1, are externally tangent, meaning they just touch each other without overlapping. Line L0 connects points P0 and P1, measuring 8.0521 units in length. Line L1, which extends between points P4 and P2, has a length of 2.821 units, forming an angle of 23.95 degrees with line L0. Line L2 links points P3 and P0 and has a length of 7.755 units. The angle between line L0 and line L2 is 139.41 degrees, while lines L1 and L2 intersect at an angle of 115.47 degrees. Additionally, circle C0 has a radius of 0.8979 units, and circle C1 has a radius of 0.5382 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_044.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#45</h2>
+<div class="nl">There are two circles centered at the same point, with one circle having a radius of approximately 2.15 and the other with a radius of about 1.91. A line from one point touches the first circle without crossing it, indicating it is tangent. Additionally, three lines connect various points, with two lines meeting at an angle of approximately 68.75 degrees, another pair at about 57.73 degrees, and the last pair at approximately 11.02 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_045.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#46</h2>
+<div class="nl">There are two lines, L0 and L1, which intersect at a right angle. Line L0 measures approximately 2.0066 units in length, while line L1 is slightly longer at around 2.3538 units. Additionally, a circle centered at the endpoint of line L1 has a radius of 1.3658 units.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_046.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<iframe src="pdfs/claude_haiku_4_5_20251001_081.pdf"></iframe>
+</div>
+</div></div>
+<div class="entry"><h2>#47</h2>
+<div class="nl">In this geometry diagram, there are two circles, C0 and C1, that are externally tangent to one another. The radius of circle C0 is 1.9362, while circle C1 has a radius of 2.4265. Three lines, L0, L1, and L2, have lengths of 3.6776, 2.8213, and 7.6500 respectively. The lines L0 and L1 intersect at an angle of 118.16 degrees, L0 and L2 meet at 59.46 degrees, and L1 and L2 form an angle of 58.7 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_047.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#48</h2>
+<div class="nl">There are three points connected by lines: the first line, stretching between two points, has a length of just over 1.09 units, while the second line measures about 1.59 units. The third line is significantly longer, at roughly 4.01 units. Additionally, two circles are present; the larger circle has a radius of approximately 2.12 units, and the smaller one has a radius of 0.53 units. The first and second lines intersect at an angle of about 106.82 degrees, the first and third lines meet at an angle of 75.83 degrees, and the second and third lines form an angle of 177.36 degrees.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_048.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+<div class="entry"><h2>#49</h2>
+<div class="nl">There are two lines, one measuring approximately 5.15 units and the other about 6.40 units, that form an angle of 174.19 degrees where they intersect. Additionally, there are two circles; the first has a radius of around 1.66 units, while the second has a radius of about 2.95 units, and they graze each other externally.</div>
+<div class="models">
+<div class="model"><b>gpt-4o-mini</b><br>
+<iframe src="pdfs/gpt_4o_mini_049.pdf"></iframe>
+</div>
+<div class="model"><b>claude-haiku-4-5-20251001</b><br>
+<p style="color:red">Did not compile</p>
+</div>
+</div></div>
+</body></html>
