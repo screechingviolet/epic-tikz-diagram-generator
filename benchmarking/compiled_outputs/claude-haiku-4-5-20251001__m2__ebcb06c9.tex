@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) circle (2.5cm);
+  \draw (-2.5,0) -- (0,2.5);
+  \draw (-2.5,0) -- (2.5,0);
+  \filldraw (0,0) circle (1pt);
+  \filldraw (0,2.5) circle (1pt);
+  \filldraw (-2.5,0) circle (1pt);
+  \filldraw (0,-2.5) circle (1pt);
+  \filldraw (2.5,0) circle (1pt);
+\end{tikzpicture}
+\end{document}

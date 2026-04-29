@@ -1,0 +1,1 @@
+A right triangle formed by three line segments of lengths 3, 4, and 5.

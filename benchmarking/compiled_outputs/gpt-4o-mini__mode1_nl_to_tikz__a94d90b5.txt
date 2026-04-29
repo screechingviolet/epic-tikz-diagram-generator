@@ -1,0 +1,1 @@
+Six circles of radius 1 arranged in a ring, each tangent to its two neighbors and all tangent to a central circle of radius 1, with lines connecting the centers of opposite outer circles.

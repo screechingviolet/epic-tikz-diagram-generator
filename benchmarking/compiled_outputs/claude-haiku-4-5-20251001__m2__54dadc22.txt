@@ -1,0 +1,1 @@
+A circle of radius 1.5 with three tangent lines forming a triangle around it.

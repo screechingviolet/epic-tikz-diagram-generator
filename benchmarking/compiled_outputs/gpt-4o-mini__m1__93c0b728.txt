@@ -1,0 +1,1 @@
+A line of length 7 tangent to a circle of radius 2 and another circle of radius 1.

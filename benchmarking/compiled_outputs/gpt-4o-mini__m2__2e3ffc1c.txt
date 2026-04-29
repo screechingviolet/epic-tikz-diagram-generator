@@ -1,0 +1,1 @@
+A circle of radius 2 with a diameter drawn across it.

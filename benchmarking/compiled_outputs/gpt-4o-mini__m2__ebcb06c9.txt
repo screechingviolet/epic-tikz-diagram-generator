@@ -1,0 +1,1 @@
+A circle with radius 2.5 and two lines tangent to it.

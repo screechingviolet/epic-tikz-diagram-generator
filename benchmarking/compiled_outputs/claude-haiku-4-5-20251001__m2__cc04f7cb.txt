@@ -1,0 +1,1 @@
+Two circles of radius 2 with centers 6 units apart.

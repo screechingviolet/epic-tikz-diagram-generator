@@ -1,0 +1,1 @@
+Three concentric circles with radii 1, 2, and 3.

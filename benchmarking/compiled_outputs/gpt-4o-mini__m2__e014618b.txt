@@ -1,0 +1,1 @@
+A large circle of radius 5 with a small circle of radius 1 inside, tangent to the large circle.

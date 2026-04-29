@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,0);
+  \coordinate (C) at (6.5,3);
+  \coordinate (D) at (2,5);
+  
+  \draw (A) -- (B) -- (C) -- (D) -- (A);
+  \draw (A) -- (C);
+  \draw (B) -- (D);
+  
+  \draw (A) circle (0.5cm);
+  \draw (B) circle (0.5cm);
+  \draw (C) circle (0.5cm);
+  \draw (D) circle (0.5cm);
+  
+  \draw (3,2) circle (1.8cm);
+\end{tikzpicture}
+\end{document}

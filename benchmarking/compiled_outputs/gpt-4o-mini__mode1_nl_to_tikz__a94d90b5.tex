@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) circle (1cm);
+  \foreach \i in {0,1,2,3,4,5} {
+    \draw (60*\i:1.5cm) circle (1cm);
+  }
+  \draw (180:1.5cm) -- (0:1.5cm);
+  \draw (240:1.5cm) -- (60:1.5cm);
+\end{tikzpicture}
+\end{document}

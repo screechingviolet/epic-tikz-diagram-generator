@@ -1,0 +1,1 @@
+A circle of radius 2 inside a larger circle of radius 4, internally tangent.

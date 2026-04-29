@@ -1,0 +1,1 @@
+Four circles of radius 1 arranged at the corners of a square with side length 3.

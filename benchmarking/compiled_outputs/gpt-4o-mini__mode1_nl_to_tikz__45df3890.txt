@@ -1,0 +1,1 @@
+A line of length 10 with four circles of varying radii 0.5, 1, 1.5, and 2 all tangent to the line, each also tangent to the next.

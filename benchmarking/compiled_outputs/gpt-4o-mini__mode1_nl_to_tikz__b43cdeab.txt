@@ -1,0 +1,1 @@
+A circle of radius 2 with a tangent line of length 3 and a perpendicular line at the tangent point.

@@ -1,0 +1,1 @@
+A line segment of length 4 with a semicircle of radius 2 on one side.

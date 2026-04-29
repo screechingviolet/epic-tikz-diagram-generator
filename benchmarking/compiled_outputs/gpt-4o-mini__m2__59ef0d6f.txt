@@ -1,0 +1,1 @@
+A circle of radius 1 and a line that just grazes it, with the line having length 4.

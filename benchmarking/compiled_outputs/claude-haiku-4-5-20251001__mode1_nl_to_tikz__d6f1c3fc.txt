@@ -1,0 +1,1 @@
+A circle of radius 3 with three tangent lines forming an equilateral triangle around it, where each tangent line has length 5.

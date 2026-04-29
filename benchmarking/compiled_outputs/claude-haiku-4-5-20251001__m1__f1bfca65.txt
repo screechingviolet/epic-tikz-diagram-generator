@@ -1,0 +1,1 @@
+A triangle with sides of length 3, 3, and 4.

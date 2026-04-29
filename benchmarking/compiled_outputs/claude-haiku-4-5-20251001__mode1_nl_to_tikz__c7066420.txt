@@ -1,0 +1,1 @@
+Two lines of length 3 meeting at 90 degrees with a circle of radius 0.5 tangent to both.

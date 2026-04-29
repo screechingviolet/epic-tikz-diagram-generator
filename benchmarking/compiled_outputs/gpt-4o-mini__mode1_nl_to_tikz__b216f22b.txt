@@ -1,0 +1,1 @@
+Three parallel lines of lengths 2, 4, and 6, connected by two diagonal lines each crossing all three parallel lines at 45 degrees.

@@ -1,0 +1,1 @@
+Three lines forming an equilateral triangle with side length 4.

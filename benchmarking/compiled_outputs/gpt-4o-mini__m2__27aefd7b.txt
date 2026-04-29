@@ -1,0 +1,1 @@
+A rectangle with width 4 and height 3 with a circle inscribed in it.

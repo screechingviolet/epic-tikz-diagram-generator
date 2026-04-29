@@ -1,0 +1,1 @@
+A line segment of length 5 with circles of radius 1 centered at its quarter points.

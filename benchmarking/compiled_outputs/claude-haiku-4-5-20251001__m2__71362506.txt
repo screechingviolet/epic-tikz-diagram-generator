@@ -1,0 +1,1 @@
+A circle of radius 2 with four tangent lines forming a square around it.

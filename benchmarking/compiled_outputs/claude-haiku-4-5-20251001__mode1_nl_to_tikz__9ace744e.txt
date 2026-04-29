@@ -1,0 +1,1 @@
+Three lines meeting at a point at angles of 40, 60, and 80 degrees, with lengths 3, 4, and 5, and a circle of radius 1 tangent to all three.

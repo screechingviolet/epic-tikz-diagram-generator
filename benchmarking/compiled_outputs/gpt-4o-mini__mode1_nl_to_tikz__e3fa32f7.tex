@@ -1,0 +1,9 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw[rotate around={70:(0,0)}] (0,0) -- (0,6);
+  \draw (0,0) -- (6,0);
+  \foreach \x in {0,6} \foreach \y in {0,6} \draw (\x,\y) circle (1);
+\end{tikzpicture}
+\end{document}

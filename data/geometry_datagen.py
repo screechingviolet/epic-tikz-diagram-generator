@@ -1068,6 +1068,7 @@ def generate_constraint_specific_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     print("\n=== Generating parallel dataset ===\n")
     for i in range(6):
         generate_constraint_specific_datasets(
@@ -1076,3 +1077,21 @@ if __name__ == "__main__":
             output_dir="constraint_data",
             constraint_types=["parallel"],  # add this filter
         )
+=======
+    print("=== Single scene demo ===\n")
+
+    points, lines, circles, constraints = random_scene()
+    formal  = serialize_scene(points, lines, circles, constraints)
+    summary = constraints_only_str(constraints)
+
+    print("Formal:\n" + formal)
+    print("\nConstraint summary:\n" + summary)
+
+    print("\nGenerating NL variants...")
+    variants = generate_nl_variants(formal, summary, n_variants=5)
+    for i, v in enumerate(variants, 1):
+        print(f"  {i}. {v}")
+
+    print("\n=== Generating small dataset (10 scenes) ===\n")
+    generate_dataset(n_scenes=50, n_variants_per_scene=5, output_path="demo_dataset.jsonl")
+>>>>>>> Stashed changes

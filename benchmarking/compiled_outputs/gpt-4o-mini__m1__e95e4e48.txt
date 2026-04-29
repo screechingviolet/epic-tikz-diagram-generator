@@ -1,0 +1,1 @@
+A circle of radius 2 with a tangent line and a radius drawn to the point of tangency.

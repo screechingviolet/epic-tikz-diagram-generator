@@ -1,0 +1,1 @@
+A circle of radius 3 with an inscribed triangle where one side is a diameter.

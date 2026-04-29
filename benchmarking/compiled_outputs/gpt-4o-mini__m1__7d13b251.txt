@@ -1,0 +1,1 @@
+Two lines of length 4 forming a 60 degree angle with a circle of radius 1 in the angle.

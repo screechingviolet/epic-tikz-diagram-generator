@@ -1,0 +1,1 @@
+A circle of radius 3 with a square inscribed in it.

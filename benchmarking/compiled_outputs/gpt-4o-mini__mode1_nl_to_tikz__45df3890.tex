@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (10,0);
+  \foreach \r in {0.5, 1, 1.5, 2} {
+    \draw (2*\r,0) circle (\r);
+  }
+\end{tikzpicture}
+\end{document}

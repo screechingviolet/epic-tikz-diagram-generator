@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (C1) at (0, 0);
+  \coordinate (C2) at (3, 0);
+  \coordinate (L1start) at (0, 2);
+  \coordinate (L1end) at (1.0077, 2);
+  \coordinate (L2start) at (0, -2);
+  \coordinate (L2end) at (5.1158, -2);
+  \draw (C1) circle (1.5);
+  \draw (C2) circle (1.5);
+  \draw (L1start) -- (L1end);
+  \draw (L2start) -- (L2end);
+\end{tikzpicture}
+\end{document}

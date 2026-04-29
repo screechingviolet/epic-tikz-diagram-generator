@@ -1,0 +1,1 @@
+A line of length 8 with three equally spaced points marked on it.

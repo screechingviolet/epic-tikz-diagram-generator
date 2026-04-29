@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (8,0);
+  \foreach \x in {0, 2, 4, 6} {
+    \fill (\x,0) circle (2pt);
+  }
+\end{tikzpicture}
+\end{document}

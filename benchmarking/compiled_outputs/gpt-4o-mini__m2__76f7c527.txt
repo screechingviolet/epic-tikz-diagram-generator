@@ -1,0 +1,1 @@
+Four lines forming a rectangle with width 3 and height 2.

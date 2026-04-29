@@ -1,0 +1,1 @@
+Two intersecting circles of radius 2 and 3 whose centers are 4 apart, with the two intersection points connected by a line and each center connected to both intersection points.

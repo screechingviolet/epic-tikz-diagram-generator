@@ -1,0 +1,1 @@
+Two circles of radius 2 with centers 6 apart, connected by two external tangent lines and one internal tangent line.

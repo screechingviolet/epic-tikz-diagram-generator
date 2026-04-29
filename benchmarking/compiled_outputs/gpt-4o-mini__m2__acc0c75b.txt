@@ -1,0 +1,1 @@
+A line of length 5 with a circle of radius 2 on one side and a circle of radius 1 on the other, both tangent.

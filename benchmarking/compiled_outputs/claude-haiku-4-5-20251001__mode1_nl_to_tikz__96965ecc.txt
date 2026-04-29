@@ -1,0 +1,1 @@
+Two lines of length 5 meeting at 35 degrees, with a circle of radius 1 tangent to both lines and a second circle of radius 2 tangent to the first circle and one of the lines.

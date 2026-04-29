@@ -1,0 +1,1 @@
+A line of length 6 with two circles of radius 1 tangent to it at its third points.

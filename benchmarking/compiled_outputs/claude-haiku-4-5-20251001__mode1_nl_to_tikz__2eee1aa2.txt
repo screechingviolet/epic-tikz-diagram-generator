@@ -1,0 +1,1 @@
+Two circles of radius 1 and 2 that are externally tangent.

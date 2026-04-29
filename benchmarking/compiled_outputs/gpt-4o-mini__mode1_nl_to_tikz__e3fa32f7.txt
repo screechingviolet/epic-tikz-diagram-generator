@@ -1,0 +1,1 @@
+Two lines intersecting at 70 degrees, each of length 6, with circles of radius 1 centered at each of the four endpoints.

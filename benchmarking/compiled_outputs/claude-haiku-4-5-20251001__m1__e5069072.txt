@@ -1,0 +1,1 @@
+A line segment of length 3 with a perpendicular line of length 2 at one end.

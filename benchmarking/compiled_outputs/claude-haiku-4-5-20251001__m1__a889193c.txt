@@ -1,0 +1,1 @@
+A circle of radius 1.5 with a tangent line and a secant line.
