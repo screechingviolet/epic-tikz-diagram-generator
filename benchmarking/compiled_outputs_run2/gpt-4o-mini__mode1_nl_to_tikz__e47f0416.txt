@@ -1,0 +1,1 @@
+Point M exists, and point K exists. Line lb connects points M and K, having a length of 3.6758. Point N exists, and point A exists. Line lf connects points N and A, with a length of 3.2127. Lines lb and lf are parallel with a perpendicular distance of 2.962.

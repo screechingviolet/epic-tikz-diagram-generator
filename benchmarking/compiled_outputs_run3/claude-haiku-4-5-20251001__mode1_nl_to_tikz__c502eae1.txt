@@ -1,0 +1,1 @@
+Point U exists. Point S exists. Point W exists. A line designated as lc connects points W and U. The circle, identified as γ11, is centered at point W. The length of line lc measures 2.5236. The radius of circle γ11 is 2.9053.

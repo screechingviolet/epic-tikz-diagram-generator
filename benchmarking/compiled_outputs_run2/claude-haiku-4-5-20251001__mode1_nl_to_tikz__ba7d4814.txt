@@ -1,0 +1,1 @@
+Point D exists and point Y exists. Circle ω20 has its center at point D and possesses a radius of 1.2067. Circle ω25 is centered at point Y with a radius of 0.6083. The circles ω20 and ω25 are externally tangent to one another.

@@ -1,0 +1,22 @@
+{
+  "gpt-4o-mini": {
+    "mode1_compile_rate": 0.94,
+    "mode2_avg_score": 0.34,
+    "mode3_avg_score": 1.0
+  },
+  "claude-haiku-4-5-20251001": {
+    "mode1_compile_rate": 0.66,
+    "mode2_avg_score": 0.52,
+    "mode3_avg_score": 1.0
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct": {
+    "mode1_compile_rate": 0.0,
+    "mode2_avg_score": 0.02,
+    "mode3_avg_score": 0.28
+  },
+  "qwen-geometry-adapter": {
+    "mode1_compile_rate": 0.0,
+    "mode2_avg_score": 0.02,
+    "mode3_avg_score": 0.06
+  }
+}

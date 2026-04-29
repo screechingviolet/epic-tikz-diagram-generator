@@ -1,0 +1,1 @@
+There are two points, L and I, existing in our space. Circle ω23 is centered at point L, and it has a radius of 0.6530. Meanwhile, circle ω14 is centered at point I with a radius of 0.7187. Importantly, these two circles touch each other externally.

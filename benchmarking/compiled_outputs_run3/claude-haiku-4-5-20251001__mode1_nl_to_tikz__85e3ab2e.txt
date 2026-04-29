@@ -1,0 +1,1 @@
+Point D is defined in the diagram. Point Y is also defined. There exists a line, la, which connects point Y to point D. The length of line la is 5.0417.

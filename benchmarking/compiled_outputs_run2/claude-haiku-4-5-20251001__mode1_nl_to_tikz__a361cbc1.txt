@@ -1,0 +1,1 @@
+Point N is defined, and point G is also defined. Circle γ7 is centered at point N with a radius of 0.8251, while circle γ6 is centered at point G with a radius of 1.173. These circles are externally tangent to each other.

@@ -1,0 +1,1 @@
+Point Z exists, and point N also exists. Line lq connects point N to point Z, and the length of line lq is 5.7081.

@@ -1,0 +1,1 @@
+Point Y exists. Point Z exists. Point S exists. Point P exists. Line ll is defined by connecting points Y and Z. Line lo is formed by connecting points S and P. The length of line ll is 3.4068. The length of line lo is 4.2518. The lines ll and lo are parallel, separated by a perpendicular distance of 1.1686.

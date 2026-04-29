@@ -1,0 +1,1 @@
+Point Z exists, and it is the center of circle ω9, which has a radius of 1.2063. Additionally, point Y lies on the circumference of circle ω9.

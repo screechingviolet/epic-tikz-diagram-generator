@@ -1,0 +1,1 @@
+Point P exists, as does point A and point R. A line denoted as lp connects points P and R and has a length of 7.3399.

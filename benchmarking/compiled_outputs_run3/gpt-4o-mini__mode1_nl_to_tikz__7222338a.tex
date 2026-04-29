@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (J);
+  \draw (2,0) coordinate (X);
+  \draw (0,2) coordinate (H);
+  \draw (X) -- (J) node[midway, below] {lu};
+  \draw[draw=none] (H) circle[radius=1.371];
+\end{tikzpicture}
+\end{document}

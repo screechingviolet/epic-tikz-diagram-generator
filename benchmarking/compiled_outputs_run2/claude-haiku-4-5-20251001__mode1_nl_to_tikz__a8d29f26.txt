@@ -1,0 +1,1 @@
+Point W is defined. Point E is also defined. Furthermore, point I exists along with point R. A line, designated as lf, connects points W and E, having a length of 3.2569. Another line, lv, connects points I and R, and this line measures 3.7612 in length. Importantly, lines lf and lv are perpendicular to each other.

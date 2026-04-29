@@ -1,0 +1,1 @@
+["Point T exists in the plane.", "Point D is also present in the plane.", "There is a line, denoted as lu, which connects point D and point T.", "The length of line lu measures 5.098.", "Points T and D are connected by line lu."]

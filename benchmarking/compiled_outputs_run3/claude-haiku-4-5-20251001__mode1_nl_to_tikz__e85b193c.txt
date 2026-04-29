@@ -1,0 +1,1 @@
+Point H exists. Point J exists. Point V exists. Line lv connects points J and V with a length of 1.191. Line lz connects points J and H with a length of 8.2689. Circle γ13 is centered at point J with a radius of 2.6277. The angle formed by lines lv and lz is 82.34 degrees.

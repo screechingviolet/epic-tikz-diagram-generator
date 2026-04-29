@@ -1,0 +1,1 @@
+Point U exists. Point J exists. Point X exists. Line lw joins points X and J with a length of 3.0751. Line ll connects points J and U having a length of 5.9174. The angle formed between lines lw and ll is 134.87°.

@@ -1,0 +1,1 @@
+Point P exists, defined in space, while point W is also present. Additionally, point H is defined. Line ls connects points P and W, and the length of line ls is 5.5244.

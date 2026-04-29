@@ -1,0 +1,1 @@
+Point N exists. Point M also exists. Additionally, point I and point G are both present. A line labeled la connects points G and N, while a line labeled lr connects points I and N. The length of line la is 3.1661, and the length of line lr is 5.3866. These two lines intersect at an angle of 68.93 degrees.

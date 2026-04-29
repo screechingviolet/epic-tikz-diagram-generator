@@ -50,7 +50,8 @@ def main():
     parser.add_argument("--adapter", default=None,
                         help="Path to LoRA adapter dir, or omit for base model.")
     parser.add_argument("--dataset", default="dataset_simple",
-                        help="Dataset name (no .jsonl) under curriculum_data/.")
+                        help="Dataset name (no .jsonl). Resolved against "
+                             "curriculum_data/ then constraint_data/.")
     parser.add_argument("--row", type=int, default=0,
                         help="Row index in the dataset (default 0).")
     parser.add_argument("--variant", type=int, default=0,
@@ -59,9 +60,17 @@ def main():
     parser.add_argument("--temperature", type=float, default=0.0)
     args = parser.parse_args()
 
-    dataset_path = PROJECT_ROOT / "curriculum_data" / f"{args.dataset}.jsonl"
-    if not dataset_path.is_file():
-        parser.error(f"dataset not found: {dataset_path}")
+    dataset_path = None
+    for parent in ("curriculum_data", "constraint_data"):
+        candidate = PROJECT_ROOT / parent / f"{args.dataset}.jsonl"
+        if candidate.is_file():
+            dataset_path = candidate
+            break
+    if dataset_path is None:
+        parser.error(
+            f"dataset {args.dataset!r}.jsonl not found under "
+            "curriculum_data/ or constraint_data/"
+        )
     rows = [json.loads(line) for line in dataset_path.read_text().splitlines() if line.strip()]
     if not 0 <= args.row < len(rows):
         parser.error(f"--row {args.row} out of range (dataset has {len(rows)} rows)")

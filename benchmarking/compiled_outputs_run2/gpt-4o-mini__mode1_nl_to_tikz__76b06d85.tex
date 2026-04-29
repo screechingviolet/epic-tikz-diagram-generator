@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) coordinate (A) -- (2.3179,0) coordinate (E);
+  \draw (3,2.8851) coordinate (Q) -- (3,5) coordinate (M);
+  \draw[rotate around={56.37:(A)}] (A) -- (E);
+  \draw (Q) -- (M);
+\end{tikzpicture}
+\end{document}

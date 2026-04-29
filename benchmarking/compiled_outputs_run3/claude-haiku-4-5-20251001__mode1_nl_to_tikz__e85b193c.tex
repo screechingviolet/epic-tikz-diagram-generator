@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) node[circle,fill,inner sep=2pt] (J) {};
+  \draw (1.191,0) node[circle,fill,inner sep=2pt] (V) {};
+  \draw (0.9145,8.1386) node[circle,fill,inner sep=2pt] (H) {};
+  \draw (J) -- (V);
+  \draw (J) -- (H);
+  \draw (0,0) circle (2.6277cm);
+  \node at (-0.3,-0.3) {J};
+  \node at (1.4,-0.3) {V};
+  \node at (1.1,8.3) {H};
+\end{tikzpicture}
+\end{document}

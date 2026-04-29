@@ -32,9 +32,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run2"
+RUN_NAME     = "run3"
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
+DATASET_PATH = "../curriculum_data/dataset_medium.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
@@ -43,7 +43,7 @@ BATCH_SIZE   = 10
 DELAY        = 1.0
 
 BASE_MODEL_ID = "Qwen/Qwen2.5-0.5B-Instruct"
-ADAPTER_PATH = str(Path(__file__).parent.parent / "finetuning" / "Qwen2.5B-GRPO-geometry" / "checkpoint-75")
+ADAPTER_PATH = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry" / "checkpoint-300")
 
 MODELS = {
     "gpt-4o-mini":                 "openai",
@@ -56,8 +56,8 @@ MODELS = {
 MODEL_MODES = {
     "openai":     [1, 2, 3],
     "anthropic":  [1, 2, 3],
-    "hf_local":   [2],
-    "hf_adapter": [2],
+    "hf_local":   [2, 3],
+    "hf_adapter": [2, 3],
 }
 
 # ---------------------------------------------------------------------------
@@ -190,7 +190,7 @@ def _get_hf_model(model_name: str, provider: str):
 
     if provider == "hf_adapter":
         from peft import PeftModel
-        adapter_path = str(Path(__file__).parent.parent / "finetuning" / "Qwen2-0.5B-GRPO-geometry" / "checkpoint-75")
+        adapter_path = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry" / "checkpoint-300")
         base  = AutoModelForCausalLM.from_pretrained(BASE_MODEL_ID, torch_dtype=torch.float32)
         model = PeftModel.from_pretrained(base, adapter_path)
         model = model.merge_and_unload()

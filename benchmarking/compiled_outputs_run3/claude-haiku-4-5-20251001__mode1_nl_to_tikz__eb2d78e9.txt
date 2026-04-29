@@ -1,0 +1,1 @@
+Point L is defined, and point S is also defined. Line ld connects point S to point L. Circle ω19 is centered at point L, with a radius of 1.0523. The length of line ld measures 7.3035.

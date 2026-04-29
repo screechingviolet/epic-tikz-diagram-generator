@@ -1,0 +1,1 @@
+Point I exists. Point Y exists. Point H exists. A line, labeled lc, connects point H to point I and has a length of 7.167 units.

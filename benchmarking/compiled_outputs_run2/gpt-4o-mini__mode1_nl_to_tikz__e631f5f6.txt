@@ -1,0 +1,1 @@
+There exists a point named M and another point named F. Circle γ16 is centered at point M and has a radius of 0.8541. Circle γ17 is centered at point F with a radius of 1.4906, and these two circles just touch each other externally.

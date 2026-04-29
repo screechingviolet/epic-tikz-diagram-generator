@@ -1,0 +1,1 @@
+Point O is present. Point I is present. Point C is present. Point P is present. Line lh connects points C and I. Circle ω9 is centered at point I. The length of line lh is 0.366. The radius of circle ω9 is 2.0624.

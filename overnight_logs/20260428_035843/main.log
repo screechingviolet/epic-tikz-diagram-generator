@@ -1,0 +1,62 @@
+[overnight 2026-04-28 03:58:43] starting; logs at overnight_logs/20260428_035843
+[overnight 2026-04-28 03:58:43] datasets:     dataset_simple     dataset_medium     dataset_complex     dataset_angle     dataset_circle_tangent     dataset_line_tangent     dataset_parallel     dataset_perpendicular     dataset_point_on_circle 
+[overnight 2026-04-28 03:58:43] adapter dir: Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 03:58:43] SFT epochs: 1
+[overnight 2026-04-28 03:58:43] no existing adapter — first SFT will start from the base model
+[overnight 2026-04-28 03:58:43] === dataset_simple_sft ===
+[overnight 2026-04-28 03:58:43] cmd: python finetuning/train_sft.py --dataset dataset_simple --epochs 1
+[overnight 2026-04-28 04:04:53] dataset_simple_sft OK  (370s)
+[overnight 2026-04-28 04:04:53] === dataset_simple_grpo ===
+[overnight 2026-04-28 04:04:53] cmd: python finetuning/train_grpo.py --dataset dataset_simple --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 04:21:22] dataset_simple_grpo OK  (989s)
+[overnight 2026-04-28 04:21:22] === dataset_medium_sft ===
+[overnight 2026-04-28 04:21:22] cmd: python finetuning/train_sft.py --dataset dataset_medium --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 04:33:06] dataset_medium_sft OK  (704s)
+[overnight 2026-04-28 04:33:06] === dataset_medium_grpo ===
+[overnight 2026-04-28 04:33:06] cmd: python finetuning/train_grpo.py --dataset dataset_medium --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 05:02:45] dataset_medium_grpo OK  (1779s)
+[overnight 2026-04-28 05:02:45] === dataset_complex_sft ===
+[overnight 2026-04-28 05:02:45] cmd: python finetuning/train_sft.py --dataset dataset_complex --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 05:27:06] dataset_complex_sft OK  (1461s)
+[overnight 2026-04-28 05:27:06] === dataset_complex_grpo ===
+[overnight 2026-04-28 05:27:06] cmd: python finetuning/train_grpo.py --dataset dataset_complex --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 06:12:52] dataset_complex_grpo OK  (2746s)
+[overnight 2026-04-28 06:12:52] === dataset_angle_sft ===
+[overnight 2026-04-28 06:12:52] cmd: python finetuning/train_sft.py --dataset dataset_angle --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 06:16:40] dataset_angle_sft OK  (228s)
+[overnight 2026-04-28 06:16:40] === dataset_angle_grpo ===
+[overnight 2026-04-28 06:16:40] cmd: python finetuning/train_grpo.py --dataset dataset_angle --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 06:47:21] dataset_angle_grpo OK  (1841s)
+[overnight 2026-04-28 06:47:21] === dataset_circle_tangent_sft ===
+[overnight 2026-04-28 06:47:21] cmd: python finetuning/train_sft.py --dataset dataset_circle_tangent --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 06:51:08] dataset_circle_tangent_sft OK  (227s)
+[overnight 2026-04-28 06:51:08] === dataset_circle_tangent_grpo ===
+[overnight 2026-04-28 06:51:08] cmd: python finetuning/train_grpo.py --dataset dataset_circle_tangent --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 07:16:48] dataset_circle_tangent_grpo OK  (1540s)
+[overnight 2026-04-28 07:16:48] === dataset_line_tangent_sft ===
+[overnight 2026-04-28 07:16:48] cmd: python finetuning/train_sft.py --dataset dataset_line_tangent --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 07:20:34] dataset_line_tangent_sft OK  (226s)
+[overnight 2026-04-28 07:20:34] === dataset_line_tangent_grpo ===
+[overnight 2026-04-28 07:20:34] cmd: python finetuning/train_grpo.py --dataset dataset_line_tangent --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 07:48:26] dataset_line_tangent_grpo OK  (1672s)
+[overnight 2026-04-28 07:48:26] === dataset_parallel_sft ===
+[overnight 2026-04-28 07:48:26] cmd: python finetuning/train_sft.py --dataset dataset_parallel --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 07:50:00] dataset_parallel_sft OK  (94s)
+[overnight 2026-04-28 07:50:00] === dataset_parallel_grpo ===
+[overnight 2026-04-28 07:50:00] cmd: python finetuning/train_grpo.py --dataset dataset_parallel --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 08:20:44] dataset_parallel_grpo OK  (1844s)
+[overnight 2026-04-28 08:20:44] === dataset_perpendicular_sft ===
+[overnight 2026-04-28 08:20:44] cmd: python finetuning/train_sft.py --dataset dataset_perpendicular --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 08:24:35] dataset_perpendicular_sft OK  (231s)
+[overnight 2026-04-28 08:24:35] === dataset_perpendicular_grpo ===
+[overnight 2026-04-28 08:24:35] cmd: python finetuning/train_grpo.py --dataset dataset_perpendicular --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 08:55:01] dataset_perpendicular_grpo OK  (1826s)
+[overnight 2026-04-28 08:55:01] === dataset_point_on_circle_sft ===
+[overnight 2026-04-28 08:55:01] cmd: python finetuning/train_sft.py --dataset dataset_point_on_circle --epochs 1 --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 08:58:43] dataset_point_on_circle_sft OK  (222s)
+[overnight 2026-04-28 08:58:43] === dataset_point_on_circle_grpo ===
+[overnight 2026-04-28 08:58:43] cmd: python finetuning/train_grpo.py --dataset dataset_point_on_circle --resume-from Qwen2-0.5B-GRPO-geometry
+[overnight 2026-04-28 09:21:02] dataset_point_on_circle_grpo OK  (1339s)
+[overnight 2026-04-28 09:21:02] === summary ===
+[overnight 2026-04-28 09:21:02] all steps OK
+[overnight 2026-04-28 09:21:02] done.  full logs: overnight_logs/20260428_035843

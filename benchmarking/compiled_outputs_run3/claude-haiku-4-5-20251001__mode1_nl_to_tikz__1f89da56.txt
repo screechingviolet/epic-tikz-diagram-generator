@@ -1,0 +1,1 @@
+There exists point O, point B, and point H. The line ld connects points B and H, and has a length of 5.4516. Additionally, circle γ23 is centered at point O with a radius of 1.8858.
