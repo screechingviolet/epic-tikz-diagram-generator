@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw[fill=black] (0,0) circle (2pt) node[anchor=east] {K};
+  \draw[fill=black] (7.8147,0) circle (2pt) node[anchor=west] {T};
+  \draw (0,0) -- (7.8147,0) node[midway, below] {lp};
+  \draw[fill=black] (2.2297,3.146) circle (2pt) node[anchor=east] {O};
+  \draw[fill=black] (2.2297,0) circle (2pt) node[anchor=east] {D};
+  \draw (2.2297,3.146) -- (2.2297,0) node[midway, left] {lm};
+\end{tikzpicture}
+\end{document}

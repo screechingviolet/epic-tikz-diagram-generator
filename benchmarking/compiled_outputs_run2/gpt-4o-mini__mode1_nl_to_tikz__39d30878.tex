@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw[fill=black] (0,0) circle (2pt) node[anchor=east] {N};
+  \draw[fill=black] (4.5,0) circle (2pt) node[anchor=west] {K};
+  \draw[fill=black] (0,2.6624) circle (2pt) node[anchor=south] {C};
+  \draw[fill=black] (0,0) -- (0,2.6624) -- (4.5,0) -- cycle;
+  \draw (0,0) -- (4.5,0) node[midway, below] {lp};
+  \draw (0,2.6624) -- (0,0) node[midway, left] {lv};
+\end{tikzpicture}
+\end{document}

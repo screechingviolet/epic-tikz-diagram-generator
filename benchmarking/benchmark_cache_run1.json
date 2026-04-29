@@ -1080,7 +1080,7 @@
       "angle(lm, lz, 13.70)",
       "angle(lw, lz, 169.34)"
     ],
-    "score": 0.0
+    "score": 2.7333333333333334
   },
   "aab0fb1229869703fafef1add7199000": {
     "mode": "mode2_nl_to_geo",
@@ -1108,7 +1108,7 @@
       "radius(\u03c92, 2.2384)",
       "circle_tangent(\u03c911, \u03c92)"
     ],
-    "score": 0.0
+    "score": 2.8181818181818183
   },
   "a1b8e57a2c1603a938d4665c7ec01831": {
     "mode": "mode2_nl_to_geo",
@@ -1131,7 +1131,7 @@
       "radius(\u03c919, 1.1504)",
       "tangent(la, \u03c919)"
     ],
-    "score": 0.0
+    "score": 2.75
   },
   "229ad9a5e405867955ae0dedaeb53287": {
     "mode": "mode2_nl_to_geo",
@@ -1187,7 +1187,7 @@
       "radius(\u03b38, 1.3046)",
       "angle(lp, ll, 24.45)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "99c26946a1b0699b0d1c83861aae20a9": {
     "mode": "mode2_nl_to_geo",
@@ -1224,7 +1224,7 @@
       "angle(lq, lh, 146.77)",
       "angle(lw, lh, 146.77)"
     ],
-    "score": 0.0
+    "score": 2.611111111111111
   },
   "748ecc6f41fc4be33af992d17e0a059c": {
     "mode": "mode2_nl_to_geo",
@@ -1257,7 +1257,7 @@
       "angle(lt, le, 125.68)",
       "angle(lk, le, 108.04)"
     ],
-    "score": 0.0
+    "score": 1.8571428571428572
   },
   "aacefdc892da1063fdde79d62456ad23": {
     "mode": "mode2_nl_to_geo",
@@ -1284,7 +1284,7 @@
       "radius(\u03c917, 0.8747)",
       "tangent(lo, \u03c917)"
     ],
-    "score": 0.0
+    "score": 2.8
   },
   "7c65a58e6f0c9291162a349cf5fcef79": {
     "mode": "mode2_nl_to_geo",
@@ -1316,7 +1316,7 @@
       "radius(\u03b324, 0.7624)",
       "parallel(li, lm, 2.4820)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "3df4a1468aee034967492b3366c647b2": {
     "mode": "mode2_nl_to_geo",
@@ -1345,7 +1345,7 @@
       "radius(\u03c921, 1.2855)",
       "parallel(la, ld, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8333333333333335
   },
   "6dae11f55c1613e15e7e022b26d073a7": {
     "mode": "mode2_nl_to_geo",
@@ -1405,7 +1405,7 @@
       "radius(\u03c919, 0.8979)",
       "parallel(ly, li, 0.1760)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "fdc7d88c7e2bc2692f9fc298f1989058": {
     "mode": "mode2_nl_to_geo",
@@ -1471,7 +1471,7 @@
       "radius(\u03c911, 1.3966)",
       "parallel(lw, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "393a61308464f924c7a1514fe8cf3c74": {
     "mode": "mode2_nl_to_geo",
@@ -1530,7 +1530,7 @@
       "tangent(lx, \u03c96)",
       "parallel(lc, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 1.9
   },
   "0e18991fa4d325962387fbea601dc02e": {
     "mode": "mode2_nl_to_geo",
@@ -1558,7 +1558,7 @@
       "radius(\u03b316, 0.5196)",
       "parallel(lu, ls, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "359a650e984c40ff50311fe43629faa1": {
     "mode": "mode2_nl_to_geo",
@@ -1595,7 +1595,7 @@
       "angle(ls, lm, 155.24)",
       "circle_tangent(\u03b311, \u03c92)"
     ],
-    "score": 0.0
+    "score": 2.6666666666666665
   },
   "46fea55a7276c57811320e1082f5ed76": {
     "mode": "mode2_nl_to_geo",
@@ -1622,7 +1622,7 @@
       "radius(\u03c910, 2.4923)",
       "parallel(lv, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "babd132954c3af9817bca5ec9980970b": {
     "mode": "mode2_nl_to_geo",
@@ -1657,7 +1657,7 @@
       "angle(lb, lp, 156.15)",
       "circle_tangent(\u03b312, \u03c918)"
     ],
-    "score": 0.0
+    "score": 2.764705882352941
   },
   "5b93cd4a6c6d8b4a4803de22fcf00c4c": {
     "mode": "mode2_nl_to_geo",
@@ -1689,7 +1689,7 @@
       "angle(lk, ly, 159.37)",
       "parallel(lm, ly, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "393782002dfab60b2c326ec108a64c11": {
     "mode": "mode2_nl_to_geo",
@@ -1722,7 +1722,7 @@
       "angle(lg, lo, 133.91)",
       "angle(lu, lo, 136.09)"
     ],
-    "score": 0.0
+    "score": 2.6
   },
   "65f1772ff3f1465a45690d5e4475ae00": {
     "mode": "mode2_nl_to_geo",
@@ -1757,7 +1757,7 @@
       "angle(lp, lj, 5.64)",
       "angle(lg, lj, 84.36)"
     ],
-    "score": 0.0
+    "score": 2.625
   },
   "eb6a7fe69a7c247c222eebb2bfdeaff5": {
     "mode": "mode2_nl_to_geo",
@@ -1795,7 +1795,7 @@
       "parallel(ls, ld, 0.0000)",
       "circle_tangent(\u03c923, \u03c925)"
     ],
-    "score": 0.0
+    "score": 2.7777777777777777
   },
   "883a6dd342e3dbb839bfc262447cabf9": {
     "mode": "mode2_nl_to_geo",
@@ -1818,7 +1818,7 @@
       "radius(\u03b317, 2.1883)",
       "tangent(li, \u03b317)"
     ],
-    "score": 0.0
+    "score": 2.75
   },
   "fda2c059728479f0ea3fe96d8cda2a76": {
     "mode": "mode2_nl_to_geo",
@@ -1855,7 +1855,7 @@
       "perpendicular(ld, lk)",
       "angle(le, lk, 88.66)"
     ],
-    "score": 0.0
+    "score": 1.9285714285714286
   },
   "ff1a69d6d8c79ba770bf26bb9df8c560": {
     "mode": "mode2_nl_to_geo",
@@ -1889,7 +1889,7 @@
       "angle(lm, lu, 72.62)",
       "circle_tangent(\u03b35, \u03c916)"
     ],
-    "score": 0.0
+    "score": 2.7333333333333334
   },
   "b2690fcd908f3672dec10e60964c4086": {
     "mode": "mode2_nl_to_geo",
@@ -1925,7 +1925,7 @@
       "angle(lt, lc, 18.21)",
       "angle(lo, lc, 17.18)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "11987b90b55a1f0950a17593f66e3665": {
     "mode": "mode2_nl_to_geo",
@@ -1955,7 +1955,7 @@
       "radius(\u03c918, 1.6911)",
       "angle(lk, lr, 169.39)"
     ],
-    "score": 0.0
+    "score": 2.75
   },
   "6da228380135bd7f93660e3910490702": {
     "mode": "mode2_nl_to_geo",
@@ -1986,7 +1986,7 @@
       "angle(lp, le, 101.85)",
       "angle(lq, le, 109.07)"
     ],
-    "score": 0.0
+    "score": 2.7142857142857144
   },
   "6057f5d1bf13a0353fa6dcc2b7ea899d": {
     "mode": "mode2_nl_to_geo",
@@ -2018,7 +2018,7 @@
       "radius(\u03b317, 0.8245)",
       "tangent(ly, \u03b317)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "0c90c175dfd942cd8c41fbdd57908622": {
     "mode": "mode2_nl_to_geo",
@@ -2048,7 +2048,7 @@
       "radius(\u03c98, 1.4484)",
       "circle_tangent(\u03c911, \u03c98)"
     ],
-    "score": 0.0
+    "score": 2.8333333333333335
   },
   "5fb0ed759484b64f2f26a89024887f9e": {
     "mode": "mode2_nl_to_geo",
@@ -2085,7 +2085,7 @@
       "angle(lg, lp, 110.33)",
       "circle_tangent(\u03c920, \u03c90)"
     ],
-    "score": 0.0
+    "score": 1.9375
   },
   "ff15dfa35ee2984b6a30eb56d2624b37": {
     "mode": "mode2_nl_to_geo",
@@ -2120,7 +2120,7 @@
       "angle(lf, lx, 112.76)",
       "angle(ll, lx, 129.14)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "1ee86dd7490c4540ae2f933c6e62ae4b": {
     "mode": "mode2_nl_to_geo",
@@ -2148,7 +2148,7 @@
       "radius(\u03c97, 2.4382)",
       "angle(lh, li, 34.33)"
     ],
-    "score": 0.0
+    "score": 2.7272727272727275
   },
   "c5f5441c510ab830921492eb7ba911b0": {
     "mode": "mode2_nl_to_geo",
@@ -2182,7 +2182,7 @@
       "parallel(ld, lo, 0.0000)",
       "parallel(ls, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8125
   },
   "9ed08fd2331a6705d0e38d0765c0e715": {
     "mode": "mode2_nl_to_geo",
@@ -2210,7 +2210,7 @@
       "radius(\u03b312, 0.9249)",
       "angle(ln, lw, 165.32)"
     ],
-    "score": 0.0
+    "score": 2.7272727272727275
   },
   "8cbf323198f7d443d63bc756d5562867": {
     "mode": "mode2_nl_to_geo",
@@ -2244,7 +2244,7 @@
       "angle(lr, lx, 49.01)",
       "parallel(ln, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.6875
   },
   "459c0d1f513d0da908f3dea11a010f3f": {
     "mode": "mode2_nl_to_geo",
@@ -2272,7 +2272,7 @@
       "radius(\u03c921, 2.1053)",
       "tangent(ll, \u03c921)"
     ],
-    "score": 0.0
+    "score": 1.875
   },
   "cd89e8de40d8e5bb8becbfb230db3fbf": {
     "mode": "mode2_nl_to_geo",
@@ -2310,7 +2310,7 @@
       "angle(le, lq, 67.92)",
       "parallel(la, lq, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.6666666666666665
   },
   "6e529863a5b0669b2cbf5fc34b613bcd": {
     "mode": "mode2_nl_to_geo",
@@ -2335,7 +2335,7 @@
       "radius(\u03b310, 1.7945)",
       "tangent(lm, \u03b310)"
     ],
-    "score": 0.0
+    "score": 2.7777777777777777
   },
   "2279a8fffff86fa73c1e753fc8dd7548": {
     "mode": "mode2_nl_to_geo",
@@ -2367,7 +2367,7 @@
       "radius(\u03b317, 2.2412)",
       "parallel(lm, lp, 2.1564)"
     ],
-    "score": 0.0
+    "score": 2.769230769230769
   },
   "3630f00dae39839aee6bcb0735984616": {
     "mode": "mode2_nl_to_geo",
@@ -2392,7 +2392,7 @@
       "radius(\u03b37, 2.5605)",
       "tangent(lz, \u03b37)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "c2e56369291e4885a63664303ad571a6": {
     "mode": "mode2_nl_to_geo",
@@ -2431,7 +2431,7 @@
       "angle(lc, ln, 56.09)",
       "circle_tangent(\u03b33, \u03b321)"
     ],
-    "score": 0.0
+    "score": 2.6842105263157894
   },
   "74c6e73ec76fba8354a737cd51665dba": {
     "mode": "mode2_nl_to_geo",
@@ -2462,7 +2462,7 @@
       "parallel(lm, lh, 0.0000)",
       "angle(lj, lh, 169.22)"
     ],
-    "score": 0.0
+    "score": 2.642857142857143
   },
   "b7dcd5913d255835d4a573ecf186b844": {
     "mode": "mode2_nl_to_geo",
@@ -2485,7 +2485,7 @@
       "radius(\u03c95, 1.3418)",
       "parallel(li, lb, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "c6e88dc3a2e27f6f96e583d6ed5d9318": {
     "mode": "mode2_nl_to_geo",
@@ -2539,7 +2539,7 @@
       "angle(lv, ll, 63.13)",
       "parallel(lj, ll, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.642857142857143
   },
   "eb765c6221e72795d76b5351c23c698a": {
     "mode": "mode2_nl_to_geo",
@@ -2564,7 +2564,7 @@
       "radius(\u03b38, 1.7975)",
       "parallel(ln, lh, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.7777777777777777
   },
   "2d087187721db664c582635bb71bc8b9": {
     "mode": "mode2_nl_to_geo",
@@ -2595,7 +2595,7 @@
       "parallel(lx, lp, 0.0000)",
       "perpendicular(lm, lp)"
     ],
-    "score": 0.0
+    "score": 2.642857142857143
   },
   "efe7e7f5afc9257ae47c11b377cbb466": {
     "mode": "mode3_geo_to_geo",
@@ -2628,7 +2628,7 @@
       "angle(lm, lz, 13.70)",
       "angle(lw, lz, 169.34)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "b646dec5901b2110bff95125c12314fa": {
     "mode": "mode3_geo_to_geo",
@@ -2656,7 +2656,7 @@
       "radius(\u03c92, 2.2384)",
       "circle_tangent(\u03c911, \u03c92)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "639ee58a9aabd5e4395851452f395348": {
     "mode": "mode3_geo_to_geo",
@@ -2679,7 +2679,7 @@
       "radius(\u03c919, 1.1504)",
       "tangent(la, \u03c919)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "fd2feec7c9285ddd6c94acc5038ff62d": {
     "mode": "mode3_geo_to_geo",
@@ -2709,7 +2709,7 @@
       "radius(\u03c913, 2.4282)",
       "angle(li, ls, 98.27)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "a01d8d7d8a734338911b296319106cd5": {
     "mode": "mode3_geo_to_geo",
@@ -2735,7 +2735,7 @@
       "radius(\u03b38, 1.3046)",
       "angle(lp, ll, 24.45)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "f3952a2c4579b6167fa8637cc1f7cda0": {
     "mode": "mode3_geo_to_geo",
@@ -2772,7 +2772,7 @@
       "angle(lq, lh, 146.77)",
       "angle(lw, lh, 146.77)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "80297ea5ccea0bc0e5a9bd0b8310d313": {
     "mode": "mode3_geo_to_geo",
@@ -2806,7 +2806,7 @@
       "angle(lt, le, 125.68)",
       "angle(lk, le, 108.04)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "724cd2d762e6766d00ec5ba2d652e6a1": {
     "mode": "mode3_geo_to_geo",
@@ -2833,7 +2833,7 @@
       "radius(\u03c917, 0.8747)",
       "tangent(lo, \u03c917)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "0d8ce43c341f1d3231906bfb34adf9ef": {
     "mode": "mode3_geo_to_geo",
@@ -2865,7 +2865,7 @@
       "radius(\u03b324, 0.7624)",
       "parallel(li, lm, 2.4820)"
     ],
-    "score": 0.0
+    "score": 2.9230769230769234
   },
   "684b2341f6c36c7e9608f46f16b361e3": {
     "mode": "mode3_geo_to_geo",
@@ -2894,7 +2894,7 @@
       "radius(\u03c921, 1.2855)",
       "parallel(la, ld, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "a72b2bfb1e7cf118255d4a4d0d73d848": {
     "mode": "mode3_geo_to_geo",
@@ -2924,7 +2924,7 @@
       "angle(lx, lm, 170.39)",
       "circle_tangent(\u03b311, \u03b321)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "0c02fefae4d039a41a4e3717e28c4302": {
     "mode": "mode3_geo_to_geo",
@@ -2954,7 +2954,7 @@
       "radius(\u03c919, 0.8979)",
       "parallel(ly, li, 0.1760)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "61f5fdcdc23efd35cf78bcc91cc28312": {
     "mode": "mode3_geo_to_geo",
@@ -2992,7 +2992,7 @@
       "angle(ln, lm, 177.49)",
       "angle(le, lm, 121.05)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "7823763131926733b8b06f08a54aafba": {
     "mode": "mode3_geo_to_geo",
@@ -3021,7 +3021,7 @@
       "radius(\u03c911, 1.3966)",
       "parallel(lw, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "778f430fab85d85121583f0dc599d0c9": {
     "mode": "mode3_geo_to_geo",
@@ -3052,7 +3052,7 @@
       "angle(lk, li, 140.57)",
       "angle(lj, li, 66.08)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "033d4b9cdd347669bdcd393a5c99ee64": {
     "mode": "mode3_geo_to_geo",
@@ -3082,7 +3082,7 @@
       "tangent(lx, \u03c96)",
       "parallel(lc, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "29666631a38071025eb38462ee70de53": {
     "mode": "mode3_geo_to_geo",
@@ -3112,7 +3112,7 @@
       "radius(\u03b316, 0.5196)",
       "parallel(lu, ls, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "22f571787377ff8ac619890af5ca7dbe": {
     "mode": "mode3_geo_to_geo",
@@ -3149,7 +3149,7 @@
       "angle(ls, lm, 155.24)",
       "circle_tangent(\u03b311, \u03c92)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "5fedd3fda800b341b41a71b859956808": {
     "mode": "mode3_geo_to_geo",
@@ -3176,7 +3176,7 @@
       "radius(\u03c910, 2.4923)",
       "parallel(lv, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "821082af2c75d13b88200784e8fa5248": {
     "mode": "mode3_geo_to_geo",
@@ -3211,7 +3211,7 @@
       "angle(lb, lp, 156.15)",
       "circle_tangent(\u03b312, \u03c918)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "ad21d942e32f5c7133051d726b5128e8": {
     "mode": "mode3_geo_to_geo",
@@ -3244,7 +3244,7 @@
       "angle(lk, ly, 159.37)",
       "parallel(lm, ly, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "d6862861f05bec2ff8aae827ee12f652": {
     "mode": "mode3_geo_to_geo",
@@ -3277,7 +3277,7 @@
       "angle(lg, lo, 133.91)",
       "angle(lu, lo, 136.09)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "4385bf6b2e4814ee251a113da3e72358": {
     "mode": "mode3_geo_to_geo",
@@ -3312,7 +3312,7 @@
       "angle(lp, lj, 5.64)",
       "angle(lg, lj, 84.36)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "21c6beb39f4c295b20a67b87dfdb0817": {
     "mode": "mode3_geo_to_geo",
@@ -3350,7 +3350,7 @@
       "parallel(ls, ld, 0.0000)",
       "circle_tangent(\u03c923, \u03c925)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "6783c09179e952a5df8c45b96362bd91": {
     "mode": "mode3_geo_to_geo",
@@ -3373,7 +3373,7 @@
       "radius(\u03b317, 2.1883)",
       "tangent(li, \u03b317)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "6949de8b738e394487a71446fdc3dd34": {
     "mode": "mode3_geo_to_geo",
@@ -3411,7 +3411,7 @@
       "perpendicular(ld, lk)",
       "angle(le, lk, 88.66)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "17e02b7dfdae0e59b14ac6a7d4ac44fd": {
     "mode": "mode3_geo_to_geo",
@@ -3445,7 +3445,7 @@
       "angle(lm, lu, 72.62)",
       "circle_tangent(\u03b35, \u03c916)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "6240819d4b6f5bbaff21a820707e889e": {
     "mode": "mode3_geo_to_geo",
@@ -3482,7 +3482,7 @@
       "angle(lt, lc, 18.21)",
       "angle(lo, lc, 17.18)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "4b5daeb1318472ba60b523bf609fe31b": {
     "mode": "mode3_geo_to_geo",
@@ -3512,7 +3512,7 @@
       "radius(\u03c918, 1.6911)",
       "angle(lk, lr, 169.39)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "77134d4ae4e8318c57d03f147a0e22ed": {
     "mode": "mode3_geo_to_geo",
@@ -3543,7 +3543,7 @@
       "angle(lp, le, 101.85)",
       "angle(lq, le, 109.07)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "c674507b9d8a75b868e3cb65a86c608d": {
     "mode": "mode3_geo_to_geo",
@@ -3575,7 +3575,7 @@
       "radius(\u03b317, 0.8245)",
       "tangent(ly, \u03b317)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "0ffb9ce1cc70e38d1bf4307038fbee53": {
     "mode": "mode3_geo_to_geo",
@@ -3605,7 +3605,7 @@
       "radius(\u03c98, 1.4484)",
       "circle_tangent(\u03c911, \u03c98)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "e5e6353a117cd45920db1757b5069253": {
     "mode": "mode3_geo_to_geo",
@@ -3644,7 +3644,7 @@
       "angle(lg, lp, 110.33)",
       "circle_tangent(\u03c920, \u03c90)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "81f93ee929cd1b53c6ad66ed2eab7577": {
     "mode": "mode3_geo_to_geo",
@@ -3680,7 +3680,7 @@
       "angle(lf, lx, 112.76)",
       "angle(ll, lx, 129.14)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "27bb24f1ec9e4090015fdb03853eb275": {
     "mode": "mode3_geo_to_geo",
@@ -3708,7 +3708,7 @@
       "radius(\u03c97, 2.4382)",
       "angle(lh, li, 34.33)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "031c52eee4e6f84db5e35731cb6f8b26": {
     "mode": "mode3_geo_to_geo",
@@ -3742,7 +3742,7 @@
       "parallel(ld, lo, 0.0000)",
       "parallel(ls, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8125
   },
   "d595106b5e0a83d6ba772ba1365c0330": {
     "mode": "mode3_geo_to_geo",
@@ -3770,7 +3770,7 @@
       "radius(\u03b312, 0.9249)",
       "angle(ln, lw, 165.32)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "d033e00e407e8475bda39c6b7b420882": {
     "mode": "mode3_geo_to_geo",
@@ -3804,7 +3804,7 @@
       "angle(lr, lx, 49.01)",
       "parallel(ln, lx, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "02063a0c60effd241380d5d573261f1d": {
     "mode": "mode3_geo_to_geo",
@@ -3834,7 +3834,7 @@
       "radius(\u03c921, 2.1053)",
       "tangent(ll, \u03c921)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "f8516b8665ecf8c138076c4578b52d6e": {
     "mode": "mode3_geo_to_geo",
@@ -3872,7 +3872,7 @@
       "angle(le, lq, 67.92)",
       "parallel(la, lq, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9444444444444446
   },
   "64a3157d281e76a1ce0f6485e6c0d318": {
     "mode": "mode3_geo_to_geo",
@@ -3897,7 +3897,7 @@
       "radius(\u03b310, 1.7945)",
       "tangent(lm, \u03b310)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "c0a781f098f81216e1b2ba2720afc541": {
     "mode": "mode3_geo_to_geo",
@@ -3929,7 +3929,7 @@
       "radius(\u03b317, 2.2412)",
       "parallel(lm, lp, 2.1564)"
     ],
-    "score": 0.0
+    "score": 2.9230769230769234
   },
   "5fcdf90dd9ea1fc94c53849f9be48baa": {
     "mode": "mode3_geo_to_geo",
@@ -3954,7 +3954,7 @@
       "radius(\u03b37, 2.5605)",
       "tangent(lz, \u03b37)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "de127db057487f226665c7fec42c1937": {
     "mode": "mode3_geo_to_geo",
@@ -3993,7 +3993,7 @@
       "angle(lc, ln, 56.09)",
       "circle_tangent(\u03b33, \u03b321)"
     ],
-    "score": 0.0
+    "score": 2.9473684210526314
   },
   "4c2c6f44a5488f07ac8555f575ba6d85": {
     "mode": "mode3_geo_to_geo",
@@ -4024,7 +4024,7 @@
       "parallel(lm, lh, 0.0000)",
       "angle(lj, lh, 169.22)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "45d143b80a91c0dde57eca3d3d876f60": {
     "mode": "mode3_geo_to_geo",
@@ -4049,7 +4049,7 @@
       "radius(\u03c95, 1.3418)",
       "parallel(li, lb, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "543c4e234a0460369a1f74e5edcc597d": {
     "mode": "mode3_geo_to_geo",
@@ -4079,7 +4079,7 @@
       "radius(\u03c95, 1.2304)",
       "circle_tangent(\u03c911, \u03c95)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "583c1df374ff7a58a4204cb368cf0d86": {
     "mode": "mode3_geo_to_geo",
@@ -4110,7 +4110,7 @@
       "angle(lv, ll, 63.13)",
       "parallel(lj, ll, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "bc21091738582a61f7b807cb02a4d6c7": {
     "mode": "mode3_geo_to_geo",
@@ -4135,7 +4135,7 @@
       "radius(\u03b38, 1.7975)",
       "parallel(ln, lh, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "30d6da4357e31a39a2ffd5b4fb283616": {
     "mode": "mode3_geo_to_geo",
@@ -4166,7 +4166,7 @@
       "parallel(lx, lp, 0.0000)",
       "perpendicular(lm, lp)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "0e1678acd19ab3523b1eea48b1be64d1": {
     "mode": "mode1_nl_to_tikz",
@@ -4549,7 +4549,7 @@
       "angle(lm, lz, 13.70)",
       "angle(lw, lz, 169.34)"
     ],
-    "score": 0.0
+    "score": 2.7333333333333334
   },
   "35e36384530448b010395bc205eae800": {
     "mode": "mode2_nl_to_geo",
@@ -4577,7 +4577,7 @@
       "radius(\u03c92, 2.2384)",
       "circle_tangent(\u03c911, \u03c92)"
     ],
-    "score": 0.0
+    "score": 2.909090909090909
   },
   "9ac38c7555e50cc3c15f447de2d39012": {
     "mode": "mode2_nl_to_geo",
@@ -4600,7 +4600,7 @@
       "radius(\u03c919, 1.1504)",
       "tangent(la, \u03c919)"
     ],
-    "score": 0.0
+    "score": 2.875
   },
   "1b05cba973bf1844d7bac850991aad2f": {
     "mode": "mode2_nl_to_geo",
@@ -4629,7 +4629,7 @@
       "radius(\u03c913, 2.4282)",
       "angle(li, ls, 98.27)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "88d2641e3600778b2b0a59cfb7466a94": {
     "mode": "mode2_nl_to_geo",
@@ -4655,7 +4655,7 @@
       "radius(\u03b38, 1.3046)",
       "angle(lp, ll, 24.45)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "389dc8e7f03ca078d20d913c887bdcb1": {
     "mode": "mode2_nl_to_geo",
@@ -4726,7 +4726,7 @@
       "angle(lt, le, 125.68)",
       "angle(lk, le, 108.04)"
     ],
-    "score": 0.0
+    "score": 2.6875
   },
   "20b05ce53ee7e7c267a03774542ee641": {
     "mode": "mode2_nl_to_geo",
@@ -4753,7 +4753,7 @@
       "radius(\u03c917, 0.8747)",
       "tangent(lo, \u03c917)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "9099f6cfd5724dd8e326c0cd21f13850": {
     "mode": "mode2_nl_to_geo",
@@ -4785,7 +4785,7 @@
       "radius(\u03b324, 0.7624)",
       "parallel(li, lm, 2.4820)"
     ],
-    "score": 1.0
+    "score": 2.9230769230769234
   },
   "c626d7cbe151a2e90a4841dce3657b03": {
     "mode": "mode2_nl_to_geo",
@@ -4814,7 +4814,7 @@
       "radius(\u03c921, 1.2855)",
       "parallel(la, ld, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "e5c5f0ed48d9d242f28bf126db9db1e1": {
     "mode": "mode2_nl_to_geo",
@@ -4844,7 +4844,7 @@
       "angle(lx, lm, 170.39)",
       "circle_tangent(\u03b311, \u03b321)"
     ],
-    "score": 0.0
+    "score": 2.769230769230769
   },
   "4bed89eb4609bcec1df4187a60886a16": {
     "mode": "mode2_nl_to_geo",
@@ -4873,7 +4873,7 @@
       "radius(\u03c919, 0.8979)",
       "parallel(ly, li, 0.1760)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "24990f104385b23a7eff02b421d7c1df": {
     "mode": "mode2_nl_to_geo",
@@ -4910,7 +4910,7 @@
       "angle(ln, lm, 177.49)",
       "angle(le, lm, 121.05)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "6f34648b3fc7ad0e114711a4620aa78d": {
     "mode": "mode2_nl_to_geo",
@@ -4938,7 +4938,7 @@
       "radius(\u03c911, 1.3966)",
       "parallel(lw, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "386e59912f5088ef6b2b000f813f9825": {
     "mode": "mode2_nl_to_geo",
@@ -4969,7 +4969,7 @@
       "angle(lk, li, 140.57)",
       "angle(lj, li, 66.08)"
     ],
-    "score": 0.0
+    "score": 2.7857142857142856
   },
   "70fa9033da35a07f0589772fd1f6d8be": {
     "mode": "mode2_nl_to_geo",
@@ -4998,7 +4998,7 @@
       "tangent(lx, \u03c96)",
       "parallel(lc, lx, 0.0000)"
     ],
-    "score": 1.0
+    "score": 2.0
   },
   "a0c621125aa9ad88083f5a0045125176": {
     "mode": "mode2_nl_to_geo",
@@ -5026,7 +5026,7 @@
       "radius(\u03b316, 0.5196)",
       "parallel(lu, ls, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "6ce045e88ab602044684b7e904ef8f4b": {
     "mode": "mode2_nl_to_geo",
@@ -5063,7 +5063,7 @@
       "angle(ls, lm, 155.24)",
       "circle_tangent(\u03b311, \u03c92)"
     ],
-    "score": 0.0
+    "score": 2.6666666666666665
   },
   "80ce3122b55a69cf6656ca9aff23d962": {
     "mode": "mode2_nl_to_geo",
@@ -5089,7 +5089,7 @@
       "radius(\u03c910, 2.4923)",
       "parallel(lv, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "1fa2c8163eadc4b3ad65e47b87186dab": {
     "mode": "mode2_nl_to_geo",
@@ -5124,7 +5124,7 @@
       "angle(lb, lp, 156.15)",
       "circle_tangent(\u03b312, \u03c918)"
     ],
-    "score": 0.0
+    "score": 2.764705882352941
   },
   "f2d416af1c3bcd6aaa87f6cdd06ee403": {
     "mode": "mode2_nl_to_geo",
@@ -5156,7 +5156,7 @@
       "angle(lk, ly, 159.37)",
       "parallel(lm, ly, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "56a57012c1a661b91c5ce99c0c7f6a9d": {
     "mode": "mode2_nl_to_geo",
@@ -5189,7 +5189,7 @@
       "angle(lg, lo, 133.91)",
       "angle(lu, lo, 136.09)"
     ],
-    "score": 0.0
+    "score": 2.8
   },
   "d02f11428654940d0d099d1b84d15f93": {
     "mode": "mode2_nl_to_geo",
@@ -5223,7 +5223,7 @@
       "angle(lp, lj, 5.64)",
       "angle(lg, lj, 84.36)"
     ],
-    "score": 0.0
+    "score": 1.9285714285714286
   },
   "c56eb2fcc0ad1d1273bfd82e763d44b3": {
     "mode": "mode2_nl_to_geo",
@@ -5261,7 +5261,7 @@
       "parallel(ls, ld, 0.0000)",
       "circle_tangent(\u03c923, \u03c925)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "a65ddf7ef38dd570ac5ba03d3da0876a": {
     "mode": "mode2_nl_to_geo",
@@ -5284,7 +5284,7 @@
       "radius(\u03b317, 2.1883)",
       "tangent(li, \u03b317)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "f0b237cd0ad8f4c2e5b263d7af7872a3": {
     "mode": "mode2_nl_to_geo",
@@ -5392,7 +5392,7 @@
       "angle(lt, lc, 18.21)",
       "angle(lo, lc, 17.18)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "03a0e2db63bff4a9d36c67fa9dccdfce": {
     "mode": "mode2_nl_to_geo",
@@ -5422,7 +5422,7 @@
       "radius(\u03c918, 1.6911)",
       "angle(lk, lr, 169.39)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "4e20e8749344c563563cac71992a3c8a": {
     "mode": "mode2_nl_to_geo",
@@ -5453,7 +5453,7 @@
       "angle(lp, le, 101.85)",
       "angle(lq, le, 109.07)"
     ],
-    "score": 0.0
+    "score": 2.642857142857143
   },
   "7fa0e142cd6f45b98216feb7e437e6a0": {
     "mode": "mode2_nl_to_geo",
@@ -5485,7 +5485,7 @@
       "radius(\u03b317, 0.8245)",
       "tangent(ly, \u03b317)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "80c6124087d219d979d6b775c30ad892": {
     "mode": "mode2_nl_to_geo",
@@ -5515,7 +5515,7 @@
       "radius(\u03c98, 1.4484)",
       "circle_tangent(\u03c911, \u03c98)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "99a94cc80e8390e3277a59704250931e": {
     "mode": "mode2_nl_to_geo",
@@ -5552,7 +5552,7 @@
       "angle(lg, lp, 110.33)",
       "circle_tangent(\u03c920, \u03c90)"
     ],
-    "score": 0.0
+    "score": 1.9375
   },
   "60543d808d306384cc1e883515e77227": {
     "mode": "mode2_nl_to_geo",
@@ -5587,7 +5587,7 @@
       "angle(lf, lx, 112.76)",
       "angle(ll, lx, 129.14)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "c5a897fc943054a339b3302cee3c46ba": {
     "mode": "mode2_nl_to_geo",
@@ -5649,7 +5649,7 @@
       "parallel(ld, lo, 0.0000)",
       "parallel(ls, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.875
   },
   "7efaa24573b977eb9d9a8a2bcceb0585": {
     "mode": "mode2_nl_to_geo",
@@ -5677,7 +5677,7 @@
       "radius(\u03b312, 0.9249)",
       "angle(ln, lw, 165.32)"
     ],
-    "score": 0.0
+    "score": 2.8181818181818183
   },
   "310d22f22396bc409d831dd85e2aafcd": {
     "mode": "mode2_nl_to_geo",
@@ -5711,7 +5711,7 @@
       "angle(lr, lx, 49.01)",
       "parallel(ln, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.875
   },
   "99b284b11fc69e96ce2f8c5c1c6eca86": {
     "mode": "mode2_nl_to_geo",
@@ -5740,7 +5740,7 @@
       "radius(\u03c921, 2.1053)",
       "tangent(ll, \u03c921)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "ae78be9505720d762201eca898a88955": {
     "mode": "mode2_nl_to_geo",
@@ -5803,7 +5803,7 @@
       "radius(\u03b310, 1.7945)",
       "tangent(lm, \u03b310)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "92f64dda7d3e7557dc09ec596c099413": {
     "mode": "mode2_nl_to_geo",
@@ -5835,7 +5835,7 @@
       "radius(\u03b317, 2.2412)",
       "parallel(lm, lp, 2.1564)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "5d2168902e958949ad05724b5add2c86": {
     "mode": "mode2_nl_to_geo",
@@ -5860,7 +5860,7 @@
       "radius(\u03b37, 2.5605)",
       "tangent(lz, \u03b37)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "eba9b5331d3434cd26b3d8da18efe245": {
     "mode": "mode2_nl_to_geo",
@@ -5899,7 +5899,7 @@
       "angle(lc, ln, 56.09)",
       "circle_tangent(\u03b33, \u03b321)"
     ],
-    "score": 0.0
+    "score": 2.7894736842105265
   },
   "8b3e48bcee1c70a0914d7fcc147662ed": {
     "mode": "mode2_nl_to_geo",
@@ -5930,7 +5930,7 @@
       "parallel(lm, lh, 0.0000)",
       "angle(lj, lh, 169.22)"
     ],
-    "score": 0.0
+    "score": 2.7857142857142856
   },
   "fb8db35937ad3b8e445fa67f36f5fe8f": {
     "mode": "mode2_nl_to_geo",
@@ -5953,7 +5953,7 @@
       "radius(\u03c95, 1.3418)",
       "parallel(li, lb, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.0
   },
   "59ba18897a0ef8a9733fb42b11f0bd6f": {
     "mode": "mode2_nl_to_geo",
@@ -5974,7 +5974,7 @@
       "radius(\u03c95, 1.2304)",
       "circle_tangent(\u03c911, \u03c95)"
     ],
-    "score": 0.0
+    "score": 1.0
   },
   "2c50275d885132cbb74ab627f81c3fcd": {
     "mode": "mode2_nl_to_geo",
@@ -6005,7 +6005,7 @@
       "angle(lv, ll, 63.13)",
       "parallel(lj, ll, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.7142857142857144
   },
   "373fb0f8b55768f72c3c754da0845d55": {
     "mode": "mode2_nl_to_geo",
@@ -6030,7 +6030,7 @@
       "radius(\u03b38, 1.7975)",
       "parallel(ln, lh, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "595018e86435e2d46ef8a430dc7444b9": {
     "mode": "mode2_nl_to_geo",
@@ -6061,7 +6061,7 @@
       "parallel(lx, lp, 0.0000)",
       "perpendicular(lm, lp)"
     ],
-    "score": 0.0
+    "score": 2.642857142857143
   },
   "98bcb81da887217c867b1b0305b17cba": {
     "mode": "mode3_geo_to_geo",
@@ -6094,7 +6094,7 @@
       "angle(lm, lz, 13.70)",
       "angle(lw, lz, 169.34)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "a4b089b4cb5c0e00316af29dacfffe22": {
     "mode": "mode3_geo_to_geo",
@@ -6122,7 +6122,7 @@
       "radius(\u03c92, 2.2384)",
       "circle_tangent(\u03c911, \u03c92)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "2411fc1a76c1110dab877721ff4221e4": {
     "mode": "mode3_geo_to_geo",
@@ -6145,7 +6145,7 @@
       "radius(\u03c919, 1.1504)",
       "tangent(la, \u03c919)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "4a55eff9338b433495a0b7ca1df34ae3": {
     "mode": "mode3_geo_to_geo",
@@ -6175,7 +6175,7 @@
       "radius(\u03c913, 2.4282)",
       "angle(li, ls, 98.27)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "924322a74b0c747b29ee1b129271ef8c": {
     "mode": "mode3_geo_to_geo",
@@ -6201,7 +6201,7 @@
       "radius(\u03b38, 1.3046)",
       "angle(lp, ll, 24.45)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "232b45e576a68ad171108ccfad92d02a": {
     "mode": "mode3_geo_to_geo",
@@ -6238,7 +6238,7 @@
       "angle(lq, lh, 146.77)",
       "angle(lw, lh, 146.77)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "dcf4ec2281734ccbcf54735914b7228c": {
     "mode": "mode3_geo_to_geo",
@@ -6272,7 +6272,7 @@
       "angle(lt, le, 125.68)",
       "angle(lk, le, 108.04)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "ac5b23c096079842bcece91137838bfe": {
     "mode": "mode3_geo_to_geo",
@@ -6299,7 +6299,7 @@
       "radius(\u03c917, 0.8747)",
       "tangent(lo, \u03c917)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "fae4540c5bab413e14a382e24f378985": {
     "mode": "mode3_geo_to_geo",
@@ -6331,7 +6331,7 @@
       "radius(\u03b324, 0.7624)",
       "parallel(li, lm, 2.4820)"
     ],
-    "score": 0.0
+    "score": 2.9230769230769234
   },
   "5068f9176dee1d58751901c9e1d5ad95": {
     "mode": "mode3_geo_to_geo",
@@ -6360,7 +6360,7 @@
       "radius(\u03c921, 1.2855)",
       "parallel(la, ld, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "1b3cea19be4a4d6982c99fea89575f50": {
     "mode": "mode3_geo_to_geo",
@@ -6390,7 +6390,7 @@
       "angle(lx, lm, 170.39)",
       "circle_tangent(\u03b311, \u03b321)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "fa4c8ac2d7f6fd99444c236fd7d47bec": {
     "mode": "mode3_geo_to_geo",
@@ -6420,7 +6420,7 @@
       "radius(\u03c919, 0.8979)",
       "parallel(ly, li, 0.1760)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "ba2162aeca77187717aebb135aff60f7": {
     "mode": "mode3_geo_to_geo",
@@ -6458,7 +6458,7 @@
       "angle(ln, lm, 177.49)",
       "angle(le, lm, 121.05)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "db5527c209776c6fdcc42dcab16ab3b6": {
     "mode": "mode3_geo_to_geo",
@@ -6487,7 +6487,7 @@
       "radius(\u03c911, 1.3966)",
       "parallel(lw, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "8315857f0f8b2db1085e29c4f4778920": {
     "mode": "mode3_geo_to_geo",
@@ -6518,7 +6518,7 @@
       "angle(lk, li, 140.57)",
       "angle(lj, li, 66.08)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "e4f17107128ce06818f974ece80ab1a5": {
     "mode": "mode3_geo_to_geo",
@@ -6548,7 +6548,7 @@
       "tangent(lx, \u03c96)",
       "parallel(lc, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8461538461538463
   },
   "bcf0e680fb85ee63340a7d25c722ffa2": {
     "mode": "mode3_geo_to_geo",
@@ -6578,7 +6578,7 @@
       "radius(\u03b316, 0.5196)",
       "parallel(lu, ls, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9166666666666665
   },
   "bca5d2973dfabd5a923879ee094e042a": {
     "mode": "mode3_geo_to_geo",
@@ -6615,7 +6615,7 @@
       "angle(ls, lm, 155.24)",
       "circle_tangent(\u03b311, \u03c92)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "392b2a88880c150e7c61c2325cc008db": {
     "mode": "mode3_geo_to_geo",
@@ -6642,7 +6642,7 @@
       "radius(\u03c910, 2.4923)",
       "parallel(lv, lx, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9
   },
   "0317dcef08a41ccd9415f985c27d88eb": {
     "mode": "mode3_geo_to_geo",
@@ -6677,7 +6677,7 @@
       "angle(lb, lp, 156.15)",
       "circle_tangent(\u03b312, \u03c918)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "9726034eb60deb013dc901cc12fd1380": {
     "mode": "mode3_geo_to_geo",
@@ -6710,7 +6710,7 @@
       "angle(lk, ly, 159.37)",
       "parallel(lm, ly, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "fdc796847f9d4808cfd60adf4efe4b81": {
     "mode": "mode3_geo_to_geo",
@@ -6743,7 +6743,7 @@
       "angle(lg, lo, 133.91)",
       "angle(lu, lo, 136.09)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "d52ba447f5e3717d5dda1c782a1e0a7f": {
     "mode": "mode3_geo_to_geo",
@@ -6778,7 +6778,7 @@
       "angle(lp, lj, 5.64)",
       "angle(lg, lj, 84.36)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "7f47d9946e81df6cec28c4d90fed2677": {
     "mode": "mode3_geo_to_geo",
@@ -6816,7 +6816,7 @@
       "parallel(ls, ld, 0.0000)",
       "circle_tangent(\u03c923, \u03c925)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "fb5ca4515e111e249d817c11769fd6ba": {
     "mode": "mode3_geo_to_geo",
@@ -6839,7 +6839,7 @@
       "radius(\u03b317, 2.1883)",
       "tangent(li, \u03b317)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "a782173694404aca8a75073920b7605e": {
     "mode": "mode3_geo_to_geo",
@@ -6877,7 +6877,7 @@
       "perpendicular(ld, lk)",
       "angle(le, lk, 88.66)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "00cbf3a61ac0dcbc3f78b3fdbd96e4a4": {
     "mode": "mode3_geo_to_geo",
@@ -6911,7 +6911,7 @@
       "angle(lm, lu, 72.62)",
       "circle_tangent(\u03b35, \u03c916)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "429909118bb13c56ecb71b9ee7e14743": {
     "mode": "mode3_geo_to_geo",
@@ -6948,7 +6948,7 @@
       "angle(lt, lc, 18.21)",
       "angle(lo, lc, 17.18)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "d50f1f606f8cd9d95ae610e72d7cd77e": {
     "mode": "mode3_geo_to_geo",
@@ -6978,7 +6978,7 @@
       "radius(\u03c918, 1.6911)",
       "angle(lk, lr, 169.39)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "bf6a87721b94d28bd6433894a7a0b91e": {
     "mode": "mode3_geo_to_geo",
@@ -7009,7 +7009,7 @@
       "angle(lp, le, 101.85)",
       "angle(lq, le, 109.07)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "6d2f31d7fe73207e24167a0ee888db01": {
     "mode": "mode3_geo_to_geo",
@@ -7041,7 +7041,7 @@
       "radius(\u03b317, 0.8245)",
       "tangent(ly, \u03b317)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "9136fedb20d317c3c2817b47e2176a40": {
     "mode": "mode3_geo_to_geo",
@@ -7071,7 +7071,7 @@
       "radius(\u03c98, 1.4484)",
       "circle_tangent(\u03c911, \u03c98)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "835ccfcc54e971a9ead0ad15176ab334": {
     "mode": "mode3_geo_to_geo",
@@ -7110,7 +7110,7 @@
       "angle(lg, lp, 110.33)",
       "circle_tangent(\u03c920, \u03c90)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "18fce44cae04e1bf179acdce1c26838e": {
     "mode": "mode3_geo_to_geo",
@@ -7146,7 +7146,7 @@
       "angle(lf, lx, 112.76)",
       "angle(ll, lx, 129.14)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "efd7304b084bfe6bd76df33caa9cf89f": {
     "mode": "mode3_geo_to_geo",
@@ -7174,7 +7174,7 @@
       "radius(\u03c97, 2.4382)",
       "angle(lh, li, 34.33)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "7d8135f8f57a1633093301cb779509e5": {
     "mode": "mode3_geo_to_geo",
@@ -7208,7 +7208,7 @@
       "parallel(ld, lo, 0.0000)",
       "parallel(ls, lo, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.8125
   },
   "20a2f12cd899cf0d3c7f3948d67878e7": {
     "mode": "mode3_geo_to_geo",
@@ -7236,7 +7236,7 @@
       "radius(\u03b312, 0.9249)",
       "angle(ln, lw, 165.32)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "80ff3f33d8214485f8dbf6c5d04bc5c4": {
     "mode": "mode3_geo_to_geo",
@@ -7270,7 +7270,7 @@
       "angle(lr, lx, 49.01)",
       "parallel(ln, lx, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "d204de4983d1be5d368f40b12f446287": {
     "mode": "mode3_geo_to_geo",
@@ -7300,7 +7300,7 @@
       "radius(\u03c921, 2.1053)",
       "tangent(ll, \u03c921)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "b31d0df08ff3fb260e49c7d05faed671": {
     "mode": "mode3_geo_to_geo",
@@ -7338,7 +7338,7 @@
       "angle(le, lq, 67.92)",
       "parallel(la, lq, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.9444444444444446
   },
   "c24bfa5b382d38f5d9d28a43cc0bf005": {
     "mode": "mode3_geo_to_geo",
@@ -7363,7 +7363,7 @@
       "radius(\u03b310, 1.7945)",
       "tangent(lm, \u03b310)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "cba0c307e8097507aa18326b0c0c37b0": {
     "mode": "mode3_geo_to_geo",
@@ -7395,7 +7395,7 @@
       "radius(\u03b317, 2.2412)",
       "parallel(lm, lp, 2.1564)"
     ],
-    "score": 0.0
+    "score": 2.9230769230769234
   },
   "382d205cabc42d2b6fa5c473d72be777": {
     "mode": "mode3_geo_to_geo",
@@ -7420,7 +7420,7 @@
       "radius(\u03b37, 2.5605)",
       "tangent(lz, \u03b37)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "892397e0bccdee7a259bb7989b37d04e": {
     "mode": "mode3_geo_to_geo",
@@ -7459,7 +7459,7 @@
       "angle(lc, ln, 56.09)",
       "circle_tangent(\u03b33, \u03b321)"
     ],
-    "score": 0.0
+    "score": 2.9473684210526314
   },
   "4b4a36bcee9b8493a59bf757299e5a5b": {
     "mode": "mode3_geo_to_geo",
@@ -7490,7 +7490,7 @@
       "parallel(lm, lh, 0.0000)",
       "angle(lj, lh, 169.22)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "2a2022a68e178267fbf0edc4408eda59": {
     "mode": "mode3_geo_to_geo",
@@ -7515,7 +7515,7 @@
       "radius(\u03c95, 1.3418)",
       "parallel(li, lb, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "3e8c5321349b9bba59eb8710333a2e42": {
     "mode": "mode3_geo_to_geo",
@@ -7545,7 +7545,7 @@
       "radius(\u03c95, 1.2304)",
       "circle_tangent(\u03c911, \u03c95)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "2d8309bcb7f1d256532c7488305859c0": {
     "mode": "mode3_geo_to_geo",
@@ -7576,7 +7576,7 @@
       "angle(lv, ll, 63.13)",
       "parallel(lj, ll, 0.0000)"
     ],
-    "score": 1.0
+    "score": 3.0
   },
   "fa1955dc67d29b9ed6cf765871a7a565": {
     "mode": "mode3_geo_to_geo",
@@ -7601,7 +7601,7 @@
       "radius(\u03b38, 1.7975)",
       "parallel(ln, lh, 0.0000)"
     ],
-    "score": 0.0
+    "score": 2.888888888888889
   },
   "b7f96c71b4c6571a3168fc55b5be6731": {
     "mode": "mode3_geo_to_geo",
@@ -7632,6 +7632,6 @@
       "parallel(lx, lp, 0.0000)",
       "perpendicular(lm, lp)"
     ],
-    "score": 1.0
+    "score": 3.0
   }
 }

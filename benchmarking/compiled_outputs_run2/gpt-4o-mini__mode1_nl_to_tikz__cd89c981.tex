@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw[fill=black] (0,0) circle (2pt) node[anchor=east] {G};
+  \draw[fill=black] (6.4449,0) circle (2pt) node[anchor=west] {K};
+  \draw[fill=black] (0,0) -- (6.4449,0) node[midway, below] {lg};
+  \draw[draw=black] (0,0) arc (0:360:1.6585cm) node[anchor=north] {$\gamma_6$};
+\end{tikzpicture}
+\end{document}

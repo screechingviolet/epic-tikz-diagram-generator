@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \filldraw (0,0) circle (2pt) node[left] {B};
+  \filldraw (3.783,0) circle (2pt) node[right] {S};
+  \draw (0,0) -- (3.783,0);
+  \filldraw (0,0) circle (2pt);
+  \filldraw (0,2.927) circle (2pt) node[above] {T};
+  \draw (0,0) -- (0,2.927);
+  \filldraw (0,2.927) circle (2pt);
+  \filldraw (-2.927,2.927) circle (2pt) node[above] {R};
+  \draw (0,2.927) -- (-2.927,2.927);
+\end{tikzpicture}
+\end{document}

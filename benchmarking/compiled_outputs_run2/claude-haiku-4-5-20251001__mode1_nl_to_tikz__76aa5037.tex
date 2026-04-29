@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (E) at (0, 0);
+  \coordinate (R) at (0, 1.2759);
+  \coordinate (W) at (3.2740, 1.2759);
+  \draw (E) circle (1.2759);
+  \draw (R) -- (W);
+  \fill (E) circle (0.05);
+  \fill (R) circle (0.05);
+  \fill (W) circle (0.05);
+\end{tikzpicture}
+\end{document}
