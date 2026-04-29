@@ -1,0 +1,1 @@
+There is a line connecting two points which measures approximately 2.26 units in length, and a circle that is centered at another point with a radius of 1.06 units.

@@ -31,12 +31,13 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
+RUN_NAME     = "run1"   # change this for each run
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
-OUTPUT_PATH  = "benchmark_results.jsonl"
-SCORES_PATH  = "benchmark_scores.json"
-CACHE_PATH   = "benchmark_cache.json"
-COMPILED_DIR = Path("compiled_outputs")
+DATASET_PATH = "../data/demo_dataset.jsonl"
+OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
+SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
+CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
+COMPILED_DIR = Path(f"compiled_outputs_{RUN_NAME}")
 BATCH_SIZE   = 10
 DELAY        = 1.0
 
@@ -234,7 +235,6 @@ def _parse_fn(s):
     return fn, params
 
 def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
-    """Returns fraction of truth constraints satisfied. 1.0 = perfect."""
     if not truth_constr:
         return 1.0
     try:
@@ -265,7 +265,6 @@ def check_constraints(pred_geo: list[str], truth_constr: list[str]) -> float:
         for constraint in truth_constr:
             try:
                 fn, params = _parse_fn(constraint)
-                # skip bare declarations
                 if fn == "point"  and len(params) == 1: continue
                 if fn == "circle" and len(params) == 2: continue
                 total += 1
@@ -509,11 +508,10 @@ def run_mode3_batch(clients, geo_inputs, truth_constraints_list, model_name, pro
 
 
 # ---------------------------------------------------------------------------
-# LOAD INPUTS  (all 3 modes use the same 50 dataset records)
+# LOAD INPUTS
 # ---------------------------------------------------------------------------
 
 def load_samples() -> tuple[list[str], list[str], list[list[str]]]:
-    """Returns (nl_variants, geo_strings, constraints_list) from last 50 dataset records."""
     nls, geos, constraints_list = [], [], []
     try:
         records = []
@@ -541,6 +539,7 @@ def load_samples() -> tuple[list[str], list[str], list[list[str]]]:
 # ---------------------------------------------------------------------------
 
 def run_benchmark():
+    print(f"Run: {RUN_NAME}")
     print("Initializing clients...")
     clients = init_clients()
 
@@ -572,7 +571,6 @@ def run_benchmark():
         print(f"Model: {model_name}")
         print(f"{'='*60}")
 
-        # --- Mode 1: NL -> TikZ ---
         print(f"\n  [Mode 1: NL -> TikZ] {len(nls)} samples")
         for b, idx_batch in enumerate(batches):
             nls_batch = [nls[i] for i in idx_batch]
@@ -589,10 +587,9 @@ def run_benchmark():
             save_cache(cache, CACHE_PATH)
             time.sleep(DELAY)
 
-        # --- Mode 2: NL -> Geo -> Score ---
         print(f"\n  [Mode 2: NL -> Geo -> Score] {len(nls)} samples")
         for b, idx_batch in enumerate(batches):
-            nls_batch    = [nls[i]    for i in idx_batch]
+            nls_batch     = [nls[i]     for i in idx_batch]
             constrs_batch = [constrs[i] for i in idx_batch]
             print(f"    Batch {b+1}/{len(batches)} ...", end=" ", flush=True)
             r2s = run_mode2_batch(clients, nls_batch, constrs_batch, model_name, provider, cache)
@@ -605,7 +602,6 @@ def run_benchmark():
             save_cache(cache, CACHE_PATH)
             time.sleep(DELAY)
 
-        # --- Mode 3: GT Geo -> Geo -> Score ---
         print(f"\n  [Mode 3: GT Geo -> Geo -> Score] {len(geos)} samples")
         for b, idx_batch in enumerate(batches):
             geos_batch    = [geos[i]    for i in idx_batch]
@@ -621,12 +617,10 @@ def run_benchmark():
             save_cache(cache, CACHE_PATH)
             time.sleep(DELAY)
 
-    # Save raw results
     with open(OUTPUT_PATH, "w") as f:
         for r in all_results:
             f.write(json.dumps(r) + "\n")
 
-    # Compute summary
     summary = {}
     for model_name in MODELS:
         m1 = scores[model_name]["mode1"]
@@ -641,7 +635,6 @@ def run_benchmark():
     with open(SCORES_PATH, "w") as f:
         json.dump(summary, f, indent=2)
 
-    # Print table
     print("\n" + "=" * 65)
     print(f"{'Model':<25} {'NL->TikZ':>12} {'NL->Geo':>12} {'GT->Geo':>12}")
     print("=" * 65)
@@ -655,8 +648,6 @@ def run_benchmark():
     print(f"Scores       → {SCORES_PATH}")
     print(f"Cache        → {CACHE_PATH}")
     print(f"Compiled tex → {COMPILED_DIR}/")
-    print(f"\nTo compile all PDFs:")
-    print(f"  cd {COMPILED_DIR} && for f in *.tex; do /Library/TeX/texbin/pdflatex -interaction=nonstopmode \"$f\"; done")
 
 
 if __name__ == "__main__":

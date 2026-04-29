@@ -1,0 +1,1 @@
+There is a line that connects two points, and this line has a length of approximately 4.91 units. A small circle, centered at one of these points, has a radius of about 0.57 units, and the line just grazes this circle. In addition, there is a larger circle, also centered at the same point, which has a radius of roughly 2.89 units.

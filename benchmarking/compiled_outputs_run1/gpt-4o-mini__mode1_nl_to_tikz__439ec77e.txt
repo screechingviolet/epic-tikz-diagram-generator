@@ -1,0 +1,1 @@
+There is a circle with a radius of 0.9324 that is touched by a line of length 2.5486, known as L0. This line, L0, intersects another line, L1, which is longer at 6.8707, forming an angle of 16.15 degrees between them.

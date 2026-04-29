@@ -1,0 +1,1 @@
+There are two circles, one with a radius of 0.5762 and the other with a radius of 1.2864, which are externally tangent to each other. Additionally, there is a line connecting two points with a length of 3.4309.
