@@ -1068,11 +1068,18 @@ def generate_constraint_specific_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    print("\n=== Generating parallel dataset ===\n")
-    for i in range(6):
-        generate_constraint_specific_datasets(
-            n_scenes_per_type=35,
-            n_variants_per_scene=5,
-            output_dir="constraint_data",
-            constraint_types=["parallel"],  # add this filter
-        )
+    print("\n=== Generating complex dataset ===\n")
+    for i in range(5):
+        generate_curriculum_datasets(
+        n_simple=0, n_medium=0, n_complex=100,
+        n_variants_per_scene=5, output_dir="curriculum_data",
+    )
+    
+    # print("\n=== Generating parallel dataset ===\n")
+    # for i in range(6):
+    #     generate_constraint_specific_datasets(
+    #         n_scenes_per_type=35,
+    #         n_variants_per_scene=5,
+    #         output_dir="constraint_data",
+    #         constraint_types=["parallel"],  # add this filter
+    #     )

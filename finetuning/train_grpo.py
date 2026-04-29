@@ -268,6 +268,10 @@ def _split_completion(text: str) -> list[str]:
     waste tokens on commentary or invalid forms, even if a fixup parser
     *could* recover the valid lines.
     """
+    # strip CoT block before parsing primitives
+    if "<think>" in text and "</think>" in text:
+        text = text[text.index("</think>") + len("</think>"):]
+
     return [line.strip() for line in text.splitlines() if line.strip()]
 
 
@@ -424,6 +428,24 @@ if RESUME_FROM is not None:
     )
     trainer_peft_config = None
 else:
+    model_for_trainer = MODEL_NAME
+    trainer_peft_config = peft_config
+    
+SFT_CHECKPOINT = PROJECT_ROOT / "Qwen2-0.5B-SFT-geometry" / "final"
+
+if RESUME_FROM is not None:
+    print(f"[train_grpo] resuming from saved adapter at {RESUME_FROM!r}")
+    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+    model_for_trainer = PeftModel.from_pretrained(
+        base, RESUME_FROM, is_trainable=True
+    )
+    trainer_peft_config = None
+elif SFT_CHECKPOINT.exists():
+    print(f"[train_grpo] starting from SFT checkpoint at {SFT_CHECKPOINT!r}")
+    model_for_trainer = str(SFT_CHECKPOINT)
+    trainer_peft_config = peft_config
+else:
+    print(f"[train_grpo] no SFT checkpoint found, starting from base model")
     model_for_trainer = MODEL_NAME
     trainer_peft_config = peft_config
 
