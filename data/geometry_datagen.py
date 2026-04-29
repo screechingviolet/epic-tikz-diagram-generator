@@ -848,7 +848,8 @@ def generate_curriculum_datasets(
     # step 1: generate all scenes locally for all levels
     all_scenes = {}
     for level, n_scenes, scene_fn in configs:
-        print(f"Generating {level} scenes...")
+        if n_scenes == 0:
+            continue
         scenes = []
         attempts = 0
         while len(scenes) < n_scenes:
@@ -1068,6 +1069,11 @@ def generate_constraint_specific_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    for i in range(5):
+        generate_curriculum_datasets(
+            n_simple=0, n_medium=0, n_complex=100,
+            n_variants_per_scene=5, output_dir="curriculum_data",
+        )
     print("\n=== Generating parallel dataset ===\n")
     for i in range(6):
         generate_constraint_specific_datasets(
