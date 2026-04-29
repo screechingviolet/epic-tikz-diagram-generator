@@ -57,7 +57,11 @@ class Line:
 def radius(circle) -> float:
     return circle.radius # lol
 
-def length(line1, truth) -> float:
+def length(line1) -> float:
+    actual = ((line1.point_1.x - line1.point_2.x)**2 + (line1.point_1.y - line1.point_2.y)**2)**0.5
+    return actual
+
+def length_cont(line1, truth) -> float:
     actual = ((line1.point_1.x - line1.point_2.x)**2 + (line1.point_1.y - line1.point_2.y)**2)**0.5
     return min(actual, truth)/max(actual, truth)
 
@@ -137,9 +141,13 @@ def angle_calc_deg(line1, line2) -> float:
     actual = min(angle, 360 - angle)
     return actual 
 
-def angle(line1, line2, truth) -> float:
+def angle_cont(line1, line2, truth) -> float:
     actual = angle_calc_deg(line1, line2)
     return 1-(abs(truth-actual)/180)
+
+def angle(line1, line2) -> float:
+    actual = angle_calc_deg(line1, line2)
+    return actual
 
 def slope(line):
     dx = line.point_2.x - line.point_1.x
@@ -148,11 +156,14 @@ def slope(line):
         return None
     return dy / dx
 
-def parallel(line1, line2) -> float:
+def parallel_cont(line1, line2) -> float:
     # return slope(line1) == slope(line2)
     angle = angle_calc_deg(line1, line2)
     reduced = min(angle, 180 - angle)
     return 1-(reduced/90)
+
+def parallel(line1, line2) -> float:
+    return slope(line1) == slope(line2)
 
 def perpendicular(line1, line2) -> bool:
     m1 = slope(line1)
@@ -227,9 +238,9 @@ def check_constraints(pred_geo, truth_constr):
                     if math.isclose(radius(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
                         correct_constraints += 1
                 case "length":
-                    correct_constraints += length(shape_dict[parsed[1][0]], float(parsed[1][1]))
-                    # if math.isclose(length(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
-                    #    correct_constraints += 1
+                    # correct_constraints += length(shape_dict[parsed[1][0]], float(parsed[1][1]))
+                    if math.isclose(length(shape_dict[parsed[1][0]]), float(parsed[1][1]), rel_tol=FLOAT_CMP):
+                       correct_constraints += 1
                 case "intersect":
                     if intersect(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
@@ -238,24 +249,24 @@ def check_constraints(pred_geo, truth_constr):
                         correct_constraints += 1
                 case "parallel":
                     par = parallel(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]])
-                    # if math.isclose(par, 1, rel_tol=FLOAT_CMP) and :
-                    if len(parsed[1]) > 2:  # distance argument present
-                        p1 = shape_dict[parsed[1][0]]
-                        p2 = shape_dict[parsed[1][1]]
-                        # recompute perpendicular distance
-                        actual_dist = point_to_line_distance(
-                            np.array([p2.point_1.x, p2.point_1.y]),
-                            np.array([p1.point_1.x, p1.point_1.y]),
-                            np.array([p1.point_2.x, p1.point_2.y])
-                        )
-                        if math.isclose(actual_dist, float(parsed[1][2]), rel_tol=FLOAT_CMP):
-                            correct_constraints += par
-                    else:
-                        correct_constraints += par
+                    if math.isclose(par, 1, rel_tol=FLOAT_CMP):
+                        if len(parsed[1]) > 2:  # distance argument present
+                            p1 = shape_dict[parsed[1][0]]
+                            p2 = shape_dict[parsed[1][1]]
+                            # recompute perpendicular distance
+                            actual_dist = point_to_line_distance(
+                                np.array([p2.point_1.x, p2.point_1.y]),
+                                np.array([p1.point_1.x, p1.point_1.y]),
+                                np.array([p1.point_2.x, p1.point_2.y])
+                            )
+                            if math.isclose(actual_dist, float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                                correct_constraints += 1
+                        else:
+                            correct_constraints += 1
                 case "perpendicular":
-                    # if perpendicular(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
-                    #     correct_constraints += 1
-                    correct_constraints += perpendicular_cont(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]])
+                    if perpendicular(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
+                        correct_constraints += 1
+                    # correct_constraints += perpendicular_cont(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]])
                 case "circle_tangent":
                     if circle_tangent(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
@@ -263,9 +274,9 @@ def check_constraints(pred_geo, truth_constr):
                     if on_circle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]):
                         correct_constraints += 1
                 case "angle":
-                #     if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
-                #         correct_constraints += 1
-                    correct_constraints += angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]], float(parsed[1][2]))
+                    if math.isclose(angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]]), float(parsed[1][2]), rel_tol=FLOAT_CMP):
+                        correct_constraints += 1
+                #     correct_constraints += angle(shape_dict[parsed[1][0]], shape_dict[parsed[1][1]], float(parsed[1][2]))
                 case "point":
                     # existence assertion: name resolves to a Point
                     if isinstance(shape_dict[parsed[1][0]], Point):
