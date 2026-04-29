@@ -6,7 +6,7 @@
   },
   "claude-haiku-4-5-20251001": {
     "mode1_compile_rate": 0.5,
-    "mode2_avg_score": 0.1,
+    "mode2_avg_score": 0.06,
     "mode3_avg_score": 0.72
   }
 }

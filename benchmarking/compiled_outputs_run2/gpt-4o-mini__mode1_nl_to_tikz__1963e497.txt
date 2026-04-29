@@ -1,0 +1,1 @@
+Point U exists, and point J also exists. Circle ω8 is centered at point U and has a radius of 1.0888. Notably, point J lies on the circumference of circle ω8.

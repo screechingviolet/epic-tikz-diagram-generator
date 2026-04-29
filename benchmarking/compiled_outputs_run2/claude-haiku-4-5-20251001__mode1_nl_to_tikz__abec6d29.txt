@@ -1,0 +1,1 @@
+There exists a point identified as A. Another point is designated as Y. Circle ω19 is centered at point A with a radius of 1.1797. Additionally, circle ω4 is centered at point Y, having a radius of 1.2805. It is important to note that circles ω19 and ω4 are externally tangent to each other.

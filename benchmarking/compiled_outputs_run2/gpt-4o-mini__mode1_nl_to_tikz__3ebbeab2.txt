@@ -1,0 +1,1 @@
+Point M exists, as does point W. Line lo connects points M and W and has a length of 4.7027. Point H and point J also exist, with line lw connecting them and having a length of 4.307. The two lines lo and lw are parallel, maintaining a perpendicular distance of 1.5758.
