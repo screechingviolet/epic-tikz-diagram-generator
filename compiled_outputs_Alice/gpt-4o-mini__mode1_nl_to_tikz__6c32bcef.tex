@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$X$};
+  \filldraw (4.0, 0.0) circle (2pt) node[above right] {$T$};
+  \filldraw (2.0, 2.0) circle (2pt) node[above right] {$D$};
+  \filldraw (4.0, 2.5) circle (2pt) node[above right] {$L$};
+  \filldraw (1.0, 2.0) circle (2pt) node[above right] {$G$};
+  \draw (1.0, 2.0) -- (2.0, 0.0) node[midway, right] {$l_y$};
+  \draw (4.0, 0.0) circle (0.5843) node[above=0.5843cm] {$\gamma_{10}$};
+  \draw (4.0, 2.5) circle (0.8245) node[above=0.8245cm] {$\gamma_{17}$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+Point O exists, and circle γ17 is centered at point O with a radius of 2.1883. There is also point N and point G, with line li connecting N and G, which has a length of 3.1216. Additionally, line li is tangent to circle γ17.

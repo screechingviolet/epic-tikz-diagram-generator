@@ -1,0 +1,1 @@
+Point O exists, and it is connected to point N by line lu. Line ls connects point P to point N. Circle γ16 is centered at point P with a radius of 0.5196. The length of line lu is 3.9577, while the length of line ls is 1.4731. Lines lu and ls are parallel.

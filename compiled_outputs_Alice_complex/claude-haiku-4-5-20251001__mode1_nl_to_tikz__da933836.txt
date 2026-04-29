@@ -1,0 +1,1 @@
+Point O exists, and it is connected to point C by line lc, which has a length of 0.5. Line lx connects points C and O, also having a length of 0.5. Circle ω6 is centered at point D with a radius of 0.7302. Both lines lc and lx are tangent to circle ω6. Moreover, lines lc and lx are parallel.

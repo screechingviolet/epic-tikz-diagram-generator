@@ -1,0 +1,1 @@
+Point M exists and serves as the center of circle ω19, which has a radius of 1.1504. Point Q and point N are also defined, with line la connecting points N and Q. The length of line la is 4.3181, and it is tangent to circle ω19.

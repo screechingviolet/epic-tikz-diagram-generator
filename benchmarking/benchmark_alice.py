@@ -19,6 +19,8 @@ import json
 import subprocess
 import tempfile
 import time
+import contextlib
+import io
 
 import anthropic
 import torch
@@ -32,9 +34,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run2"
+RUN_NAME     = "Alice_test2"
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
+DATASET_PATH = "/Users/darshmallow/Desktop/Brown/CS1470/FP/curriculum_data/dataset_merged.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
@@ -52,8 +54,8 @@ MODELS = {
 
 # Modes to run per provider — local models only do mode2 (NL->Geo)
 MODEL_MODES = {
-    "openai":     [1, 2, 3],
-    "anthropic":  [1, 2, 3],
+    "openai":     [1,2,3],
+    "anthropic":  [1,2,3],
 }
 import re
 
@@ -74,7 +76,7 @@ def tikz_to_geo_programmatic(tikz: str) -> list[str]:
     )
     for m in point_pat.finditer(tikz):
         x, y, name = m.group(1), m.group(2), m.group(3).strip()
-        name = name.replace("\\", "").replace("_", "").strip()
+        name = _clean_tikz_label(m.group(3))
         point_coords[name] = (float(x), float(y))
         primitives.append(f"point({name}, {float(x):.4f}, {float(y):.4f})")
 
@@ -88,7 +90,7 @@ def tikz_to_geo_programmatic(tikz: str) -> list[str]:
     )
     for m in line_pat.finditer(tikz):
         x1, y1, x2, y2 = float(m.group(1)), float(m.group(2)), float(m.group(3)), float(m.group(4))
-        name = m.group(5).strip().replace("\\", "").replace("_", "").strip()
+        name = _clean_tikz_label(m.group(5))
 
         # find the two point names by matching coordinates
         p1_name = _find_point_by_coord(point_coords, x1, y1)
@@ -106,7 +108,7 @@ def tikz_to_geo_programmatic(tikz: str) -> list[str]:
     )
     for m in circle_pat.finditer(tikz):
         cx, cy, r = float(m.group(1)), float(m.group(2)), float(m.group(3))
-        name = m.group(4).strip().replace("\\", "").replace("_", "").strip()
+        name = _clean_tikz_label(m.group(4))
 
         center_name = _find_point_by_coord(point_coords, cx, cy)
         if center_name:
@@ -421,7 +423,28 @@ def save_compiled_tex(r: dict):
 # ---------------------------------------------------------------------------
 # MODE RUNNERS
 # ---------------------------------------------------------------------------
+def _clean_tikz_label(name: str) -> str:
+    """Convert LaTeX label back to the original name format."""
+    name = name.strip().strip("$").strip()
+    # handle subscripts: \omega_{18} → ω18, \gamma_{10} → γ10
+    name = re.sub(r'\\omega_?\{?(\d+)\}?', r'ω\1', name)
+    name = re.sub(r'\\gamma_?\{?(\d+)\}?', r'γ\1', name)
+    # handle plain subscripts without greek: l_{a} → la
+    name = re.sub(r'_\{?([^}]+)\}?', r'\1', name)
+    name = name.replace("{", "").replace("}", "").strip()
+    return name
 
+def safe_check_constraints(pred_geo: list[str], truth: list[str]) -> float:
+    try:
+        with contextlib.redirect_stdout(io.StringIO()):
+            return check_constraints(pred_geo, truth)
+    except KeyError as e:
+        print(f"    safe_check KeyError: {e}  pred={pred_geo}  truth={truth}")
+        return 0
+    except Exception as e:
+        print(f"    safe_check Exception: {type(e).__name__}: {e}  pred={pred_geo}  truth={truth}")
+        return 0
+    
 def run_mode1_batch(clients, nls, truth_constraints_list, model_name, provider, cache) -> list[dict]:
     to_query, indices, results = [], [], [None] * len(nls)
     for i, nl in enumerate(nls):
@@ -441,7 +464,12 @@ def run_mode1_batch(clients, nls, truth_constraints_list, model_name, provider, 
 
             # convert TikZ back to geometry and score
             pred_geo = tikz_to_geo_programmatic(tikz) if tikz else []
-            score    = check_constraints(pred_geo, truth_constraints_list[i]) if pred_geo else 0
+            print(f"\n  --- DEBUG mode1 sample {i} ---")
+            print(f"  tikz snippet: {tikz[:200]}")
+            print(f"  pred_geo: {pred_geo}")
+            print(f"  truth: {truth_constraints_list[i]}")
+            score    = safe_check_constraints(pred_geo, truth_constraints_list[i]) if pred_geo else 0
+            print("score:", score)
 
             record = {
                 "mode": "mode1_nl_to_tikz", "model": model_name,

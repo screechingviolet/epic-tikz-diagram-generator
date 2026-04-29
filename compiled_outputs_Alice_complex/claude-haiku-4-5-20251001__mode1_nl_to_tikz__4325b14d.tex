@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$Y$};
+  \filldraw (-1.5, 2.8) circle (2pt) node[above right] {$H$};
+  \filldraw (4.2, 4.1) circle (2pt) node[above right] {$C$};
+  \draw (-1.5, 2.8) -- (0.0, 0.0) node[midway, below] {$l_j$};
+  \draw (4.2, 4.1) -- (0.0, 0.0) node[midway, below] {$l_b$};
+  \draw (-1.5, 2.8) -- (4.2, 4.1) node[midway, below] {$l_p$};
+  \draw (0.0, 0.0) circle (1.4987) node[above=1.4987cm] {$\gamma_{12}$};
+  \draw (-1.5, 2.8) circle (1.8594) node[above=1.8594cm] {$\omega_{18}$};
+\end{tikzpicture}
+\end{document}

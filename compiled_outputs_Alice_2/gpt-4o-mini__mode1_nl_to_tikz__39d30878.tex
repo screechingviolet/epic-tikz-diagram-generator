@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$N$};
+  \filldraw (4.5, 0.0) circle (2pt) node[above right] {$K$};
+  \filldraw (0.0, 2.66) circle (2pt) node[above right] {$C$};
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$U$};
+  \draw (0.0, 0.0) -- (4.5, 0.0) node[midway, below] {$l_p$};
+  \draw (0.0, 2.66) -- (0.0, 0.0) node[midway, left] {$l_v$};
+\end{tikzpicture}
+\end{document}

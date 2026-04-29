@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$L$};
+  \filldraw (7.8129, 0.0) circle (2pt) node[above right] {$A$};
+  \filldraw (7.8129, 0.0) circle (2pt) node[above right] {$G$};
+  \filldraw (0.0, 8.7512) circle (2pt) node[above right] {$B$};
+  \draw (7.8129, 0.0) -- (7.8129, 0.0) node[midway, right] {$l_t$};
+  \draw (0.0, 8.7512) -- (7.8129, 0.0) node[midway, right] {$l_k$};
+  \draw (0.0, 0.0) -- (7.8129, 0.0) node[midway, below] {$l_e$};
+  \draw (0.0, 8.7512) circle (1.9742) node[above=1.9742cm] {$\omega_9$};
+\end{tikzpicture}
+\end{document}

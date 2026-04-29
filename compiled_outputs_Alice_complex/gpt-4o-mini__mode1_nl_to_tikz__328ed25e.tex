@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$Q$};
+  \filldraw (3.9784, 0.0) circle (2pt) node[above right] {$Z$};
+  \filldraw (0.0, -3.9784) circle (2pt) node[above right] {$G$};
+  \filldraw (0.7265, -3.0) circle (2pt) node[above right] {$N$};
+  \filldraw (0.0, 2.9164) circle (2pt) node[above right] {$U$};
+  \draw (3.9784, 0.0) -- (0.0, 0.0) node[midway, above right] {$l_s$};
+  \draw (0.7265, -3.0) -- (0.0, 0.0) node[midway, below right] {$l_d$};
+  \draw (0.0, 0.0) circle (1.1015) node[above=1.1015cm] {$\omega_{23}$};
+  \draw (0.0, -3.0) circle (2.9164) node[above=2.9164cm] {$\omega_{25}$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+Point G is present. Point Y exists as well. Point W is also present. Point Q is defined. Line lm connects points G and Y. Line lo connects points W and Q. The length of line lm is 3.5808. Line lo has a length of 2.2953. Furthermore, lines lm and lo are parallel and maintain a perpendicular distance of 3.0748 between them.

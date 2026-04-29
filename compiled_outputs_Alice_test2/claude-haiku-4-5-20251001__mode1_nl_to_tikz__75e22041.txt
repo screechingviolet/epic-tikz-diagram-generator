@@ -1,0 +1,1 @@
+There exists point U and point Z. Circle ω20 is centered at point U with a radius of 0.8339, while circle ω13 is centered at point Z with a radius of 1.2662. The two circles are externally tangent to each other.

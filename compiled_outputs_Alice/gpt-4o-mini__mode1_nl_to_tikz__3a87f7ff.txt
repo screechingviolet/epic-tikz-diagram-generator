@@ -1,0 +1,1 @@
+There exists a point N and a point C, with circle ω8 centered at point N that has a radius of 1.2948. Furthermore, point C is located on circle ω8.

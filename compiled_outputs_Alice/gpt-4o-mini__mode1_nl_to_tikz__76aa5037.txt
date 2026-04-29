@@ -1,0 +1,1 @@
+There exists point E. Point R and point W are also present. A line denoted lp connects points R and W. Circle ω7 is centered at point E with a radius of 1.2759. The length of line lp is measured to be 3.2740. Furthermore, line lp is tangent to circle ω7.

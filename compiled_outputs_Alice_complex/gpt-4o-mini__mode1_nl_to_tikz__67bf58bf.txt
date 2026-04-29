@@ -1,0 +1,1 @@
+Point Z exists alongside point C, point E, point H, and point O. A line, referred to as li, connects point O to point Z, while another line, named ls, connects point Z to point H. The circle, ω13, is centered at point E and has a radius of 2.4282. The length of line li measures 1.2808, and the length of line ls is 5.8769. The angle formed between lines li and ls is 98.27°.

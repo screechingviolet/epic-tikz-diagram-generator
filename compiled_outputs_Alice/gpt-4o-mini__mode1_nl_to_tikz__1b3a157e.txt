@@ -1,0 +1,1 @@
+Point I is defined, as is point F, point H, and point A. A line, denoted as li, connects point I and point F, having a length of 6.3995. Another line, lm, connects points H and A, measuring 2.1091 in length. Notably, lines li and lm are perpendicular to each other.

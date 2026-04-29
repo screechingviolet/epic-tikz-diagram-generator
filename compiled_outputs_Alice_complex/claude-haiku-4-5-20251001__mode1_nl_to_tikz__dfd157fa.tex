@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$S$};
+  \filldraw (0.0, 1.3594) circle (2pt) node[above right] {$I$};
+  \filldraw (0.0, 3.0) circle (2pt) node[above right] {$Q$};
+  \filldraw (6.4661, 3.0) circle (2pt) node[above right] {$Y$};
+  \filldraw (0.0, -1.5) circle (2pt) node[above right] {$M$};
+  \filldraw (0.0, 1.3594) circle (2pt) node[above right] {$U$};
+  \draw (0.0, 1.3594) -- (0.0, -1.3594) node[midway, right] {$l_e$};
+  \draw (0.0, 3.0) -- (6.4661, 3.0) node[midway, above] {$l_a$};
+  \draw (0.0, 3.0) -- (2.5931, 0.0) node[midway, above right] {$l_q$};
+  \draw (0.0, 0.0) circle (1.2859) node[above=1.2859cm] {$\gamma_3$};
+\end{tikzpicture}
+\end{document}

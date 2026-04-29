@@ -1,0 +1,1 @@
+There exists a point labeled V and another point labeled I. Circle γ9 is centered at point V and has a radius of 1.2245 units. Circle ω22 is centered at point I and has a radius of 0.8491 units. Notably, circles γ9 and ω22 just touch one another externally.

@@ -1,0 +1,1 @@
+There exists a point designated as O and another point named R. A circle, referred to as γ12, is centered at O with a radius of 1.3223. Another circle, called ω23, is centered at R and boasts a radius of 0.5932. Remarkably, these two circles, γ12 and ω23, touch each other externally.

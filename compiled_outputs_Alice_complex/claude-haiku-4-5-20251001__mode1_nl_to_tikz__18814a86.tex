@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$R$};
+  \filldraw (14.7304, 0.0) circle (2pt) node[above right] {$C$};
+  \filldraw (8.3177, 5.0) circle (2pt) node[above right] {$S$};
+  \draw (14.7304, 0.0) -- (0.0, 0.0) node[midway, below] {$l_m$};
+  \draw (0.0, 0.0) -- (8.3177, 5.0) node[midway, above left] {$l_j$};
+  \draw (0.0, 0.0) -- (14.7304, 0.0) node[midway, below] {$l_h$};
+  \draw (14.7304, 0.0) circle (0.8614) node[above=0.8614cm] {$\omega_{17}$};
+\end{tikzpicture}
+\end{document}

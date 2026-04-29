@@ -1,0 +1,1 @@
+There are four points: H, W, F, and J. The line lf, which connects points H and W, measures 6.5333 in length. Similarly, the line lq, connecting points F and J, has a length of 5.2035. The angle between lines lf and lq is 16.06 degrees.

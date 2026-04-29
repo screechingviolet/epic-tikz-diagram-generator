@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=0.5]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$O$};
+  \draw (0.0, 0.0) circle (2.3943) node[above=2.3943cm] {$\omega_{3}$};
+  \filldraw (9.1496, 0.0) circle (2pt) node[above right] {$I$};
+  \filldraw (9.6327, 0.0) circle (2pt) node[above right] {$P$};
+  \draw (0.0, 0.0) -- (9.1496, 0.0) node[midway, below] {$l_w$};
+  \draw (0.0, 0.0) -- (9.6327, 0.0) node[midway, below] {$l_o$};
+\end{tikzpicture}
+\end{document}
