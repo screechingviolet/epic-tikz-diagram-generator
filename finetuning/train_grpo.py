@@ -44,14 +44,19 @@ from prompts import MODEL_NAME, SYSTEM_PROMPT  # noqa: E402
 SAVE_DIR = "Qwen2-0.5B-GRPO-geometry"
 
 
+_DATASET_DIRS = ("curriculum_data", "constraint_data")
+
+
 def _resolve_dataset_path(name: str) -> Path:
-    """Resolve <name>.jsonl under curriculum_data/."""
-    candidate = PROJECT_ROOT / "curriculum_data" / f"{name}.jsonl"
-    if not candidate.is_file():
-        raise FileNotFoundError(
-            f"No dataset {name!r}.jsonl found under curriculum_data/"
-        )
-    return candidate
+    """Resolve <name>.jsonl under curriculum_data/ or constraint_data/."""
+    for parent in _DATASET_DIRS:
+        candidate = PROJECT_ROOT / parent / f"{name}.jsonl"
+        if candidate.is_file():
+            return candidate
+    raise FileNotFoundError(
+        f"No dataset {name!r}.jsonl found under "
+        + " or ".join(f"{d}/" for d in _DATASET_DIRS)
+    )
 
 
 def _parse_args() -> argparse.Namespace:
@@ -60,7 +65,7 @@ def _parse_args() -> argparse.Namespace:
         "--dataset",
         default="dataset_simple",
         help="Dataset name without .jsonl (default: dataset_simple). "
-             "Resolved against curriculum_data/.",
+             "Resolved against curriculum_data/ then constraint_data/.",
     )
     parser.add_argument(
         "--resume-from",
@@ -141,65 +146,49 @@ class MaxRewardCallback(TrainerCallback):
 
 
 class LogReorderCallback(TrainerCallback):
-    """Reorder per-step log entries so the most important metrics print first
-    and drop redundant / always-zero keys.
+    """Trim per-step log entries down to the essentials and order them.
 
     HuggingFace Trainer prints `logs` by iterating its keys, and Python dicts
-    preserve insertion order, so reordering the dict in `on_log` reorders the
-    printed line.
+    preserve insertion order, so rewriting the dict in `on_log` rewrites the
+    printed line. We replace the dict with *only* the keys in KEEP — every
+    other key TRL emits is dropped, so the line fits in a single terminal
+    row.
 
-    Two transformations:
-      1. Drop keys starting with any prefix in DROP_PREFIXES — these are
-         either per-reward-function duplicates of the aggregate keys
-         (`reward`/`reward_std`/`reward_max`) or PPO-clipping internals that
-         are always zero in this GRPO setup.
-      2. Reorder remaining keys: PRIORITY_KEYS first in the documented order,
-         then everything else in its original position.
+    The kept keys, in priority order:
+      reward                  — headline metric
+      reward_max              — best in batch (some sample is doing well)
+      frac_reward_zero_std    — exploration health (1.0 ⇒ policy collapsed)
+      loss                    — optimization health
+      grad_norm               — gradient health
+      kl                      — drift from the reference policy
+      step_time               — wall time per step
 
-    Must be registered AFTER any callback that injects new keys (e.g.
-    MaxRewardCallback adds `reward_max`), so the new keys are present at the
-    time we reorder.
+    Dropped (and why): reward_std (covered by frac_reward_zero_std),
+    entropy (similar info to kl), epoch (too granular at step level),
+    learning_rate (rarely changing meaningfully), all completions/* length
+    stats (typically constant), num_tokens (not actionable), and every
+    `rewards/<func>/...` and `clip_ratio/...` key.
+
+    Must be registered AFTER MaxRewardCallback, which injects `reward_max`
+    into the logs.
     """
 
-    PRIORITY_KEYS = (
-        # Reward signal — the thing you actually watch during training.
+    KEEP = (
         "reward",
         "reward_max",
-        "reward_std",
         "frac_reward_zero_std",
-        # Optimization health.
         "loss",
-        "kl",
-        "entropy",
         "grad_norm",
-        # Progress.
-        "epoch",
+        "kl",
         "step_time",
-        "learning_rate",
-        # Output stats.
-        "completions/mean_length",
-        "completions/min_length",
-        "completions/max_length",
-        "completions/clipped_ratio",
-        "num_tokens",
-    )
-
-    DROP_PREFIXES = (
-        "rewards/",     # per-reward-function metrics duplicate the aggregates
-        "clip_ratio/",  # PPO-clipping internals; uniformly zero here
     )
 
     def on_log(self, args, state, control, logs=None, **kwargs):
         if logs is None:
             return
-        for key in [k for k in logs if k.startswith(self.DROP_PREFIXES)]:
-            del logs[key]
-        ordered = {key: logs[key] for key in self.PRIORITY_KEYS if key in logs}
-        for key, value in logs.items():
-            if key not in ordered:
-                ordered[key] = value
+        kept = {key: logs[key] for key in self.KEEP if key in logs}
         logs.clear()
-        logs.update(ordered)
+        logs.update(kept)
 
 
 class CompletionPeekCallback(TrainerCallback):
@@ -377,15 +366,15 @@ training_args = GRPOConfig(
     output_dir=SAVE_DIR,
     # ~10–15 min on a single consumer GPU. Long enough to see the reward
     # curve trend up off the floor, short enough to iterate on.
-    max_steps=150,
+    max_steps=300,
     logging_steps=1,
     # num_generations=2 was effectively giving us one comparison per prompt,
     # so the within-group advantage was almost pure noise. 4 is the sweet
     # spot for a small-model PoC: meaningful relative ranking, still cheap.
-    num_generations=4,
+    num_generations=16,
     # per_device_train_batch_size must be divisible by num_generations.
     # 4 samples = 1 unique prompt × 4 generations per device step.
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=16,
     # Bumps the effective batch to 8 samples = 2 unique prompts per
     # optimizer step, which smooths the gradient noticeably.
     gradient_accumulation_steps=2,
@@ -398,10 +387,10 @@ training_args = GRPOConfig(
     warmup_ratio=0.1,         # smooths the higher LR through early steps
     # Diverse generations are essential for GRPO — without spread inside
     # the group, advantages collapse to zero. 1.0 is a safe explicit value.
-    temperature=1.0,
+    temperature=1.2,
     # KL coefficient against the reference policy. Default is 0.04; making
     # it explicit so it's obvious where to dial if the policy drifts.
-    beta=0.04,
+    beta=0.02,
     bf16=True,
     # Periodic crash-safety checkpoints. With max_steps=150 and save_steps=25
     # we get ~6 checkpoints over a run; save_total_limit=2 keeps only the two
