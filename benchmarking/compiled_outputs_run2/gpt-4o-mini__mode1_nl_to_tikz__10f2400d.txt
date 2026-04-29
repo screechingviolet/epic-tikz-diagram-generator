@@ -1,0 +1,1 @@
+There exists a point named M, and it connects through a line denoted as lt to point R and point C. The circle, ω11, is centered at point M with a radius of 1.7381, and the length of line lt is 4.5643. Furthermore, the line lt just touches the circle ω11.

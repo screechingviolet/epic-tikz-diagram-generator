@@ -1,0 +1,1 @@
+There exists a point named A, and there is also another point named K. Circle gamma 25 is centered at point A with a radius of 1.1803, while circle omega 17 is centered at point K with a radius of 1.3536. The two circles are externally tangent to each other.

@@ -1,0 +1,1 @@
+Point W exists in the geometric space. Point S and point K are also present. A line named lx connects point S and point K, maintaining a length of 2.9921. Additionally, a circle γ20 is centered at point W with a radius of 0.8289. It is important to note that line lx is tangent to circle γ20.

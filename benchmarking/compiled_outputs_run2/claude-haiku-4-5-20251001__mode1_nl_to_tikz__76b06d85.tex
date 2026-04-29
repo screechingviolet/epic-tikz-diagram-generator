@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (2.3179,0);
+  \node at (0,0) [circle,fill,inner sep=2pt] {};
+  \node at (2.3179,0) [circle,fill,inner sep=2pt] {};
+  \node at (-0.3,0.3) {A};
+  \node at (2.6,-0.3) {E};
+  \draw (1.5,1.5) -- (1.5+2.8851*0.545,1.5+2.8851*0.839);
+  \node at (1.5,1.5) [circle,fill,inner sep=2pt] {};
+  \node at (1.5+2.8851*0.545,1.5+2.8851*0.839) [circle,fill,inner sep=2pt] {};
+  \node at (1.2,1.2) {Q};
+  \node at (1.5+2.8851*0.545+0.3,1.5+2.8851*0.839+0.3) {M};
+\end{tikzpicture}
+\end{document}

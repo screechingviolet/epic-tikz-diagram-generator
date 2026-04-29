@@ -1,0 +1,1 @@
+There exists point H and point E. Line lr is formed by connecting points H and E, which have a length of 2.3212. Additionally, there are points I and O, where line li connects these points with a length of 3.4732. The lines lr and li are parallel, separated by a perpendicular distance of 2.485.

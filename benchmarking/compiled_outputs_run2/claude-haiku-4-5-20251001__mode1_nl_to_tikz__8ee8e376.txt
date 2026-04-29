@@ -1,0 +1,1 @@
+Point Q exists, as does point N. Point H is also present, along with point V. There is a line denoted as le that connects points Q and N, and another line called lg that connects points H and V. The length of line le is measured to be 3.8999, while the length of line lg is 2.5678. Notably, lines le and lg are parallel to each other, maintaining a perpendicular distance of 3.9751.

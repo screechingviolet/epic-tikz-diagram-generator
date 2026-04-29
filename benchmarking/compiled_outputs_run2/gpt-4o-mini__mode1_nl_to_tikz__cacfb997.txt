@@ -1,0 +1,1 @@
+There exists a point denoted as W. Another point, labeled L, is also present. Circle ω11 is centered at point W and has a radius of 1.1213. Furthermore, circle γ17 is centered at point L with a radius equal to 0.7878. The two circles, ω11 and γ17, are externally tangent to one another.

@@ -1,0 +1,1 @@
+There is a point named B and another point named Q. Circle ω16, which has a radius of 1.2257, is centered at point B, while circle ω8, with a radius of 0.9204, is centered at point Q. Notably, these two circles are tangent to each other.

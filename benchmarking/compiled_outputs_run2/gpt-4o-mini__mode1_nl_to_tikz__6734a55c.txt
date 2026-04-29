@@ -1,0 +1,1 @@
+There exists a point Y, and another point K. Circle ω9 is defined with its center at point Y and has a radius of 1.0887. Point K is located on the circumference of circle ω9.

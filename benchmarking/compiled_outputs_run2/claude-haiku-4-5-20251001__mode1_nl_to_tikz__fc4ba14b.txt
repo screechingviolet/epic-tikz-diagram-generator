@@ -1,0 +1,1 @@
+Point J is defined and exists at a particular location. Point H is also defined and exists at another location. Circle ω17 is centered at point J and has a radius of 0.5657. Furthermore, point H is located on the circumference of circle ω17.

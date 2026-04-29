@@ -1,0 +1,1 @@
+Point L exists, and there is also point V. Circle γ17 is centered at point L with a radius of 1.6782. Notably, point V lies on the circumference of circle γ17.

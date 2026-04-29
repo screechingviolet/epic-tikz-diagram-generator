@@ -1,0 +1,1 @@
+A point named V exists. Another point named M also exists, and it lies on a circle named γ10. This circle is centered at point V and has a radius of 0.5641.

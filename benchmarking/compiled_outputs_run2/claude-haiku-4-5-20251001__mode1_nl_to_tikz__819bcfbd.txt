@@ -1,0 +1,1 @@
+There exists a point named D and a point named K. Circle ω21 is centered at point D and has a radius of 0.5231. Additionally, circle ω4 is centered at point K with a radius of 1.3912. The two circles, ω21 and ω4, are externally tangent to each other.

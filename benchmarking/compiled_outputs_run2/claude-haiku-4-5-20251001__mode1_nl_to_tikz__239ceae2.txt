@@ -1,0 +1,1 @@
+Point C exists and is connected to point E by line lr, which has a length of 2.836. Furthermore, line ln connects point G to point H and has a length of 3.1445. The two lines, lr and ln, are perpendicular to each other.
