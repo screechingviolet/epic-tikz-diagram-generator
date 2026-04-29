@@ -1,0 +1,1 @@
+A circle of radius 2 with six equally spaced tangent lines forming a regular hexagon around it, each side of length 2.

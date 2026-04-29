@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (P1) at (0, 0);
+  \coordinate (P2) at (4.8975, 0);
+  \coordinate (P3) at (1.9431, 0);
+  \coordinate (P4) at (7.0204, 0);
+  \coordinate (C) at (2.4488, 0.8686);
+  \draw (P4) -- (P2);
+  \draw (P1) -- (P3);
+  \draw (P2) -- (P4);
+  \draw (C) circle (1.3372);
+\end{tikzpicture}
+\end{document}

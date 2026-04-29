@@ -1,0 +1,1 @@
+Two circles of radius 2 with a line of length 3 connecting their centers.

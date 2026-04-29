@@ -1,0 +1,1 @@
+There are two lines, one connecting points P2 and P1, and the other connecting points P2 and P0. These lines intersect at right angles. The first line is about 5.88 units long, while the second line measures approximately 6.39 units. Additionally, there is a circle centered at point P2 with a radius of approximately 2.67 units.

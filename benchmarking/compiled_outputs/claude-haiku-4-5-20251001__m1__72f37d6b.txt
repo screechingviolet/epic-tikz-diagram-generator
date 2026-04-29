@@ -1,0 +1,1 @@
+A circle of radius 1 with a chord of length 1.5.

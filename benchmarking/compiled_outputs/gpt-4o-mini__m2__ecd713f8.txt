@@ -1,0 +1,1 @@
+A circle of radius 2 with a tangent line of length 4 and a point marked at the far end of the tangent.

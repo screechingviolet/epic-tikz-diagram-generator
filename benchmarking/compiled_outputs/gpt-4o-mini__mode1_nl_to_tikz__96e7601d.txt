@@ -1,0 +1,1 @@
+Four lines forming a triangle with an altitude drawn from one vertex, where the base has length 5, the altitude has length 4, and the two sides meeting the base have lengths 4 and 3.

@@ -1,0 +1,1 @@
+Two concentric circles with radii 1 and 2.

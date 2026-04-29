@@ -1,0 +1,1 @@
+There are two lines that touch a circle at distinct points: line L0 grazes circle C0, and likewise, line L2 also makes contact with the circle. The lengths of lines L0 and L2 are equal, while line L1 is shorter. The angle between lines L0 and L1 is 150.79 degrees, while lines L1 and L2 create an angle of 29.21 degrees. Furthermore, lines L0 and L2 are parallel.

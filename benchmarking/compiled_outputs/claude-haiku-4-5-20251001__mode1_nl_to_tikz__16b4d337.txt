@@ -1,0 +1,1 @@
+A large circle of radius 4 with two smaller circles of radius 1 inside, each tangent to it.

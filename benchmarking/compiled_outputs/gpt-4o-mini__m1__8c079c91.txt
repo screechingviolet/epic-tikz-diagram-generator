@@ -1,0 +1,1 @@
+A circle of radius 1 with a tangent line of length 3 and another tangent line of length 3 from the same external point.

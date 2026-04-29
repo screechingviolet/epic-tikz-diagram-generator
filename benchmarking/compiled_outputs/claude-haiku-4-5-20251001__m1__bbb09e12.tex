@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (L0start) at (0, 0);
+  \coordinate (L0end) at (4, 3);
+  \coordinate (L1start) at (0, 2);
+  \coordinate (L1end) at (5.6207, 2);
+  \coordinate (L2start) at (0, -2);
+  \coordinate (L2end) at (0, 5.3094);
+  \coordinate (C0) at (2, 1);
+  \coordinate (C1) at (3, 2);
+  \draw (L0start) -- (L0end);
+  \draw (L1start) -- (L1end);
+  \draw (L2start) -- (L2end);
+  \draw (C0) circle (2.3247);
+  \draw (C1) circle (2.5536);
+\end{tikzpicture}
+\end{document}

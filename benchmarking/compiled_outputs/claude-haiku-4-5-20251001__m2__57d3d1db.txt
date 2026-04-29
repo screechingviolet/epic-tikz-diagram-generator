@@ -1,0 +1,1 @@
+Two circles that touch each other externally, with radii 1 and 2.

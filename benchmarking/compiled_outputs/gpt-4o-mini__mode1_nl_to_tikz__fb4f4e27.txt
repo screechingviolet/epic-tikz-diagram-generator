@@ -1,0 +1,1 @@
+Five lines forming a pentagon with side length 3, with a circle of radius 1 inscribed.

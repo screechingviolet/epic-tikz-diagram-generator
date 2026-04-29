@@ -1,0 +1,1 @@
+The line denoted ly connects the points M and G, and has a length of 6.5763. The line lk connects points W and X with a length of 5.1597, and is perpendicular to line ly.

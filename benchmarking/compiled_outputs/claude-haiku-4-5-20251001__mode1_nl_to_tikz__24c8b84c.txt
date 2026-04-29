@@ -1,0 +1,1 @@
+A circle of radius 2 with four equally spaced points on it connected by two crossing chords.

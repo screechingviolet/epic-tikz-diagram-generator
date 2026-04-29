@@ -1,0 +1,1 @@
+In this configuration, we have two circles that graze each other, meaning they are externally tangent. There are also two lines; the first is parallel to the second and their lengths are 1.0077 and 5.1158 units.

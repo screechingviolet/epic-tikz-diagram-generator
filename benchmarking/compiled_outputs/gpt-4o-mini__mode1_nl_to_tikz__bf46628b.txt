@@ -1,0 +1,1 @@
+A line of length 8 with three circles of radius 1 tangent to it at equal intervals, each circle also tangent to the next.

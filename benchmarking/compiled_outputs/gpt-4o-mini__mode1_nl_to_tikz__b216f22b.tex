@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (2,0);
+  \draw (0,1) -- (0,4);
+  \draw (0,2) -- (0,6);
+  \draw[rotate around={45:(0,0)}] (0,0) -- (2,2);
+  \draw[rotate around={45:(0,0)}] (0,1) -- (2,3);
+\end{tikzpicture}
+\end{document}

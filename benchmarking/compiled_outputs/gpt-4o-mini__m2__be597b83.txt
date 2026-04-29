@@ -1,0 +1,1 @@
+Two circles of radius 3, one inside the other, internally tangent.

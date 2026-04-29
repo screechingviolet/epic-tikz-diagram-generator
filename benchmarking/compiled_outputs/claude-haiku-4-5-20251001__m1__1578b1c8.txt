@@ -1,0 +1,1 @@
+A line segment, measured at 1.2606 units in length, extends between the first and fourth points. Nearby, a circle with a radius of 0.5544 is centered on the fourth point.

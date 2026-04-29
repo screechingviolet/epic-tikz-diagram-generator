@@ -1,0 +1,1 @@
+Two lines of length 5 forming a 30 degree angle with a circle of radius 1 between them.

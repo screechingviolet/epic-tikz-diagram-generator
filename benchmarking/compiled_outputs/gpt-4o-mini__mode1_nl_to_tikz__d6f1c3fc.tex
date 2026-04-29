@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) circle (3);
+  \draw[rotate around={0: (0,0)}] (0,3) -- (0,8);
+  \draw[rotate around={120:(0,0)}] (0,3) -- (0,8);
+  \draw[rotate around={240:(0,0)}] (0,3) -- (0,8);
+\end{tikzpicture}
+\end{document}

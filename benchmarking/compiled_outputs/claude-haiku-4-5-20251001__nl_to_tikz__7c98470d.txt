@@ -1,0 +1,1 @@
+Two circles of radius 2 connected by a line tangent to both.

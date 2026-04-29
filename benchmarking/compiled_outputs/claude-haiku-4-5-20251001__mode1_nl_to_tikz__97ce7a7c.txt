@@ -1,0 +1,1 @@
+Two lines forming a 45 degree angle, with lengths 3 and 4.

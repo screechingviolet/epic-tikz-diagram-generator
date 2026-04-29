@@ -1,0 +1,1 @@
+Three circles of radii 1, 2, and 3, each externally tangent to the other two.

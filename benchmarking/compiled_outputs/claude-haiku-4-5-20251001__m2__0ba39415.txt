@@ -1,0 +1,1 @@
+A line of length 5 with a circle of radius 1 at each end, the circles tangent to the line.

@@ -1,0 +1,1 @@
+Three lines forming a right triangle with legs of length 3 and 4.

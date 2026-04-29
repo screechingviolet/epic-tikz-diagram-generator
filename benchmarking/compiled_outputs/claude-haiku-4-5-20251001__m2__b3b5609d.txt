@@ -1,0 +1,1 @@
+A line connects two points and has a length of 3.6206. This line gently grazes a circle centered at another point, which has a radius of 2.8896.

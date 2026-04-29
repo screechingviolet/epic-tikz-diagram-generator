@@ -1,0 +1,1 @@
+Five lines all passing through a single point at equal angular intervals of 36 degrees, each of length 4, with a circle of radius 1 centered at the common point and a circle of radius 3 intersecting all five lines.

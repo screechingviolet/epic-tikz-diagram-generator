@@ -1,0 +1,1 @@
+Point X exists at a specific location. Point I is also defined, along with point F. There is a line, named lt, that connects points I and F. A circle, referred to as ω0, is centered at point X and has a radius of 1.798. The line lt has a length of 5.0972 and is tangent to circle ω0.

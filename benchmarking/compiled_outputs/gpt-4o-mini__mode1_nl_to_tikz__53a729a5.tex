@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (3,0) -- (6,4) -- (3,5) -- cycle;
+  \draw (0,0) -- (6,4);
+  \draw (3,0) -- (3,5);
+  \foreach \x/\y in {0/0, 3/0, 6/4, 3/5} {
+    \draw (\x,\y) circle (0.5cm);
+  }
+  \draw (3,2.5) circle (1cm);
+\end{tikzpicture}
+\end{document}

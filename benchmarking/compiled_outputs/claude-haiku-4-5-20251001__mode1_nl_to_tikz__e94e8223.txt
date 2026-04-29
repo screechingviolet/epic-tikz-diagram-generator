@@ -1,0 +1,1 @@
+Point B exists, and it is connected to point S by line lv, which has a length of 3.783. Additionally, point R is connected to point T by line lm, which has a length of 2.927. Importantly, lines lv and lm are perpendicular to each other.

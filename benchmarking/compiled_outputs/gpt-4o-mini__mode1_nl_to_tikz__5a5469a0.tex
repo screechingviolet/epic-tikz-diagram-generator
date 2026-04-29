@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (J) at (0,0);
+  \coordinate (W) at (1.63,0);
+  \coordinate (R) at (0,3.1462);
+  \coordinate (L) at (1.3417,3.1462);
+  \draw (J) -- (W) node[midway, below] {lu};
+  \draw (R) -- (L) node[midway, above] {ly};
+\end{tikzpicture}
+\end{document}

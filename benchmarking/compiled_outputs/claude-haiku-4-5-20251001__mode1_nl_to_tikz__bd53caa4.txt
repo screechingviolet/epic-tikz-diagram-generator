@@ -1,0 +1,1 @@
+A circle of radius 3 with four tangent lines, two horizontal and two at 45 degrees, forming an irregular polygon around it.

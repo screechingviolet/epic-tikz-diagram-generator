@@ -1,0 +1,1 @@
+Three lines forming an isoceles triangle with base 4 and equal sides of length 3.

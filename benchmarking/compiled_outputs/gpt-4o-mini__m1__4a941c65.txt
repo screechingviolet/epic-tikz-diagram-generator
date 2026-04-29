@@ -1,0 +1,1 @@
+A circle of radius 2.5 with a chord of length 3.

@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (3.51, 0);
+  \coordinate (P2) at (0, 2);
+  \coordinate (P3) at (7.95, 2);
+  
+  \draw (P0) -- (P1);
+  \draw (P2) -- (P3);
+  
+  \coordinate (P3_center) at (P3);
+  \draw (P3_center) circle (1.10);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1 @@
+Four circles of radius 1 each arranged so each touches two others.

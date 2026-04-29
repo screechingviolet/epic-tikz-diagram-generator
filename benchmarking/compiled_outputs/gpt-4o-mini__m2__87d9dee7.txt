@@ -1,0 +1,1 @@
+Four lines forming a square with side length 3.

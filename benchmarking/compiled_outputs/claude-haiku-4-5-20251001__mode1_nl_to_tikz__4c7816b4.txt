@@ -1,0 +1,1 @@
+Three circles of radius 1.5 arranged so each is tangent to the other two, with three lines each tangent to two of the circles.

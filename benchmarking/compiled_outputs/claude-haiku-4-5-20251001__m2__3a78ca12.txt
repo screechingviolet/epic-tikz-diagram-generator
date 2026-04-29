@@ -1,0 +1,1 @@
+Three circles of radius 1 arranged in a row, each touching the next.

@@ -1,0 +1,1 @@
+A line tangent to two circles of radius 1 each.

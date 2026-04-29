@@ -1,0 +1,1 @@
+A line of length 4 with a circle of radius 1 at each end, both tangent to the line.
