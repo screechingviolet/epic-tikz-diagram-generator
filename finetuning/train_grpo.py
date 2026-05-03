@@ -422,12 +422,14 @@ training_args = GRPOConfig(
     #   cot_simple   max ~100 tok
     #   cot_medium   max ~250 tok
     #   cot_merged   max ~230 tok
-    #   cot_complex  p99 ~475 tok,  max ~565 tok   ← drives this setting
-    # 768 covers cot_complex max with ~200-token headroom. Truncation that
-    # cuts off </think> blanks the reward via the format gate, so the
-    # headroom protects the training signal. If you only train on simple/
-    # medium/merged you can dial down to 512 to save rollout time.
-    max_completion_length=768,
+    #   cot_complex  p99 ~475 tok,  max ~565 tok
+    # SFT was trained on cot_simple+cot_medium so generations rarely
+    # exceed ~300 tokens; 512 gives comfortable headroom for the merged
+    # training set (the default --dataset). Bump back up to 768 only if
+    # you switch to dataset_complex AND have GPU headroom (each rollout
+    # token costs ~prompt × num_generations × 2 for fwd+bwd activations,
+    # so 768 vs 512 is a real memory swing on 24 GB cards).
+    max_completion_length=512,
     # 1e-5 was way too conservative for LoRA on a 0.5B model. 5e-5 is the
     # standard LoRA range and gets us measurable movement inside 150 steps.
     learning_rate=5e-5,
@@ -439,6 +441,11 @@ training_args = GRPOConfig(
     # it explicit so it's obvious where to dial if the policy drifts.
     beta=0.02,
     bf16=True,
+    # Re-runs forward during backward instead of caching activations.
+    # ~30% slower per step but ~50% less activation memory — required to
+    # fit num_generations=16 × max_completion_length=512 on 24 GB cards.
+    # If you have ≥40 GB headroom you can disable this for a speed boost.
+    gradient_checkpointing=True,
     # Periodic crash-safety checkpoints. With max_steps=150 and save_steps=25
     # we get ~6 checkpoints over a run; save_total_limit=2 keeps only the two
     # most recent on disk so the output_dir doesn't bloat. These are full HF
