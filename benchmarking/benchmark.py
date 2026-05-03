@@ -12,7 +12,11 @@ Batched + cached — safe to interrupt and resume.
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent / "loss-fn"))
+sys.path.insert(0, str(Path(__file__).parent.parent / "finetuning"))
 from loss import check_constraints
+# Single source of truth — must match what the adapter was trained against.
+# Using a different base model silently produces garbage (no traceback).
+from prompts import MODEL_NAME, SYSTEM_PROMPT
 
 import hashlib
 import json
@@ -32,9 +36,9 @@ load_dotenv(Path(__file__).parent.parent / "data" / ".env")
 # CONFIG
 # ---------------------------------------------------------------------------
 
-RUN_NAME     = "run4"
+RUN_NAME     = "run5"
 N_SAMPLES    = 50
-DATASET_PATH = "../curriculum_data/dataset_merged.jsonl"
+DATASET_PATH = "../curriculum_data/dataset_complex.jsonl"
 OUTPUT_PATH  = f"benchmark_results_{RUN_NAME}.jsonl"
 SCORES_PATH  = f"benchmark_scores_{RUN_NAME}.json"
 CACHE_PATH   = f"benchmark_cache_{RUN_NAME}.json"
@@ -42,12 +46,12 @@ COMPILED_DIR = Path(f"compiled_outputs_{RUN_NAME}")
 BATCH_SIZE   = 10
 DELAY        = 1.0
 
-BASE_MODEL_ID = "Qwen/Qwen2.5-0.5B-Instruct"
+BASE_MODEL_ID = MODEL_NAME  # imported from finetuning/prompts.py
 ADAPTER_PATH = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry")
 
 MODELS = {
-    "Qwen/Qwen2.5-0.5B-Instruct": "hf_local",
-    "qwen-geometry-adapter":       "hf_adapter",
+    MODEL_NAME:               "hf_local",
+    "qwen-geometry-adapter":  "hf_adapter",
 }
 
 # Modes to run per provider — local models only do mode2 (NL->Geo)
@@ -78,40 +82,9 @@ Example output:
   \\draw (-3,2) -- (3,2);
 \\end{tikzpicture}"""
 
-MODE2_SYSTEM = (
-    "You convert a natural-language description of a geometric diagram into a "
-    "list of geometric primitives. Output one primitive per line and nothing "
-    "else.\n"
-    "\n"
-    "Primitives:\n"
-    "  point(name: str, x: float, y: float)\n"
-    "  line(name: str, p1: str, p2: str)              "
-    "# p1, p2 must name previously defined points\n"
-    "  circle(name: str, center: str, radius: float)  "
-    "# center must name a previously defined point\n"
-    "\n"
-    "Example 1:\n"
-    "Description: Two points P0 and P1 are 5 units apart and connected by a line L0.\n"
-    "Output:\n"
-    "point(P0, 0, 0)\n"
-    "point(P1, 5, 0)\n"
-    "line(L0, P0, P1)\n"
-    "\n"
-    "Example 2:\n"
-    "Description: Circle C0 of radius 2.77 centered around a point P0.\n"
-    "Output:\n"
-    "point(P0, 0, 0)\n"
-    "circle(C0, P0, 2.77)\n"
-    "\n"
-    "Example 3:\n"
-    "Description: A line segment L0 of length 3.4823 has endpoints P0 and P1. "
-    "A circle C0 is centered at P0 and passes through P1.\n"
-    "Output:\n"
-    "point(P0, 0, 0)\n"
-    "point(P1, 3.4823, 0)\n"
-    "circle(C0, P0, 3.4823)\n"
-    "line(L0, P0, P1)"
-)
+# Identical to the SYSTEM_PROMPT used during training so adapter eval matches
+# what the trainer's reward function saw.
+MODE2_SYSTEM = SYSTEM_PROMPT
 
 MODE3_SYSTEM = (
     "You are given a list of geometric primitives (points, lines, circles) in a formal language. "
@@ -173,10 +146,10 @@ def _get_hf_model(model_name: str, provider: str):
 
     if provider == "hf_adapter":
         from peft import PeftModel
-        adapter_path = str(Path(__file__).parent.parent / "Qwen2-0.5B-GRPO-geometry" / "checkpoint-300")
         base  = AutoModelForCausalLM.from_pretrained(BASE_MODEL_ID, torch_dtype=torch.float32)
-        model = PeftModel.from_pretrained(base, adapter_path)
-        model = model.merge_and_unload()
+        # Stack the LoRA on top — no merge_and_unload(): merging is only
+        # useful if you want to save standalone weights, and it adds load time.
+        model = PeftModel.from_pretrained(base, ADAPTER_PATH)
     else:
         model = AutoModelForCausalLM.from_pretrained(BASE_MODEL_ID, torch_dtype=torch.float32)
 
@@ -430,19 +403,48 @@ def run_mode3_batch(clients, geo_inputs, truth_constraints_list, model_name, pro
             to_query.append(geo); indices.append(i)
 
     if to_query:
-        prompt = build_batch_prompt(to_query, BATCH_WRAPPER)
-        raw    = query(clients, model_name, provider, MODE3_SYSTEM, prompt)
-        parsed = parse_batch_response(raw, len(to_query))
-        for j, (i, geo) in enumerate(zip(indices, to_query)):
-            pred_geo = [line for line in parsed[j].splitlines() if line.strip()]
-            score    = check_constraints(pred_geo, truth_constraints_list[i])
-            record   = {
-                "mode": "mode3_geo_to_geo", "model": model_name,
-                "input": geo, "pred_geo": pred_geo,
-                "truth_constraints": truth_constraints_list[i], "score": score,
-            }
-            cache[cache_key(model_name, "mode3", geo)] = record
-            results[i] = record
+        if provider in ("hf_local", "hf_adapter"):
+            # Per-input calls — small local models can't reliably honor the
+            # ===N=== batched format, so mirror mode 2's per-input loop.
+            for i, geo in zip(indices, to_query):
+                raw     = query(clients, model_name, provider, MODE3_SYSTEM, geo)
+                cleaned = raw.strip()
+                # strip markdown code fences if present
+                if cleaned.startswith("```"):
+                    lines   = cleaned.splitlines()
+                    cleaned = "\n".join(l for l in lines if not l.strip().startswith("```"))
+                # drop lines with nested calls (e.g. circle(ω1, point(L, 0, 0), 0.5747))
+                pred_geo = []
+                for line in cleaned.splitlines():
+                    line = line.strip()
+                    if not line:
+                        continue
+                    after_first_paren = line[line.find("(")+1:] if "(" in line else ""
+                    if "(" in after_first_paren:
+                        continue
+                    pred_geo.append(line)
+                score  = check_constraints(pred_geo, truth_constraints_list[i])
+                record = {
+                    "mode": "mode3_geo_to_geo", "model": model_name,
+                    "input": geo, "pred_geo": pred_geo,
+                    "truth_constraints": truth_constraints_list[i], "score": score,
+                }
+                cache[cache_key(model_name, "mode3", geo)] = record
+                results[i] = record
+        else:
+            prompt = build_batch_prompt(to_query, BATCH_WRAPPER)
+            raw    = query(clients, model_name, provider, MODE3_SYSTEM, prompt)
+            parsed = parse_batch_response(raw, len(to_query))
+            for j, (i, geo) in enumerate(zip(indices, to_query)):
+                pred_geo = [line for line in parsed[j].splitlines() if line.strip()]
+                score    = check_constraints(pred_geo, truth_constraints_list[i])
+                record   = {
+                    "mode": "mode3_geo_to_geo", "model": model_name,
+                    "input": geo, "pred_geo": pred_geo,
+                    "truth_constraints": truth_constraints_list[i], "score": score,
+                }
+                cache[cache_key(model_name, "mode3", geo)] = record
+                results[i] = record
     return results
 
 
@@ -558,7 +560,8 @@ def run_benchmark():
                     scores[model_name]["mode3"]["score_sum"] += to_binary(r["score"])
                     scores[model_name]["mode3"]["total"]     += 1
                 save_cache(cache, CACHE_PATH)
-                time.sleep(DELAY)
+                if provider not in ("hf_local", "hf_adapter"):
+                    time.sleep(DELAY)
 
     with open(OUTPUT_PATH, "w") as f:
         for r in all_results:

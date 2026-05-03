@@ -1,0 +1,12 @@
+{
+  "Qwen/Qwen2-0.5B-Instruct": {
+    "mode1_compile_rate": 0.0,
+    "mode2_avg_score": 0.0,
+    "mode3_avg_score": 0.02
+  },
+  "qwen-geometry-adapter": {
+    "mode1_compile_rate": 0.0,
+    "mode2_avg_score": 0.04,
+    "mode3_avg_score": 0.38
+  }
+}

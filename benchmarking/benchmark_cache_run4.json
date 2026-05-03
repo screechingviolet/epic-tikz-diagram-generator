@@ -1,0 +1,4392 @@
+{
+  "81c3dbf84f38b99e79270c9a072596f9": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point designated as O and another point named R. A circle, referred to as \u03b312, is centered at O with a radius of 1.3223. Another circle, called \u03c923, is centered at R and boasts a radius of 0.5932. Remarkably, these two circles, \u03b312 and \u03c923, touch each other externally.",
+    "pred_geo": [
+      "point(O, 0, 0)",
+      "point(R, 0, 0)",
+      "circle(\u03b312, O, 1.3223)",
+      "circle(\u03c923, R, 0.5932)"
+    ],
+    "truth_constraints": [
+      "point(O)",
+      "point(R)",
+      "circle(\u03b312, O)",
+      "circle(\u03c923, R)",
+      "radius(\u03b312, 1.3223)",
+      "radius(\u03c923, 0.5932)",
+      "circle_tangent(\u03b312, \u03c923)"
+    ],
+    "score": 2.857142857142857
+  },
+  "78c285af1f98b7b458d7fa3b0747b2ee": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point M and point Q are distinct points, with line lj connecting them, having a length of 5.2429. Point J and point N are also distinct, with line lb connecting them, which has a length of 7.4961. The angle formed between lines lj and lb is 27.44 degrees.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(Q, 0, 0)",
+      "point(J, 0, 0)",
+      "point(N, 0, 0)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(Q)",
+      "point(J)",
+      "point(N)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)",
+      "length(lj, 5.2429)",
+      "length(lb, 7.4961)",
+      "angle(lj, lb, 27.44)"
+    ],
+    "score": 0
+  },
+  "887d059431d5ab09a36d5777311b72d3": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point labeled V and another point labeled I. Circle \u03b39 is centered at point V and has a radius of 1.2245 units. Circle \u03c922 is centered at point I and has a radius of 0.8491 units. Notably, circles \u03b39 and \u03c922 just touch one another externally.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(I, 0, 0)",
+      "circle(\u03b39, V, 1.2245)",
+      "circle(\u03c922, I, 0.8491)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(I)",
+      "circle(\u03b39, V)",
+      "circle(\u03c922, I)",
+      "radius(\u03b39, 1.2245)",
+      "radius(\u03c922, 0.8491)",
+      "circle_tangent(\u03b39, \u03c922)"
+    ],
+    "score": 2.857142857142857
+  },
+  "e9f602096ac9e091a07df11c52e8a222": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point X exists at a specific location. Point I is also defined, along with point F. There is a line, named lt, that connects points I and F. A circle, referred to as \u03c90, is centered at point X and has a radius of 1.798. The line lt has a length of 5.0972 and is tangent to circle \u03c90.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "point(I, 0, 0)",
+      "point(F, 0, 0)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X, 1.798)",
+      "line(lt, X, \u03c90)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(I)",
+      "point(F)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X)",
+      "length(lt, 5.0972)",
+      "radius(\u03c90, 1.7980)",
+      "tangent(lt, \u03c90)"
+    ],
+    "score": 0.75
+  },
+  "c34ea4cda43f9b7123765fcb35d81af6": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point K exists and has a connection with point B via line lk, which has a length of 1.7177. Additionally, point S connects to point R through line lr, which has a length of 1.2056. Lines lk and lr are parallel to each other, separated by a perpendicular distance of 2.6515.",
+    "pred_geo": [
+      "point(K, 0, 0)",
+      "point(B, 0, 0)",
+      "point(S, 0, 0)",
+      "point(R, 0, 0)",
+      "line(lk, K, B)",
+      "line(lr, S, R)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "line(lk, K, B)",
+      "line(lr, S, R)",
+      "length(lk, 1.7177)",
+      "length(lr, 1.2056)",
+      "parallel(lk, lr, 2.6515)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "d86dea49c88568162e03af754543676c": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point V exists, and it is connected to point S by line lf. Line lf has a length of 3.4973. Additionally, point P is connected to point B by line lr, which has a length of 6.8384. The lines lf and lr are perpendicular to each other.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(S, 0, 0)",
+      "line(lf, V, S)",
+      "line(lr, V, B)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(S)",
+      "point(P)",
+      "point(B)",
+      "line(lf, V, S)",
+      "line(lr, P, B)",
+      "length(lf, 3.4973)",
+      "length(lr, 6.8384)",
+      "perpendicular(lf, lr)"
+    ],
+    "score": 1.875
+  },
+  "93e4c657ec94928078a1cb8297648045": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named K, and also a point named R. A circle designated as \u03c911 is centered at point K with a radius of 0.7192, and point R lies on the circumference of this circle.",
+    "pred_geo": [
+      "point(K, 0, 0)",
+      "point(R, 0, 0)",
+      "circle(\u03c911, K, 0.7192)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(R)",
+      "circle(\u03c911, K)",
+      "radius(\u03c911, 0.7192)",
+      "on_circle(R, \u03c911)"
+    ],
+    "score": 2.8
+  },
+  "9bedc9adc2802aadeb2387b4adcfdfc3": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point I is defined, as is point F, point H, and point A. A line, denoted as li, connects point I and point F, having a length of 6.3995. Another line, lm, connects points H and A, measuring 2.1091 in length. Notably, lines li and lm are perpendicular to each other.",
+    "pred_geo": [
+      "point(I, 0, 0)",
+      "point(F, 0, 0)",
+      "point(H, 0, 0)",
+      "point(A, 0, 0)",
+      "line(li, I, F)",
+      "line(lm, H, A)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(F)",
+      "point(H)",
+      "point(A)",
+      "line(li, I, F)",
+      "line(lm, H, A)",
+      "length(li, 6.3995)",
+      "length(lm, 2.1091)",
+      "perpendicular(li, lm)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "3dfb92ad84928ba9635cfe5724ecd840": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point X and point Y are defined. Line lt is formed by connecting point X to point Y, which has a length of 4.9579. Additionally, point P and point C are defined, with line lu connecting them, having a length of 4.2188. The two lines, lt and lu, are parallel with a perpendicular distance of 3.0056 between them.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "point(Y, 0, 0)",
+      "line(lt, X, Y)",
+      "point(P, 0, 0)",
+      "point(C, 0, 0)",
+      "line(lu, P, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(Y)",
+      "point(P)",
+      "point(C)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)",
+      "length(lt, 4.9579)",
+      "length(lu, 4.2188)",
+      "parallel(lt, lu, 3.0056)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "d59bc88fa9bb63b6eaa8a2b8c6405748": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point W and a point B. A circle, \u03c912, is centered at point W and has a radius of 1.9591. Additionally, point B is located on the circumference of this circle.",
+    "pred_geo": [
+      "point(W, 0, 0)",
+      "point(B, 0, 0)",
+      "circle(\u03c912, W, 1.9591)",
+      "line(B, W, B)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(B)",
+      "circle(\u03c912, W)",
+      "radius(\u03c912, 1.9591)",
+      "on_circle(B, \u03c912)"
+    ],
+    "score": 0.75
+  },
+  "577f6c839bbfbe0469f7b730b5b933ca": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There is a point labeled N, a point K, a point C, and a point U. A line connecting points N and K is denoted as line lp, which has a length of 4.4986. Another line, named lv, joins points C and U, measuring 2.6624 in length. The two lines lp and lv are perpendicular to each other.",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(N)",
+      "point(K)",
+      "point(C)",
+      "point(U)",
+      "line(lp, N, K)",
+      "line(lv, C, U)",
+      "length(lp, 4.4986)",
+      "length(lv, 2.6624)",
+      "perpendicular(lp, lv)"
+    ],
+    "score": 1.0
+  },
+  "ac345d1c9b0db25df2905acafb2b2960": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point G is defined and exists in the space. There is another point, K, also existing, positioned in relation to point M. A line named lg connects point K to point M, establishing direct connectivity between them. Additionally, a circle, denoted as \u03b36, has its center at point G and possesses a radius of 1.6585. Notably, the length of line lg measures 6.4449. Furthermore, line lg just touches circle \u03b36 without crossing it, indicating that it is tangent to the circle.",
+    "pred_geo": [
+      "point(G, 0, 0)",
+      "point(K, 0, 0)",
+      "point(M, 0, 0)",
+      "line(lg, G, K)",
+      "circle(\u03b36, G, 1.6585)",
+      "line(lg, G, M)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(K)",
+      "point(M)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G)",
+      "length(lg, 6.4449)",
+      "radius(\u03b36, 1.6585)",
+      "tangent(lg, \u03b36)"
+    ],
+    "score": 2.5416666666666665
+  },
+  "8fd4b7af321c28dc8eb3fb10ff9d1b4c": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There is a point named P, and another point called F. A circle, \u03b324, is centered at point P with a radius of 1.1242. Notably, point F is located on the circumference of circle \u03b324.",
+    "pred_geo": [
+      "point(F, 0, 0)",
+      "circle(\u03b324, P, 1.1242)"
+    ],
+    "truth_constraints": [
+      "point(P)",
+      "point(F)",
+      "circle(\u03b324, P)",
+      "radius(\u03b324, 1.1242)",
+      "on_circle(F, \u03b324)"
+    ],
+    "score": 1.5
+  },
+  "43169a94978c32285b5b5a04e7eda7f6": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists point E, and point A is also defined. Circle \u03c925 is centered at point E with a radius of 1.9889. Notably, point A lies on the circumference of circle \u03c925.",
+    "pred_geo": [
+      "point(E, 0, 0)",
+      "point(A, 0, 0)",
+      "circle(\u03c925, E, 1.9889)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(A)",
+      "circle(\u03c925, E)",
+      "radius(\u03c925, 1.9889)",
+      "on_circle(A, \u03c925)"
+    ],
+    "score": 2.8
+  },
+  "56364370a0c0fd2ac9cf5b4374b7a438": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point J and point W are defined, and there exists a line lu connecting these points. The length of line lu measures 1.63. Additionally, point R and point L are established, with line ly connecting them, which has a length of 1.3417. Lines lu and ly are parallel to each other, separated by a perpendicular distance of 3.1462.",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(J)",
+      "point(W)",
+      "point(R)",
+      "point(L)",
+      "line(lu, J, W)",
+      "line(ly, R, L)",
+      "length(lu, 1.6300)",
+      "length(ly, 1.3417)",
+      "parallel(lu, ly, 3.1462)"
+    ],
+    "score": 1.0
+  },
+  "9be77190a1a0d910587254d0bde0b458": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named H and another point named U. Circle \u03c93 is centered at point H and has a radius of 1.1634. Circle \u03b323 is centered at point U and has a radius of 1.1411. The two circles, \u03c93 and \u03b323, are tangent to each other externally.",
+    "pred_geo": [
+      "point(H, 0, 0)",
+      "point(U, 0, 0)",
+      "circle(\u03c93, H, 1.1634)",
+      "circle(\u03b323, U, 1.1411)"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(U)",
+      "circle(\u03c93, H)",
+      "circle(\u03b323, U)",
+      "radius(\u03c93, 1.1634)",
+      "radius(\u03b323, 1.1411)",
+      "circle_tangent(\u03c93, \u03b323)"
+    ],
+    "score": 2.857142857142857
+  },
+  "1fda983ba2ab40c2f2cb1ee1b57aef5e": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point S is defined, and it connects to point W through line ln, which has a length of 3.3001. Additionally, point R and point Y are connected by line lw, which has a length of 1.1783. Importantly, lines ln and lw are parallel, maintaining a perpendicular distance of 1.5179.",
+    "pred_geo": [
+      "point(S, 0, 0)",
+      "point(W, 0, 0)",
+      "line(ln, S, W)",
+      "line(lw, S, Y)"
+    ],
+    "truth_constraints": [
+      "point(S)",
+      "point(W)",
+      "point(R)",
+      "point(Y)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)",
+      "length(ln, 3.3001)",
+      "length(lw, 1.1783)",
+      "parallel(ln, lw, 1.5179)"
+    ],
+    "score": 1.875
+  },
+  "8c59dbb3e2619536285102ee7b4828ab": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point C exists and serves as the center of circle \u03b325, which has a radius of 0.9111. Additionally, point G lies on circle \u03b325.",
+    "pred_geo": [
+      "point(G, 0, 0)",
+      "circle(\u03b325, G, 0.9111)"
+    ],
+    "truth_constraints": [
+      "point(C)",
+      "point(G)",
+      "circle(\u03b325, C)",
+      "radius(\u03b325, 0.9111)",
+      "on_circle(G, \u03b325)"
+    ],
+    "score": 2.0
+  },
+  "4473d5486721e04e17d8d7f7a819c577": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "The line denoted ly connects the points M and G, and has a length of 6.5763. The line lk connects points W and X with a length of 5.1597, and is perpendicular to line ly.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(G, 0, 0)",
+      "point(W, 0, 0)",
+      "point(X, 0, 0)",
+      "line(lk, M, W)",
+      "line(lk, M, X)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(G)",
+      "point(W)",
+      "point(X)",
+      "line(ly, M, G)",
+      "line(lk, W, X)",
+      "length(ly, 6.5763)",
+      "length(lk, 5.1597)",
+      "perpendicular(ly, lk)"
+    ],
+    "score": 1.9166666666666667
+  },
+  "4fee9f00e17f063da3418cdcc0eeb994": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point K, and there is also a point T. A line named lp connects point K to point T, having a length of 7.8147. Additionally, point O exists, and it is connected to point D by another line called lm, which has a length of 2.2297. The angle formed between lines lp and lm is 71.39 degrees.",
+    "pred_geo": [
+      "point(K, 0, 0)",
+      "point(T, 0, 0)",
+      "point(O, 0, 0)",
+      "point(D, 0, 0)",
+      "point(lp, 0, 0)",
+      "point(lm, 0, 0)",
+      "angle(lp, lm, 71.39)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(T)",
+      "point(O)",
+      "point(D)",
+      "line(lp, K, T)",
+      "line(lm, O, D)",
+      "length(lp, 7.8147)",
+      "length(lm, 2.2297)",
+      "angle(lp, lm, 71.39)"
+    ],
+    "score": 0
+  },
+  "8e5d93d02b9bcf11713f74d52841318f": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point N and a point C, with circle \u03c98 centered at point N that has a radius of 1.2948. Furthermore, point C is located on circle \u03c98.",
+    "pred_geo": [
+      "point(N, 0, 0)",
+      "point(C, 0, 0)",
+      "circle(\u03c98, N, 1.2948)",
+      "line(N, C, \u03c98)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(C)",
+      "circle(\u03c98, N)",
+      "radius(\u03c98, 1.2948)",
+      "on_circle(C, \u03c98)"
+    ],
+    "score": 0.75
+  },
+  "a079637020de2168fbb5960277c02137": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point L exists in the geometric space. Point Q is positioned distinctly, and point Z also exists. The line named lu connects point Q to point Z, forming a straight path. Circle \u03c98 is centered at point L and has a radius of 1.7138. The length of line lu measures 5.191. Notably, line lu is tangent to circle \u03c98.",
+    "pred_geo": [
+      "point(Q, 0, 0)",
+      "point(Z, 0, 0)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L, 1.7138)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(Q)",
+      "point(Z)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L)",
+      "length(lu, 5.1910)",
+      "radius(\u03c98, 1.7138)",
+      "tangent(lu, \u03c98)"
+    ],
+    "score": 1.8333333333333333
+  },
+  "3ad428b6cbdebcfe61303364af5e3cf0": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists point U and point Z. Circle \u03c920 is centered at point U with a radius of 0.8339, while circle \u03c913 is centered at point Z with a radius of 1.2662. The two circles are externally tangent to each other.",
+    "pred_geo": [
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(\u03c920, 0, 0)",
+      "point(\u03c913, 0, 0)",
+      "point(U, 0, 0"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(Z)",
+      "circle(\u03c920, U)",
+      "circle(\u03c913, Z)",
+      "radius(\u03c920, 0.8339)",
+      "radius(\u03c913, 1.2662)",
+      "circle_tangent(\u03c920, \u03c913)"
+    ],
+    "score": 0
+  },
+  "3498e0e4a8766fdbbddce0666196c23d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point B and point A are defined and are connected by line lr, which measures 3.9302 in length. Meanwhile, points K and Q are connected by line le, which has a length of 4.6727. Lines lr and le are parallel, maintaining a perpendicular distance of 3.5222 between them.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(A, 0, 0)",
+      "line(lr, B, A)",
+      "line(le, B, K)",
+      "line(le, B, Q)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(A)",
+      "point(K)",
+      "point(Q)",
+      "line(lr, B, A)",
+      "line(le, K, Q)",
+      "length(lr, 3.9302)",
+      "length(le, 4.6727)",
+      "parallel(lr, le, 3.5222)"
+    ],
+    "score": 1.7333333333333334
+  },
+  "ea08590993d060f3609131ac2bc48e19": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named I, which serves as the center of a circle, \u03b312, with a radius of 1.2894. Another point, B, and a point W define a line, ly, that connects them and has a length of 3.9645. This line just touches the circle \u03b312 at a single point.",
+    "pred_geo": [
+      "point(I, 0, 0)",
+      "point(B, 0, 0)",
+      "point(W, 0, 0)",
+      "line(ly, I, B)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(B)",
+      "point(W)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I)",
+      "length(ly, 3.9645)",
+      "radius(\u03b312, 1.2894)",
+      "tangent(ly, \u03b312)"
+    ],
+    "score": 2.0
+  },
+  "6b58c133010e0e8d5aa3801b60c39bfa": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point B exists, and it is connected to point S by line lv, which has a length of 3.783. Additionally, point R is connected to point T by line lm, which has a length of 2.927. Importantly, lines lv and lm are perpendicular to each other.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(S, 0, 0)",
+      "line(lv, B, S)",
+      "line(lm, B, T)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "point(T)",
+      "line(lv, B, S)",
+      "line(lm, R, T)",
+      "length(lv, 3.7830)",
+      "length(lm, 2.9270)",
+      "perpendicular(lv, lm)"
+    ],
+    "score": 1.875
+  },
+  "ebf8a9fa1c1d33efa8bd2aeb0b54b5b4": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point L exists alongside point O, with line la connecting these two points at a length of 3.8426. Additionally, point X also exists along with point R, connected by line lp, which measures 2.3596 in length. Notably, line la is parallel to line lp, maintaining a perpendicular distance of 2.434.",
+    "pred_geo": [
+      "point(O, 0, 0)",
+      "point(R, 0, 0)",
+      "point(X, 0, 0)",
+      "point(L, 3.8426, 0)",
+      "point(La, 3.8426, 0)",
+      "point(lp, 2.3596, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point(lineR, 0, 0)",
+      "point(lineL, 0, 0)",
+      "point(lineLa, 0, 0)",
+      "point(lineLp, 0, 0)",
+      "point"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(O)",
+      "point(X)",
+      "point(R)",
+      "line(la, L, O)",
+      "line(lp, X, R)",
+      "length(la, 3.8426)",
+      "length(lp, 2.3596)",
+      "parallel(la, lp, 2.4340)"
+    ],
+    "score": 0
+  },
+  "94078953013b82641ed97ddcd8279f8b": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point G is present. Point Y exists as well. Point W is also present. Point Q is defined. Line lm connects points G and Y. Line lo connects points W and Q. The length of line lm is 3.5808. Line lo has a length of 2.2953. Furthermore, lines lm and lo are parallel and maintain a perpendicular distance of 3.0748 between them.",
+    "pred_geo": [
+      "point(G, 0, 0)",
+      "point(Y, 0, 0)",
+      "point(W, 0, 0)",
+      "point(Q, 0, 0)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(Y)",
+      "point(W)",
+      "point(Q)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)",
+      "length(lm, 3.5808)",
+      "length(lo, 2.2953)",
+      "parallel(lm, lo, 3.0748)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "bc7d6b33bc1fd9d403dfaf2f089cd5bd": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point M exists, as does point W. Line lo connects points M and W and has a length of 4.7027. Point H and point J also exist, with line lw connecting them and having a length of 4.307. The two lines lo and lw are parallel, maintaining a perpendicular distance of 1.5758.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(W, 0, 0)",
+      "point(H, 0, 0)",
+      "point(J, 0, 0)",
+      "line(lo, M, W)",
+      "line(lw, M, W)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(W)",
+      "point(H)",
+      "point(J)",
+      "line(lo, M, W)",
+      "line(lw, H, J)",
+      "length(lo, 4.7027)",
+      "length(lw, 4.3070)",
+      "parallel(lo, lw, 1.5758)"
+    ],
+    "score": 2.5555555555555554
+  },
+  "8860148943bf846aad4faf38ca5683ac": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point A exists and is the center of circle \u03b31, which has a radius of 1.9301. Additionally, point G lies on the circumference of circle \u03b31.",
+    "pred_geo": [
+      "point(G, 0, 0)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(G)",
+      "circle(\u03b31, A)",
+      "radius(\u03b31, 1.9301)",
+      "on_circle(G, \u03b31)"
+    ],
+    "score": 1.5
+  },
+  "b611927e49648c4bb43bef439b66d081": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There are two points, J and M, each positioned at unique locations. Circle \u03b313 is centered at point J with a radius of 0.9071. Meanwhile, circle \u03c98 is centered at point M and has a radius of 0.5810. Notably, these two circles just touch each other at a single point, indicating that they are externally tangent.",
+    "pred_geo": [
+      "point(J, 0, 0)",
+      "point(M, 0, 0)",
+      "circle(\u03b313, J, 0.9071)",
+      "circle(\u03c98, M, 0.5810)"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(M)",
+      "circle(\u03b313, J)",
+      "circle(\u03c98, M)",
+      "radius(\u03b313, 0.9071)",
+      "radius(\u03c98, 0.5810)",
+      "circle_tangent(\u03b313, \u03c98)"
+    ],
+    "score": 2.857142857142857
+  },
+  "96b5cfc4c5304efb3775566ba33ac075": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point Q exists, and Point E exists. Line lq connects points Q and E, with a length of 4.3423. Additionally, Point A and Point U exist, forming line lf which connects A and U, with a length of 2.0048. Lines lq and lf are parallel, separated by a perpendicular distance of 2.1916.",
+    "pred_geo": [
+      "point(Q, 0, 0)",
+      "point(E, 0, 0)",
+      "point(lq, 0, 0)",
+      "point(A, 0, 0)",
+      "point(U, 0, 0)",
+      "point(lf, 0, 0)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)"
+    ],
+    "truth_constraints": [
+      "point(Q)",
+      "point(E)",
+      "point(A)",
+      "point(U)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)",
+      "length(lq, 4.3423)",
+      "length(lf, 2.0048)",
+      "parallel(lq, lf, 2.1916)"
+    ],
+    "score": 2.5416666666666665
+  },
+  "2d100ca0a79bf0bf591ae4dfc15af8a5": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point F exists at a specific location, and point O is also defined in the space. Point E is located elsewhere, while line lq connects points O and E with a length of 5.1714. Furthermore, circle \u03c92 is centered at point F and possesses a radius of 1.2204. Notably, line lq is tangent to circle \u03c92.",
+    "pred_geo": [
+      "point(F, 0, 0)",
+      "point(O, 0, 0)",
+      "point(E, 0, 0)",
+      "line(lq, F, O)",
+      "circle(\u03c92, F, 1.2204)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "point(E)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F)",
+      "length(lq, 5.1714)",
+      "radius(\u03c92, 1.2204)",
+      "tangent(lq, \u03c92)"
+    ],
+    "score": 2.625
+  },
+  "95ec0c8f0d51f7dc4a4fc630f1617232": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named B. Additionally, a point named Z exists as well. A point W is also defined, along with a point N. A line, referred to as lw, connects points B and Z and has a length of 4.6104. Another line, lk, connects points W and N, with a length of 4.8124. Notably, lines lw and lk are parallel, maintaining a perpendicular distance of 1.1609 between them.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(Z, 0, 0)",
+      "point(W, 0, 0)",
+      "point(N, 0, 0)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(Z)",
+      "point(W)",
+      "point(N)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)",
+      "length(lw, 4.6104)",
+      "length(lk, 4.8124)",
+      "parallel(lw, lk, 1.1609)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "605cda0dba689b84a261587709ca9fb5": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There are four points: H, W, F, and J. The line lf, which connects points H and W, measures 6.5333 in length. Similarly, the line lq, connecting points F and J, has a length of 5.2035. The angle between lines lf and lq is 16.06 degrees.",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(H)",
+      "point(W)",
+      "point(F)",
+      "point(J)",
+      "line(lf, H, W)",
+      "line(lq, F, J)",
+      "length(lf, 6.5333)",
+      "length(lq, 5.2035)",
+      "angle(lf, lq, 16.06)"
+    ],
+    "score": 1.0
+  },
+  "62724477bf5e226c9a1f5a3d3f84fb2c": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point U exists, and point J also exists. Circle \u03c98 is centered at point U and has a radius of 1.0888. Notably, point J lies on the circumference of circle \u03c98.",
+    "pred_geo": [
+      "point(U, 0, 0)",
+      "point(J, 0, 0)",
+      "circle(\u03c98, U, 1.0888)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(J)",
+      "circle(\u03c98, U)",
+      "radius(\u03c98, 1.0888)",
+      "on_circle(J, \u03c98)"
+    ],
+    "score": 2.8
+  },
+  "7b996f0027751cb66840402da65e275d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point V exists and is connected by line lf to point X. Line lf has a length of 4.7493. Additionally, point R is connected by line li to point Z, which has a length of 3.5061. Both lines lf and li are parallel, separated by a distance of 3.0983.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(X, 0, 0)",
+      "line(lf, V, X)",
+      "line(li, V, Z)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(X)",
+      "point(R)",
+      "point(Z)",
+      "line(lf, V, X)",
+      "line(li, R, Z)",
+      "length(lf, 4.7493)",
+      "length(li, 3.5061)",
+      "parallel(lf, li, 3.0983)"
+    ],
+    "score": 1.875
+  },
+  "f4461e6f9ddac617bedcd2330bcc22c8": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point R exists and is connected to point V by line lg, which has a length of 3.3668. Additionally, point B is connected to point O by line lq, which has a length of 4.0533. Lines lg and lq are parallel, maintaining a perpendicular distance of 1.8134 between them.",
+    "pred_geo": [
+      "point(R, 0, 0)",
+      "point(V, 0, 0)",
+      "point(B, 0, 0)",
+      "point(O, 0, 0)",
+      "line(lg, R, V)",
+      "line(lq, B, O)"
+    ],
+    "truth_constraints": [
+      "point(R)",
+      "point(V)",
+      "point(B)",
+      "point(O)",
+      "line(lg, R, V)",
+      "line(lq, B, O)",
+      "length(lg, 3.3668)",
+      "length(lq, 4.0533)",
+      "parallel(lg, lq, 1.8134)"
+    ],
+    "score": 2.6666666666666665
+  },
+  "4e1ee9b81f53299802c856b3e651e18e": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point U exists. Point I is present, and point P also exists. A line named lw connects points I and P, having a length of 4.0821. Furthermore, there is a circle named \u03c925 centered at point U with a radius of 0.5946. Notably, the line lw is tangent to circle \u03c925.",
+    "pred_geo": [
+      "point(U, 0, 0)",
+      "point(I, 0, 0)",
+      "point(P, 0, 0)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U, 0.5946)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(I)",
+      "point(P)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U)",
+      "length(lw, 4.0821)",
+      "radius(\u03c925, 0.5946)",
+      "tangent(lw, \u03c925)"
+    ],
+    "score": 2.75
+  },
+  "bcb4d33c00bec2cf2379630d80d54ac2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists point Y, point X, point V, and point M. Line lu connects point Y and point X, resulting in a length of 7.8537. Line lt connects point V and point M with a length of 3.4306. Furthermore, line lu is perpendicular to line lt.",
+    "pred_geo": [
+      "point(Y, 0, 0)",
+      "point(X, 0, 0)",
+      "point(V, 0, 0)",
+      "point(M, 0, 0)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)",
+      "line(lu, V, M)"
+    ],
+    "truth_constraints": [
+      "point(Y)",
+      "point(X)",
+      "point(V)",
+      "point(M)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)",
+      "length(lu, 7.8537)",
+      "length(lt, 3.4306)",
+      "perpendicular(lu, lt)"
+    ],
+    "score": 2.4841269841269837
+  },
+  "de2ea8cdf4533530302cb7c54c2ed0d6": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named W, a point named Y, a point named Q, and a point named X. The line connecting points W and Y is referred to as line lf, and it has a length of 7.9622. The line connecting points Q and X is called line lw, which measures 4.8508 in length. Lines lf and lw intersect at an angle of 54.91 degrees.",
+    "pred_geo": [
+      "point(W, 0, 0)",
+      "point(Y, 0, 0)",
+      "point(Q, 0, 0)",
+      "point(X, 0, 0)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)",
+      "angle(54.91, lw, lf)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(Y)",
+      "point(Q)",
+      "point(X)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)",
+      "length(lf, 7.9622)",
+      "length(lw, 4.8508)",
+      "angle(lf, lw, 54.91)"
+    ],
+    "score": 0
+  },
+  "ae49b604be3c5666507f617b2a179719": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point X exists and serves as the center of circle \u03b324, which has a radius of 0.5296. Point W lies on the circumference of circle \u03b324.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "circle(\u03b324, X, 0.5296)",
+      "line(W, X, W)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(W)",
+      "circle(\u03b324, X)",
+      "radius(\u03b324, 0.5296)",
+      "on_circle(W, \u03b324)"
+    ],
+    "score": 0.75
+  },
+  "f3dd255abf50b80a621082da40e26707": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point V exists, point A exists, point G exists, and point R exists. Line lj connects points V and A, having a length of 2.0737. Line li connects points G and R, with a length of 5.2902. The angle formed between line lj and line li is 30.25 degrees.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(A, 0, 0)",
+      "point(G, 0, 0)",
+      "point(R, 0, 0)",
+      "line(lj, V, A)",
+      "line(li, G, R)",
+      "angle(lij, lli)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(A)",
+      "point(G)",
+      "point(R)",
+      "line(lj, V, A)",
+      "line(li, G, R)",
+      "length(lj, 2.0737)",
+      "length(li, 5.2902)",
+      "angle(lj, li, 30.25)"
+    ],
+    "score": 0
+  },
+  "d4fdc453e3d0e8d3d43b3f1ebf298697": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists point E. Point R and point W are also present. A line denoted lp connects points R and W. Circle \u03c97 is centered at point E with a radius of 1.2759. The length of line lp is measured to be 3.2740. Furthermore, line lp is tangent to circle \u03c97.",
+    "pred_geo": [
+      "point(E, 0, 0)",
+      "point(R, 0, 0)",
+      "point(W, 0, 0)",
+      "point(lp, 0, 0)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(R)",
+      "point(W)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E)",
+      "length(lp, 3.2740)",
+      "radius(\u03c97, 1.2759)",
+      "tangent(lp, \u03c97)"
+    ],
+    "score": 1.5
+  },
+  "feb10492d7890b7a0c5d8b3de5df9b60": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point A exists, and point B exists. Circle \u03b36 is centered at point A and has a radius of 0.6961. Additionally, point B lies on circle \u03b36.",
+    "pred_geo": [
+      "point(A, 0, 0)",
+      "point(B, 0, 0)",
+      "circle(\u03b36, A, 0.6961)",
+      "line(L0, A, B)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(B)",
+      "circle(\u03b36, A)",
+      "radius(\u03b36, 0.6961)",
+      "on_circle(B, \u03b36)"
+    ],
+    "score": 2.675
+  },
+  "44ef5d2c02c9483cd1b94df6500ac9cf": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point named F. Additionally, there is another point designated as O. Circle \u03c916 is centered at point F and has a radius measuring 1.4772. Circle \u03c924, centered at point O, possesses a radius of 1.1169. Notably, the two circles, \u03c916 and \u03c924, are externally tangent to each other.",
+    "pred_geo": [
+      "point(F, 0, 0)",
+      "circle(\u03c916, F, 1.4772)",
+      "circle(\u03c924, O, 1.1169)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "circle(\u03c916, F)",
+      "circle(\u03c924, O)",
+      "radius(\u03c916, 1.4772)",
+      "radius(\u03c924, 1.1169)",
+      "circle_tangent(\u03c916, \u03c924)"
+    ],
+    "score": 1.75
+  },
+  "93ef963dc65dbea2dbd6566f6a89463d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "There exists a point identified as A. Another point is designated as Y. Circle \u03c919 is centered at point A with a radius of 1.1797. Additionally, circle \u03c94 is centered at point Y, having a radius of 1.2805. It is important to note that circles \u03c919 and \u03c94 are externally tangent to each other.",
+    "pred_geo": [
+      "point(A, 0, 0)",
+      "point(Y, 0, 0)",
+      "circle(\u03c919, A, 1.1797)",
+      "circle(\u03c94, Y, 1.2805)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(Y)",
+      "circle(\u03c919, A)",
+      "circle(\u03c94, Y)",
+      "radius(\u03c919, 1.1797)",
+      "radius(\u03c94, 1.2805)",
+      "circle_tangent(\u03c919, \u03c94)"
+    ],
+    "score": 2.857142857142857
+  },
+  "a09f8be937d1b031e8a9da171a1282d3": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point L exists, and point U also exists. Circle \u03c91 has its center at point L and has a radius of 0.5747. Circle \u03c910 is centered at point U with a radius of 0.7580. The circles \u03c91 and \u03c910 are externally tangent to each other.",
+    "pred_geo": [
+      "point(U, 0, 0)",
+      "point(L, 0, 0)",
+      "circle(\u03c91, L, 0.5747)",
+      "circle(\u03c910, U, 0.7580)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(U)",
+      "circle(\u03c91, L)",
+      "circle(\u03c910, U)",
+      "radius(\u03c91, 0.5747)",
+      "radius(\u03c910, 0.7580)",
+      "circle_tangent(\u03c91, \u03c910)"
+    ],
+    "score": 2.857142857142857
+  },
+  "625ccfa9c5b1ffe27aeb82b157669362": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point X exists and is connected to point E by line lm, which has a length of 4.7187. Line ld connects point P and point C and has a length of 2.9958. The lines lm and ld are parallel to each other with a perpendicular distance of 1.7224.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "point(E, 0, 0)",
+      "point(lm, 0, 0)",
+      "point(ld, 0, 0)",
+      "line(lm, X, E)",
+      "line(ld, X, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(E)",
+      "point(P)",
+      "point(C)",
+      "line(lm, X, E)",
+      "line(ld, P, C)",
+      "length(lm, 4.7187)",
+      "length(ld, 2.9958)",
+      "parallel(lm, ld, 1.7224)"
+    ],
+    "score": 1.7083333333333333
+  },
+  "5243175b2b9cc8ca4ed85aa2db41b4a9": {
+    "mode": "mode2_nl_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "Point N exists with circle \u03c95 centered at it, having a radius of 0.9531, and point X is positioned on the circumference of circle \u03c95.",
+    "pred_geo": [
+      "point(N, 0, 0)",
+      "point(X, 0, 0)",
+      "circle(\u03c95, N, 0.9531)",
+      "line(N, X, \u03c95)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(X)",
+      "circle(\u03c95, N)",
+      "radius(\u03c95, 0.9531)",
+      "on_circle(X, \u03c95)"
+    ],
+    "score": 0.75
+  },
+  "e51d5af266e76d1ae28b4d387b710197": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(O, -2.8051, 0.9537)\npoint(R, -3.0976, -0.9393)\ncircle(\u03b312, O, 1.3223)\ncircle(\u03c923, R, 0.5932)",
+    "pred_geo": [
+      "O,R,\u03b312,\u03c923,1.3223,0.5932"
+    ],
+    "truth_constraints": [
+      "point(O)",
+      "point(R)",
+      "circle(\u03b312, O)",
+      "circle(\u03c923, R)",
+      "radius(\u03b312, 1.3223)",
+      "radius(\u03c923, 0.5932)",
+      "circle_tangent(\u03b312, \u03c923)"
+    ],
+    "score": 0
+  },
+  "2bcb0303e7a51ab542b526924c2b3958": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(M, -0.2282, 2.4314)\npoint(Q, -1.4017, -2.6786)\npoint(J, -1.7537, 3.5050)\npoint(N, 0.1238, -3.7522)\nline(lj, M, Q)\nline(lb, J, N)",
+    "pred_geo": [
+      "M, Q, J, N"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(Q)",
+      "point(J)",
+      "point(N)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)",
+      "length(lj, 5.2429)",
+      "length(lb, 7.4961)",
+      "angle(lj, lb, 27.44)"
+    ],
+    "score": 0
+  },
+  "580f3ddbfaa75fffbecd81a496074534": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(V, -2.0544, -0.4029)\npoint(I, -3.2679, 1.2786)\ncircle(\u03b39, V, 1.2245)\ncircle(\u03c922, I, 0.8491)",
+    "pred_geo": [
+      "V, -2.0544, -0.4029",
+      "I, -3.2679, 1.2786",
+      "\u03b39, -3.2679, 1.2786",
+      "\u03c922, -3.2679, 1.2786"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(I)",
+      "circle(\u03b39, V)",
+      "circle(\u03c922, I)",
+      "radius(\u03b39, 1.2245)",
+      "radius(\u03c922, 0.8491)",
+      "circle_tangent(\u03b39, \u03c922)"
+    ],
+    "score": 0
+  },
+  "1b20c92e2540dfdada7fb4001db91dc5": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(X, 0.0758, -1.0903)\npoint(I, -2.2887, 0.9438)\npoint(F, 2.7850, 0.4551)\nline(lt, I, F)\ncircle(\u03c90, X, 1.7980)",
+    "pred_geo": [
+      "lt I F"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(I)",
+      "point(F)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X)",
+      "length(lt, 5.0972)",
+      "radius(\u03c90, 1.7980)",
+      "tangent(lt, \u03c90)"
+    ],
+    "score": 0
+  },
+  "0bec854cd8c460c318c19181a26aa991": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(K, 1.5325, 1.4910)\npoint(B, 2.5226, 2.8946)\npoint(S, -0.6342, 3.0194)\npoint(R, 0.0607, 4.0046)\nline(lk, K, B)\nline(lr, S, R)",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(K)",
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "line(lk, K, B)",
+      "line(lr, S, R)",
+      "length(lk, 1.7177)",
+      "length(lr, 1.2056)",
+      "parallel(lk, lr, 2.6515)"
+    ],
+    "score": 1.0
+  },
+  "45b6bfe9b8b5311911707f37f091f15b": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(V, -1.2485, 1.5062)\npoint(S, -2.5668, -1.7331)\npoint(P, -5.0746, 1.1754)\npoint(B, 1.2593, -1.4023)\nline(lf, V, S)\nline(lr, P, B)",
+    "pred_geo": [
+      "point(-1.2485,-1.5062)",
+      "point(-2.5668,-1.7331)",
+      "point(-5.0746,1.1754)",
+      "point(1.2593,-1.4023)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(S)",
+      "point(P)",
+      "point(B)",
+      "line(lf, V, S)",
+      "line(lr, P, B)",
+      "length(lf, 3.4973)",
+      "length(lr, 6.8384)",
+      "perpendicular(lf, lr)"
+    ],
+    "score": 0.25
+  },
+  "4c0061c63a5a537976931d35cdacc00e": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(K, 1.2232, -0.7883)\npoint(R, 1.3607, -1.4942)\ncircle(\u03c911, K, 0.7192)",
+    "pred_geo": [
+      "K, R, \u03c911, 1.3607, -1.4942, 0.7192"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(R)",
+      "circle(\u03c911, K)",
+      "radius(\u03c911, 0.7192)",
+      "on_circle(R, \u03c911)"
+    ],
+    "score": 0
+  },
+  "cd86947a22cedef25d9e50f71f3fb8f4": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(I, -2.5979, 3.4212)\npoint(F, 2.4013, -0.5740)\npoint(H, -0.7567, 0.5998)\npoint(A, 0.5600, 2.2474)\nline(li, I, F)\nline(lm, H, A)",
+    "pred_geo": [
+      "I, F, H, A"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(F)",
+      "point(H)",
+      "point(A)",
+      "line(li, I, F)",
+      "line(lm, H, A)",
+      "length(li, 6.3995)",
+      "length(lm, 2.1091)",
+      "perpendicular(li, lm)"
+    ],
+    "score": 0
+  },
+  "3cd80f8ebeab1f528c0d885f00d9b511": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(X, 1.9231, -0.5807)\npoint(Y, -1.9557, 2.5072)\npoint(P, 0.0511, -2.9321)\npoint(C, -3.2495, -0.3045)\nline(lt, X, Y)\nline(lu, P, C)",
+    "pred_geo": [
+      "lt = point(\"lt\", 1.9231, -0.5807)",
+      "lu = point(\"lu\", 0.0511, -2.9321)",
+      "l = line(lt, \"X\", \"C\")",
+      "l = line(lu, \"P\", \"C\")"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(Y)",
+      "point(P)",
+      "point(C)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)",
+      "length(lt, 4.9579)",
+      "length(lu, 4.2188)",
+      "parallel(lt, lu, 3.0056)"
+    ],
+    "score": 0
+  },
+  "e0d0b806215356d95dab8cdb5716b365": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(W, -0.2386, 1.8698)\npoint(B, -1.2834, 3.5270)\ncircle(\u03c912, W, 1.9591)",
+    "pred_geo": [
+      "point(-0.2386,-0.2386,1.8698)",
+      "line(B,-1.2834,3.5270)",
+      "circle(\u03c912,W,1.9591)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(B)",
+      "circle(\u03c912, W)",
+      "radius(\u03c912, 1.9591)",
+      "on_circle(B, \u03c912)"
+    ],
+    "score": 1.3333333333333333
+  },
+  "77050505aa1efd32cd3ec76f8d0d4011": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(N, -3.2890, -0.5770)\npoint(K, 0.3098, -3.2763)\npoint(C, -2.2884, -2.9915)\npoint(U, -0.6908, -0.8617)\nline(lp, N, K)\nline(lv, C, U)",
+    "pred_geo": [
+      "N,K,C,U"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(K)",
+      "point(C)",
+      "point(U)",
+      "line(lp, N, K)",
+      "line(lv, C, U)",
+      "length(lp, 4.4986)",
+      "length(lv, 2.6624)",
+      "perpendicular(lp, lv)"
+    ],
+    "score": 0
+  },
+  "3524ce0555893361ce935bd878da1192": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(G, 0.7696, -0.0316)\npoint(K, -2.0317, -2.3311)\npoint(M, 0.5264, 3.5844)\nline(lg, K, M)\ncircle(\u03b36, G, 1.6585)",
+    "pred_geo": [
+      "K,M,\u03b36"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(K)",
+      "point(M)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G)",
+      "length(lg, 6.4449)",
+      "radius(\u03b36, 1.6585)",
+      "tangent(lg, \u03b36)"
+    ],
+    "score": 0
+  },
+  "cc7480d3a48409d82174ee1021faadc0": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(P, 1.6582, -0.0494)\npoint(F, 1.0979, 0.9252)\ncircle(\u03b324, P, 1.1242)",
+    "pred_geo": [
+      "P, F, \u03b324, 1.1242"
+    ],
+    "truth_constraints": [
+      "point(P)",
+      "point(F)",
+      "circle(\u03b324, P)",
+      "radius(\u03b324, 1.1242)",
+      "on_circle(F, \u03b324)"
+    ],
+    "score": 0
+  },
+  "b379fdc9cea792712aa15986909cf65e": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(E, -0.3438, -0.2850)\npoint(A, 0.6166, 1.4567)\ncircle(\u03c925, E, 1.9889)",
+    "pred_geo": [
+      "E, A, \u03c925, 1.9889"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(A)",
+      "circle(\u03c925, E)",
+      "radius(\u03c925, 1.9889)",
+      "on_circle(A, \u03c925)"
+    ],
+    "score": 0
+  },
+  "07d3a129c8393618e1984b8ecd2cf474": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(J, 0.6950, 1.1490)\npoint(W, -0.6697, 2.0405)\npoint(R, -1.0256, -1.4850)\npoint(L, -2.1489, -0.7512)\nline(lu, J, W)\nline(ly, R, L)",
+    "pred_geo": [
+      "J, W, R, L"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(W)",
+      "point(R)",
+      "point(L)",
+      "line(lu, J, W)",
+      "line(ly, R, L)",
+      "length(lu, 1.6300)",
+      "length(ly, 1.3417)",
+      "parallel(lu, ly, 3.1462)"
+    ],
+    "score": 0
+  },
+  "ac6d9278701fb3a5a694044242f4dc8d": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(H, -2.8174, 0.0726)\npoint(U, -1.7460, 2.1129)\ncircle(\u03c93, H, 1.1634)\ncircle(\u03b323, U, 1.1411)",
+    "pred_geo": [
+      "H, -2.8174, 0.0726",
+      "U, -1.7460, 2.1129",
+      "\u03c93, 0.0000, 0.0000",
+      "\u03b323, 0.0000, 0.0000"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(U)",
+      "circle(\u03c93, H)",
+      "circle(\u03b323, U)",
+      "radius(\u03c93, 1.1634)",
+      "radius(\u03b323, 1.1411)",
+      "circle_tangent(\u03c93, \u03b323)"
+    ],
+    "score": 0
+  },
+  "2ca8a6d81d73e7a5d06a70fce6cfe468": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(S, -1.4779, -0.4238)\npoint(W, 1.2058, 1.4967)\npoint(R, -2.3612, 0.8106)\npoint(Y, -1.4030, 1.4963)\nline(ln, S, W)\nline(lw, R, Y)",
+    "pred_geo": [
+      "S, W, R"
+    ],
+    "truth_constraints": [
+      "point(S)",
+      "point(W)",
+      "point(R)",
+      "point(Y)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)",
+      "length(ln, 3.3001)",
+      "length(lw, 1.1783)",
+      "parallel(ln, lw, 1.5179)"
+    ],
+    "score": 0
+  },
+  "7853628d2b89c8bbeda07746197cf937": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(C, 1.1844, -0.2369)\npoint(G, 1.9565, -0.7205)\ncircle(\u03b325, C, 0.9111)",
+    "pred_geo": [
+      "point(1.1844, -0.2369, 1.9565, -0.7205, \u03b325, 0.9111)"
+    ],
+    "truth_constraints": [
+      "point(C)",
+      "point(G)",
+      "circle(\u03b325, C)",
+      "radius(\u03b325, 0.9111)",
+      "on_circle(G, \u03b325)"
+    ],
+    "score": 1.0
+  },
+  "f3e34cd1833c20f0dc213924ddafc822": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(M, -3.3979, 2.1936)\npoint(G, 1.8787, -1.7314)\npoint(W, -2.2993, -1.8389)\npoint(X, 0.7801, 2.3011)\nline(ly, M, G)\nline(lk, W, X)",
+    "pred_geo": [
+      "M, G, W, X"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(G)",
+      "point(W)",
+      "point(X)",
+      "line(ly, M, G)",
+      "line(lk, W, X)",
+      "length(ly, 6.5763)",
+      "length(lk, 5.1597)",
+      "perpendicular(ly, lk)"
+    ],
+    "score": 0
+  },
+  "bff3eb30918faaa129fdecf3080a0332": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(K, -1.0347, 5.7306)\npoint(T, -0.3868, -2.0572)\npoint(O, -1.7932, 2.1036)\npoint(D, 0.3717, 1.5698)\nline(lp, K, T)\nline(lm, O, D)",
+    "pred_geo": [
+      "K, T, O, D"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(T)",
+      "point(O)",
+      "point(D)",
+      "line(lp, K, T)",
+      "line(lm, O, D)",
+      "length(lp, 7.8147)",
+      "length(lm, 2.2297)",
+      "angle(lp, lm, 71.39)"
+    ],
+    "score": 0
+  },
+  "139177210e6c1222a065325aed01b993": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(N, 0.7104, -1.4606)\npoint(C, 1.9587, -1.1168)\ncircle(\u03c98, N, 1.2948)",
+    "pred_geo": [
+      "point(0.7104, -1.4606, 1.9587, -1.1168, \u03c98, 1.2948)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(C)",
+      "circle(\u03c98, N)",
+      "radius(\u03c98, 1.2948)",
+      "on_circle(C, \u03c98)"
+    ],
+    "score": 1.0
+  },
+  "e7a9fefb5e97815b4579a574aaef7712": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(L, -0.3801, -1.2374)\npoint(Q, 0.2368, 1.8111)\npoint(Z, 2.1812, -3.0020)\nline(lu, Q, Z)\ncircle(\u03c98, L, 1.7138)",
+    "pred_geo": [
+      "L, Q, Z"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(Q)",
+      "point(Z)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L)",
+      "length(lu, 5.1910)",
+      "radius(\u03c98, 1.7138)",
+      "tangent(lu, \u03c98)"
+    ],
+    "score": 0
+  },
+  "0f0869f81b673068b084a498ce39ce73": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(U, -0.9074, 1.0334)\npoint(Z, -1.9880, 2.8342)\ncircle(\u03c920, U, 0.8339)\ncircle(\u03c913, Z, 1.2662)",
+    "pred_geo": [
+      "U, Z, \u03c920, \u03c913"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(Z)",
+      "circle(\u03c920, U)",
+      "circle(\u03c913, Z)",
+      "radius(\u03c920, 0.8339)",
+      "radius(\u03c913, 1.2662)",
+      "circle_tangent(\u03c920, \u03c913)"
+    ],
+    "score": 0
+  },
+  "d23ac40ee4d238f7b8db6afe4a09b499": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(B, -1.7934, -1.8576)\npoint(A, -4.4927, 0.9991)\npoint(K, -4.3534, -4.2767)\npoint(Q, -7.5627, -0.8804)\nline(lr, B, A)\nline(le, K, Q)",
+    "pred_geo": [
+      "B,A,K,Q"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(A)",
+      "point(K)",
+      "point(Q)",
+      "line(lr, B, A)",
+      "line(le, K, Q)",
+      "length(lr, 3.9302)",
+      "length(le, 4.6727)",
+      "parallel(lr, le, 3.5222)"
+    ],
+    "score": 0
+  },
+  "3bc15fed2c0c7f393dd3c3fd3a29ed4f": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(I, 1.7741, -1.9643)\npoint(B, 2.9642, -4.0077)\npoint(W, -0.5763, -2.2239)\nline(ly, B, W)\ncircle(\u03b312, I, 1.2894)",
+    "pred_geo": [
+      "I, B, W, \u03b312"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(B)",
+      "point(W)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I)",
+      "length(ly, 3.9645)",
+      "radius(\u03b312, 1.2894)",
+      "tangent(ly, \u03b312)"
+    ],
+    "score": 0
+  },
+  "9a78fd0df7af81a12e3b16ae828deb97": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(B, 1.1251, -0.4291)\npoint(S, -2.5900, -1.1425)\npoint(R, -1.0085, 0.6514)\npoint(T, -0.4565, -2.2231)\nline(lv, B, S)\nline(lm, R, T)",
+    "pred_geo": [
+      "B, S, R, T"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "point(T)",
+      "line(lv, B, S)",
+      "line(lm, R, T)",
+      "length(lv, 3.7830)",
+      "length(lm, 2.9270)",
+      "perpendicular(lv, lm)"
+    ],
+    "score": 0
+  },
+  "dbdc22e310f2ce9e921eac67ee350da3": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(L, 1.6176, 0.4270)\npoint(O, 0.7620, 4.1732)\npoint(X, -0.7554, -0.1149)\npoint(R, -1.2807, 2.1854)\nline(la, L, O)\nline(lp, X, R)",
+    "pred_geo": [
+      "L, O, X, R"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(O)",
+      "point(X)",
+      "point(R)",
+      "line(la, L, O)",
+      "line(lp, X, R)",
+      "length(la, 3.8426)",
+      "length(lp, 2.3596)",
+      "parallel(la, lp, 2.4340)"
+    ],
+    "score": 0
+  },
+  "862113e037ce0520be078243dabb1cce": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(G, -0.1799, 0.5702)\npoint(Y, -2.1202, 3.5797)\npoint(W, -2.7642, -1.0960)\npoint(Q, -4.0080, 0.8332)\nline(lm, G, Y)\nline(lo, W, Q)",
+    "pred_geo": [
+      "Y, -2.1202, 3.5797, W, -2.7642, -1.0960, Q"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(Y)",
+      "point(W)",
+      "point(Q)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)",
+      "length(lm, 3.5808)",
+      "length(lo, 2.2953)",
+      "parallel(lm, lo, 3.0748)"
+    ],
+    "score": 0
+  },
+  "74036bf2bbafc84e6610b7cb9af796e9": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(M, 1.2068, -0.0985)\npoint(W, -3.4020, 0.8365)\npoint(H, 0.8935, -1.6429)\npoint(J, -3.3275, -0.7865)\nline(lo, M, W)\nline(lw, H, J)",
+    "pred_geo": [
+      "M, W, H, J"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(W)",
+      "point(H)",
+      "point(J)",
+      "line(lo, M, W)",
+      "line(lw, H, J)",
+      "length(lo, 4.7027)",
+      "length(lw, 4.3070)",
+      "parallel(lo, lw, 1.5758)"
+    ],
+    "score": 0
+  },
+  "527f65633997bdce45efa293fc794aff": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(A, 0.8166, 1.2345)\npoint(G, 0.1692, -0.5838)\ncircle(\u03b31, A, 1.9301)",
+    "pred_geo": [
+      "A, G, \u03b31"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(G)",
+      "circle(\u03b31, A)",
+      "radius(\u03b31, 1.9301)",
+      "on_circle(G, \u03b31)"
+    ],
+    "score": 0
+  },
+  "cf6c566ad213d4bd563cc668b6fa7ed6": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(J, -1.0509, 0.1789)\npoint(M, 0.1145, -0.7465)\ncircle(\u03b313, J, 0.9071)\ncircle(\u03c98, M, 0.5810)",
+    "pred_geo": [
+      "J, M, \u03b313, \u03c98"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(M)",
+      "circle(\u03b313, J)",
+      "circle(\u03c98, M)",
+      "radius(\u03b313, 0.9071)",
+      "radius(\u03c98, 0.5810)",
+      "circle_tangent(\u03b313, \u03c98)"
+    ],
+    "score": 0
+  },
+  "53e6107d08cc9a1144b19ebac61c8a3a": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(Q, 0.6276, -1.5715)\npoint(E, -2.5902, 1.3443)\npoint(A, -0.8440, -3.1955)\npoint(U, -2.3296, -1.8493)\nline(lq, Q, E)\nline(lf, A, U)",
+    "pred_geo": [
+      "Q, E, A, U"
+    ],
+    "truth_constraints": [
+      "point(Q)",
+      "point(E)",
+      "point(A)",
+      "point(U)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)",
+      "length(lq, 4.3423)",
+      "length(lf, 2.0048)",
+      "parallel(lq, lf, 2.1916)"
+    ],
+    "score": 0
+  },
+  "a1ce0adb9adbda383398192b115411c2": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(F, -1.8364, 1.1830)\npoint(O, -2.7290, -1.5334)\npoint(E, -3.3660, 3.5987)\nline(lq, O, E)\ncircle(\u03c92, F, 1.2204)",
+    "pred_geo": [
+      "O,E,F,\u03c92"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "point(E)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F)",
+      "length(lq, 5.1714)",
+      "radius(\u03c92, 1.2204)",
+      "tangent(lq, \u03c92)"
+    ],
+    "score": 0
+  },
+  "588199187c3487fd3c070210359d54bf": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(B, 0.4998, 0.6989)\npoint(Z, 3.6376, 4.0768)\npoint(W, -0.3507, 1.4890)\npoint(N, 2.9245, 5.0149)\nline(lw, B, Z)\nline(lk, W, N)",
+    "pred_geo": [
+      "B, Z, N"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(Z)",
+      "point(W)",
+      "point(N)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)",
+      "length(lw, 4.6104)",
+      "length(lk, 4.8124)",
+      "parallel(lw, lk, 1.1609)"
+    ],
+    "score": 0
+  },
+  "8b4e678d5881687a129459d7290509a5": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(H, -4.2077, -0.4559)\npoint(W, 2.0073, -2.4700)\npoint(F, -3.7005, -1.3768)\npoint(J, 1.5001, -1.5491)\nline(lf, H, W)\nline(lq, F, J)",
+    "pred_geo": [
+      "[H, -4.2077, -0.4559]",
+      "[W, 2.0073, -2.4700]",
+      "[F, -3.7005, -1.3768]",
+      "[J, 1.5001, -1.5491]"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(W)",
+      "point(F)",
+      "point(J)",
+      "line(lf, H, W)",
+      "line(lq, F, J)",
+      "length(lf, 6.5333)",
+      "length(lq, 5.2035)",
+      "angle(lf, lq, 16.06)"
+    ],
+    "score": 0
+  },
+  "973e21c7cb76e361d9240155b31da19a": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(U, -1.6078, 0.6313)\npoint(J, -0.6091, 0.1977)\ncircle(\u03c98, U, 1.0888)",
+    "pred_geo": [
+      "U, J, \u03c98, 1.0888"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(J)",
+      "circle(\u03c98, U)",
+      "radius(\u03c98, 1.0888)",
+      "on_circle(J, \u03c98)"
+    ],
+    "score": 0
+  },
+  "4aeaba02b85395f4343b69371e4ef09a": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(V, -0.6564, -1.4428)\npoint(X, -3.2558, 2.5319)\npoint(R, -3.2494, -3.1386)\npoint(Z, -5.1684, -0.2042)\nline(lf, V, X)\nline(li, R, Z)",
+    "pred_geo": [
+      "V, X, R, Z"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(X)",
+      "point(R)",
+      "point(Z)",
+      "line(lf, V, X)",
+      "line(li, R, Z)",
+      "length(lf, 4.7493)",
+      "length(li, 3.5061)",
+      "parallel(lf, li, 3.0983)"
+    ],
+    "score": 0
+  },
+  "43127223ee31c4962fffc0461ad87e0b": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(R, 0.1360, 0.6792)\npoint(V, 0.2140, 4.0451)\npoint(B, -1.6770, 0.7212)\npoint(O, -1.5830, 4.7734)\nline(lg, R, V)\nline(lq, B, O)",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(R)",
+      "point(V)",
+      "point(B)",
+      "point(O)",
+      "line(lg, R, V)",
+      "line(lq, B, O)",
+      "length(lg, 3.3668)",
+      "length(lq, 4.0533)",
+      "parallel(lg, lq, 1.8134)"
+    ],
+    "score": 1.0
+  },
+  "36f00c48632a9de70af4811babf010ad": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(U, -0.4842, 0.6818)\npoint(I, 1.6301, 0.9036)\npoint(P, -2.1485, -0.6408)\nline(lw, I, P)\ncircle(\u03c925, U, 0.5946)",
+    "pred_geo": [
+      "U, I, P, lw, \u03c925"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(I)",
+      "point(P)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U)",
+      "length(lw, 4.0821)",
+      "radius(\u03c925, 0.5946)",
+      "tangent(lw, \u03c925)"
+    ],
+    "score": 0
+  },
+  "bc9a960d49ad68b1d49524058a50be98": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(Y, -3.7147, 0.3145)\npoint(X, 3.6150, -2.5061)\npoint(V, -0.6659, -2.6966)\npoint(M, 0.5662, 0.5051)\nline(lu, Y, X)\nline(lt, V, M)",
+    "pred_geo": [
+      "Y, -3.7147, 0.3145",
+      "X, 3.6150, -2.5061",
+      "V, -0.6659, -2.6966",
+      "M, 0.5662, 0.5051"
+    ],
+    "truth_constraints": [
+      "point(Y)",
+      "point(X)",
+      "point(V)",
+      "point(M)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)",
+      "length(lu, 7.8537)",
+      "length(lt, 3.4306)",
+      "perpendicular(lu, lt)"
+    ],
+    "score": 0
+  },
+  "67aa90b12354d5829b047132642a2023": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(W, 2.1872, 4.7264)\npoint(Y, -1.3498, -2.4070)\npoint(Q, -0.7400, 3.2904)\npoint(X, 1.5774, -0.9710)\nline(lf, W, Y)\nline(lw, Q, X)",
+    "pred_geo": [
+      "W Y Q X"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(Y)",
+      "point(Q)",
+      "point(X)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)",
+      "length(lf, 7.9622)",
+      "length(lw, 4.8508)",
+      "angle(lf, lw, 54.91)"
+    ],
+    "score": 0
+  },
+  "0b41f29b5b50085a80e6c9d3e507749d": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(X, 0.1561, 1.5066)\npoint(W, -0.3480, 1.3441)\ncircle(\u03b324, X, 0.5296)",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(X)",
+      "point(W)",
+      "circle(\u03b324, X)",
+      "radius(\u03b324, 0.5296)",
+      "on_circle(W, \u03b324)"
+    ],
+    "score": 1.0
+  },
+  "6bc7a791ba9ab9f7f1282d6ae0f3f2bc": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(V, -1.1116, 1.9615)\npoint(A, -2.1586, 0.1715)\npoint(G, -1.6314, 3.7116)\npoint(R, -1.6388, -1.5786)\nline(lj, V, A)\nline(li, G, R)",
+    "pred_geo": [
+      "point(-1.1116,-1.9615,-2.1586)",
+      "point(1.6314,0.1715,3.7116)",
+      "point(-1.6388,-1.5786,R)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(A)",
+      "point(G)",
+      "point(R)",
+      "line(lj, V, A)",
+      "line(li, G, R)",
+      "length(lj, 2.0737)",
+      "length(li, 5.2902)",
+      "angle(lj, li, 30.25)"
+    ],
+    "score": 0.5
+  },
+  "6b72e5ddcc7853c8e53ee458289a157c": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(E, -1.3909, -1.7352)\npoint(R, -2.3543, 0.1032)\npoint(W, 0.6271, -1.2498)\nline(lp, R, W)\ncircle(\u03c97, E, 1.2759)",
+    "pred_geo": [
+      "point(-1.3909,-1.7352)",
+      "point(R,-2.3543,0.1032)",
+      "point(W,0.6271,-1.2498)",
+      "circle(\u03c97,E,1.2759)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(R)",
+      "point(W)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E)",
+      "length(lp, 3.2740)",
+      "radius(\u03c97, 1.2759)",
+      "tangent(lp, \u03c97)"
+    ],
+    "score": 0.25
+  },
+  "3da62fdb29ff39ac3a7cb019e46fc8cc": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(A, -1.4116, 0.1787)\npoint(B, -0.7309, 0.0327)\ncircle(\u03b36, A, 0.6961)",
+    "pred_geo": [
+      "A,B,C,\u03b36"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(B)",
+      "circle(\u03b36, A)",
+      "radius(\u03b36, 0.6961)",
+      "on_circle(B, \u03b36)"
+    ],
+    "score": 0
+  },
+  "978a79b8c2503e59394b209e09937468": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(F, -1.5383, 1.2435)\npoint(O, 0.8214, 2.3211)\ncircle(\u03c916, F, 1.4772)\ncircle(\u03c924, O, 1.1169)",
+    "pred_geo": [
+      "point(-1.5383, 1.2435, F)",
+      "point(0.8214, 2.3211, O)",
+      "circle(\u03c916, F, 1.4772)",
+      "circle(\u03c924, O, 1.1169)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "circle(\u03c916, F)",
+      "circle(\u03c924, O)",
+      "radius(\u03c916, 1.4772)",
+      "radius(\u03c924, 1.1169)",
+      "circle_tangent(\u03c916, \u03c924)"
+    ],
+    "score": 0.5
+  },
+  "fe19db3f01cd8bd671eba74b02addb3c": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(A, -0.3972, -0.0075)\npoint(Y, 0.7586, -2.1792)\ncircle(\u03c919, A, 1.1797)\ncircle(\u03c94, Y, 1.2805)",
+    "pred_geo": [
+      "A,Y,1.1797,1.2805"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(Y)",
+      "circle(\u03c919, A)",
+      "circle(\u03c94, Y)",
+      "radius(\u03c919, 1.1797)",
+      "radius(\u03c94, 1.2805)",
+      "circle_tangent(\u03c919, \u03c94)"
+    ],
+    "score": 0
+  },
+  "869a0add675489b39f3b67719fcf2750": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(L, -0.2156, 1.7729)\npoint(U, -0.7404, 2.9980)\ncircle(\u03c91, L, 0.5747)\ncircle(\u03c910, U, 0.7580)",
+    "pred_geo": [
+      "L,U,\u03c91,\u03c910"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(U)",
+      "circle(\u03c91, L)",
+      "circle(\u03c910, U)",
+      "radius(\u03c91, 0.5747)",
+      "radius(\u03c910, 0.7580)",
+      "circle_tangent(\u03c91, \u03c910)"
+    ],
+    "score": 0
+  },
+  "5ab19cc3a8c35fc77bb1b68fc2ecebe1": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(X, 0.7535, 0.3009)\npoint(E, 1.6277, 4.9379)\npoint(P, -0.9391, 0.6200)\npoint(C, -0.3841, 3.5639)\nline(lm, X, E)\nline(ld, P, C)",
+    "pred_geo": [],
+    "truth_constraints": [
+      "point(X)",
+      "point(E)",
+      "point(P)",
+      "point(C)",
+      "line(lm, X, E)",
+      "line(ld, P, C)",
+      "length(lm, 4.7187)",
+      "length(ld, 2.9958)",
+      "parallel(lm, ld, 1.7224)"
+    ],
+    "score": 1.0
+  },
+  "50f1362113d926b75e6a099f0dfa0989": {
+    "mode": "mode3_geo_to_geo",
+    "model": "Qwen/Qwen2-0.5B-Instruct",
+    "input": "point(N, 1.3790, 0.4505)\npoint(X, 0.8052, -0.3106)\ncircle(\u03c95, N, 0.9531)",
+    "pred_geo": [
+      "point(1.3790, 0.4505, 0.8052, -0.3106, \u03c95, 0.9531)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(X)",
+      "circle(\u03c95, N)",
+      "radius(\u03c95, 0.9531)",
+      "on_circle(X, \u03c95)"
+    ],
+    "score": 1.0
+  },
+  "6681d26ed82d0f8f186c0354b971fdbf": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point designated as O and another point named R. A circle, referred to as \u03b312, is centered at O with a radius of 1.3223. Another circle, called \u03c923, is centered at R and boasts a radius of 0.5932. Remarkably, these two circles, \u03b312 and \u03c923, touch each other externally.",
+    "pred_geo": [
+      "point(O, 1.3223, 0.0000)",
+      "point(R, 0.5932, 0.0000)",
+      "circle(\u03b312, O, 1.3223)",
+      "circle(\u03c923, R, 0.5932)"
+    ],
+    "truth_constraints": [
+      "point(O)",
+      "point(R)",
+      "circle(\u03b312, O)",
+      "circle(\u03c923, R)",
+      "radius(\u03b312, 1.3223)",
+      "radius(\u03c923, 0.5932)",
+      "circle_tangent(\u03b312, \u03c923)"
+    ],
+    "score": 3.0
+  },
+  "7be807be24de217eeafa43fd313d647f": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point M and point Q are distinct points, with line lj connecting them, having a length of 5.2429. Point J and point N are also distinct, with line lb connecting them, which has a length of 7.4961. The angle formed between lines lj and lb is 27.44 degrees.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(Q, 5.2429, 0)",
+      "point(J, 0, 7.4961)",
+      "point(N, 0, 0)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(Q)",
+      "point(J)",
+      "point(N)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)",
+      "length(lj, 5.2429)",
+      "length(lb, 7.4961)",
+      "angle(lj, lb, 27.44)"
+    ],
+    "score": 2.888888888888889
+  },
+  "40514c7b845c8af0fcabcc2b01ab3bca": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point labeled V and another point labeled I. Circle \u03b39 is centered at point V and has a radius of 1.2245 units. Circle \u03c922 is centered at point I and has a radius of 0.8491 units. Notably, circles \u03b39 and \u03c922 just touch one another externally.",
+    "pred_geo": [
+      "point(V, 1.2245, 0.0000)",
+      "point(I, 0.8491, 0.0000)",
+      "circle(\u03b39, V, 1.2245)",
+      "circle(\u03c922, I, 0.8491)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(I)",
+      "circle(\u03b39, V)",
+      "circle(\u03c922, I)",
+      "radius(\u03b39, 1.2245)",
+      "radius(\u03c922, 0.8491)",
+      "circle_tangent(\u03b39, \u03c922)"
+    ],
+    "score": 3.0
+  },
+  "1373952b0502dfdbd5cfdf11fcda2533": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point X exists at a specific location. Point I is also defined, along with point F. There is a line, named lt, that connects points I and F. A circle, referred to as \u03c90, is centered at point X and has a radius of 1.798. The line lt has a length of 5.0972 and is tangent to circle \u03c90.",
+    "pred_geo": [
+      "point(X, 1.7980, 0.0000)",
+      "point(I, 0, 5.0972)",
+      "point(F, 0, 0.0000)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X, 1.7980)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(I)",
+      "point(F)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X)",
+      "length(lt, 5.0972)",
+      "radius(\u03c90, 1.7980)",
+      "tangent(lt, \u03c90)"
+    ],
+    "score": 3.0
+  },
+  "68ec02cf2f2d7ab34405ed3655b2160b": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point K exists and has a connection with point B via line lk, which has a length of 1.7177. Additionally, point S connects to point R through line lr, which has a length of 1.2056. Lines lk and lr are parallel to each other, separated by a perpendicular distance of 2.6515.",
+    "pred_geo": [
+      "point(K, 0, 0)",
+      "point(B, 1.7177, 0)",
+      "point(S, 0, 1.2056)",
+      "point(R, 0, 0)",
+      "line(lk, K, B)",
+      "line(lr, S, R)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "line(lk, K, B)",
+      "line(lr, S, R)",
+      "length(lk, 1.7177)",
+      "length(lr, 1.2056)",
+      "parallel(lk, lr, 2.6515)"
+    ],
+    "score": 2.888888888888889
+  },
+  "d602040139dafb83c80d1e59591eb11d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point V exists, and it is connected to point S by line lf. Line lf has a length of 3.4973. Additionally, point P is connected to point B by line lr, which has a length of 6.8384. The lines lf and lr are perpendicular to each other.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(S, 3.4973, 0)",
+      "point(P, 0, 6.8384)",
+      "point(B, 0, 0)",
+      "line(lf, V, S)",
+      "line(lr, P, B)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(S)",
+      "point(P)",
+      "point(B)",
+      "line(lf, V, S)",
+      "line(lr, P, B)",
+      "length(lf, 3.4973)",
+      "length(lr, 6.8384)",
+      "perpendicular(lf, lr)"
+    ],
+    "score": 3.0
+  },
+  "44f234ab634b5be34ff98193c376757a": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named K, and also a point named R. A circle designated as \u03c911 is centered at point K with a radius of 0.7192, and point R lies on the circumference of this circle.",
+    "pred_geo": [
+      "point(K, 0.7192, 0)",
+      "point(R, 0, 0)",
+      "circle(\u03c911, K, 0.7192)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(R)",
+      "circle(\u03c911, K)",
+      "radius(\u03c911, 0.7192)",
+      "on_circle(R, \u03c911)"
+    ],
+    "score": 3.0
+  },
+  "d06d1388ced46412f2a855c9a0b1a6f2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point I is defined, as is point F, point H, and point A. A line, denoted as li, connects point I and point F, having a length of 6.3995. Another line, lm, connects points H and A, measuring 2.1091 in length. Notably, lines li and lm are perpendicular to each other.",
+    "pred_geo": [
+      "point(I, 0, 0)",
+      "point(F, 6.3995, 0)",
+      "point(H, 0, 2.1091)",
+      "point(A, 0, 0)",
+      "line(li, I, F)",
+      "line(lm, H, A)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(F)",
+      "point(H)",
+      "point(A)",
+      "line(li, I, F)",
+      "line(lm, H, A)",
+      "length(li, 6.3995)",
+      "length(lm, 2.1091)",
+      "perpendicular(li, lm)"
+    ],
+    "score": 3.0
+  },
+  "d68f8c4ee3218f782b1abef144f9e23b": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point X and point Y are defined. Line lt is formed by connecting point X to point Y, which has a length of 4.9579. Additionally, point P and point C are defined, with line lu connecting them, having a length of 4.2188. The two lines, lt and lu, are parallel with a perpendicular distance of 3.0056 between them.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "point(Y, 4.9579, 0)",
+      "point(P, 0, 4.2188)",
+      "point(C, 0, 0)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(Y)",
+      "point(P)",
+      "point(C)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)",
+      "length(lt, 4.9579)",
+      "length(lu, 4.2188)",
+      "parallel(lt, lu, 3.0056)"
+    ],
+    "score": 2.888888888888889
+  },
+  "515ba5b090d559cc2187880a3747c208": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point W and a point B. A circle, \u03c912, is centered at point W and has a radius of 1.9591. Additionally, point B is located on the circumference of this circle.",
+    "pred_geo": [
+      "point(W, 1.9591, 0)",
+      "point(B, 0, 0)",
+      "circle(\u03c912, W, 1.9591)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(B)",
+      "circle(\u03c912, W)",
+      "radius(\u03c912, 1.9591)",
+      "on_circle(B, \u03c912)"
+    ],
+    "score": 3.0
+  },
+  "4f9e14c0a27241be810dfa655edea1e1": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There is a point labeled N, a point K, a point C, and a point U. A line connecting points N and K is denoted as line lp, which has a length of 4.4986. Another line, named lv, joins points C and U, measuring 2.6624 in length. The two lines lp and lv are perpendicular to each other.",
+    "pred_geo": [
+      "point(N, 0, 0)",
+      "point(K, 4.4986, 0)",
+      "point(C, 0, 2.6624)",
+      "point(U, 0, 0)",
+      "line(lp, N, K)",
+      "line(lv, C, U)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(K)",
+      "point(C)",
+      "point(U)",
+      "line(lp, N, K)",
+      "line(lv, C, U)",
+      "length(lp, 4.4986)",
+      "length(lv, 2.6624)",
+      "perpendicular(lp, lv)"
+    ],
+    "score": 3.0
+  },
+  "bd3c5a34167f9568c97e84e5e7942d36": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point G is defined and exists in the space. There is another point, K, also existing, positioned in relation to point M. A line named lg connects point K to point M, establishing direct connectivity between them. Additionally, a circle, denoted as \u03b36, has its center at point G and possesses a radius of 1.6585. Notably, the length of line lg measures 6.4449. Furthermore, line lg just touches circle \u03b36 without crossing it, indicating that it is tangent to the circle.",
+    "pred_geo": [
+      "point(G, 1.6585, 0)",
+      "point(K, 0, 6.4449)",
+      "point(M, 0, 0)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G, 1.6585)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(K)",
+      "point(M)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G)",
+      "length(lg, 6.4449)",
+      "radius(\u03b36, 1.6585)",
+      "tangent(lg, \u03b36)"
+    ],
+    "score": 3.0
+  },
+  "9ce5a7414e2d3bc3a04499281de9da1f": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There is a point named P, and another point called F. A circle, \u03b324, is centered at point P with a radius of 1.1242. Notably, point F is located on the circumference of circle \u03b324.",
+    "pred_geo": [
+      "point(P, 1.1242, 0)",
+      "point(F, 0, 0)",
+      "circle(\u03b324, P, 1.1242)"
+    ],
+    "truth_constraints": [
+      "point(P)",
+      "point(F)",
+      "circle(\u03b324, P)",
+      "radius(\u03b324, 1.1242)",
+      "on_circle(F, \u03b324)"
+    ],
+    "score": 3.0
+  },
+  "c2f61ff67f611788845c9eb379d951ea": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists point E, and point A is also defined. Circle \u03c925 is centered at point E with a radius of 1.9889. Notably, point A lies on the circumference of circle \u03c925.",
+    "pred_geo": [
+      "point(E, 1.9889, 0)",
+      "point(A, 0, 0)",
+      "circle(\u03c925, E, 1.9889)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(A)",
+      "circle(\u03c925, E)",
+      "radius(\u03c925, 1.9889)",
+      "on_circle(A, \u03c925)"
+    ],
+    "score": 3.0
+  },
+  "93a8e84ba1f9ca22ba49652fb6e76db2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point J and point W are defined, and there exists a line lu connecting these points. The length of line lu measures 1.63. Additionally, point R and point L are established, with line ly connecting them, which has a length of 1.3417. Lines lu and ly are parallel to each other, separated by a perpendicular distance of 3.1462.",
+    "pred_geo": [
+      "point(J, 0, 0)",
+      "point(W, 1.6300, 0)",
+      "point(R, 0, 1.3417)",
+      "point(L, 0, 0)",
+      "line(lu, J, W)",
+      "line(ly, R, L)"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(W)",
+      "point(R)",
+      "point(L)",
+      "line(lu, J, W)",
+      "line(ly, R, L)",
+      "length(lu, 1.6300)",
+      "length(ly, 1.3417)",
+      "parallel(lu, ly, 3.1462)"
+    ],
+    "score": 2.888888888888889
+  },
+  "287269ca7259ddcca3d601c124d4ed41": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named H and another point named U. Circle \u03c93 is centered at point H and has a radius of 1.1634. Circle \u03b323 is centered at point U and has a radius of 1.1411. The two circles, \u03c93 and \u03b323, are tangent to each other externally.",
+    "pred_geo": [
+      "point(H, 1.1634, 0)",
+      "point(U, 1.1411, 0)",
+      "circle(\u03c93, H, 1.1634)",
+      "circle(\u03b323, U, 1.1411)"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(U)",
+      "circle(\u03c93, H)",
+      "circle(\u03b323, U)",
+      "radius(\u03c93, 1.1634)",
+      "radius(\u03b323, 1.1411)",
+      "circle_tangent(\u03c93, \u03b323)"
+    ],
+    "score": 3.0
+  },
+  "6a1a4478fb31cee2002f7f48a935f3dc": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point S is defined, and it connects to point W through line ln, which has a length of 3.3001. Additionally, point R and point Y are connected by line lw, which has a length of 1.1783. Importantly, lines ln and lw are parallel, maintaining a perpendicular distance of 1.5179.",
+    "pred_geo": [
+      "point(S, 0, 0)",
+      "point(W, 3.3001, 0)",
+      "point(R, 0, 1.1783)",
+      "point(Y, 0, 0)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)"
+    ],
+    "truth_constraints": [
+      "point(S)",
+      "point(W)",
+      "point(R)",
+      "point(Y)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)",
+      "length(ln, 3.3001)",
+      "length(lw, 1.1783)",
+      "parallel(ln, lw, 1.5179)"
+    ],
+    "score": 2.888888888888889
+  },
+  "9c5ae04ceab9cc7ef5d5378e32ddf9d7": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point C exists and serves as the center of circle \u03b325, which has a radius of 0.9111. Additionally, point G lies on circle \u03b325.",
+    "pred_geo": [
+      "point(C, 0.9111, 0)",
+      "point(G, 0, 0)",
+      "circle(\u03b325, C, 0.9111)"
+    ],
+    "truth_constraints": [
+      "point(C)",
+      "point(G)",
+      "circle(\u03b325, C)",
+      "radius(\u03b325, 0.9111)",
+      "on_circle(G, \u03b325)"
+    ],
+    "score": 3.0
+  },
+  "df9b7be2493c63ad8e46528778e4cc3e": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "The line denoted ly connects the points M and G, and has a length of 6.5763. The line lk connects points W and X with a length of 5.1597, and is perpendicular to line ly.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(G, 6.5763, 0)",
+      "point(W, 0, 5.1597)",
+      "point(X, 0, 0)",
+      "line(ly, M, G)",
+      "line(lk, W, X)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(G)",
+      "point(W)",
+      "point(X)",
+      "line(ly, M, G)",
+      "line(lk, W, X)",
+      "length(ly, 6.5763)",
+      "length(lk, 5.1597)",
+      "perpendicular(ly, lk)"
+    ],
+    "score": 3.0
+  },
+  "f58badbc1d823753a026cbe2846a94ef": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point K, and there is also a point T. A line named lp connects point K to point T, having a length of 7.8147. Additionally, point O exists, and it is connected to point D by another line called lm, which has a length of 2.2297. The angle formed between lines lp and lm is 71.39 degrees.",
+    "pred_geo": [
+      "point(K, 0, 0)",
+      "point(T, 7.8147, 0)",
+      "point(O, 0, 2.2297)",
+      "point(D, 0, 0)",
+      "line(lp, K, T)",
+      "line(lm, O, D)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(T)",
+      "point(O)",
+      "point(D)",
+      "line(lp, K, T)",
+      "line(lm, O, D)",
+      "length(lp, 7.8147)",
+      "length(lm, 2.2297)",
+      "angle(lp, lm, 71.39)"
+    ],
+    "score": 2.888888888888889
+  },
+  "2e7cd2c75419335ecf38d15ee6fdd27e": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point N and a point C, with circle \u03c98 centered at point N that has a radius of 1.2948. Furthermore, point C is located on circle \u03c98.",
+    "pred_geo": [
+      "point(N, 1.2948, 0)",
+      "point(C, 0, 0)",
+      "circle(\u03c98, N, 1.2948)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(C)",
+      "circle(\u03c98, N)",
+      "radius(\u03c98, 1.2948)",
+      "on_circle(C, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "c2c6d4dd1e1ed471754ed4eae46fa83d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point L exists in the geometric space. Point Q is positioned distinctly, and point Z also exists. The line named lu connects point Q to point Z, forming a straight path. Circle \u03c98 is centered at point L and has a radius of 1.7138. The length of line lu measures 5.191. Notably, line lu is tangent to circle \u03c98.",
+    "pred_geo": [
+      "point(L, 1.7138, 0)",
+      "point(Q, 0, 5.191)",
+      "point(Z, 0, 0)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L, 1.7138)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(Q)",
+      "point(Z)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L)",
+      "length(lu, 5.1910)",
+      "radius(\u03c98, 1.7138)",
+      "tangent(lu, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "286c4922d2efed350cf2d09869a07844": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists point U and point Z. Circle \u03c920 is centered at point U with a radius of 0.8339, while circle \u03c913 is centered at point Z with a radius of 1.2662. The two circles are externally tangent to each other.",
+    "pred_geo": [
+      "point(U, 0.8339, 0.0000)",
+      "point(Z, 1.2662, 0.0000)",
+      "circle(\u03c920, U, 0.8339)",
+      "circle(\u03c913, Z, 1.2662)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(Z)",
+      "circle(\u03c920, U)",
+      "circle(\u03c913, Z)",
+      "radius(\u03c920, 0.8339)",
+      "radius(\u03c913, 1.2662)",
+      "circle_tangent(\u03c920, \u03c913)"
+    ],
+    "score": 3.0
+  },
+  "4c069e72772f10c52a5560a8152ebef2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point B and point A are defined and are connected by line lr, which measures 3.9302 in length. Meanwhile, points K and Q are connected by line le, which has a length of 4.6727. Lines lr and le are parallel, maintaining a perpendicular distance of 3.5222 between them.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(A, 3.9302, 0)",
+      "point(K, 0, 4.6727)",
+      "point(Q, 0, 0)",
+      "line(lr, B, A)",
+      "line(le, K, Q)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(A)",
+      "point(K)",
+      "point(Q)",
+      "line(lr, B, A)",
+      "line(le, K, Q)",
+      "length(lr, 3.9302)",
+      "length(le, 4.6727)",
+      "parallel(lr, le, 3.5222)"
+    ],
+    "score": 2.888888888888889
+  },
+  "f4f357ca32a1b593bc8d66d25df0f95d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named I, which serves as the center of a circle, \u03b312, with a radius of 1.2894. Another point, B, and a point W define a line, ly, that connects them and has a length of 3.9645. This line just touches the circle \u03b312 at a single point.",
+    "pred_geo": [
+      "point(I, 0, 0)",
+      "point(B, 1.2894, 0)",
+      "point(W, 0, 3.9645)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I, 1.2894)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(B)",
+      "point(W)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I)",
+      "length(ly, 3.9645)",
+      "radius(\u03b312, 1.2894)",
+      "tangent(ly, \u03b312)"
+    ],
+    "score": 3.0
+  },
+  "9adb442b8f6664f807bdd94d21758935": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point B exists, and it is connected to point S by line lv, which has a length of 3.783. Additionally, point R is connected to point T by line lm, which has a length of 2.927. Importantly, lines lv and lm are perpendicular to each other.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(S, 3.783, 0)",
+      "point(R, 0, 2.927)",
+      "point(T, 0, 0)",
+      "line(lv, B, S)",
+      "line(lm, R, T)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "point(T)",
+      "line(lv, B, S)",
+      "line(lm, R, T)",
+      "length(lv, 3.7830)",
+      "length(lm, 2.9270)",
+      "perpendicular(lv, lm)"
+    ],
+    "score": 3.0
+  },
+  "3eba79f7e6dbb07113128783239f957e": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point L exists alongside point O, with line la connecting these two points at a length of 3.8426. Additionally, point X also exists along with point R, connected by line lp, which measures 2.3596 in length. Notably, line la is parallel to line lp, maintaining a perpendicular distance of 2.434.",
+    "pred_geo": [
+      "point(L, 0, 0)",
+      "point(O, 3.8426, 0)",
+      "point(X, 0, 2.3596)",
+      "point(R, 0, 0)",
+      "line(la, L, O)",
+      "line(lp, X, R)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(O)",
+      "point(X)",
+      "point(R)",
+      "line(la, L, O)",
+      "line(lp, X, R)",
+      "length(la, 3.8426)",
+      "length(lp, 2.3596)",
+      "parallel(la, lp, 2.4340)"
+    ],
+    "score": 2.888888888888889
+  },
+  "e4ac2239f29febd5e16f82b056db4d98": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point G is present. Point Y exists as well. Point W is also present. Point Q is defined. Line lm connects points G and Y. Line lo connects points W and Q. The length of line lm is 3.5808. Line lo has a length of 2.2953. Furthermore, lines lm and lo are parallel and maintain a perpendicular distance of 3.0748 between them.",
+    "pred_geo": [
+      "point(G, 0, 0)",
+      "point(Y, 3.5808, 0)",
+      "point(W, 0, 2.2953)",
+      "point(Q, 0, 0)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(Y)",
+      "point(W)",
+      "point(Q)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)",
+      "length(lm, 3.5808)",
+      "length(lo, 2.2953)",
+      "parallel(lm, lo, 3.0748)"
+    ],
+    "score": 2.888888888888889
+  },
+  "47a0a7146034d7047a611ec111a58e3a": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point M exists, as does point W. Line lo connects points M and W and has a length of 4.7027. Point H and point J also exist, with line lw connecting them and having a length of 4.307. The two lines lo and lw are parallel, maintaining a perpendicular distance of 1.5758.",
+    "pred_geo": [
+      "point(M, 0, 0)",
+      "point(W, 4.7027, 0)",
+      "point(H, 0, 4.307)",
+      "point(J, 0, 0)",
+      "line(lo, M, W)",
+      "line(lw, H, J)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(W)",
+      "point(H)",
+      "point(J)",
+      "line(lo, M, W)",
+      "line(lw, H, J)",
+      "length(lo, 4.7027)",
+      "length(lw, 4.3070)",
+      "parallel(lo, lw, 1.5758)"
+    ],
+    "score": 2.888888888888889
+  },
+  "9b8cfefee5a245183c676647c79b4109": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point A exists and is the center of circle \u03b31, which has a radius of 1.9301. Additionally, point G lies on the circumference of circle \u03b31.",
+    "pred_geo": [
+      "point(A, 1.9301, 0)",
+      "point(G, 0, 0)",
+      "circle(\u03b31, A, 1.9301)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(G)",
+      "circle(\u03b31, A)",
+      "radius(\u03b31, 1.9301)",
+      "on_circle(G, \u03b31)"
+    ],
+    "score": 3.0
+  },
+  "5726d30778e16958c8b22d7f7e3bbe96": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There are two points, J and M, each positioned at unique locations. Circle \u03b313 is centered at point J with a radius of 0.9071. Meanwhile, circle \u03c98 is centered at point M and has a radius of 0.5810. Notably, these two circles just touch each other at a single point, indicating that they are externally tangent.",
+    "pred_geo": [
+      "point(J, 0.9071, 0.0000)",
+      "point(M, 0.5810, 0.0000)",
+      "circle(\u03b313, J, 0.9071)",
+      "circle(\u03c98, M, 0.5810)"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(M)",
+      "circle(\u03b313, J)",
+      "circle(\u03c98, M)",
+      "radius(\u03b313, 0.9071)",
+      "radius(\u03c98, 0.5810)",
+      "circle_tangent(\u03b313, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "ca18d6e10d78569f0f9f6f967e7246c2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point Q exists, and Point E exists. Line lq connects points Q and E, with a length of 4.3423. Additionally, Point A and Point U exist, forming line lf which connects A and U, with a length of 2.0048. Lines lq and lf are parallel, separated by a perpendicular distance of 2.1916.",
+    "pred_geo": [
+      "point(Q, 0, 0)",
+      "point(E, 4.3423, 0)",
+      "point(A, 0, 2.0048)",
+      "point(U, 0, 0)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)"
+    ],
+    "truth_constraints": [
+      "point(Q)",
+      "point(E)",
+      "point(A)",
+      "point(U)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)",
+      "length(lq, 4.3423)",
+      "length(lf, 2.0048)",
+      "parallel(lq, lf, 2.1916)"
+    ],
+    "score": 2.888888888888889
+  },
+  "2aa28d9a94859b8defa3d540fb347367": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point F exists at a specific location, and point O is also defined in the space. Point E is located elsewhere, while line lq connects points O and E with a length of 5.1714. Furthermore, circle \u03c92 is centered at point F and possesses a radius of 1.2204. Notably, line lq is tangent to circle \u03c92.",
+    "pred_geo": [
+      "point(F, 1.2204, 0)",
+      "point(O, 0, 5.1714)",
+      "point(E, 0, 0)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F, 1.2204)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "point(E)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F)",
+      "length(lq, 5.1714)",
+      "radius(\u03c92, 1.2204)",
+      "tangent(lq, \u03c92)"
+    ],
+    "score": 3.0
+  },
+  "e3c77104d3fe04949f13e7c8f8193014": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named B. Additionally, a point named Z exists as well. A point W is also defined, along with a point N. A line, referred to as lw, connects points B and Z and has a length of 4.6104. Another line, lk, connects points W and N, with a length of 4.8124. Notably, lines lw and lk are parallel, maintaining a perpendicular distance of 1.1609 between them.",
+    "pred_geo": [
+      "point(B, 0, 0)",
+      "point(Z, 4.6104, 0)",
+      "point(W, 0, 4.8124)",
+      "point(N, 0, 0)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(Z)",
+      "point(W)",
+      "point(N)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)",
+      "length(lw, 4.6104)",
+      "length(lk, 4.8124)",
+      "parallel(lw, lk, 1.1609)"
+    ],
+    "score": 2.888888888888889
+  },
+  "2bd041c794c2302a1aaa1408323a0312": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There are four points: H, W, F, and J. The line lf, which connects points H and W, measures 6.5333 in length. Similarly, the line lq, connecting points F and J, has a length of 5.2035. The angle between lines lf and lq is 16.06 degrees.",
+    "pred_geo": [
+      "point(H, 0, 0)",
+      "point(W, 6.5333, 0)",
+      "point(F, 0, 5.2035)",
+      "point(J, 0, 0)",
+      "line(lf, H, W)",
+      "line(lq, F, J)"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(W)",
+      "point(F)",
+      "point(J)",
+      "line(lf, H, W)",
+      "line(lq, F, J)",
+      "length(lf, 6.5333)",
+      "length(lq, 5.2035)",
+      "angle(lf, lq, 16.06)"
+    ],
+    "score": 2.888888888888889
+  },
+  "2ed4eaf0128fecb3bcfe70a62fef1574": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point U exists, and point J also exists. Circle \u03c98 is centered at point U and has a radius of 1.0888. Notably, point J lies on the circumference of circle \u03c98.",
+    "pred_geo": [
+      "point(U, 1.0888, 0)",
+      "point(J, 0, 0)",
+      "circle(\u03c98, U, 1.0888)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(J)",
+      "circle(\u03c98, U)",
+      "radius(\u03c98, 1.0888)",
+      "on_circle(J, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "bf8e9a347c9b21aa9bb9d055ad937f34": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point V exists and is connected by line lf to point X. Line lf has a length of 4.7493. Additionally, point R is connected by line li to point Z, which has a length of 3.5061. Both lines lf and li are parallel, separated by a distance of 3.0983.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(X, 4.7493, 0)",
+      "point(R, 0, 3.5061)",
+      "point(Z, 0, 0)",
+      "line(lf, V, X)",
+      "line(li, R, Z)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(X)",
+      "point(R)",
+      "point(Z)",
+      "line(lf, V, X)",
+      "line(li, R, Z)",
+      "length(lf, 4.7493)",
+      "length(li, 3.5061)",
+      "parallel(lf, li, 3.0983)"
+    ],
+    "score": 2.888888888888889
+  },
+  "71e00ea30db739b1ebdaeb8aca64ac92": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point R exists and is connected to point V by line lg, which has a length of 3.3668. Additionally, point B is connected to point O by line lq, which has a length of 4.0533. Lines lg and lq are parallel, maintaining a perpendicular distance of 1.8134 between them.",
+    "pred_geo": [
+      "point(R, 0, 0)",
+      "point(V, 3.3668, 0)",
+      "point(B, 0, 4.0533)",
+      "point(O, 0, 0)",
+      "line(lg, R, V)",
+      "line(lq, B, O)"
+    ],
+    "truth_constraints": [
+      "point(R)",
+      "point(V)",
+      "point(B)",
+      "point(O)",
+      "line(lg, R, V)",
+      "line(lq, B, O)",
+      "length(lg, 3.3668)",
+      "length(lq, 4.0533)",
+      "parallel(lg, lq, 1.8134)"
+    ],
+    "score": 2.888888888888889
+  },
+  "3494a6a81ff633ab1777e9439a73919a": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point U exists. Point I is present, and point P also exists. A line named lw connects points I and P, having a length of 4.0821. Furthermore, there is a circle named \u03c925 centered at point U with a radius of 0.5946. Notably, the line lw is tangent to circle \u03c925.",
+    "pred_geo": [
+      "point(U, 0.5946, 0)",
+      "point(I, 0, 4.0821)",
+      "point(P, 0, 0)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U, 0.5946)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(I)",
+      "point(P)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U)",
+      "length(lw, 4.0821)",
+      "radius(\u03c925, 0.5946)",
+      "tangent(lw, \u03c925)"
+    ],
+    "score": 3.0
+  },
+  "f3fdbe354d5b7ac62ab498a53fae90c9": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists point Y, point X, point V, and point M. Line lu connects point Y and point X, resulting in a length of 7.8537. Line lt connects point V and point M with a length of 3.4306. Furthermore, line lu is perpendicular to line lt.",
+    "pred_geo": [
+      "point(Y, 0, 0)",
+      "point(X, 7.8537, 0)",
+      "point(V, 0, 3.4306)",
+      "point(M, 0, 0)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)"
+    ],
+    "truth_constraints": [
+      "point(Y)",
+      "point(X)",
+      "point(V)",
+      "point(M)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)",
+      "length(lu, 7.8537)",
+      "length(lt, 3.4306)",
+      "perpendicular(lu, lt)"
+    ],
+    "score": 3.0
+  },
+  "0ae1133f9aac491b7f9235a6b727e5bf": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named W, a point named Y, a point named Q, and a point named X. The line connecting points W and Y is referred to as line lf, and it has a length of 7.9622. The line connecting points Q and X is called line lw, which measures 4.8508 in length. Lines lf and lw intersect at an angle of 54.91 degrees.",
+    "pred_geo": [
+      "point(W, 0, 0)",
+      "point(Y, 7.9622, 0)",
+      "point(Q, 0, 4.8508)",
+      "point(X, 0, 0)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(Y)",
+      "point(Q)",
+      "point(X)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)",
+      "length(lf, 7.9622)",
+      "length(lw, 4.8508)",
+      "angle(lf, lw, 54.91)"
+    ],
+    "score": 2.888888888888889
+  },
+  "1c0964a6154a549b2415e0ac2ea577ce": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point X exists and serves as the center of circle \u03b324, which has a radius of 0.5296. Point W lies on the circumference of circle \u03b324.",
+    "pred_geo": [
+      "point(X, 0.5296, 0)",
+      "point(W, 0, 0)",
+      "circle(\u03b324, X, 0.5296)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(W)",
+      "circle(\u03b324, X)",
+      "radius(\u03b324, 0.5296)",
+      "on_circle(W, \u03b324)"
+    ],
+    "score": 3.0
+  },
+  "c27d01bf3d62b2bcc8d2478696f6a69d": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point V exists, point A exists, point G exists, and point R exists. Line lj connects points V and A, having a length of 2.0737. Line li connects points G and R, with a length of 5.2902. The angle formed between line lj and line li is 30.25 degrees.",
+    "pred_geo": [
+      "point(V, 0, 0)",
+      "point(A, 2.0737, 0)",
+      "point(G, 0, 5.2902)",
+      "point(R, 0, 0)",
+      "line(lj, V, A)",
+      "line(li, G, R)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(A)",
+      "point(G)",
+      "point(R)",
+      "line(lj, V, A)",
+      "line(li, G, R)",
+      "length(lj, 2.0737)",
+      "length(li, 5.2902)",
+      "angle(lj, li, 30.25)"
+    ],
+    "score": 2.888888888888889
+  },
+  "edc23cf3e4041dcdfb2de6a0ec9863e7": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists point E. Point R and point W are also present. A line denoted lp connects points R and W. Circle \u03c97 is centered at point E with a radius of 1.2759. The length of line lp is measured to be 3.2740. Furthermore, line lp is tangent to circle \u03c97.",
+    "pred_geo": [
+      "point(E, 1.2759, 0)",
+      "point(R, 0, 3.2740)",
+      "point(W, 0, 0)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E, 1.2759)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(R)",
+      "point(W)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E)",
+      "length(lp, 3.2740)",
+      "radius(\u03c97, 1.2759)",
+      "tangent(lp, \u03c97)"
+    ],
+    "score": 3.0
+  },
+  "155b5de322b10558ab996f61a143f0e5": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point A exists, and point B exists. Circle \u03b36 is centered at point A and has a radius of 0.6961. Additionally, point B lies on circle \u03b36.",
+    "pred_geo": [
+      "point(A, 0.6961, 0)",
+      "point(B, 0, 0)",
+      "circle(\u03b36, A, 0.6961)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(B)",
+      "circle(\u03b36, A)",
+      "radius(\u03b36, 0.6961)",
+      "on_circle(B, \u03b36)"
+    ],
+    "score": 3.0
+  },
+  "3c158d405a8f48b88f651b3209d203f2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point named F. Additionally, there is another point designated as O. Circle \u03c916 is centered at point F and has a radius measuring 1.4772. Circle \u03c924, centered at point O, possesses a radius of 1.1169. Notably, the two circles, \u03c916 and \u03c924, are externally tangent to each other.",
+    "pred_geo": [
+      "point(F, 1.4772, 0)",
+      "point(O, 1.1169, 0)",
+      "circle(\u03c916, F, 1.4772)",
+      "circle(\u03c924, O, 1.1169)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "circle(\u03c916, F)",
+      "circle(\u03c924, O)",
+      "radius(\u03c916, 1.4772)",
+      "radius(\u03c924, 1.1169)",
+      "circle_tangent(\u03c916, \u03c924)"
+    ],
+    "score": 3.0
+  },
+  "74eb770c95b21fa8527d3a17041c06a2": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "There exists a point identified as A. Another point is designated as Y. Circle \u03c919 is centered at point A with a radius of 1.1797. Additionally, circle \u03c94 is centered at point Y, having a radius of 1.2805. It is important to note that circles \u03c919 and \u03c94 are externally tangent to each other.",
+    "pred_geo": [
+      "point(A, 1.1797, 0)",
+      "point(Y, 1.2805, 0)",
+      "circle(\u03c919, A, 1.1797)",
+      "circle(\u03c94, Y, 1.2805)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(Y)",
+      "circle(\u03c919, A)",
+      "circle(\u03c94, Y)",
+      "radius(\u03c919, 1.1797)",
+      "radius(\u03c94, 1.2805)",
+      "circle_tangent(\u03c919, \u03c94)"
+    ],
+    "score": 3.0
+  },
+  "4b0531df5d48a1b3757d3dd403b3a75b": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point L exists, and point U also exists. Circle \u03c91 has its center at point L and has a radius of 0.5747. Circle \u03c910 is centered at point U with a radius of 0.7580. The circles \u03c91 and \u03c910 are externally tangent to each other.",
+    "pred_geo": [
+      "point(L, 0.5747, 0.0000)",
+      "point(U, 0.7580, 0.0000)",
+      "circle(\u03c91, L, 0.5747)",
+      "circle(\u03c910, U, 0.7580)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(U)",
+      "circle(\u03c91, L)",
+      "circle(\u03c910, U)",
+      "radius(\u03c91, 0.5747)",
+      "radius(\u03c910, 0.7580)",
+      "circle_tangent(\u03c91, \u03c910)"
+    ],
+    "score": 3.0
+  },
+  "86c3a494fd843d27892a04b591d418a7": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point X exists and is connected to point E by line lm, which has a length of 4.7187. Line ld connects point P and point C and has a length of 2.9958. The lines lm and ld are parallel to each other with a perpendicular distance of 1.7224.",
+    "pred_geo": [
+      "point(X, 0, 0)",
+      "point(E, 4.7187, 0)",
+      "point(P, 0, 2.9958)",
+      "point(C, 0, 0)",
+      "line(lm, X, E)",
+      "line(ld, P, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(E)",
+      "point(P)",
+      "point(C)",
+      "line(lm, X, E)",
+      "line(ld, P, C)",
+      "length(lm, 4.7187)",
+      "length(ld, 2.9958)",
+      "parallel(lm, ld, 1.7224)"
+    ],
+    "score": 2.888888888888889
+  },
+  "23459a64396a02d8f1c17e0d41e258a0": {
+    "mode": "mode2_nl_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "Point N exists with circle \u03c95 centered at it, having a radius of 0.9531, and point X is positioned on the circumference of circle \u03c95.",
+    "pred_geo": [
+      "point(N, 0.9531, 0)",
+      "point(X, 0, 0.0000)",
+      "circle(\u03c95, N, 0.9531)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(X)",
+      "circle(\u03c95, N)",
+      "radius(\u03c95, 0.9531)",
+      "on_circle(X, \u03c95)"
+    ],
+    "score": 3.0
+  },
+  "0f5de7f3771e2f443720516c71cbd291": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(O, -2.8051, 0.9537)\npoint(R, -3.0976, -0.9393)\ncircle(\u03b312, O, 1.3223)\ncircle(\u03c923, R, 0.5932)",
+    "pred_geo": [
+      "point(O, -2.8051, 0.9537)",
+      "point(R, -3.0976, -0.9393)",
+      "circle(\u03b312, O, 1.3223)",
+      "circle(\u03c923, R, 0.5932)"
+    ],
+    "truth_constraints": [
+      "point(O)",
+      "point(R)",
+      "circle(\u03b312, O)",
+      "circle(\u03c923, R)",
+      "radius(\u03b312, 1.3223)",
+      "radius(\u03c923, 0.5932)",
+      "circle_tangent(\u03b312, \u03c923)"
+    ],
+    "score": 3.0
+  },
+  "136194e83f1e61cf4cc8c0bc316f1872": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(M, -0.2282, 2.4314)\npoint(Q, -1.4017, -2.6786)\npoint(J, -1.7537, 3.5050)\npoint(N, 0.1238, -3.7522)\nline(lj, M, Q)\nline(lb, J, N)",
+    "pred_geo": [
+      "point(M, -0.2282, 2.4314)",
+      "point(Q, -1.4017, -2.6786)",
+      "point(J, -1.7537, 3.5050)",
+      "point(N, 0.1238, -3.7522)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(Q)",
+      "point(J)",
+      "point(N)",
+      "line(lj, M, Q)",
+      "line(lb, J, N)",
+      "length(lj, 5.2429)",
+      "length(lb, 7.4961)",
+      "angle(lj, lb, 27.44)"
+    ],
+    "score": 3.0
+  },
+  "5a6aa19146eaf7eb142c53f77633993f": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(V, -2.0544, -0.4029)\npoint(I, -3.2679, 1.2786)\ncircle(\u03b39, V, 1.2245)\ncircle(\u03c922, I, 0.8491)",
+    "pred_geo": [
+      "point(V, -2.0544, -0.4029)",
+      "point(I, -3.2679, 1.2786)",
+      "circle(\u03b39, V, 1.2245)",
+      "circle(\u03c922, I, 0.8491)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(I)",
+      "circle(\u03b39, V)",
+      "circle(\u03c922, I)",
+      "radius(\u03b39, 1.2245)",
+      "radius(\u03c922, 0.8491)",
+      "circle_tangent(\u03b39, \u03c922)"
+    ],
+    "score": 3.0
+  },
+  "7bedbe24e3d281192ea5bd58d7ef1567": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(X, 0.0758, -1.0903)\npoint(I, -2.2887, 0.9438)\npoint(F, 2.7850, 0.4551)\nline(lt, I, F)\ncircle(\u03c90, X, 1.7980)",
+    "pred_geo": [
+      "point(X, 0.0758, -1.0903)",
+      "point(I, -2.2887, 0.9438)",
+      "point(F, 2.7850, 0.4551)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X, 1.7980)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(I)",
+      "point(F)",
+      "line(lt, I, F)",
+      "circle(\u03c90, X)",
+      "length(lt, 5.0972)",
+      "radius(\u03c90, 1.7980)",
+      "tangent(lt, \u03c90)"
+    ],
+    "score": 3.0
+  },
+  "53a61daefbb002644d60da536a3293c8": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(K, 1.5325, 1.4910)\npoint(B, 2.5226, 2.8946)\npoint(S, -0.6342, 3.0194)\npoint(R, 0.0607, 4.0046)\nline(lk, K, B)\nline(lr, S, R)",
+    "pred_geo": [
+      "point(K, 1.5325, 1.4910)",
+      "point(B, 2.5226, 2.8946)",
+      "point(S, 0.0607, 3.0194)",
+      "point(R, 0.0000, 4.0046)",
+      "line(lk, K, B)",
+      "line(lr, S, R)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "line(lk, K, B)",
+      "line(lr, S, R)",
+      "length(lk, 1.7177)",
+      "length(lr, 1.2056)",
+      "parallel(lk, lr, 2.6515)"
+    ],
+    "score": 2.7777777777777777
+  },
+  "414116c1c4e97afd4a367634578794ce": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(V, -1.2485, 1.5062)\npoint(S, -2.5668, -1.7331)\npoint(P, -5.0746, 1.1754)\npoint(B, 1.2593, -1.4023)\nline(lf, V, S)\nline(lr, P, B)",
+    "pred_geo": [
+      "point(V, -1.2485, 1.5062)",
+      "point(S, -2.5668, -1.7331)",
+      "point(P, -5.0746, 1.1754)",
+      "point(B, 1.2593, -1.4023)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(S)",
+      "point(P)",
+      "point(B)",
+      "line(lf, V, S)",
+      "line(lr, P, B)",
+      "length(lf, 3.4973)",
+      "length(lr, 6.8384)",
+      "perpendicular(lf, lr)"
+    ],
+    "score": 1.5
+  },
+  "ab084ba97e18e5443d0d69405514f784": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(K, 1.2232, -0.7883)\npoint(R, 1.3607, -1.4942)\ncircle(\u03c911, K, 0.7192)",
+    "pred_geo": [
+      "point(K, 1.2232, -0.7883)",
+      "point(R, 1.3607, -1.4942)",
+      "circle(\u03c911, K, 0.7192)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(R)",
+      "circle(\u03c911, K)",
+      "radius(\u03c911, 0.7192)",
+      "on_circle(R, \u03c911)"
+    ],
+    "score": 3.0
+  },
+  "5938f8f9649129215eb278ab0abc6065": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(I, -2.5979, 3.4212)\npoint(F, 2.4013, -0.5740)\npoint(H, -0.7567, 0.5998)\npoint(A, 0.5600, 2.2474)\nline(li, I, F)\nline(lm, H, A)",
+    "pred_geo": [
+      "point(I, -2.5979, 3.4212)",
+      "point(F, 2.4013, -0.5740)",
+      "point(H, -0.7567, 0.5998)",
+      "point(A, 0.5600, 2.2474)",
+      "line(li, I, F)",
+      "line(lm, H, A)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(F)",
+      "point(H)",
+      "point(A)",
+      "line(li, I, F)",
+      "line(lm, H, A)",
+      "length(li, 6.3995)",
+      "length(lm, 2.1091)",
+      "perpendicular(li, lm)"
+    ],
+    "score": 3.0
+  },
+  "c1cc505201b220d0f4d62b2a1f9eb079": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(X, 1.9231, -0.5807)\npoint(Y, -1.9557, 2.5072)\npoint(P, 0.0511, -2.9321)\npoint(C, -3.2495, -0.3045)\nline(lt, X, Y)\nline(lu, P, C)",
+    "pred_geo": [
+      "point(X, 1.9231, -0.5807)",
+      "point(Y, -1.9557, 2.5072)",
+      "point(P, 0.0511, -2.9321)",
+      "point(C, -3.2495, -0.3045)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(Y)",
+      "point(P)",
+      "point(C)",
+      "line(lt, X, Y)",
+      "line(lu, P, C)",
+      "length(lt, 4.9579)",
+      "length(lu, 4.2188)",
+      "parallel(lt, lu, 3.0056)"
+    ],
+    "score": 2.888888888888889
+  },
+  "bb65f3e3abbb72d3ef6b4bb3808c4a24": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(W, -0.2386, 1.8698)\npoint(B, -1.2834, 3.5270)\ncircle(\u03c912, W, 1.9591)",
+    "pred_geo": [
+      "point(W, -0.2386, 1.8698)",
+      "point(B, -1.2834, 3.5270)",
+      "circle(\u03c912, W, 1.9591)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(B)",
+      "circle(\u03c912, W)",
+      "radius(\u03c912, 1.9591)",
+      "on_circle(B, \u03c912)"
+    ],
+    "score": 3.0
+  },
+  "5070218ff13b8745407d33879dc604e4": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(N, -3.2890, -0.5770)\npoint(K, 0.3098, -3.2763)\npoint(C, -2.2884, -2.9915)\npoint(U, -0.6908, -0.8617)\nline(lp, N, K)\nline(lv, C, U)",
+    "pred_geo": [
+      "point(N, -3.2890, -0.5770)",
+      "point(K, 0.3098, -3.2763)",
+      "point(C, -2.2884, -2.9915)",
+      "point(U, -0.6908, -0.8617)",
+      "line(lp, N, K)",
+      "line(lv, C, U)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(K)",
+      "point(C)",
+      "point(U)",
+      "line(lp, N, K)",
+      "line(lv, C, U)",
+      "length(lp, 4.4986)",
+      "length(lv, 2.6624)",
+      "perpendicular(lp, lv)"
+    ],
+    "score": 3.0
+  },
+  "31fc2a586e476d630081e3827f4a6fbc": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(G, 0.7696, -0.0316)\npoint(K, -2.0317, -2.3311)\npoint(M, 0.5264, 3.5844)\nline(lg, K, M)\ncircle(\u03b36, G, 1.6585)",
+    "pred_geo": [
+      "point(G, 0.7696, -0.0316)",
+      "point(K, -2.0317, -2.3311)",
+      "point(M, 0.5264, 3.5844)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G, 1.6585)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(K)",
+      "point(M)",
+      "line(lg, K, M)",
+      "circle(\u03b36, G)",
+      "length(lg, 6.4449)",
+      "radius(\u03b36, 1.6585)",
+      "tangent(lg, \u03b36)"
+    ],
+    "score": 3.0
+  },
+  "f4242f480b24720c145c989ee7e6b2d9": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(P, 1.6582, -0.0494)\npoint(F, 1.0979, 0.9252)\ncircle(\u03b324, P, 1.1242)",
+    "pred_geo": [
+      "point(P, 1.6582, -0.0494)",
+      "point(F, 1.0979, 0.9252)",
+      "circle(\u03b324, P, 1.1242)"
+    ],
+    "truth_constraints": [
+      "point(P)",
+      "point(F)",
+      "circle(\u03b324, P)",
+      "radius(\u03b324, 1.1242)",
+      "on_circle(F, \u03b324)"
+    ],
+    "score": 3.0
+  },
+  "adf4516175f648a1d59190b22639ca4e": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(E, -0.3438, -0.2850)\npoint(A, 0.6166, 1.4567)\ncircle(\u03c925, E, 1.9889)",
+    "pred_geo": [
+      "point(E, -0.3438, -0.2850)",
+      "point(A, 0.6166, 1.4567)",
+      "circle(\u03c925, E, 1.9889)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(A)",
+      "circle(\u03c925, E)",
+      "radius(\u03c925, 1.9889)",
+      "on_circle(A, \u03c925)"
+    ],
+    "score": 3.0
+  },
+  "45d39e310b434d49410517aaa031e6e6": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(J, 0.6950, 1.1490)\npoint(W, -0.6697, 2.0405)\npoint(R, -1.0256, -1.4850)\npoint(L, -2.1489, -0.7512)\nline(lu, J, W)\nline(ly, R, L)",
+    "pred_geo": [
+      "point(J, 0.6950, 1.1490)",
+      "point(W, -0.6697, 2.0405)",
+      "point(R, -1.0256, -1.4850)",
+      "point(L, -2.1489, -0.7512)",
+      "line(lu, J, W)",
+      "line(ly, R, L)"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(W)",
+      "point(R)",
+      "point(L)",
+      "line(lu, J, W)",
+      "line(ly, R, L)",
+      "length(lu, 1.6300)",
+      "length(ly, 1.3417)",
+      "parallel(lu, ly, 3.1462)"
+    ],
+    "score": 2.888888888888889
+  },
+  "38c8d26923aaceb62fcd1348bea721b8": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(H, -2.8174, 0.0726)\npoint(U, -1.7460, 2.1129)\ncircle(\u03c93, H, 1.1634)\ncircle(\u03b323, U, 1.1411)",
+    "pred_geo": [
+      "point(H, -2.8174, 0.0726)",
+      "point(U, -1.7460, 2.1129)",
+      "circle(\u03c93, H, 1.1634)",
+      "circle(\u03b323, U, 1.1411)"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(U)",
+      "circle(\u03c93, H)",
+      "circle(\u03b323, U)",
+      "radius(\u03c93, 1.1634)",
+      "radius(\u03b323, 1.1411)",
+      "circle_tangent(\u03c93, \u03b323)"
+    ],
+    "score": 3.0
+  },
+  "86c4fe58bb2a1676e3157cb3cabfefda": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(S, -1.4779, -0.4238)\npoint(W, 1.2058, 1.4967)\npoint(R, -2.3612, 0.8106)\npoint(Y, -1.4030, 1.4963)\nline(ln, S, W)\nline(lw, R, Y)",
+    "pred_geo": [
+      "point(S, -1.4779, -0.4238)",
+      "point(W, 1.2058, 1.4967)",
+      "point(R, -2.3612, 0.8106)",
+      "point(Y, -1.4030, 1.4963)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)"
+    ],
+    "truth_constraints": [
+      "point(S)",
+      "point(W)",
+      "point(R)",
+      "point(Y)",
+      "line(ln, S, W)",
+      "line(lw, R, Y)",
+      "length(ln, 3.3001)",
+      "length(lw, 1.1783)",
+      "parallel(ln, lw, 1.5179)"
+    ],
+    "score": 2.888888888888889
+  },
+  "08c26c8922176462d3ad25b6c32c3715": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(C, 1.1844, -0.2369)\npoint(G, 1.9565, -0.7205)\ncircle(\u03b325, C, 0.9111)",
+    "pred_geo": [
+      "point(C, 1.1844, -0.2369)",
+      "point(G, 1.9565, -0.7205)",
+      "circle(\u03b325, C, 0.9111)"
+    ],
+    "truth_constraints": [
+      "point(C)",
+      "point(G)",
+      "circle(\u03b325, C)",
+      "radius(\u03b325, 0.9111)",
+      "on_circle(G, \u03b325)"
+    ],
+    "score": 3.0
+  },
+  "b31c541cb3ac24decc8540915b9ed16a": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(M, -3.3979, 2.1936)\npoint(G, 1.8787, -1.7314)\npoint(W, -2.2993, -1.8389)\npoint(X, 0.7801, 2.3011)\nline(ly, M, G)\nline(lk, W, X)",
+    "pred_geo": [
+      "point(M, -3.3979, 2.1936)",
+      "point(G, 1.8787, -1.7314)",
+      "point(W, -2.2993, -1.8389)",
+      "point(X, 0.7801, 2.3011)",
+      "line(ly, M, G)",
+      "line(lk, W, X)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(G)",
+      "point(W)",
+      "point(X)",
+      "line(ly, M, G)",
+      "line(lk, W, X)",
+      "length(ly, 6.5763)",
+      "length(lk, 5.1597)",
+      "perpendicular(ly, lk)"
+    ],
+    "score": 3.0
+  },
+  "867e466642f34ef32f7728abfc8124f6": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(K, -1.0347, 5.7306)\npoint(T, -0.3868, -2.0572)\npoint(O, -1.7932, 2.1036)\npoint(D, 0.3717, 1.5698)\nline(lp, K, T)\nline(lm, O, D)",
+    "pred_geo": [
+      "point(K, -1.0347, 5.7306)",
+      "point(T, -0.3868, -2.0572)",
+      "point(O, 0.3717, 1.5698)",
+      "point(D, 1.7932, 2.1036)",
+      "line(lp, K, T)",
+      "line(lm, O, D)"
+    ],
+    "truth_constraints": [
+      "point(K)",
+      "point(T)",
+      "point(O)",
+      "point(D)",
+      "line(lp, K, T)",
+      "line(lm, O, D)",
+      "length(lp, 7.8147)",
+      "length(lm, 2.2297)",
+      "angle(lp, lm, 71.39)"
+    ],
+    "score": 2.7777777777777777
+  },
+  "434f47914721ed15106faf2cd5311ec2": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(N, 0.7104, -1.4606)\npoint(C, 1.9587, -1.1168)\ncircle(\u03c98, N, 1.2948)",
+    "pred_geo": [
+      "point(N, 0.7104, -1.4606)",
+      "point(C, 1.9587, -1.1168)",
+      "circle(\u03c98, N, 1.2948)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(C)",
+      "circle(\u03c98, N)",
+      "radius(\u03c98, 1.2948)",
+      "on_circle(C, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "121dfa90f96ce42ef836a72f770780f8": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(L, -0.3801, -1.2374)\npoint(Q, 0.2368, 1.8111)\npoint(Z, 2.1812, -3.0020)\nline(lu, Q, Z)\ncircle(\u03c98, L, 1.7138)",
+    "pred_geo": [
+      "point(L, -0.3801, -1.2374)",
+      "point(Q, 0.2368, 1.8111)",
+      "point(Z, 2.1812, -3.0020)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L, 1.7138)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(Q)",
+      "point(Z)",
+      "line(lu, Q, Z)",
+      "circle(\u03c98, L)",
+      "length(lu, 5.1910)",
+      "radius(\u03c98, 1.7138)",
+      "tangent(lu, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "7bc21f97a5791fdcd5f3ce5fd7552015": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(U, -0.9074, 1.0334)\npoint(Z, -1.9880, 2.8342)\ncircle(\u03c920, U, 0.8339)\ncircle(\u03c913, Z, 1.2662)",
+    "pred_geo": [
+      "point(U, -0.9074, 1.0334)",
+      "point(Z, -1.9880, 2.8342)",
+      "circle(\u03c920, U, 0.8339)",
+      "circle(\u03c913, Z, 1.2662)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(Z)",
+      "circle(\u03c920, U)",
+      "circle(\u03c913, Z)",
+      "radius(\u03c920, 0.8339)",
+      "radius(\u03c913, 1.2662)",
+      "circle_tangent(\u03c920, \u03c913)"
+    ],
+    "score": 3.0
+  },
+  "39a070b25a86a9516a54e417f57369f6": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(B, -1.7934, -1.8576)\npoint(A, -4.4927, 0.9991)\npoint(K, -4.3534, -4.2767)\npoint(Q, -7.5627, -0.8804)\nline(lr, B, A)\nline(le, K, Q)",
+    "pred_geo": [
+      "point(B, -1.7934, -1.8576)",
+      "point(A, -4.4927, 0.9991)",
+      "point(K, -4.3534, -4.2767)",
+      "point(Q, -7.5627, -0.8804)",
+      "line(lr, B, A)",
+      "line(le, K, Q)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(A)",
+      "point(K)",
+      "point(Q)",
+      "line(lr, B, A)",
+      "line(le, K, Q)",
+      "length(lr, 3.9302)",
+      "length(le, 4.6727)",
+      "parallel(lr, le, 3.5222)"
+    ],
+    "score": 2.888888888888889
+  },
+  "060a5e1e521f553148b7f371cdb0e503": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(I, 1.7741, -1.9643)\npoint(B, 2.9642, -4.0077)\npoint(W, -0.5763, -2.2239)\nline(ly, B, W)\ncircle(\u03b312, I, 1.2894)",
+    "pred_geo": [
+      "point(I, 1.7741, -1.9643)",
+      "point(B, 2.9642, -4.0077)",
+      "point(W, -0.5763, -2.2239)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I, 1.2894)"
+    ],
+    "truth_constraints": [
+      "point(I)",
+      "point(B)",
+      "point(W)",
+      "line(ly, B, W)",
+      "circle(\u03b312, I)",
+      "length(ly, 3.9645)",
+      "radius(\u03b312, 1.2894)",
+      "tangent(ly, \u03b312)"
+    ],
+    "score": 3.0
+  },
+  "ac93dded4e9f1f8cfd9ba05fa07f5f74": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(B, 1.1251, -0.4291)\npoint(S, -2.5900, -1.1425)\npoint(R, -1.0085, 0.6514)\npoint(T, -0.4565, -2.2231)\nline(lv, B, S)\nline(lm, R, T)",
+    "pred_geo": [
+      "point(B, 1.1251, -0.4291)",
+      "point(S, -2.5900, -1.1425)",
+      "point(R, -1.0085, 0.6514)",
+      "point(T, -0.4565, -2.2231)",
+      "line(lv, B, S)",
+      "line(lm, R, T)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(S)",
+      "point(R)",
+      "point(T)",
+      "line(lv, B, S)",
+      "line(lm, R, T)",
+      "length(lv, 3.7830)",
+      "length(lm, 2.9270)",
+      "perpendicular(lv, lm)"
+    ],
+    "score": 3.0
+  },
+  "5c5e0a964f21d647a6e10b1bfec13c61": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(L, 1.6176, 0.4270)\npoint(O, 0.7620, 4.1732)\npoint(X, -0.7554, -0.1149)\npoint(R, -1.2807, 2.1854)\nline(la, L, O)\nline(lp, X, R)",
+    "pred_geo": [
+      "point(L, 1.6176, 0.4270)",
+      "point(O, 0.7620, 4.1732)",
+      "point(X, -0.7554, -0.1149)",
+      "point(R, -1.2807, 2.1854)",
+      "line(la, L, O)",
+      "line(lp, X, R)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(O)",
+      "point(X)",
+      "point(R)",
+      "line(la, L, O)",
+      "line(lp, X, R)",
+      "length(la, 3.8426)",
+      "length(lp, 2.3596)",
+      "parallel(la, lp, 2.4340)"
+    ],
+    "score": 2.888888888888889
+  },
+  "930a02d83e4a1437007dba6980d19c6a": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(G, -0.1799, 0.5702)\npoint(Y, -2.1202, 3.5797)\npoint(W, -2.7642, -1.0960)\npoint(Q, -4.0080, 0.8332)\nline(lm, G, Y)\nline(lo, W, Q)",
+    "pred_geo": [
+      "point(G, -0.1799, 0.5702)",
+      "point(Y, -2.1202, 3.5797)",
+      "point(W, -2.7642, -1.0960)",
+      "point(Q, -4.0080, 0.8332)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)"
+    ],
+    "truth_constraints": [
+      "point(G)",
+      "point(Y)",
+      "point(W)",
+      "point(Q)",
+      "line(lm, G, Y)",
+      "line(lo, W, Q)",
+      "length(lm, 3.5808)",
+      "length(lo, 2.2953)",
+      "parallel(lm, lo, 3.0748)"
+    ],
+    "score": 2.888888888888889
+  },
+  "096824a21d1e5b7b761ba9458f68c8cb": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(M, 1.2068, -0.0985)\npoint(W, -3.4020, 0.8365)\npoint(H, 0.8935, -1.6429)\npoint(J, -3.3275, -0.7865)\nline(lo, M, W)\nline(lw, H, J)",
+    "pred_geo": [
+      "point(M, 1.2068, -0.0985)",
+      "point(W, -3.4020, 0.8365)",
+      "point(H, 0.8935, -1.6429)",
+      "point(J, -3.3275, -0.7865)",
+      "line(lo, M, W)",
+      "line(lw, H, J)"
+    ],
+    "truth_constraints": [
+      "point(M)",
+      "point(W)",
+      "point(H)",
+      "point(J)",
+      "line(lo, M, W)",
+      "line(lw, H, J)",
+      "length(lo, 4.7027)",
+      "length(lw, 4.3070)",
+      "parallel(lo, lw, 1.5758)"
+    ],
+    "score": 2.888888888888889
+  },
+  "63413895617e4aa3772cf4414a549a69": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(A, 0.8166, 1.2345)\npoint(G, 0.1692, -0.5838)\ncircle(\u03b31, A, 1.9301)",
+    "pred_geo": [
+      "point(A, 0.8166, 1.2345)",
+      "point(G, 0.1692, -0.5838)",
+      "circle(\u03b31, A, 1.9301)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(G)",
+      "circle(\u03b31, A)",
+      "radius(\u03b31, 1.9301)",
+      "on_circle(G, \u03b31)"
+    ],
+    "score": 3.0
+  },
+  "0311551118cc5fc5c2c9d3496605890c": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(J, -1.0509, 0.1789)\npoint(M, 0.1145, -0.7465)\ncircle(\u03b313, J, 0.9071)\ncircle(\u03c98, M, 0.5810)",
+    "pred_geo": [
+      "point(J, -1.0509, 0.1789)",
+      "point(M, 0.1145, -0.7465)",
+      "circle(\u03b313, J, 0.9071)",
+      "circle(\u03c98, M, 0.5810)"
+    ],
+    "truth_constraints": [
+      "point(J)",
+      "point(M)",
+      "circle(\u03b313, J)",
+      "circle(\u03c98, M)",
+      "radius(\u03b313, 0.9071)",
+      "radius(\u03c98, 0.5810)",
+      "circle_tangent(\u03b313, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "d57de85b374eeddc318bd916bd4315f4": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(Q, 0.6276, -1.5715)\npoint(E, -2.5902, 1.3443)\npoint(A, -0.8440, -3.1955)\npoint(U, -2.3296, -1.8493)\nline(lq, Q, E)\nline(lf, A, U)",
+    "pred_geo": [
+      "point(Q, 0.6276, -1.5715)",
+      "point(E, -2.5902, 1.3443)",
+      "point(A, -0.8440, -3.1955)",
+      "point(U, -2.3296, -1.8493)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)"
+    ],
+    "truth_constraints": [
+      "point(Q)",
+      "point(E)",
+      "point(A)",
+      "point(U)",
+      "line(lq, Q, E)",
+      "line(lf, A, U)",
+      "length(lq, 4.3423)",
+      "length(lf, 2.0048)",
+      "parallel(lq, lf, 2.1916)"
+    ],
+    "score": 2.888888888888889
+  },
+  "180d47295e9ff26c00d5f299f9de022e": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(F, -1.8364, 1.1830)\npoint(O, -2.7290, -1.5334)\npoint(E, -3.3660, 3.5987)\nline(lq, O, E)\ncircle(\u03c92, F, 1.2204)",
+    "pred_geo": [
+      "point(F, -1.8364, 1.1830)",
+      "point(O, -2.7290, -1.5334)",
+      "point(E, -3.3660, 3.5987)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F, 1.2204)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "point(E)",
+      "line(lq, O, E)",
+      "circle(\u03c92, F)",
+      "length(lq, 5.1714)",
+      "radius(\u03c92, 1.2204)",
+      "tangent(lq, \u03c92)"
+    ],
+    "score": 3.0
+  },
+  "b741faef34884fdb831d36e3f239d7e1": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(B, 0.4998, 0.6989)\npoint(Z, 3.6376, 4.0768)\npoint(W, -0.3507, 1.4890)\npoint(N, 2.9245, 5.0149)\nline(lw, B, Z)\nline(lk, W, N)",
+    "pred_geo": [
+      "point(B, 0.4998, 0.6989)",
+      "point(Z, 3.6376, 4.0768)",
+      "point(W, -0.3507, 1.4890)",
+      "point(N, 2.9245, 5.0149)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)"
+    ],
+    "truth_constraints": [
+      "point(B)",
+      "point(Z)",
+      "point(W)",
+      "point(N)",
+      "line(lw, B, Z)",
+      "line(lk, W, N)",
+      "length(lw, 4.6104)",
+      "length(lk, 4.8124)",
+      "parallel(lw, lk, 1.1609)"
+    ],
+    "score": 2.888888888888889
+  },
+  "2dd4e34dd761c2636eb77f17f24c6732": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(H, -4.2077, -0.4559)\npoint(W, 2.0073, -2.4700)\npoint(F, -3.7005, -1.3768)\npoint(J, 1.5001, -1.5491)\nline(lf, H, W)\nline(lq, F, J)",
+    "pred_geo": [
+      "point(H, -4.2077, -0.4559)",
+      "point(W, 2.0073, -2.4700)",
+      "point(F, -3.7005, -1.3768)",
+      "point(J, 1.5001, -1.5491)",
+      "line(lf, H, W)",
+      "line(lq, F, J)"
+    ],
+    "truth_constraints": [
+      "point(H)",
+      "point(W)",
+      "point(F)",
+      "point(J)",
+      "line(lf, H, W)",
+      "line(lq, F, J)",
+      "length(lf, 6.5333)",
+      "length(lq, 5.2035)",
+      "angle(lf, lq, 16.06)"
+    ],
+    "score": 3.0
+  },
+  "4847406afb3237b35fc8c7b6dbf56df2": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(U, -1.6078, 0.6313)\npoint(J, -0.6091, 0.1977)\ncircle(\u03c98, U, 1.0888)",
+    "pred_geo": [
+      "point(U, -1.6078, 0.6313)",
+      "point(J, -0.6091, 0.1977)",
+      "circle(\u03c98, U, 1.0888)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(J)",
+      "circle(\u03c98, U)",
+      "radius(\u03c98, 1.0888)",
+      "on_circle(J, \u03c98)"
+    ],
+    "score": 3.0
+  },
+  "9df73d1f3b0e601a0028977b993a7c32": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(V, -0.6564, -1.4428)\npoint(X, -3.2558, 2.5319)\npoint(R, -3.2494, -3.1386)\npoint(Z, -5.1684, -0.2042)\nline(lf, V, X)\nline(li, R, Z)",
+    "pred_geo": [
+      "point(V, -0.6564, -1.4428)",
+      "point(X, -3.2558, 2.5319)",
+      "point(R, -3.1386, -0.2042)",
+      "point(Z, -5.1684, -3.0270)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(X)",
+      "point(R)",
+      "point(Z)",
+      "line(lf, V, X)",
+      "line(li, R, Z)",
+      "length(lf, 4.7493)",
+      "length(li, 3.5061)",
+      "parallel(lf, li, 3.0983)"
+    ],
+    "score": 1.5
+  },
+  "013e2a631f6cb26ad65c39d7d61dc705": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(R, 0.1360, 0.6792)\npoint(V, 0.2140, 4.0451)\npoint(B, -1.6770, 0.7212)\npoint(O, -1.5830, 4.7734)\nline(lg, R, V)\nline(lq, B, O)",
+    "pred_geo": [
+      "point(R, 0.1360, 0.6792)",
+      "point(V, 0.2140, 4.0451)",
+      "point(B, -1.6770, 0.7212)",
+      "point(O, -1.5830, 4.7734)",
+      "line(lg, R, V)",
+      "line(lq, B, O)"
+    ],
+    "truth_constraints": [
+      "point(R)",
+      "point(V)",
+      "point(B)",
+      "point(O)",
+      "line(lg, R, V)",
+      "line(lq, B, O)",
+      "length(lg, 3.3668)",
+      "length(lq, 4.0533)",
+      "parallel(lg, lq, 1.8134)"
+    ],
+    "score": 2.888888888888889
+  },
+  "476c8fbf512f4444ad40f45da6b8d77f": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(U, -0.4842, 0.6818)\npoint(I, 1.6301, 0.9036)\npoint(P, -2.1485, -0.6408)\nline(lw, I, P)\ncircle(\u03c925, U, 0.5946)",
+    "pred_geo": [
+      "point(U, -0.4842, 0.6818)",
+      "point(I, 1.6301, 0.9036)",
+      "point(P, -2.1485, -0.6408)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U, 0.5946)"
+    ],
+    "truth_constraints": [
+      "point(U)",
+      "point(I)",
+      "point(P)",
+      "line(lw, I, P)",
+      "circle(\u03c925, U)",
+      "length(lw, 4.0821)",
+      "radius(\u03c925, 0.5946)",
+      "tangent(lw, \u03c925)"
+    ],
+    "score": 3.0
+  },
+  "c9bed7aecd170ffbf56d0539396bea7d": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(Y, -3.7147, 0.3145)\npoint(X, 3.6150, -2.5061)\npoint(V, -0.6659, -2.6966)\npoint(M, 0.5662, 0.5051)\nline(lu, Y, X)\nline(lt, V, M)",
+    "pred_geo": [
+      "point(Y, -3.7147, 0.3145)",
+      "point(X, 3.6150, -2.5061)",
+      "point(V, -0.6659, -2.6966)",
+      "point(M, 0.5662, 0.5051)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)"
+    ],
+    "truth_constraints": [
+      "point(Y)",
+      "point(X)",
+      "point(V)",
+      "point(M)",
+      "line(lu, Y, X)",
+      "line(lt, V, M)",
+      "length(lu, 7.8537)",
+      "length(lt, 3.4306)",
+      "perpendicular(lu, lt)"
+    ],
+    "score": 3.0
+  },
+  "2989a0bd14b3911a12fc44850efb5008": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(W, 2.1872, 4.7264)\npoint(Y, -1.3498, -2.4070)\npoint(Q, -0.7400, 3.2904)\npoint(X, 1.5774, -0.9710)\nline(lf, W, Y)\nline(lw, Q, X)",
+    "pred_geo": [
+      "point(W, 2.1872, 4.7264)",
+      "point(Y, -1.3498, -2.4070)",
+      "point(Q, -0.7400, 3.2904)",
+      "point(X, 1.5774, -0.9710)"
+    ],
+    "truth_constraints": [
+      "point(W)",
+      "point(Y)",
+      "point(Q)",
+      "point(X)",
+      "line(lf, W, Y)",
+      "line(lw, Q, X)",
+      "length(lf, 7.9622)",
+      "length(lw, 4.8508)",
+      "angle(lf, lw, 54.91)"
+    ],
+    "score": 1.5
+  },
+  "aad1926f5c7dd7b264df22865f88b734": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(X, 0.1561, 1.5066)\npoint(W, -0.3480, 1.3441)\ncircle(\u03b324, X, 0.5296)",
+    "pred_geo": [
+      "point(X, 0.1561, 1.5066)",
+      "point(W, -0.3480, 1.3441)",
+      "circle(\u03b324, X, 0.5296)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(W)",
+      "circle(\u03b324, X)",
+      "radius(\u03b324, 0.5296)",
+      "on_circle(W, \u03b324)"
+    ],
+    "score": 3.0
+  },
+  "78d9e6ca956b918e4703e76e2401e33b": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(V, -1.1116, 1.9615)\npoint(A, -2.1586, 0.1715)\npoint(G, -1.6314, 3.7116)\npoint(R, -1.6388, -1.5786)\nline(lj, V, A)\nline(li, G, R)",
+    "pred_geo": [
+      "point(V, -1.1116, 1.9615)",
+      "point(A, -2.1586, 0.1715)",
+      "point(G, -1.6314, 3.7116)",
+      "point(R, -1.6388, -1.5786)",
+      "line(lj, V, A)",
+      "line(li, G, R)"
+    ],
+    "truth_constraints": [
+      "point(V)",
+      "point(A)",
+      "point(G)",
+      "point(R)",
+      "line(lj, V, A)",
+      "line(li, G, R)",
+      "length(lj, 2.0737)",
+      "length(li, 5.2902)",
+      "angle(lj, li, 30.25)"
+    ],
+    "score": 3.0
+  },
+  "714129de21d519c65a9acfa207017e53": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(E, -1.3909, -1.7352)\npoint(R, -2.3543, 0.1032)\npoint(W, 0.6271, -1.2498)\nline(lp, R, W)\ncircle(\u03c97, E, 1.2759)",
+    "pred_geo": [
+      "point(E, -1.3909, -1.7352)",
+      "point(R, -2.3543, 0.1032)",
+      "point(W, 0.6271, -1.2498)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E, 1.2759)"
+    ],
+    "truth_constraints": [
+      "point(E)",
+      "point(R)",
+      "point(W)",
+      "line(lp, R, W)",
+      "circle(\u03c97, E)",
+      "length(lp, 3.2740)",
+      "radius(\u03c97, 1.2759)",
+      "tangent(lp, \u03c97)"
+    ],
+    "score": 3.0
+  },
+  "569940dd077fabd25bb33d26187e364b": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(A, -1.4116, 0.1787)\npoint(B, -0.7309, 0.0327)\ncircle(\u03b36, A, 0.6961)",
+    "pred_geo": [
+      "point(A, -1.4116, 0.1787)",
+      "point(B, -0.7309, 0.0327)",
+      "circle(\u03b36, A, 0.6961)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(B)",
+      "circle(\u03b36, A)",
+      "radius(\u03b36, 0.6961)",
+      "on_circle(B, \u03b36)"
+    ],
+    "score": 3.0
+  },
+  "1f6071bbb5e0ffa5fd233cf086bf76b2": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(F, -1.5383, 1.2435)\npoint(O, 0.8214, 2.3211)\ncircle(\u03c916, F, 1.4772)\ncircle(\u03c924, O, 1.1169)",
+    "pred_geo": [
+      "point(F, -1.5383, 1.2435)",
+      "point(O, 0.8214, 2.3211)",
+      "circle(\u03c916, F, 1.4772)",
+      "circle(\u03c924, O, 1.1169)"
+    ],
+    "truth_constraints": [
+      "point(F)",
+      "point(O)",
+      "circle(\u03c916, F)",
+      "circle(\u03c924, O)",
+      "radius(\u03c916, 1.4772)",
+      "radius(\u03c924, 1.1169)",
+      "circle_tangent(\u03c916, \u03c924)"
+    ],
+    "score": 3.0
+  },
+  "ed5562cc41688ea159f2f86289aaa7f7": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(A, -0.3972, -0.0075)\npoint(Y, 0.7586, -2.1792)\ncircle(\u03c919, A, 1.1797)\ncircle(\u03c94, Y, 1.2805)",
+    "pred_geo": [
+      "point(A, -0.3972, -0.0075)",
+      "point(Y, 0.7586, -2.1792)",
+      "circle(\u03c919, A, 1.1797)",
+      "circle(\u03c94, Y, 1.2805)"
+    ],
+    "truth_constraints": [
+      "point(A)",
+      "point(Y)",
+      "circle(\u03c919, A)",
+      "circle(\u03c94, Y)",
+      "radius(\u03c919, 1.1797)",
+      "radius(\u03c94, 1.2805)",
+      "circle_tangent(\u03c919, \u03c94)"
+    ],
+    "score": 3.0
+  },
+  "6e9072814197d68585b173014ed4a296": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(L, -0.2156, 1.7729)\npoint(U, -0.7404, 2.9980)\ncircle(\u03c91, L, 0.5747)\ncircle(\u03c910, U, 0.7580)",
+    "pred_geo": [
+      "point(L, -0.2156, 1.7729)",
+      "point(U, -0.7404, 2.9980)",
+      "circle(\u03c91, L, 0.5747)",
+      "circle(\u03c910, U, 0.7580)"
+    ],
+    "truth_constraints": [
+      "point(L)",
+      "point(U)",
+      "circle(\u03c91, L)",
+      "circle(\u03c910, U)",
+      "radius(\u03c91, 0.5747)",
+      "radius(\u03c910, 0.7580)",
+      "circle_tangent(\u03c91, \u03c910)"
+    ],
+    "score": 3.0
+  },
+  "ebc1c30744f1a302213a31b7b90c009d": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(X, 0.7535, 0.3009)\npoint(E, 1.6277, 4.9379)\npoint(P, -0.9391, 0.6200)\npoint(C, -0.3841, 3.5639)\nline(lm, X, E)\nline(ld, P, C)",
+    "pred_geo": [
+      "point(X, 0.7535, 0.3009)",
+      "point(E, 1.6277, 4.9379)",
+      "point(P, -0.9391, 0.6200)",
+      "point(C, -0.3841, 3.5639)",
+      "line(lm, X, E)",
+      "line(ld, P, C)"
+    ],
+    "truth_constraints": [
+      "point(X)",
+      "point(E)",
+      "point(P)",
+      "point(C)",
+      "line(lm, X, E)",
+      "line(ld, P, C)",
+      "length(lm, 4.7187)",
+      "length(ld, 2.9958)",
+      "parallel(lm, ld, 1.7224)"
+    ],
+    "score": 2.888888888888889
+  },
+  "6a858001357deb2d52ebb8063bebe989": {
+    "mode": "mode3_geo_to_geo",
+    "model": "qwen-geometry-adapter",
+    "input": "point(N, 1.3790, 0.4505)\npoint(X, 0.8052, -0.3106)\ncircle(\u03c95, N, 0.9531)",
+    "pred_geo": [
+      "point(N, 1.3790, 0.4505)",
+      "point(X, 0.8052, -0.3106)"
+    ],
+    "truth_constraints": [
+      "point(N)",
+      "point(X)",
+      "circle(\u03c95, N)",
+      "radius(\u03c95, 0.9531)",
+      "on_circle(X, \u03c95)"
+    ],
+    "score": 1.5
+  }
+}
