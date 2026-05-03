@@ -32,14 +32,17 @@ from prompts import MODEL_NAME, SYSTEM_PROMPT  # noqa: E402
 # CLI are the dataset and whether to resume from a saved adapter:
 #
 #   python finetuning/train_grpo.py
-#       (default — train dataset_simple from scratch)
+#       (default — train dataset_merged, auto-warm-starting from the SFT
+#        checkpoint at Qwen2-0.5B-SFT-geometry/final if it exists)
 #
-#   python finetuning/train_grpo.py --dataset dataset_medium
+#   python finetuning/train_grpo.py --dataset dataset_simple
+#       (curriculum-style: warm up RL on the simpler tier first)
 #
 #   python finetuning/train_grpo.py --resume-from Qwen2-0.5B-GRPO-geometry
-#       (continue training from a previously-saved adapter)
+#       (continue training from a previously-saved adapter; takes
+#        precedence over the SFT-checkpoint auto-detection)
 #
-# --dataset takes a bare name (e.g. `dataset_simple`, no `.jsonl`) and is
+# --dataset takes a bare name (e.g. `dataset_merged`, no `.jsonl`) and is
 # resolved against `curriculum_data/<name>.jsonl`.
 # ---------------------------------------------------------------------------
 SAVE_DIR = "Qwen2-0.5B-GRPO-geometry"
@@ -64,9 +67,12 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="GRPO fine-tuning for the geometry task.")
     parser.add_argument(
         "--dataset",
-        default="dataset_simple",
-        help="Dataset name without .jsonl (default: dataset_simple). "
-             "Resolved against curriculum_data/ then constraint_data/.",
+        default="dataset_merged",
+        help="Dataset name without .jsonl (default: dataset_merged). "
+             "Resolved against curriculum_data/ then constraint_data/. "
+             "dataset_merged spans all tiers and matches the held-out test "
+             "split's distribution; SFT now warms up on cot_simple+medium "
+             "so GRPO sees fresh hard examples here.",
     )
     parser.add_argument(
         "--resume-from",
@@ -383,10 +389,13 @@ peft_config = LoraConfig(
     # r bumped from 8 → 16 (and alpha kept at 2*r) to give the adapter a
     # bit more capacity. The geometry task needs to memorise a small but
     # non-trivial output schema, and r=8 was leaving capacity on the table.
+    # NOTE: this peft_config is used only on cold-start runs (no SFT
+    # checkpoint, no --resume-from). When resuming from SFT, the existing
+    # adapter's config is loaded as-is. Dropout 0.1 mirrors train_sft.py.
     r=16,
     lora_alpha=32,
     target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
-    lora_dropout=0.05,
+    lora_dropout=0.1,
     bias="none",
     task_type="CAUSAL_LM",
 )
@@ -445,40 +454,36 @@ training_args = GRPOConfig(
 # ---------------------------------------------------------------------------
 # Model construction
 #
-# Two branches:
-#   * Fresh run — pass the base-model name string and a peft_config; trl wraps
-#     the model in a fresh LoRA adapter for us.
-#   * Resume run — load the base model + the saved adapter ourselves (with
-#     is_trainable=True so optimizer steps actually update it), then pass the
-#     PeftModel directly to the trainer with peft_config=None (the adapter is
-#     already attached, we don't want trl to add another one on top).
+# Three mutually-exclusive branches, in priority order:
+#   1. RESUME_FROM    — explicit --resume-from <path> wins over everything.
+#   2. SFT_CHECKPOINT — auto-detect a Stage-1 SFT adapter at
+#                       Qwen2-0.5B-SFT-geometry/final and continue training it.
+#   3. Cold start     — no warm-start; trl wraps a fresh LoRA on the base.
+#
+# Branches 1 and 2 both load the base model + an existing PEFT adapter
+# (is_trainable=True so optimizer steps update it) and pass the PeftModel
+# directly with peft_config=None — otherwise trl would stack a *second*
+# LoRA on top of the warm-start one and the cold-start advantage is lost.
 # ---------------------------------------------------------------------------
-if RESUME_FROM is not None:
-    print(f"[train_grpo] resuming from saved adapter at {RESUME_FROM!r}")
-    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
-    model_for_trainer = PeftModel.from_pretrained(
-        base, RESUME_FROM, is_trainable=True
-    )
-    trainer_peft_config = None
-else:
-    model_for_trainer = MODEL_NAME
-    trainer_peft_config = peft_config
-    
 SFT_CHECKPOINT = PROJECT_ROOT / "Qwen2-0.5B-SFT-geometry" / "final"
+
+
+def _load_warm_start(adapter_dir: Path | str):
+    """Build a trainable PeftModel: base + LoRA adapter at adapter_dir."""
+    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+    return PeftModel.from_pretrained(base, str(adapter_dir), is_trainable=True)
+
 
 if RESUME_FROM is not None:
     print(f"[train_grpo] resuming from saved adapter at {RESUME_FROM!r}")
-    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
-    model_for_trainer = PeftModel.from_pretrained(
-        base, RESUME_FROM, is_trainable=True
-    )
+    model_for_trainer = _load_warm_start(RESUME_FROM)
     trainer_peft_config = None
 elif SFT_CHECKPOINT.exists():
     print(f"[train_grpo] starting from SFT checkpoint at {SFT_CHECKPOINT!r}")
-    model_for_trainer = str(SFT_CHECKPOINT)
-    trainer_peft_config = peft_config
+    model_for_trainer = _load_warm_start(SFT_CHECKPOINT)
+    trainer_peft_config = None
 else:
-    print(f"[train_grpo] no SFT checkpoint found, starting from base model")
+    print("[train_grpo] no SFT checkpoint found, starting from base model")
     model_for_trainer = MODEL_NAME
     trainer_peft_config = peft_config
 
