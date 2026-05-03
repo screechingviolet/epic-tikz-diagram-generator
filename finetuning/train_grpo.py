@@ -7,10 +7,11 @@ import sys
 from pathlib import Path
 
 from datasets import Dataset
-from transformers import AutoModelForCausalLM, TrainerCallback
+from transformers import TrainerCallback
 from transformers.trainer_utils import get_last_checkpoint
 from trl import GRPOConfig, GRPOTrainer
-from peft import LoraConfig, PeftModel
+from peft import LoraConfig, set_peft_model_state_dict
+from safetensors.torch import load_file as safe_load_file
 
 # ---------------------------------------------------------------------------
 # Make the sibling `loss-fn` package importable. Its directory has a hyphen,
@@ -454,38 +455,78 @@ training_args = GRPOConfig(
 # ---------------------------------------------------------------------------
 # Model construction
 #
-# Three mutually-exclusive branches, in priority order:
-#   1. RESUME_FROM    — explicit --resume-from <path> wins over everything.
-#   2. SFT_CHECKPOINT — auto-detect a Stage-1 SFT adapter at
-#                       Qwen2-0.5B-SFT-geometry/final and continue training it.
-#   3. Cold start     — no warm-start; trl wraps a fresh LoRA on the base.
+# TRL ≥0.20 changed GRPOTrainer.__init__ to always reload the model from a
+# path string via `create_model_from_path`, even when handed a pre-built
+# PeftModel. The previous strategy of constructing `base + PEFT adapter`
+# ourselves and passing it in no longer works — TRL ignores the object,
+# extracts a path from it, and `AutoConfig.from_pretrained(<adapter_dir>)`
+# fails because adapter dirs have no full-model config.json.
 #
-# Branches 1 and 2 both load the base model + an existing PEFT adapter
-# (is_trainable=True so optimizer steps update it) and pass the PeftModel
-# directly with peft_config=None — otherwise trl would stack a *second*
-# LoRA on top of the warm-start one and the cold-start advantage is lost.
+# Current strategy:
+#   * Always hand TRL the base model name + peft_config. TRL builds a fresh
+#     base + LoRA wrapper itself — clean and version-stable.
+#   * If a warm-start adapter exists (RESUME_FROM or auto-detected SFT
+#     checkpoint), load its weights into `trainer.model` post-init via
+#     `set_peft_model_state_dict`. The fresh adapter that TRL just created
+#     gets overwritten in-place with the saved weights.
+#
+# Priority for warm-start selection:
+#   1. RESUME_FROM    — explicit --resume-from <path> wins over everything.
+#   2. SFT_CHECKPOINT — auto-detect Qwen2-0.5B-SFT-geometry/final.
+#   3. Cold start     — no warm-start; the freshly-built LoRA stays.
 # ---------------------------------------------------------------------------
 SFT_CHECKPOINT = PROJECT_ROOT / "Qwen2-0.5B-SFT-geometry" / "final"
 
 
-def _load_warm_start(adapter_dir: Path | str):
-    """Build a trainable PeftModel: base + LoRA adapter at adapter_dir."""
-    base = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
-    return PeftModel.from_pretrained(base, str(adapter_dir), is_trainable=True)
+def _resolve_warm_start_dir() -> Path | None:
+    """Pick which adapter dir (if any) to warm-start from."""
+    if RESUME_FROM is not None:
+        path = Path(RESUME_FROM)
+        if not path.is_dir():
+            raise FileNotFoundError(f"--resume-from path not found: {path}")
+        print(f"[train_grpo] will warm-start from --resume-from {path!r}")
+        return path
+    if SFT_CHECKPOINT.exists():
+        print(f"[train_grpo] will warm-start from SFT checkpoint {SFT_CHECKPOINT!r}")
+        return SFT_CHECKPOINT
+    print("[train_grpo] no warm-start checkpoint found; cold-starting from base")
+    return None
 
 
-if RESUME_FROM is not None:
-    print(f"[train_grpo] resuming from saved adapter at {RESUME_FROM!r}")
-    model_for_trainer = _load_warm_start(RESUME_FROM)
-    trainer_peft_config = None
-elif SFT_CHECKPOINT.exists():
-    print(f"[train_grpo] starting from SFT checkpoint at {SFT_CHECKPOINT!r}")
-    model_for_trainer = _load_warm_start(SFT_CHECKPOINT)
-    trainer_peft_config = None
-else:
-    print("[train_grpo] no SFT checkpoint found, starting from base model")
-    model_for_trainer = MODEL_NAME
-    trainer_peft_config = peft_config
+def _load_adapter_weights_into(peft_model, adapter_dir: Path) -> None:
+    """Load `adapter_model.safetensors` from adapter_dir into peft_model.
+
+    `set_peft_model_state_dict` handles the LoRA-specific key remapping
+    (e.g. inserting `base_model.model.` prefixes when needed) so this
+    works regardless of how the state dict was saved.
+    """
+    weights_path = adapter_dir / "adapter_model.safetensors"
+    if not weights_path.is_file():
+        # Fallback to .bin for older PEFT saves.
+        bin_path = adapter_dir / "adapter_model.bin"
+        if bin_path.is_file():
+            import torch
+            state_dict = torch.load(str(bin_path), map_location="cpu")
+        else:
+            raise FileNotFoundError(
+                f"No adapter weights at {weights_path} or {bin_path}"
+            )
+    else:
+        state_dict = safe_load_file(str(weights_path))
+    set_peft_model_state_dict(peft_model, state_dict)
+    print(
+        f"[train_grpo] loaded {len(state_dict)} adapter tensors "
+        f"from {adapter_dir}"
+    )
+
+
+warm_start_dir = _resolve_warm_start_dir()
+
+# Always the same args for trl regardless of warm-start: base model name +
+# peft_config. The peft_config defines the LoRA shape; saved weights (if
+# any) get loaded *into* that shape post-init.
+model_for_trainer = MODEL_NAME
+trainer_peft_config = peft_config
 
 trainer = GRPOTrainer(
     model=model_for_trainer,
@@ -495,6 +536,14 @@ trainer = GRPOTrainer(
     peft_config=trainer_peft_config,
     callbacks=[max_reward_cb, log_reorder_cb, completion_peek_cb],
 )
+
+# Warm-start: overwrite the freshly-built LoRA's weights with the saved
+# adapter from disk. Must happen after GRPOTrainer is built (so
+# trainer.model is the wrapped PEFT model) but before trainer.train() —
+# the optimizer that .train() creates will then bind to these warm-started
+# parameters.
+if warm_start_dir is not None:
+    _load_adapter_weights_into(trainer.model, warm_start_dir)
 
 # Crash-recovery resume. Two distinct mechanisms now coexist:
 #   * RESUME_FROM (above) — load a previously saved *final* adapter and start

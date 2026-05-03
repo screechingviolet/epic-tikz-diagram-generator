@@ -185,8 +185,14 @@ peft_config = LoraConfig(
 #   complex  ≤ 1200 tok   ← drives this setting
 # 2048 covers complex max with comfortable headroom for chat-template
 # variation across transformers versions.
+# Anchor the output directory to the project root so train_grpo's
+# SFT_CHECKPOINT auto-detection finds it regardless of which directory
+# train_sft.py was launched from.
+SFT_OUTPUT_DIR = PROJECT_ROOT / "Qwen2-0.5B-SFT-geometry"
+SFT_FINAL_DIR = SFT_OUTPUT_DIR / "final"
+
 sft_args = SFTConfig(
-    output_dir="Qwen2-0.5B-SFT-geometry",
+    output_dir=str(SFT_OUTPUT_DIR),
     # 1 epoch on the capped sample is the deliberate "format-only" warmup.
     # On the default ~1000-row cap that's ~60 optimizer steps at the
     # effective batch of 16 — enough to lock in <think>...</think> framing
@@ -220,5 +226,5 @@ trainer = SFTTrainer(
 )
 
 trainer.train()
-trainer.save_model("Qwen2-0.5B-SFT-geometry/final")
-print("SFT done. Checkpoint saved → Qwen2-0.5B-SFT-geometry/final")
+trainer.save_model(str(SFT_FINAL_DIR))
+print(f"SFT done. Checkpoint saved → {SFT_FINAL_DIR}")
