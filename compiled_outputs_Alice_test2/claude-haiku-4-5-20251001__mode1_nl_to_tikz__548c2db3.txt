@@ -1,0 +1,1 @@
+Point B and point A are defined and are connected by line lr, which measures 3.9302 in length. Meanwhile, points K and Q are connected by line le, which has a length of 4.6727. Lines lr and le are parallel, maintaining a perpendicular distance of 3.5222 between them.

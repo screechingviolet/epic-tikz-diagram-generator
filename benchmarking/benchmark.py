@@ -74,12 +74,25 @@ def to_binary(score) -> float:
 # ---------------------------------------------------------------------------
 
 MODE1_SYSTEM = """You convert natural language geometry descriptions into TikZ code.
-For each input, output ONLY the tikzpicture environment. No explanation, no markdown, no backticks.
+Output ONLY the tikzpicture environment — no explanation, no markdown, no backticks.
+
+Rules:
+- Include EVERY object mentioned: all points, all lines, all circles — nothing may be omitted
+- Label EVERY object with its name exactly as given in the description
+- Points: draw as filled circles (\\filldraw ... circle (2pt)) with the name label offset above-right
+- Lines: draw the full segment between its two named endpoints; label at midpoint
+- Circles: draw the full circle; label near the top of the circle
+- Coordinates are typically in the range [-5, 5]; scale the diagram to be readable
+
+Example input:
+Point A and point B exist. Line la connects A and B. Circle ω0 is centered at A with radius 1.5.
 
 Example output:
-\\begin{tikzpicture}
-  \\draw (0,0) circle (2cm);
-  \\draw (-3,2) -- (3,2);
+\\begin{tikzpicture}[scale=1.0]
+  \\filldraw (0.0, 0.0) circle (2pt) node[above right] {$A$};
+  \\filldraw (3.0, 0.0) circle (2pt) node[above right] {$B$};
+  \\draw (0.0, 0.0) -- (3.0, 0.0) node[midway, below] {$l_a$};
+  \\draw (0.0, 0.0) circle (1.5) node[above=1.5cm] {$\\omega_0$};
 \\end{tikzpicture}"""
 
 MODE2_SYSTEM = (

@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$M$};
+  \filldraw (4.7027, 0.0) circle (2pt) node[above right] {$W$};
+  \filldraw (0.0, 1.5758) circle (2pt) node[above right] {$H$};
+  \filldraw (4.307, 1.5758) circle (2pt) node[above right] {$J$};
+  \draw (0.0, 0.0) -- (4.7027, 0.0) node[midway, below] {$l_o$};
+  \draw (0.0, 1.5758) -- (4.307, 1.5758) node[midway, above] {$l_w$};
+\end{tikzpicture}
+\end{document}

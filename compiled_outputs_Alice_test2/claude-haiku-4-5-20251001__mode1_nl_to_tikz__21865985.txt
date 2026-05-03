@@ -1,0 +1,1 @@
+There exists a point named H and another point named U. Circle ω3 is centered at point H and has a radius of 1.1634. Circle γ23 is centered at point U and has a radius of 1.1411. The two circles, ω3 and γ23, are tangent to each other externally.

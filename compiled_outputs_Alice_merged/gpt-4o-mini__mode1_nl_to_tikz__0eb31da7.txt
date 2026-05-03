@@ -1,0 +1,1 @@
+There exists a point named K, and also a point named R. A circle designated as ω11 is centered at point K with a radius of 0.7192, and point R lies on the circumference of this circle.

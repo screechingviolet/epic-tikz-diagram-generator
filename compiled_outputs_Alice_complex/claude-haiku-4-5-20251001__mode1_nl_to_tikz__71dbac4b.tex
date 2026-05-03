@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$Y$};
+  \filldraw (0.0, 2.0) circle (2pt) node[above right] {$H$};
+  \filldraw (0.0, 0.65) circle (2pt) node[above right] {$S$};
+  \filldraw (1.3313, 0.65) circle (2pt) node[above right] {$R$};
+  \filldraw (2.0, 0.0) circle (2pt) node[above right] {$X$};
+  \filldraw (1.3313, 0.65) circle (2pt) node[above right] {$F$};
+  \draw (0.0, 0.65) -- (0.0, 2.0) node[midway, left] {$l_m$};
+  \draw (1.3313, 0.65) -- (8.9286, 0.0) node[midway, above] {$l_p$};
+  \draw (1.3313, 0.65) circle (2.2412) node[above=2.2412cm] {$\gamma_{17}$};
+\end{tikzpicture}
+\end{document}

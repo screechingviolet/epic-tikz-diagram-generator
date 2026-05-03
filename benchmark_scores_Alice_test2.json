@@ -1,0 +1,14 @@
+{
+  "gpt-4o-mini": {
+    "mode1_compile_rate": 1.0,
+    "mode1_constraint_score": 0.44,
+    "mode2_avg_score": 0.5,
+    "mode3_avg_score": 0.74
+  },
+  "claude-haiku-4-5-20251001": {
+    "mode1_compile_rate": 1.0,
+    "mode1_constraint_score": 0.7,
+    "mode2_avg_score": 0.84,
+    "mode3_avg_score": 0.74
+  }
+}

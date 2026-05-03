@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+  \filldraw (2.0, 0.0) circle (2pt) node[above right] {$E$};
+  \filldraw (1.0, 0.0) circle (2pt) node[above right] {$D$};
+  \filldraw (3.0, 0.0) circle (2pt) node[above right] {$P$};
+  \draw (3.0, 0.0) -- (1.0, 0.0) node[midway, below] {$l_n$};
+  \draw (1.0, 0.0) -- (1.0, 0.0) node[midway, below] {$l_h$};
+  \draw (2.0, 0.0) circle (1.7975) node[above=1.7975cm] {$\gamma_8$};
+\end{tikzpicture}
+\end{document}

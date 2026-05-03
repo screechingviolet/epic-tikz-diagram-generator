@@ -1,0 +1,1 @@
+Point K is defined in the diagram. Point M is also present. Additionally, point B and point T are included. Line li is drawn connecting point T and point B. Circle ω11, centered at point T, has a radius of 1.7703. Another circle, ω2, is centered at point M with a radius of 2.2384. The length of line li measures 3.1891. Notably, circles ω11 and ω2 are externally tangent.

@@ -1,0 +1,1 @@
+There exists a point named I, which serves as the center of a circle, γ12, with a radius of 1.2894. Another point, B, and a point W define a line, ly, that connects them and has a length of 3.9645. This line just touches the circle γ12 at a single point.

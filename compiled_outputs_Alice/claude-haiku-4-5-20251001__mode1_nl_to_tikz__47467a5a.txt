@@ -1,0 +1,1 @@
+Point L exists, and point U also exists. Circle ω1 has its center at point L and has a radius of 0.5747. Circle ω10 is centered at point U with a radius of 0.7580. The circles ω1 and ω10 are externally tangent to each other.

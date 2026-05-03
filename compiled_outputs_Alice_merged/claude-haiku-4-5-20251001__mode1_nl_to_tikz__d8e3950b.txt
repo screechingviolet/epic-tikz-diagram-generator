@@ -1,0 +1,1 @@
+Point N exists with circle ω5 centered at it, having a radius of 0.9531, and point X is positioned on the circumference of circle ω5.

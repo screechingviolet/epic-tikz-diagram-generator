@@ -1,0 +1,1 @@
+Point A exists and is the center of circle γ1, which has a radius of 1.9301. Additionally, point G lies on the circumference of circle γ1.

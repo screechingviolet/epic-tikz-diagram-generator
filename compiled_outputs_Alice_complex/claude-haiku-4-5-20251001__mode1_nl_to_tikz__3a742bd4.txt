@@ -1,0 +1,1 @@
+Point V is defined. Point H is defined. Point E is defined. Point A is defined. Line lz connects point A to point V. Circle γ7 is centered at point H with a radius of 2.5605. The length of line lz is 3.1397. Additionally, line lz is tangent to circle γ7.

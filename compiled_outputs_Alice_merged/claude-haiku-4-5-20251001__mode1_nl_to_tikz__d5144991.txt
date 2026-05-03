@@ -1,0 +1,1 @@
+Point U exists. Point I is present, and point P also exists. A line named lw connects points I and P, having a length of 4.0821. Furthermore, there is a circle named ω25 centered at point U with a radius of 0.5946. Notably, the line lw is tangent to circle ω25.

@@ -1,0 +1,1 @@
+Point F exists in the geometric space. Point A and point Q are defined, with line ll connecting them. Circle ω9, centered at point Q, has a radius of 0.6183. Circle ω21, centered at point K, has a radius of 2.1053. The length of line ll is 1.7142, and it is tangent to circle ω21.

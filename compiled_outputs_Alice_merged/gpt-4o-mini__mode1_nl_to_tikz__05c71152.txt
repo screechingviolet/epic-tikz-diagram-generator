@@ -1,0 +1,1 @@
+There are two points, J and M, each positioned at unique locations. Circle γ13 is centered at point J with a radius of 0.9071. Meanwhile, circle ω8 is centered at point M and has a radius of 0.5810. Notably, these two circles just touch each other at a single point, indicating that they are externally tangent.

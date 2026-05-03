@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=0.8]
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$W$};
+  \filldraw (2.0, 1.5) circle (2pt) node[above right] {$B$};
+  \filldraw (3.6102, 0.0) circle (2pt) node[above right] {$F$};
+  \draw (0.0, 0.0) -- (3.6102, 0.0) node[midway, below] {$l_k$};
+  \draw (2.0, 1.5) -- (3.6102, 0.0) node[midway, right] {$l_j$};
+  \draw (2.0, 1.5) -- (0.0, 0.0) node[midway, left] {$l_i$};
+  \draw (0.0, 0.0) circle (2.9397) node[above=3.5cm] {$\gamma_{24}$};
+\end{tikzpicture}
+\end{document}

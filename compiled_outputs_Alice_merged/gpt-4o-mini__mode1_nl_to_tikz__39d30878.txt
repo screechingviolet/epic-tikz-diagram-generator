@@ -1,0 +1,1 @@
+There is a point labeled N, a point K, a point C, and a point U. A line connecting points N and K is denoted as line lp, which has a length of 4.4986. Another line, named lv, joins points C and U, measuring 2.6624 in length. The two lines lp and lv are perpendicular to each other.

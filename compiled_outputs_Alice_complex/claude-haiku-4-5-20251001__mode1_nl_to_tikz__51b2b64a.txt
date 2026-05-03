@@ -1,0 +1,1 @@
+Point Q exists. Point V and point L define line lb, which has a length of 1.8419. Point D and point A define line la, possessing a length of 1.8589. Circle ω22, with radius 1.0617, is centered at point Q. Circle γ22, having a radius of 2.7773, is centered at point L. Lines lb and la are parallel with a perpendicular distance of 1.9527 between them.

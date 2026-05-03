@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \filldraw (1.0, 1.0) circle (2pt) node[above right] {$F$};
+  \filldraw (3.0, 1.0) circle (2pt) node[above right] {$O$};
+  \filldraw (5.0, 0.0) circle (2pt) node[above right] {$E$};
+  \draw (3.0, 1.0) circle (1.2204) node[above=1.2204cm] {$\omega_2$};
+  \draw (3.0, 1.0) -- (5.0, 0.0) node[midway, below] {$l_q$};
+\end{tikzpicture}
+\end{document}

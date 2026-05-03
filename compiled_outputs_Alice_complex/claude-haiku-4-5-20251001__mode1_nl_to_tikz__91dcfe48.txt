@@ -1,0 +1,1 @@
+Point T is present in the configuration. Additionally, point Z and point B exist, connected by line ln. Line lw joins point B to point Q. A circle denoted as γ12 is centered at point Q, possessing a radius of 0.9249. The length of line ln is 3.8789, while the length of line lw is 4.7273. Lines ln and lw form an angle of 165.32° at their intersection.

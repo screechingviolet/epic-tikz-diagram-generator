@@ -1,0 +1,1 @@
+Point X exists and is connected to point E by line lm, which has a length of 4.7187. Line ld connects point P and point C and has a length of 2.9958. The lines lm and ld are parallel to each other with a perpendicular distance of 1.7224.

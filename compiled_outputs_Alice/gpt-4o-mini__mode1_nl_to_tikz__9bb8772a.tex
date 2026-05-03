@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \filldraw (0.0, 0.0) circle (2pt) node[above right] {$X$};
+  \filldraw (0.0, 2.4532) circle (2pt) node[above right] {$V$};
+  \filldraw (2.8961, 0.0) circle (2pt) node[above right] {$J$};
+  \draw (0.0, 2.4532) -- (0.0, 0.0) node[midway, right] {$l_g$};
+  \draw (2.8961, 0.0) -- (0.0, 0.0) node[midway, below] {$l_w$};
+  \draw (0.0, 2.4532) circle (2.4532) node[above=2.4532cm] {$\omega_{9}$};
+\end{tikzpicture}
+\end{document}

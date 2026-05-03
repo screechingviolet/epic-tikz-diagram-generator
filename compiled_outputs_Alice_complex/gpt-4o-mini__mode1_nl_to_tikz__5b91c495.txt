@@ -1,0 +1,1 @@
+Point O exists with a circle, ω3, centered at it with a radius of 2.3943. Point P is also defined, and there is point I as well. A line, lw, is drawn connecting points I and O, while another line, lo, extends from point O to point P. The length of line lw measures 9.1496, and line lo measures 9.6327. Notably, the lines lw and lo are parallel to each other.
