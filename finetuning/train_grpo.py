@@ -2,6 +2,7 @@ import argparse
 import contextlib
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -257,22 +258,40 @@ log_reorder_cb = LogReorderCallback()
 completion_peek_cb = CompletionPeekCallback(every_n_steps=10)
 
 
-def _split_completion(text: str) -> list[str]:
-    """Split a completion into per-line tokens (no filtering, no fixups).
+# Reasoning format (matches cot_data/*.jsonl):
+#   <think>...reasoning...</think>
+#   point(...)
+#   line(...)
+#   ...
+# The <think> block is private scratch; the lines after </think> are graded
+# as primitives. Non-greedy + DOTALL tolerates newlines inside <think>.
+_THINK_RE = re.compile(r"<think>\s*(.*?)\s*</think>", re.DOTALL)
 
-    The model is meant to emit one primitive per line and nothing else.
-    Splitting only on newlines and stripping whitespace means any preamble,
-    bullet markers, or stray non-primitive lines (e.g. `angle(L0, L1, 51)`)
-    survive into check_constraints, which raises ParseError on unknown
-    heads → reward 0. That's deliberate: we want the model to learn not to
-    waste tokens on commentary or invalid forms, even if a fixup parser
-    *could* recover the valid lines.
+
+def _split_completion(text: str) -> list[str] | None:
+    """Extract per-line primitives from after the <think>...</think> block.
+
+    Returns None if the format is malformed (the format gate). The caller
+    maps None → reward 0 so the model is hard-incentivised to emit exactly
+    one well-formed <think> block.
+
+    Format requirements (strict on purpose):
+      * exactly one <think>...</think> block
+      * the </think> close tag must be present (no truncation mid-thought)
+
+    Lines after </think> are not filtered: any preamble, bullet markers, or
+    stray non-primitive lines (e.g. `angle(L0, L1, 51)`) survive into
+    check_constraints, which raises ParseError on unknown heads → reward 0.
+    That's deliberate: the post-</think> region is meant to contain
+    primitives and nothing else.
     """
-    # strip CoT block before parsing primitives
-    if "<think>" in text and "</think>" in text:
-        text = text[text.index("</think>") + len("</think>"):]
-
-    return [line.strip() for line in text.splitlines() if line.strip()]
+    matches = _THINK_RE.findall(text)
+    if len(matches) != 1:
+        return None
+    # Use only the content after the (single) </think> close tag — anything
+    # before <think> is also dropped on purpose.
+    tail = text[text.index("</think>") + len("</think>"):]
+    return [line.strip() for line in tail.splitlines() if line.strip()]
 
 
 def reward_constraints(completions, constraints, **kwargs):
@@ -316,9 +335,15 @@ def reward_constraints(completions, constraints, **kwargs):
             text = completion
 
         pred_geo = _split_completion(text)
+        if pred_geo is None:
+            # Format gate failed: no well-formed <think>...</think> block, or
+            # more than one. Hard zero so the model is strongly incentivised
+            # to learn the wrapper before anything else.
+            rewards.append(0.0)
+            continue
         if not pred_geo:
-            # No extractable primitives — short-circuit to the floor and skip
-            # the (defensive) call into check_constraints.
+            # No primitives after </think> — same as the parse-error tier in
+            # check_constraints (score 0).
             rewards.append(0.0)
             continue
 
@@ -382,9 +407,17 @@ training_args = GRPOConfig(
     # Bumps the effective batch to 8 samples = 2 unique prompts per
     # optimizer step, which smooths the gradient noticeably.
     gradient_accumulation_steps=2,
-    # Geometry blocks reach ~80–120 tokens; 384 leaves headroom without
-    # paying for tokens we won't generate.
-    max_completion_length=384,
+    # Sized against measured cot_data full_output character counts (with
+    # ~3.5 chars/token for Qwen2 BPE):
+    #   cot_simple   max ~100 tok
+    #   cot_medium   max ~250 tok
+    #   cot_merged   max ~230 tok
+    #   cot_complex  p99 ~475 tok,  max ~565 tok   ← drives this setting
+    # 768 covers cot_complex max with ~200-token headroom. Truncation that
+    # cuts off </think> blanks the reward via the format gate, so the
+    # headroom protects the training signal. If you only train on simple/
+    # medium/merged you can dial down to 512 to save rollout time.
+    max_completion_length=768,
     # 1e-5 was way too conservative for LoRA on a 0.5B model. 5e-5 is the
     # standard LoRA range and gets us measurable movement inside 150 steps.
     learning_rate=5e-5,
