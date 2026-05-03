@@ -504,15 +504,42 @@ def check_perpendicular(l1: Line, l2: Line, eps=1e-6) -> Perpendicular | None:
 
 
 def check_angle(l1: Line, l2: Line, eps=1e-6) -> Angle | None:
-    d1 = pt(l1.p2) - pt(l1.p1)
-    d2 = pt(l2.p2) - pt(l2.p1)
+    # Find shared endpoint if one exists (identity check, not value check)
+    shared = None
+    if   l1.p1 is l2.p1 or l1.p1 is l2.p2:
+        shared = l1.p1
+    elif l1.p2 is l2.p1 or l1.p2 is l2.p2:
+        shared = l1.p2
+
+    if shared is not None:
+        # Orient both vectors away from the shared endpoint so we get
+        # the true interior angle, then clamp to acute.
+        d1 = pt(l1.p2) if l1.p1 is shared else pt(l1.p1)
+        d2 = pt(l2.p2) if l2.p1 is shared else pt(l2.p1)
+        d1 = d1 - pt(shared)
+        d2 = d2 - pt(shared)
+    else:
+        # No shared endpoint — direction is arbitrary, so we'll
+        # normalise to acute regardless.
+        d1 = pt(l1.p2) - pt(l1.p1)
+        d2 = pt(l2.p2) - pt(l2.p1)
+
     cross = float(d1[0] * d2[1] - d1[1] * d2[0])
-    dot   = float(np.dot(d1, d2))
-    if abs(cross) < eps or abs(dot) < eps:
+
+    # Skip parallel / antiparallel (perpendicular is fine — dot=0, cross≠0)
+    if abs(cross) < eps:
         return None
+
     ang = angle_between(d1, d2)
-    small = ang if ang <= 180 else 360 - ang
-    return Angle(line_1_name=l1.name, line_2_name=l2.name, angle=round(small, 2))
+
+    # Always return the acute angle for consistency
+    ang = min(ang, 180.0 - ang)
+
+    # Skip degenerate near-0° angles (near-90° is fine, that's perpendicular)
+    if ang < 1.0:
+        return None
+
+    return Angle(line_1_name=l1.name, line_2_name=l2.name, angle=round(ang, 2))
 
 
 def check_circle_tangent(c1: Circle, c2: Circle, eps=1e-6) -> CircleTangent | None:
@@ -1069,32 +1096,33 @@ def generate_constraint_specific_datasets(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    for i in range(5):
+    print("\n=== Generating complex dataset ===\n")
+    for i in range(2):
         generate_curriculum_datasets(
-            n_simple=0, n_medium=0, n_complex=100,
+            n_simple=0, n_medium=0, n_complex=250,
             n_variants_per_scene=5, output_dir="curriculum_data",
         )
-    print("\n=== Generating parallel dataset ===\n")
-    for i in range(6):
-        generate_constraint_specific_datasets(
-            n_scenes_per_type=35,
-            n_variants_per_scene=5,
-            output_dir="constraint_data",
-            constraint_types=["parallel"],  # add this filter
-        )
-    print("=== Single scene demo ===\n")
+    # print("\n=== Generating angle dataset ===\n")
+    # for i in range(6):
+    #     generate_constraint_specific_datasets(
+    #         n_scenes_per_type=35,
+    #         n_variants_per_scene=5,
+    #         output_dir="constraint_data",
+    #         constraint_types=["angle"],  # add this filter
+    #     )
+    # print("=== Single scene demo ===\n")
 
-    points, lines, circles, constraints = random_scene()
-    formal  = serialize_scene(points, lines, circles, constraints)
-    summary = constraints_only_str(constraints)
+    # points, lines, circles, constraints = random_scene()
+    # formal  = serialize_scene(points, lines, circles, constraints)
+    # summary = constraints_only_str(constraints)
 
-    print("Formal:\n" + formal)
-    print("\nConstraint summary:\n" + summary)
+    # print("Formal:\n" + formal)
+    # print("\nConstraint summary:\n" + summary)
 
-    print("\nGenerating NL variants...")
-    variants = generate_nl_variants(formal, summary, n_variants=5)
-    for i, v in enumerate(variants, 1):
-        print(f"  {i}. {v}")
+    # print("\nGenerating NL variants...")
+    # variants = generate_nl_variants(formal, summary, n_variants=5)
+    # for i, v in enumerate(variants, 1):
+    #     print(f"  {i}. {v}")
 
-    print("\n=== Generating small dataset (10 scenes) ===\n")
-    generate_dataset(n_scenes=50, n_variants_per_scene=5, output_path="demo_dataset.jsonl")
+    # print("\n=== Generating small dataset (10 scenes) ===\n")
+    # generate_dataset(n_scenes=50, n_variants_per_scene=5, output_path="demo_dataset.jsonl")
